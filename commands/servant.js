@@ -800,7 +800,7 @@ var nameForMessage = '';
         console.log(nameForMessage);
         }
       });
-      message.channel.send(`${nameForMessage}: ${servantUrl}`);
+      message.channel.send(`${nameForMessage} cirnopedia: ${servantUrl}`);
     /* let commandFile2 = require(`./scrapeServant.js`);
     commandFile2.run(urlRef, servantUrl, client, message); */
   }
