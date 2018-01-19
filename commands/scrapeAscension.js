@@ -78,6 +78,7 @@ request(servantCall, function(error, response, html) {
         i++;
       }
      sendMessage = sendMessage.slice(0, -2);
+     sendMessage += "\n";
       servant.ascensions.push(ascension);
 
     }
