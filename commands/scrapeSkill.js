@@ -72,12 +72,14 @@ request(servantCall, function(error, response, html) {
               material.materialName = material.materialName.trim();
               skill.materials.push(material);
               // sendMessage += material.materialName + " (" + material.imageUrl + ")" + " x" + material.materialAmount;
-              sendMessage += material.materialName + " x" + material.materialAmount + "\n";
+              sendMessage += material.materialName + " x" + material.materialAmount + " • ";
             }
             break;
         }
         i++;
       }
+      sendMessage = sendMessage.slice(0, -2);
+      sendMessage += "\n";
       servant.skills.push(skill);
 
     }
