@@ -786,7 +786,7 @@ var servantName = '';
     servantUrl = 'http://fate-go.cirnopedia.org/servant_profile.php?servant=' + urlRef;
     let commandFile2 = require(`./scrapeServant.js`);
     commandFile2.run(urlRef, servantUrl, client, message);
-
+  }
     /* let age = args[0];
     let sex = args[1];
     let location = args[2];
