@@ -68,7 +68,7 @@ request(servantCall, function(error, response, html) {
               material.materialAmount = $(imageMaterials).find('div').text().replace("\n", "");
               material.materialName = $(imageMaterials).attr('title').replace(/[\u3000-\u303F]|[\u3040-\u309F]|[\u30A0-\u30FF]|[\uFF00-\uFFEF]|[\u4E00-\u9FAF]|[\u2605-\u2606]|[\u2190-\u2195]|\u203B|\n\r/g, "");
               ascension.materials.push(material);
-              sendMessage += material.materialName + " (" + material.imageUrl + ")" + " x" + material.materialAmount;
+              sendMessage += material.materialName + " x" + material.materialAmount;
             }
             break;
         }
@@ -78,7 +78,7 @@ request(servantCall, function(error, response, html) {
 
     }
     //console.log(sendMessage);
-
+    sendMessage += "\nMaterials List: http://fate-go.cirnopedia.org/item.php";
     message.channel.send(`${sendMessage}`).catch(console.error);
 
     //console.log(servant.ascensions[0].materials[0].imageUrl);
