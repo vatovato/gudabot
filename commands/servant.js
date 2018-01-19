@@ -793,9 +793,11 @@ var nameForMessage = '';
     request(servantUrl, function(error, response, html) {
       if(!error && response.statusCode == 200) {
         //$ = cheerio.load('div', '<div id="mw-content-text">...</div>');
+        console.log("Inside cheerio");
         var $ = cheerio.load(html);
         var tableWithName = $('td.desc').first();
         nameForMessage = $(tableWithName).children().first().text();
+        console.log(nameForMessage);
         }
       });
       message.channel.send(`${nameForMessage}: ${servantUrl}`);
