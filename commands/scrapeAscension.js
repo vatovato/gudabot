@@ -49,7 +49,7 @@ request(servantCall, function(error, response, html) {
         switch (i){
           case 0:
             ascension.title = $(columnAscensions).html().replace(/(<\/?(\s|\S)*>)/g, "");
-            sendMessage += "\n**" + ascension.title "** ";
+            sendMessage += "\n**" + ascension.title + "** ";
             break;
           case 1:
             ascension.cost = $(columnAscensions).find('a').html().replace(/(<\/?(\s|\S)*>)/g, "");
