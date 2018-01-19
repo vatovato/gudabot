@@ -20,8 +20,10 @@ request("http://fate-go.cirnopedia.org/servant_all.php#nav", function(error, res
   if(!error && response.statusCode == 200) {
     var $ = cheerio.load(html);
     var table = $('table.sortable');
-    var tableIconBody = $(table).find('a');
-    console.log(tableIconBody.html());
+    var tableIconBody = $(table).find('tbody');
+    var tableA = $(tableIconBody).find('tr').attr('id', urlRef);
+    console.log(tableA);
+    console.log(tableA.html());
   }
 });
 
