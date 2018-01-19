@@ -1,12 +1,7 @@
 
 exports.run = (client, message, args) => {
-const Discord = require('discord.js');
-var request = require('request');
-var cheerio = require('cheerio');
 //Concatenates all args to form the servant name called for the function
 var servantName = '';
-//Find the name of the Servant from the cirno website
-var nameForMessage = '';
 
     var servantName = args.join(" ").toLowerCase();
     //Stores the 3 digit code that identifies a Servant in cirno
@@ -789,18 +784,7 @@ var nameForMessage = '';
     if (nameFlag === 1) {
     //message.channel.send('Link to Cirno: http://fate-go.cirnopedia.org/servant_profile.php?servant=' + urlRef);
     servantUrl = 'http://fate-go.cirnopedia.org/servant_profile.php?servant=' + urlRef;
-    request(servantUrl, function(error, response, html) {
-      if(!error && response.statusCode == 200) {
-        //$ = cheerio.load('div', '<div id="mw-content-text">...</div>');
-        console.log("Inside cheerio");
-        var $ = cheerio.load(html);
-        var tableWithName = $('td.desc').first();
-        var serName = $(tableWithName).children().first().text();
-        serName.push(nameForMessage);
-        }
-      });
-      console.log(`Servant name: ${nameForMessage}`);
-      message.channel.send(`${nameForMessage} cirnopedia: ${servantUrl}`);
+    message.channel.send(`${servantUrl}`);
     /* let commandFile2 = require(`./scrapeServant.js`);
     commandFile2.run(urlRef, servantUrl, client, message); */
   }
