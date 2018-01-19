@@ -1,5 +1,10 @@
 
 exports.run = (client, message, args) => {
+const Discord = require('discord.js');
+var request = require('request');
+var cheerio = require('cheerio');
+var servantName = '';
+
     var servantName = args.join(" ").toLowerCase();
     var urlRef = '';
     var nameFlag = 1;
@@ -778,10 +783,10 @@ exports.run = (client, message, args) => {
     }
     if (nameFlag === 1) {
     //message.channel.send('Link to Cirno: http://fate-go.cirnopedia.org/servant_profile.php?servant=' + urlRef);
-    servantUrl = 'http://fate-go.cirnopedia.org/servant_profile.php?servant=' + urlRef
-    console.log(`URL for Servant: ${servantUrl}`);
-    message.channel.send(`URL: ${servantUrl}`);
-  }
+    servantUrl = 'http://fate-go.cirnopedia.org/servant_profile.php?servant=' + urlRef;
+    let commandFile2 = require(`./scrapeServant.js`);
+    commandFile2.run(urlRef, servantUrl, client, message);
+
     /* let age = args[0];
     let sex = args[1];
     let location = args[2];
