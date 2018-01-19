@@ -50,11 +50,11 @@ request(servantCall, function(error, response, html) {
           case 0:
             skill.title = $(columnSkills).html().replace(/(<\/?(\s|\S)*>)/g, "");
             skill.title = skill.title.replace("&#x2192;", " to ");
-            sendMessage += "\n**" + skill.title + "** ";
+            sendMessage += "\n" + skill.title;
             break;
           case 1:
             skill.cost = $(columnSkills).find('a').html().replace(/(<\/?(\s|\S)*>)/g, "");
-            sendMessage += "\nCost: " + skill.cost + " • ";
+            sendMessage += "\nCost: " + skill.cost + "\n";
             break;
           case 2:
             var material = {
