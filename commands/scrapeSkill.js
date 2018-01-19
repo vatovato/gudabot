@@ -68,7 +68,6 @@ request(servantCall, function(error, response, html) {
               material.imageUrl = materialsUrl + idImageMaterial + ".png";
               material.materialAmount = $(imageMaterials).find('div').text();
               material.materialAmount = material.materialAmount.trim();
-              console.log(material.materialAmount);
               material.materialName = $(imageMaterials).attr('title').replace(/[\u3000-\u303F]|[\u3040-\u309F]|[\u30A0-\u30FF]|[\uFF00-\uFFEF]|[\u4E00-\u9FAF]|[\u2605-\u2606]|[\u2190-\u2195]|\u203B|\n\r/g, "");
               material.materialName = material.materialName.trim();
               skill.materials.push(material);
