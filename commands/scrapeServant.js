@@ -21,9 +21,8 @@ request("http://fate-go.cirnopedia.org/servant_all.php#nav", function(error, res
     var $ = cheerio.load(html);
     var table = $('table.sortable');
     var tableIconBody = $(table).find('tbody');
-    var tableA = $(tableIconBody).find('tr').attr('id', urlRef);
+    var tableA = $(tableIconBody).find('tr').attr('id', urlRef).html();
     console.log(tableA);
-    console.log(tableA.html());
   }
 });
 
