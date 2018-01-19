@@ -4,6 +4,7 @@ const fs = require("fs");
 // Adds express to bypass Heroku's 30 minutes sleep
 const express = require('express');
 const app = express();
+var http = require('http');
 
 
 // Set the port of our application
