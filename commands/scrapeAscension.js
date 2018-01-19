@@ -53,7 +53,7 @@ request(servantCall, function(error, response, html) {
             break;
           case 1:
             ascension.cost = $(columnAscensions).find('a').html().replace(/(<\/?(\s|\S)*>)/g, "");
-            sendMessage += "\nCost: " + ascension.cost + "\nMaterials:\n";
+            sendMessage += "\nCost: " + ascension.cost + "\n";
             break;
           case 2:
             var material = {
@@ -77,7 +77,7 @@ request(servantCall, function(error, response, html) {
         }
         i++;
       }
-     sendMessage = sendMessage.slice(0, -1);
+     sendMessage = sendMessage.slice(0, -2);
       servant.ascensions.push(ascension);
 
     }
