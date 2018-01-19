@@ -795,10 +795,10 @@ var nameForMessage = '';
         console.log("Inside cheerio");
         var $ = cheerio.load(html);
         var tableWithName = $('td.desc').first();
-        nameForMessage = $(tableWithName).children().first().text();
+        var serName = $(tableWithName).children().first().text();
+        serName.push(nameForMessage);
         }
       });
-      console.log(nameForMessage);
       message.channel.send(`${nameForMessage} cirnopedia: ${servantUrl}`);
     /* let commandFile2 = require(`./scrapeServant.js`);
     commandFile2.run(urlRef, servantUrl, client, message); */
