@@ -4,6 +4,7 @@ const Discord = require('discord.js');
 var request = require('request');
 var cheerio = require('cheerio');
 var servantName = '';
+var nameForMessage = '';
 
     var servantName = args.join(" ").toLowerCase();
     var urlRef = '';
@@ -784,8 +785,17 @@ var servantName = '';
     if (nameFlag === 1) {
     //message.channel.send('Link to Cirno: http://fate-go.cirnopedia.org/servant_profile.php?servant=' + urlRef);
     servantUrl = 'http://fate-go.cirnopedia.org/servant_profile.php?servant=' + urlRef;
-    let commandFile2 = require(`./scrapeServant.js`);
-    commandFile2.run(urlRef, servantUrl, client, message);
+    request(servantUrl, function(error, response, html) {
+      if(!error && response.statusCode == 200) {
+        //$ = cheerio.load('div', '<div id="mw-content-text">...</div>');
+        var $ = cheerio.load(html);
+        var tableWithName = $('td.desc').first();
+        nameForMessage = $(tableWithName).children().first().text();
+        }
+      });
+      message.channel.send(`${nameForMessage}: ${servantUrl}`);
+    /* let commandFile2 = require(`./scrapeServant.js`);
+    commandFile2.run(urlRef, servantUrl, client, message); */
   }
     /* let age = args[0];
     let sex = args[1];
