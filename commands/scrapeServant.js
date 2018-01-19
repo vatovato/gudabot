@@ -13,7 +13,8 @@ request(servantCall, function(error, response, html) {
     var $ = cheerio.load(html);
     var tableWithName = $('td.desc').first();
     servantName = $(tableWithName).children().first().text();
-  }
+    }
+  });
 
 request("http://fate-go.cirnopedia.org/servant_all.php#nav", function(error, response, html) {
   if(!error && response.statusCode == 200) {
@@ -22,6 +23,6 @@ request("http://fate-go.cirnopedia.org/servant_all.php#nav", function(error, res
     var tableIconBody = $(table).find('a').attr(`href="#${urlRef}"`).toArray();
     console.log(tableIconBody);
   }
-})
+});
 
 }
