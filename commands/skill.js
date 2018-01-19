@@ -9,16 +9,6 @@ exports.run = (client, message, args) => {
     console.log(`Required skill ascension materials for ${servantName}`);
 
     switch(servantName) {
-      case "mash":
-      case "mash 3*":
-      case "mashu":
-      case "mashu 3*":
-      urlRef = '001';
-      break;
-      case "mash 4*":
-      case "mashu 4*":
-      urlRef = '001.5';
-      break;
       case "altria":
       case "arturia":
       case "arturia pendragon":
