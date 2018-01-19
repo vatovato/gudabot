@@ -789,7 +789,6 @@ var nameForMessage = '';
     if (nameFlag === 1) {
     //message.channel.send('Link to Cirno: http://fate-go.cirnopedia.org/servant_profile.php?servant=' + urlRef);
     servantUrl = 'http://fate-go.cirnopedia.org/servant_profile.php?servant=' + urlRef;
-    console.log(servantUrl);
     request(servantUrl, function(error, response, html) {
       if(!error && response.statusCode == 200) {
         //$ = cheerio.load('div', '<div id="mw-content-text">...</div>');
@@ -797,9 +796,9 @@ var nameForMessage = '';
         var $ = cheerio.load(html);
         var tableWithName = $('td.desc').first();
         nameForMessage = $(tableWithName).children().first().text();
-        console.log(nameForMessage);
         }
       });
+      console.log(nameForMessage);
       message.channel.send(`${nameForMessage} cirnopedia: ${servantUrl}`);
     /* let commandFile2 = require(`./scrapeServant.js`);
     commandFile2.run(urlRef, servantUrl, client, message); */
