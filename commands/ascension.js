@@ -378,6 +378,7 @@ exports.run = (client, message, args) => {
       case "rider anne & mary":
       case "rider boob pirates":
       urlRef="066";
+      break;
       case "santa alter":
       case "salter":
       urlRef="073";
