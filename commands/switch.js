@@ -1,4 +1,4 @@
-exports.parseName(servantName) => {
+exports.parseName = (servantName) => {
   var servantName = servantName;
   var urlRef = '';
   switch(servantName) {
