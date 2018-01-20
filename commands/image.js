@@ -6,11 +6,11 @@ exports.run = (client, message, args) => {
     var message = message;
     console.log(`Required image for ${servantName}`);
 
-    /* console.log(`urlRef before switch: ${urlRef}`);
+    console.log(`urlRef before switch: ${urlRef}`);
     var callSwitch  = require(`./switch.js`);
     urlRef = callSwitch.parseName(servantName);
     console.log(`urlRef after switch: ${urlRef}`);
-
+/*
     if (urlRef === '') {
       message.channel.send("You haven't written a valid Servant name");
     } else {
