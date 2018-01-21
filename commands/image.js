@@ -10,6 +10,7 @@ exports.run = (client, message, args) => {
     var message = message;
     if (isNaN(imageNumber)) {
       imageNumber = '0';
+      servantName = args.join(" ").toLowerCase();
     }
     console.log(`Servant name: ${servantName}
 Image number: ${imageNumber}`);
