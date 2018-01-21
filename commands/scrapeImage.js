@@ -31,7 +31,7 @@ request(servantCall, function(error, response, html) {
     //Begin a switch case that scrapes the image required by imageNumber
     switch (imageNumber) {
       case "0":
-      var aImage0 = $('a[title="Default Form"]');
+      var aImage0 = $('a[title="Default Form"]').attr('href');
       var divImage0 = $(aImage0).find('div').toString();
       var image0 = divImage0.replace(/(icons\/servant_card\/[0-9]*.jpg)/g,"");
       console.log(`aImage0: ${aImage0}
