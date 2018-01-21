@@ -10,10 +10,10 @@ const Discord = require('discord.js');
 //QP cost and materials needed for every tier
 var servant = {
   name: '',
-  ascensionImage0 = '',
-  ascensionImage1 = '',
-  ascensionImage2 = '',
-  ascensionImage3 = ''
+  ascensionImage0: '',
+  ascensionImage1: '',
+  ascensionImage2: '',
+  ascensionImage3: ''
 };
 // Use /(icons\/servant_card\/[0-9]*.jpg)/ for regex the URL
 // Message to be sent to Discord channel
