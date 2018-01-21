@@ -31,22 +31,22 @@ request(servantCall, function(error, response, html) {
     //Begin a switch case that scrapes the image required by imageNumber
     switch (imageNumber) {
       case "0":
-      var aImage0 = $('#Default Form').find('div').toArray();
+      var aImage0 = $('a[title="Default Form"]').find('div').html().replace(/(icons\/servant_card\/[0-9]*.jpg)/g,"");
       console.log(aImage0);
       break;
 
       case "1":
-      var aImage1 = $('#1st Ascension Form').find('div').toArray();
+      var aImage1 = $('#1st Ascension Form').find('div').toArray().html().replace(/(icons\/servant_card\/[0-9]*.jpg)/g,"");
       console.log(aImage1);
       break;
 
       case "2":
-      var aImage2 = $('#2nd Ascension Form').find('div').toArray();
+      var aImage2 = $('#2nd Ascension Form').find('div').html().replace(/(icons\/servant_card\/[0-9]*.jpg)/g,"");
       console.log(aImage2);
       break;
 
       case "3":
-      var aImage3 = $('#Final Ascension Form').find('div').toArray();
+      var aImage3 = $('#Final Ascension Form').find('div').html().replace(/(icons\/servant_card\/[0-9]*.jpg)/g,"");
       console.log(aImage3);
       break;
     }
