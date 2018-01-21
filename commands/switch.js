@@ -1,6 +1,7 @@
 exports.parseName = (servantName) => {
   var servantName = servantName;
   var urlRef = '';
+
   switch(servantName) {
     case "altria":
     case "arturia":
@@ -766,6 +767,7 @@ exports.parseName = (servantName) => {
     case "hokusai":
     urlRef="198";
     break;
+
   }
 return urlRef;
 }
