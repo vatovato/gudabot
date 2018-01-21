@@ -279,6 +279,12 @@ exports.parseName = (servantName) => {
     case "altria pendragon lancer":
     case "altria lancer":
     case "arturia lancer":
+    case "lancer altria":
+    case "lancer arturia":
+    case "lancer altria":
+    case "lancer altria pendragon":
+    case "lancer arturia pendragon":
+    case "lancer artoria pendragon":
     urlRef="119";
     break;
     case "tamamo lancer":
