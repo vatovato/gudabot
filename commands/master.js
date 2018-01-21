@@ -54,5 +54,5 @@ request(servantCall, function(error, response, html) {
     //console.log(servant.ascensions[0].materials[0].imageUrl);
 
   }
-});
+
 }
