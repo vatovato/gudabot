@@ -2,24 +2,24 @@ exports.parseName = (servantName) => {
   var servantName = servantName;
   var urlRef = '';
   switch(servantName) {
-    case "saber altria":
-    case "saber arturia":
-    case "saber arturia pendragon":
-    case "saber altria pendragon":
+    case "altria":
+    case "arturia":
+    case "arturia pendragon":
+    case "altria pendragon":
     urlRef = '002';
     break;
     case "saber alter":
     case "salter":
-    case "saber arturia pendragon alter":
-    case "saber altria pendragon alter":
+    case "arturia pendragon alter":
+    case "altria pendragon alter":
     urlRef='003';
     break;
     case "lily":
     case "saber lily":
-    case "saber altria lily":
-    case "saber altria pendragon lily":
-    case "saber arturia pendragon lily":
-    case "saber arturia lily":
+    case "altria lily":
+    case "altria pendragon lily":
+    case "arturia pendragon lily":
+    case "arturia lily":
     urlRef='004';
     break;
     case "nero":
@@ -64,9 +64,9 @@ exports.parseName = (servantName) => {
     case "bride umu":
     case "umu bride":
     case "nero claudius bride":
-    case "bride nero claudius":
     urlRef="090";
     break;
+    case "ryougi shiki":
     case "saber shiki":
     case "saber ryougi shiki":
     case "shiki saber":
@@ -76,7 +76,7 @@ exports.parseName = (servantName) => {
     case "rama":
     urlRef="101";
     break;
-    case "saber lancelot":
+    case "lancelot":
     urlRef="121";
     break;
     case "gawain":
@@ -87,14 +87,6 @@ exports.parseName = (servantName) => {
     break;
     case "elisabeth bathory brave":
     case "elisabeth brave":
-    case "brave elisabeth":
-    case "elizabeth bathory brave":
-    case "elizabeth brave":
-    case "brave elizabeth":
-    case "saber elizabeth":
-    case "saber elisabeth":
-    case "saber elisabeth bathory":
-    case "saber elizabeth bathory":
     urlRef="138";
     break;
     case "miyamoto musashi":
@@ -119,8 +111,9 @@ exports.parseName = (servantName) => {
     case "yagyuu munenori":
     urlRef="187";
     break;
-    case "archer emiya shirou":
-    case "archer emiya shiro":
+    case "emiya":
+    case "emiya shirou":
+    case "emiya shiro":
     case "emiya archer":
     case "archer emiya":
     urlRef="011";
@@ -169,8 +162,6 @@ exports.parseName = (servantName) => {
     case "child gil":
     case "child gilgamesh":
     case "chibi gil":
-    case "kid gil":
-    case "kid gilgamesh":
     urlRef="095";
     break;
     case "billy the kid":
@@ -266,8 +257,6 @@ exports.parseName = (servantName) => {
     case "altria pendragon lancer alter":
     case "lalter":
     case "lancer alter":
-    case "lancer altria pendragon alter":
-    case "lancer artoria pendragon alter":
     urlRef="078";
     break;
     case "karna":
@@ -289,12 +278,6 @@ exports.parseName = (servantName) => {
     case "altria pendragon lancer":
     case "altria lancer":
     case "arturia lancer":
-    case "lancer arturia":
-    case "lancer altria":
-    case "lancer artoria":
-    case "lancer altria pendragon":
-    case "lancer arturia pendragon":
-    case "lancer artoria pendragon":
     urlRef="119";
     break;
     case "tamamo lancer":
@@ -306,10 +289,8 @@ exports.parseName = (servantName) => {
     case "summer tama":
     urlRef="128";
     break;
-    case "lancer kiyohime":
-    case "lancer kiyo":
-    case "summer kiyohime":
-    case "summer kiyo":
+    case "kiyohime":
+    case "kiyo":
     urlRef="134";
     break;
     case "vlad iii extra":
@@ -317,6 +298,7 @@ exports.parseName = (servantName) => {
     break;
     case "jeanne d'arc alter santa lily":
     case "jeanne alter santa lily":
+    case "jailter":
     urlRef="141";
     break;
     case "enkidu":
@@ -381,7 +363,7 @@ exports.parseName = (servantName) => {
     break;
     case "francis drake":
     case "drake":
-    urlRef="";
+    urlRef="065";
     break;
     case "rider anne bonny":
     case "rider mary read":
@@ -461,8 +443,6 @@ exports.parseName = (servantName) => {
     urlRef="038";
     break;
     case "elizabeth bathory halloween":
-    case "halloween elizabeth":
-    case "halloween elizabeth bathory":
     urlRef="061";
     break;
     case "caster tamamo":
@@ -539,8 +519,6 @@ exports.parseName = (servantName) => {
     case "umu summer":
     case "summer umu":
     case "summer nero claudius":
-    case "caster nero":
-    case "caster nero claudius":
     urlRef="175";
     break;
     case "okeanos caster":
@@ -646,7 +624,7 @@ exports.parseName = (servantName) => {
     case "herc":
     urlRef="047";
     break;
-    case "berserker lancelot":
+    case "lancelot":
     urlRef="048";
     break;
     case "lu bu":
@@ -768,8 +746,6 @@ exports.parseName = (servantName) => {
     urlRef="164";
     break;
     case "sessyoin kiara":
-    case "kiara":
-    case "sessyoin":
     urlRef="167";
     break;
     case "mecha eli-chan":
@@ -788,7 +764,6 @@ exports.parseName = (servantName) => {
     break;
     case "katsushika hokusai":
     case "hokusai":
-    case "katsushika":
     urlRef="198";
     break;
   }

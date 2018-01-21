@@ -369,7 +369,7 @@ exports.run = (client, message, args) => {
       break;
       case "francis drake":
       case "drake":
-      urlRef="";
+      urlRef="065";
       break;
       case "rider anne bonny":
       case "rider mary read":
