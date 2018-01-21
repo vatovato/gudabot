@@ -12,7 +12,7 @@ request("http://fate-go.cirnopedia.org/master_mission_us.php#nav", function(erro
     //$ = cheerio.load('div', '<div id="mw-content-text">...</div>');
     var $ = cheerio.load(html);
     // Finds the first table with id="rounded-corner"
-    var tableWithObjectives = $('td.rounded-corner').first();
+    var tableWithObjectives = $('table.rounded-corner').first();
     // Skips table head
     var tableBody = $(tableWithObjectives).find('tbody');
     // Retrieves all rows from table
