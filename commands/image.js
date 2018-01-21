@@ -17,7 +17,7 @@ Image number: ${imageNumber}`);
     } else {
     servantUrl = 'http://fate-go.cirnopedia.org/servant_profile.php?servant=' + urlRef
     console.log(`URL for Servant: ${servantUrl}`);
-    /*let commandFile2 = require(`./scrapeImage.js`);
-    commandFile2.run(servantUrl, client, message);*/
+    let commandFile2 = require(`./scrapeImage.js`);
+    commandFile2.run(servantUrl, imageNumber, client, message);
   }
   }

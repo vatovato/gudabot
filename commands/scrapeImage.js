@@ -1,5 +1,6 @@
-exports.run = (servantUrl, client, message) => {
+exports.run = (servantUrl, imageNumber, client, message) => {
 var servantCall = servantUrl;
+var imageNumber = imageNumber;
 var request = require('request');
 var cheerio = require('cheerio');
 const Discord = require('discord.js');

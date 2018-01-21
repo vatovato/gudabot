@@ -1,6 +1,8 @@
 
 exports.run = (client, message, args) => {
     var servantName = args.join(" ").toLowerCase();
+    var invalidServantName = args.join("+").toLowerCase();
+    var searchUrl = "https://www.google.com.ar/search?q=" + invalidServantName + "+site%3Ahttp%3A%2F%2Ffate-go.cirnopedia.org";
     var urlRef = '';
     var nameFlag = 1;
     var servantUrl ='';
@@ -305,6 +307,7 @@ exports.run = (client, message, args) => {
       break;
       case "jeanne d'arc alter santa lily":
       case "jeanne alter santa lily":
+      case "jailter":
       urlRef="141";
       break;
       case "enkidu":
@@ -773,7 +776,7 @@ exports.run = (client, message, args) => {
       urlRef="198";
       break;
       default:
-      message.channel.send("You haven't written a valid Servant name");
+      message.channel.send(`Invalid Servant name. Try Google: ${searchUrl}`);
       nameFlag = 0;
       break;
     }
