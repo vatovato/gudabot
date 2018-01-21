@@ -13,7 +13,7 @@ exports.run = (client, message, args) => {
     urlRef = callSwitch.parseName(servantName);
 
     if (urlRef.length == 0) {
-      message.channel.send(`Invalid Servant name. Try Google: ${invalidServantName}`);
+      message.channel.send(`Invalid Servant name. Try Google: ${searchUrl}`);
     } else {
       // If it did find a result, urlRef has the servant cirno code
       // and the function can proceed to scrape the images

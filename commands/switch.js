@@ -77,7 +77,7 @@ exports.parseName = (servantName) => {
     case "rama":
     urlRef="101";
     break;
-    case "lancelot":
+    case "saber lancelot":
     urlRef="121";
     break;
     case "gawain":
@@ -376,6 +376,8 @@ exports.parseName = (servantName) => {
     break;
     case "santa alter":
     case "salter":
+    case "rider salter":
+    case "rider santa alter":
     urlRef="073";
     break;
     case "astolfo":
@@ -406,6 +408,7 @@ exports.parseName = (servantName) => {
     break;
     case "summer altria alter":
     case "summer salter":
+    case "rider salter":
     urlRef="179";
     break;
     case "ishtar":
@@ -487,7 +490,7 @@ exports.parseName = (servantName) => {
     case "Xuanzang Sanzang":
     urlRef="113";
     break;
-    case "nitocris":
+    case "caster nitocris":
     urlRef="120";
     break;
     case "da vinci":
@@ -625,7 +628,7 @@ exports.parseName = (servantName) => {
     case "herc":
     urlRef="047";
     break;
-    case "lancelot":
+    case "berserker lancelot":
     urlRef="048";
     break;
     case "lu bu":

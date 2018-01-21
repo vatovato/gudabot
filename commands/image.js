@@ -1,11 +1,16 @@
 exports.run = (client, message, args) => {
     var servantName = args.join(" ").toLowerCase();
+    var invalidServantName = args.join("+").toLowerCase();
+    var searchUrl = "https://www.google.com.ar/search?q=" + invalidServantName + "+site%3Ahttp%3A%2F%2Ffate-go.cirnopedia.org";
     var imageNumber = servantName.slice(-1);
     servantName = servantName.slice(0, -2);
     var urlRef = '';
     var servantUrl ='';
     var client = client;
     var message = message;
+    if (isNaN(imageNumber)) {
+      imageNumber = '0';
+    }
     console.log(`Servant name: ${servantName}
 Image number: ${imageNumber}`);
     // Checks if the number placed is a number between 1 and 4
@@ -18,7 +23,7 @@ Image number: ${imageNumber}`);
       // If the search in the table didn't bring any results,
       // shows an error message.
       if (urlRef.length == 0) {
-        message.channel.send("You haven't written a valid Servant name");
+        message.channel.send(`Invalid Servant name. Try Google: ${searchUrl}`);
       } else {
         // If it did find a result, urlRef has the servant cirno code
         // and the function can proceed to scrape the images
