@@ -36,6 +36,7 @@ request("http://fate-go.cirnopedia.org/master_mission_us.php#nav", function(erro
             break;
           case 1:
             missions.objective = $(columnObjectives).html().replace(/(<\/?(\s|\S)*>)/g, "");
+            missions.objective = missions.objective.trim();
             sendMessage += missions.objective + "\n";
             break;
         }
