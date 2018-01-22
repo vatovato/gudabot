@@ -197,7 +197,10 @@ exports.parseName = (servantName) => {
     case "ishtar":
     urlRef="142";
     break;
-    case "shinjuki archer":
+    case "shinjuku archer":
+    case "archer of shinjuku":
+    case "james moriarty":
+    case "moriarty":
     urlRef="156";
     break;
     case "emiya alter":
@@ -611,6 +614,7 @@ exports.parseName = (servantName) => {
     urlRef="154";
     break;
     case "shinjuku assassin":
+    case "yan qing":
     urlRef="159";
     break;
     case "fuyajo assassin":
@@ -747,6 +751,8 @@ exports.parseName = (servantName) => {
     urlRef="147";
     break;
     case "shinjuku avenger":
+    case "hessian wolf":
+    case "hessian lobo":
     urlRef="158";
     break;
     case "meltryllis":
