@@ -6,7 +6,7 @@ const Discord = require('discord.js');
 
 // Message to be sent to Discord channel
 var sendMessage = "**Weekly Master Missions**\n\n";
-
+var sendMessage2 = '';
 request("http://fate-go.cirnopedia.org/master_mission_us.php#nav", function(error, response, html) {
   if(!error && response.statusCode == 200) {
     //$ = cheerio.load('div', '<div id="mw-content-text">...</div>');
@@ -80,14 +80,16 @@ request("http://fate-go.cirnopedia.org/master_mission_us.php#nav", function(erro
           case 4:
           quests.map = $(columnFree).html().replace(/(<\/?(\s|\S)*>)/g, "");
           quests.map = quests.map.trim();
-          quests.map = quests.map.replace(/:/g, '\\ - ');
+          quests.map = quests.map.replace(/:/g, '\ - ');
           sendMessage += "Map: " + quests.map + ".\n";
           break;
         }
+        sendMessage2 = "- **Map: " + quests.map + ".** " + quests.quest + " (" + quests.ap + ") to target " + quests.target + ".\n";
         j++;
       }
     }
     message.channel.send(`${sendMessage}`).catch(console.error);
+    message.channel.send(`${sendMessage2}`).catch(console.error);
   }
 });
 }
