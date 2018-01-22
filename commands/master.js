@@ -5,7 +5,7 @@ const Discord = require('discord.js');
 
 
 // Message to be sent to Discord channel
-var sendMessage = "**Weekly Master Missions**\n";
+var sendMessage = "**Weekly Master Missions**\n\n";
 
 request("http://fate-go.cirnopedia.org/master_mission_us.php#nav", function(error, response, html) {
   if(!error && response.statusCode == 200) {
@@ -44,6 +44,8 @@ request("http://fate-go.cirnopedia.org/master_mission_us.php#nav", function(erro
         i++;
       }
     }
+    sendMessage = sendMessage.replace(/&quot;/g, '\\"');
+    sendMessage = sendMessage.text.replace(/&apos;/g, '\\´');
     message.channel.send(`${sendMessage}`).catch(console.error);
   }
 });
