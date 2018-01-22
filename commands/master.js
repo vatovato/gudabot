@@ -80,6 +80,7 @@ request("http://fate-go.cirnopedia.org/master_mission_us.php#nav", function(erro
           case 4:
           quests.map = $(columnFree).html().replace(/(<\/?(\s|\S)*>)/g, "");
           quests.map = quests.map.trim();
+          quests.map = quests.map.replace(/:/g, '\\ - ');
           sendMessage += "Map: " + quests.map + ".\n";
           break;
         }
