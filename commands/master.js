@@ -45,7 +45,7 @@ request("http://fate-go.cirnopedia.org/master_mission_us.php#nav", function(erro
       }
     }
     sendMessage = sendMessage.replace(/&quot;/g, '\\"');
-    sendMessage = sendMessage.text.replace(/&apos;/g, '\\´');
+    sendMessage = sendMessage.replace(/&apos;/g, '\\´');
     message.channel.send(`${sendMessage}`).catch(console.error);
   }
 });
