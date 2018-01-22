@@ -62,20 +62,23 @@ request("http://fate-go.cirnopedia.org/master_mission_us.php#nav", function(erro
       for (let columnFree of columnsFree) {
         switch(j) {
           case 0:
-          quests.quest = $(columnFree).html().replace(/(<\/?(\s|\S)*>)/g, "");
-          quests.quest = quests.quest.replace(/[\u3000-\u303F]|[\u3040-\u309F]|[\u30A0-\u30FF]|[\uFF00-\uFFEF]|[\u4E00-\u9FAF]|[\u2605-\u2606]|[\u2190-\u2195]|\u203B|\n\r/g, "");
+          quests.quest = $(columnFree).text().replace(/[\u3000-\u303F]|[\u3040-\u309F]|[\u30A0-\u30FF]|[\uFF00-\uFFEF]|[\u4E00-\u9FAF]|[\u2605-\u2606]|[\u2190-\u2195]|\u203B|\n\r/g, "");
+          quests.quest = quests.quest.trim();
           sendMessage += "- " + quests.quest;
           break;
           case 1:
           quests.ap = $(columnFree).html().replace(/(<\/?(\s|\S)*>)/g, "");
+          quests.ap = quests.ap.trim();
           sendMessage += " (" + quests.ap + ") to target ";
           break;
           case 3:
           quests.target = $(columnFree).html().replace(/(<\/?(\s|\S)*>)/g, "");
+          quests.target = quests.target.trim();
           sendMessage += quests.target + ". ";
           break;
           case 4:
           quests.map = $(columnFree).html().replace(/(<\/?(\s|\S)*>)/g, "");
+          quests.map = quests.map.trim();
           sendMessage += "Map: " + quests.map + ".\n";
           break;
         }
