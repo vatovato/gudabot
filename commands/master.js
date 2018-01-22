@@ -84,7 +84,7 @@ request("http://fate-go.cirnopedia.org/master_mission_us.php#nav", function(erro
           sendMessage += "Map: " + quests.map + ".\n";
           break;
         }
-        sendMessage2 = "- **Map: " + quests.map + ".** " + quests.quest + " (" + quests.ap + ") to target " + quests.target + ".\n";
+        sendMessage2 += "- **Map: " + quests.map + ".** " + quests.quest + " (" + quests.ap + ") to target " + quests.target + ".\n";
         j++;
       }
     }
