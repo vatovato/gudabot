@@ -53,7 +53,7 @@ request("http://fate-go.cirnopedia.org/servant_all.php#nav", function(error, res
         servant.maxATK = $(tableColumns).text();
         break;
         case 10:
-        var cards = $(tableColumns).find('img').attr('src').toArray();
+        var cards = $(tableColumns).find('img').toArray();
         for(let card of cards) {
           switch(true) {
             case (cards.indexOf("pattern_01") >= 0):
