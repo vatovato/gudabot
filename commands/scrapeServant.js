@@ -13,7 +13,8 @@ var servant = {
   baseATK: '',
   maxHP: '',
   maxATK: '',
-  cards: ''
+  cards: '',
+  np: ''
 };
 
 // Retrieves Servant Name from Servant specific URL
@@ -54,11 +55,9 @@ request("http://fate-go.cirnopedia.org/servant_all.php#nav", function(error, res
         break;
         case 10:
         var cards = $(tableColumns).find('img').toArray();
-        console.log("Full Cards: " + cards);
         for(let card of cards) {
           console.log("Card: " + card);
           var cardCheck = $(card).attr('src');
-          console.log("cardCheck: " + cardCheck);
           if(cardCheck.indexOf("pattern_01") >= 0) {
             servant.cards += "Quick";
           } else if (cardCheck.indexOf("pattern_02") >= 0) {
@@ -67,8 +66,21 @@ request("http://fate-go.cirnopedia.org/servant_all.php#nav", function(error, res
             servant.cards += "Buster";
           }
             servant.cards += " ";
-            console.log("Servant Cards: " + servant.cards);
           }
+        break;
+        case 11:
+        var noble = $(tableColumns).find('img');
+        console.log(("noble: " + noble));
+        var nobleCheck = $(noble).attr('src');
+        console.log("nobleCheck: " + nobleCheck);
+        if(nobleCheck.indexOf("pattern_01") >= 0) {
+          servant.np += "Quick";
+          } else if (nobleCheck.indexOf("pattern_02") >= 0) {
+          servant.np += "Arts";
+          } else if (nobleCheck.indexOf("pattern_03") >= 0) {
+          servant.np += "Buster";
+          }
+          console.log(servant.np);
         break;
         }
       i++;
@@ -86,7 +98,8 @@ request("http://fate-go.cirnopedia.org/servant_all.php#nav", function(error, res
     .addField("Base ATK", servant.baseATK, true)
     .addField("Max HP", servant.maxHP, true)
     .addField("Max ATK", servant.maxATK, true)
-    //.addField("Cards", servant.cards)
+    .addField("Cards", servant.cards)
+    .addField("Noble Phantasm", servant.np)
 
     message.channel.send({embed});
     }
