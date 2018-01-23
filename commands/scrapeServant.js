@@ -14,7 +14,8 @@ var servant = {
   maxHP: '',
   maxATK: '',
   cards: '',
-  np: ''
+  np: '',
+  npDesc: ''
 };
 
 // Retrieves Servant Name from Servant specific URL
@@ -56,7 +57,6 @@ request("http://fate-go.cirnopedia.org/servant_all.php#nav", function(error, res
         case 10:
         var cards = $(tableColumns).find('img').toArray();
         for(let card of cards) {
-          console.log("Card: " + card);
           var cardCheck = $(card).attr('src');
           if(cardCheck.indexOf("pattern_01") >= 0) {
             servant.cards += "Quick";
@@ -69,18 +69,24 @@ request("http://fate-go.cirnopedia.org/servant_all.php#nav", function(error, res
           }
         break;
         case 11:
+        var nobleName = $(tableColumns).find('ch1').text();
+        nobleName = nobleName.trim();
+        servant.np = nobleName;
+        console.log("Name: " + servant.np);
+        var nobleDesc1 = $(tableColumns).find('ch2').text();
+        console.log("Desc1: " + servant.nobleDesc1);
+        var nobleDesc2 = $(tableColumns).find('ch3').text();
+        nobleDesc2 = nobleDesc2.trim();
+        console.log("Desc2: " + servant.nobleDesc2);
         var noble = $(tableColumns).find('img');
-        console.log(("noble: " + noble));
         var nobleCheck = $(noble).attr('src');
-        console.log("nobleCheck: " + nobleCheck);
         if(nobleCheck.indexOf("pattern_01") >= 0) {
-          servant.np += "Quick";
+          servant.npDesc = nobleDesc1 + nobleDesc2 + "(Quick)";
           } else if (nobleCheck.indexOf("pattern_02") >= 0) {
-          servant.np += "Arts";
+          servant.npDesc = nobleDesc1 + nobleDesc2 + "(Arts)";
           } else if (nobleCheck.indexOf("pattern_03") >= 0) {
-          servant.np += "Buster";
+          servant.npDesc = nobleDesc1 + nobleDesc2 + "(Buster)";
           }
-          console.log(servant.np);
         break;
         }
       i++;
@@ -99,7 +105,7 @@ request("http://fate-go.cirnopedia.org/servant_all.php#nav", function(error, res
     .addField("Max HP", servant.maxHP, true)
     .addField("Max ATK", servant.maxATK, true)
     .addField("Cards", servant.cards)
-    .addField("Noble Phantasm", servant.np)
+    //.addField("Noble Phantasm", servant.np)
 
     message.channel.send({embed});
     }
