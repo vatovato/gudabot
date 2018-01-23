@@ -53,7 +53,7 @@ request("http://fate-go.cirnopedia.org/servant_all.php#nav", function(error, res
         servant.maxATK = $(tableColumns).text();
         break;
         case 10:
-        var cards = $(tableColumns).find('img').toArray();
+        var cards = $(tableColumns).find('img').html().toArray();
         console.log("Full Cards: " + cards);
         for(let card of cards) {
           switch(true) {
