@@ -27,10 +27,10 @@ exports.run = (client, message, args) => {
     servantUrl = 'http://fate-go.cirnopedia.org/servant_profile.php?servant=' + urlRef;
     request(servantUrl, function(error, response, html) {
       if(!error && response.statusCode == 200) {
-        //$ = cheerio.load('div', '<div id="mw-content-text">...</div>');
         var $ = cheerio.load(html);
-        var tableWithName = $('td.desc').first();
-        serName = $(tableWithName).children().first().text();
+        var tableWithName = $('table[id="rounded-corner"]').first();
+        var rowName = $(tableWithName).find('td[class="desc"]').first().html().replace(/(<\/?(\s|\S)*>)/g, "");
+        serName = rowName;
       }
     });
     console.log(serName);
