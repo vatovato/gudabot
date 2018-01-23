@@ -12,6 +12,7 @@ const embed = new Discord.RichEmbed()
   .addField("**!image servant_name [0-3]**","Brings the Ascension level image for the requested Servant, where 0 is the base level and 3 is the final ascension level (e.g. !image salter 0).")
   .addField("**!npchart**","Link to NP Damage Comparisons")
   .addField("**!master**","Brings the Weekly Master Missions and their recommended areas")
+  .addField("**!servant**","Brings some servant information and a link to the servant's cirnopedia")
   .addField("**Meme functions**","!umu, !padoru, !weeb, !officer...")
 
 message.channel.send({embed}).catch(console.error);
