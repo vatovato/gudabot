@@ -19,27 +19,22 @@ request("http://fate-go.cirnopedia.org/servant_all.php#nav", function(error, res
     var i = 0;
     for (let tableColumns of tablesColumns){
       switch (i){
-        case 2:
+        /* case 2:
         servant.image = $(tableColumns).find('div').attr('style');
         console.log(servant.image);
-          break;
+          break;*/
         case 3:
         servant.name = $(tableColumns).find('a').text();
+        servant.name = servant.name.replace(/[\u3000-\u303F]|[\u3040-\u309F]|[\u30A0-\u30FF]|[\uFF00-\uFFEF]|[\u4E00-\u9FAF]|[\u2605-\u2606]|[\u2190-\u2195]|\u203B|\n\r/g, "");
         console.log(servant.name);
           break;
       }
       i++;
     }
-    }
-  });
-
-/* request("http://fate-go.cirnopedia.org/servant_all.php#nav", function(error, response, html) {
-  if(!error && response.statusCode == 200) {
-    var $ = cheerio.load(html);
-    var table = $('table.sortable');
-    var tableIconBody = $(table).find('tbody');
-    var tableA = $(tableIconBody).find('tr').toArray();
-    console.log(tableA);
+    servant.image = "http://fate-go.cirnopedia.org/icons/servant/servant_"+urlRef+"1.png";
+    message.channel.send(`Name: ${servant.name}
+Image: ${servant.image}`);
   }
-});*/
+
+  });
 }
