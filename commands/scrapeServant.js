@@ -69,7 +69,6 @@ request("http://fate-go.cirnopedia.org/servant_all.php#nav", function(error, res
           }
         break;
         }
-      }
       i++;
     }
     servant.image = "http://fate-go.cirnopedia.org/icons/servant/servant_"+urlRef+"1.png";
