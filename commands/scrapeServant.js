@@ -5,7 +5,7 @@ var request = require('request');
 var cheerio = require('cheerio');
 const Discord = require('discord.js');
 var servant = {
-  name: '';
+  name: '',
   image: ''
 };
 
