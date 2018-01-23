@@ -297,6 +297,9 @@ exports.parseName = (servantName) => {
     case "summer tamamo":
     case "tama summer":
     case "summer tama":
+    case "lancer tamamo":
+    case "lancer tama":
+    case "lancer tamamo no mae":
     urlRef="128";
     break;
     case "kiyohime":
@@ -461,6 +464,7 @@ exports.parseName = (servantName) => {
     case "caster tamamo":
     case "tamamo caster":
     case "caster tamamo no mae":
+    case "caster tama":
     urlRef="062";
     break;
     case "medea lily":
@@ -674,6 +678,9 @@ exports.parseName = (servantName) => {
     urlRef="057";
     break;
     case "tamamo cat":
+    case "berserker tamamo":
+    case "berserker tamamo no mae":
+    case "berserker tama":
     urlRef="058";
     break;
     case "berserker frankenstein":

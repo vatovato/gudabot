@@ -8,7 +8,7 @@ var servant = {
   name: '',
   image: '',
   serClass: '',
-  cost: '',
+  rarity: '',
   baseHP: '',
   baseATK: '',
   maxHP: '',
@@ -28,10 +28,9 @@ request("http://fate-go.cirnopedia.org/servant_all.php#nav", function(error, res
     var i = 0;
     for (let tableColumns of tablesColumns){
       switch (i){
-        /* case 2:
-        servant.image = $(tableColumns).find('div').attr('style');
-        console.log(servant.image);
-          break;*/
+        case 1:
+        servant.rarity = $(tableColumns).text();
+        break;
         case 3:
         servant.name = $(tableColumns).find('a').text();
         servant.name = servant.name.replace(/[\u3000-\u303F]|[\u3040-\u309F]|[\u30A0-\u30FF]|[\uFF00-\uFFEF]|[\u4E00-\u9FAF]|[\u2605-\u2606]|[\u2190-\u2195]|\u203B|\n\r/g, "");
@@ -72,13 +71,10 @@ request("http://fate-go.cirnopedia.org/servant_all.php#nav", function(error, res
         var nobleName = $(tableColumns).find('ch1').text();
         nobleName = nobleName.trim();
         servant.np = "**Noble Phantasm: " + nobleName;
-        console.log("Name: " + servant.np);
         var nobleDesc1 = $(tableColumns).find('ch2').text();
         nobleDesc1 = nobleDesc1.replace("]", "]\n");
-        console.log("Desc1: " + nobleDesc1);
         var nobleDesc2 = $(tableColumns).find('ch3').text();
         nobleDesc2 = nobleDesc2.trim();
-        console.log("Desc2: " + nobleDesc2);
         var noble = $(tableColumns).find('img');
         var nobleCheck = $(noble).attr('src');
         if(nobleCheck.indexOf("pattern_01") >= 0) {
@@ -91,7 +87,6 @@ request("http://fate-go.cirnopedia.org/servant_all.php#nav", function(error, res
           servant.np += " (Buster)**";
           servant.npDesc = nobleDesc1 + "\n" + nobleDesc2;
           }
-          console.log("npDesc: " + servant.npDesc);
         break;
         }
       i++;
@@ -104,7 +99,7 @@ request("http://fate-go.cirnopedia.org/servant_all.php#nav", function(error, res
     .setThumbnail(servant.image)
     .setURL(servantCall)
     .addField("Class", servant.serClass, true)
-    .addField("Cost", servant.cost, true)
+    .addField("Rarity", servant.rarity, true)
     .addField("Base HP", servant.baseHP, true)
     .addField("Base ATK", servant.baseATK, true)
     .addField("Max HP", servant.maxHP, true)
