@@ -4,17 +4,15 @@ var urlRef = urlRef;
 var request = require('request');
 var cheerio = require('cheerio');
 const Discord = require('discord.js');
-var serName = 'foo';
+var serName = '';
 
 // Retrieves Servant Name from Servant specific URL
-request(servantCall, function(error, response, html) {
+request("http://fate-go.cirnopedia.org/servant_all.php#nav", function(error, response, html) {
   if(!error && response.statusCode == 200) {
     //$ = cheerio.load('div', '<div id="mw-content-text">...</div>');
     var $ = cheerio.load(html);
-    var tableWithName = $('td.desc').first();
-    var servantName = $(tableWithName).children().first().text();
-    serName = servantName;
-    console.log("serName: " + serName + "servantName: " + servantName);
+    var fullTable = $('tr[id="'+urlRef+'"]').toArray();
+    console.log(fullTable);
     }
   });
 
