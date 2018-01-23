@@ -4,7 +4,7 @@ var urlRef = urlRef;
 var request = require('request');
 var cheerio = require('cheerio');
 const Discord = require('discord.js');
-var serName = '';
+var serName = 'foo';
 
 // Retrieves Servant Name from Servant specific URL
 request(servantCall, function(error, response, html) {
@@ -13,7 +13,8 @@ request(servantCall, function(error, response, html) {
     var $ = cheerio.load(html);
     var tableWithName = $('td.desc').first();
     var servantName = $(tableWithName).children().first().text();
-    serName += servantName;
+    serName = servantName;
+    console.log("serName: " + serName + "servantName: " + servantName);
     }
   });
 
