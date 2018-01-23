@@ -1,4 +1,4 @@
-exports.run = (servantUrl, client, message) => {
+exports.run = (servantUrl, urlRef, client, message) => {
 var servantCall = servantUrl;
 var urlRef = urlRef;
 var request = require('request');
@@ -16,7 +16,7 @@ request(servantCall, function(error, response, html) {
     }
   });
 
-request("http://fate-go.cirnopedia.org/servant_all.php#nav", function(error, response, html) {
+/* request("http://fate-go.cirnopedia.org/servant_all.php#nav", function(error, response, html) {
   if(!error && response.statusCode == 200) {
     var $ = cheerio.load(html);
     var table = $('table.sortable');
@@ -24,6 +24,6 @@ request("http://fate-go.cirnopedia.org/servant_all.php#nav", function(error, res
     var tableA = $(tableIconBody).find('tr').toArray();
     console.log(tableA);
   }
-});
-
+});*/
+message.channel.send(`${servantName}: ${servantCall}`);
 }

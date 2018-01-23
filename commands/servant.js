@@ -14,7 +14,6 @@ exports.run = (client, message, args) => {
   var servantUrl ='';
   var client = client;
   var message = message;
-  var serName = '';
   console.log(`Required cirno page for ${servantName}`);
 
     var callSwitch  = require(`./switch.js`);
@@ -25,16 +24,7 @@ exports.run = (client, message, args) => {
     } else {
     //message.channel.send('Link to Cirno: http://fate-go.cirnopedia.org/servant_profile.php?servant=' + urlRef);
     servantUrl = 'http://fate-go.cirnopedia.org/servant_profile.php?servant=' + urlRef;
-    request(servantUrl, function(error, response, html) {
-      if(!error && response.statusCode == 200) {
-        var $ = cheerio.load(html);
-        var tableWithName = $('table[id="rounded-corner"]').first();
-        var rowName = $(tableWithName).find('td[class="desc"]').first().html().replace(/(<\/?(\s|\S)*>)/g, "");
-        serName = rowName;
-      }
-    });
-    console.log(serName);
-    message.channel.send(`URL: ${servantUrl}
-Name: ${serName}`);
+    let commandFile2 = require(`./scrapeServant.js`);
+    commandFile2.run(servantUrl, urlRef, client, message);
   }
 }
