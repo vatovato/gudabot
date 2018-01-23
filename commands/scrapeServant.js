@@ -13,8 +13,7 @@ request(servantCall, function(error, response, html) {
     var $ = cheerio.load(html);
     var tableWithName = $('td.desc').first();
     var servantName = $(tableWithName).children().first().text();
-    console.log(servantName);
-    serName.push(servantName);
+    serName += servantName;
     }
   });
 
@@ -27,5 +26,5 @@ request(servantCall, function(error, response, html) {
     console.log(tableA);
   }
 });*/
-message.channel.send(`${servantName}: ${servantCall}`);
+message.channel.send(`${serName}: ${servantCall}`);
 }
