@@ -57,7 +57,7 @@ request("http://fate-go.cirnopedia.org/servant_all.php#nav", function(error, res
         console.log("Full Cards: " + cards);
         for(let card of cards) {
           console.log("Card: " + card);
-          var cardCheck = $(card).html();
+          var cardCheck = $(card).attr('src');
           console.log("cardCheck: " + cardCheck);
           /*if(cardCheck.indexOf("pattern_01") >= 0) {
             servant.cards += "Quick";
