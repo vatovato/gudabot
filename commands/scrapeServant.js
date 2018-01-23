@@ -54,6 +54,7 @@ request("http://fate-go.cirnopedia.org/servant_all.php#nav", function(error, res
         break;
         case 10:
         var cards = $(tableColumns).find('img').toArray();
+        console.log("Full Cards: " + cards);
         for(let card of cards) {
           switch(true) {
             case (cards.indexOf("pattern_01") >= 0):
@@ -68,6 +69,7 @@ request("http://fate-go.cirnopedia.org/servant_all.php#nav", function(error, res
           }
         servant.cards += " ";
         }
+        console.log("Servant Cards: " + servant.cards);
       }
       i++;
     }
@@ -84,7 +86,7 @@ request("http://fate-go.cirnopedia.org/servant_all.php#nav", function(error, res
     .addField("Base ATK", servant.baseATK, true)
     .addField("Max HP", servant.maxHP, true)
     .addField("Max ATK", servant.maxATK, true)
-    .addField("Cards", servant.cards)
+    //.addField("Cards", servant.cards)
 
     message.channel.send({embed});
     }
