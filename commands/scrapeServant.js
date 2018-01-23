@@ -57,11 +57,11 @@ request("http://fate-go.cirnopedia.org/servant_all.php#nav", function(error, res
         console.log("Full Cards: " + cards);
         for(let card of cards) {
           var cardCheck = $(card).find('img').attr('src');
-          if(cardCheck.indexOf("pattern_01") => 0) {
+          if(cardCheck.indexOf("pattern_01") >= 0) {
             servant.cards += "Quick";
-          } else if (cardCheck.indexOf("pattern_02") => 0) {
+          } else if (cardCheck.indexOf("pattern_02") >= 0) {
             servant.cards += "Arts";
-          } else if (cardCheck.indexOf("pattern_03") => 0) {
+          } else if (cardCheck.indexOf("pattern_03") >= 0) {
             servant.cards += "Buster";
           }
             servant.cards += " ";
