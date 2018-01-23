@@ -86,7 +86,7 @@ request("http://fate-go.cirnopedia.org/servant_all.php#nav", function(error, res
           } else if (nobleCheck.indexOf("pattern_02") >= 0) {
           servant.npDesc = nobleDesc1 + nobleDesc2 + "(Arts)";
           } else if (nobleCheck.indexOf("pattern_03") >= 0) {
-          servant.npDesc = nobleDesc1 + "\n" nobleDesc2 + "(Buster)";
+          servant.npDesc = nobleDesc1 + "\n" + nobleDesc2 + "(Buster)";
           }
           console.log("npDesc: " + servant.npDesc);
         break;
