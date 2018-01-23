@@ -12,7 +12,8 @@ var servant = {
   baseHP: '',
   baseATK: '',
   maxHP: '',
-  maxATK: ''
+  maxATK: '',
+  cards: ''
 };
 
 // Retrieves Servant Name from Servant specific URL
@@ -51,6 +52,22 @@ request("http://fate-go.cirnopedia.org/servant_all.php#nav", function(error, res
         case 9:
         servant.maxATK = $(tableColumns).text();
         break;
+        case 10:
+        var cards = $(tableColumns).find('img').attr('src').toArray();
+        for(let card of cards) {
+          switch(true) {
+            case (cards.indexOf("pattern_01") >= 0):
+            servant.cards += "Quick";
+            break;
+            case (cards.indexOf("pattern_02") >= 0):
+            servant.cards += "Arts";
+            break;
+            case (cards.indexOf("pattern_03") >= 0):
+            servant.cards += "Break";
+            break;
+          }
+        servant.cards += " ";
+        }
       }
       i++;
     }
@@ -63,12 +80,11 @@ request("http://fate-go.cirnopedia.org/servant_all.php#nav", function(error, res
     .setURL(servantCall)
     .addField("Class", servant.serClass, true)
     .addField("Cost", servant.cost, true)
-    .addBlankField(true)
     .addField("Base HP", servant.baseHP, true)
     .addField("Base ATK", servant.baseATK, true)
-    .addBlankField(true)
     .addField("Max HP", servant.maxHP, true)
     .addField("Max ATK", servant.maxATK, true)
+    .addField("Cards", servant.cards)
 
     message.channel.send({embed});
     }
