@@ -30,7 +30,7 @@ app.listen(port, () => {
 
 // pings server every 15 minutes to prevent dynos from sleeping
 setInterval(() => {
- http.get('https://gudabot.herokuapp.com');
+ http.get('http://gudabot.herokuapp.com');
 }, 900000);
 
 // This loop reads the /events/ folder and attaches each event file to the appropriate event.
