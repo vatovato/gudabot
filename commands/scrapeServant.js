@@ -53,23 +53,22 @@ request("http://fate-go.cirnopedia.org/servant_all.php#nav", function(error, res
         servant.maxATK = $(tableColumns).text();
         break;
         case 10:
-        var cards = $(tableColumns).find('img').html().toArray();
+        var cards = $(tableColumns).find('img').toArray();
         console.log("Full Cards: " + cards);
         for(let card of cards) {
-          switch(true) {
-            case (cards.indexOf("pattern_01") >= 0):
+          var cardCheck = $(card).find('img').attr('src');
+          if(cardCheck.indexOf("pattern_01") => 0) {
             servant.cards += "Quick";
-            break;
-            case (cards.indexOf("pattern_02") >= 0):
+          } else if (cardCheck.indexOf("pattern_02") => 0) {
             servant.cards += "Arts";
-            break;
-            case (cards.indexOf("pattern_03") >= 0):
-            servant.cards += "Break";
-            break;
+          } else if (cardCheck.indexOf("pattern_03") => 0) {
+            servant.cards += "Buster";
           }
-        servant.cards += " ";
+            servant.cards += " ";
+            console.log("Servant Cards: " + servant.cards);
+          }
+        break;
         }
-        console.log("Servant Cards: " + servant.cards);
       }
       i++;
     }
