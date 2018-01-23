@@ -74,10 +74,10 @@ request("http://fate-go.cirnopedia.org/servant_all.php#nav", function(error, res
         servant.np = nobleName;
         console.log("Name: " + servant.np);
         var nobleDesc1 = $(tableColumns).find('ch2').text();
-        console.log("Desc1: " + servant.nobleDesc1);
+        console.log("Desc1: " + nobleDesc1);
         var nobleDesc2 = $(tableColumns).find('ch3').text();
         nobleDesc2 = nobleDesc2.trim();
-        console.log("Desc2: " + servant.nobleDesc2);
+        console.log("Desc2: " + nobleDesc2);
         var noble = $(tableColumns).find('img');
         var nobleCheck = $(noble).attr('src');
         if(nobleCheck.indexOf("pattern_01") >= 0) {
@@ -87,6 +87,7 @@ request("http://fate-go.cirnopedia.org/servant_all.php#nav", function(error, res
           } else if (nobleCheck.indexOf("pattern_03") >= 0) {
           servant.npDesc = nobleDesc1 + nobleDesc2 + "(Buster)";
           }
+          console.log("npDesc: " + servant.npDesc);
         break;
         }
       i++;
