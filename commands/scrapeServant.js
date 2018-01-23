@@ -6,7 +6,13 @@ var cheerio = require('cheerio');
 const Discord = require('discord.js');
 var servant = {
   name: '',
-  image: ''
+  image: '',
+  serClass: '',
+  cost: '',
+  baseHP: '',
+  baseATK: '',
+  maxHP: '',
+  maxATK: ''
 };
 
 // Retrieves Servant Name from Servant specific URL
@@ -27,6 +33,24 @@ request("http://fate-go.cirnopedia.org/servant_all.php#nav", function(error, res
         servant.name = $(tableColumns).find('a').text();
         servant.name = servant.name.replace(/[\u3000-\u303F]|[\u3040-\u309F]|[\u30A0-\u30FF]|[\uFF00-\uFFEF]|[\u4E00-\u9FAF]|[\u2605-\u2606]|[\u2190-\u2195]|\u203B|\n\r/g, "");
           break;
+        case 4:
+        servant.serClass = $(tableColumns).text();
+        break;
+        case 5:
+        servant.cost = $(tableColumns).text();
+        break;
+        case 6:
+        servant.baseHP = $(tableColumns).text();
+        break;
+        case 7:
+        servant.baseATK = $(tableColumns).text();
+        break;
+        case 8:
+        servant.maxHP = $(tableColumns).text();
+        break;
+        case 9:
+        servant.maxATK = $(tableColumns).text();
+        break;
       }
       i++;
     }
@@ -37,6 +61,15 @@ request("http://fate-go.cirnopedia.org/servant_all.php#nav", function(error, res
     .setTitle(servant.name)
     .setThumbnail(servant.image)
     .setURL(servantCall)
+    .addField("Class", servant.serClass, true)
+    .addField("Cost", servant.cost, true)
+    .addBlankField(true)
+    .addField("Base HP", servant.baseHP, true)
+    .addField("Base ATK", servant.baseATK, true)
+    .addBlankField(true)
+    .addField("Max HP", servant.maxHP, true)
+    .addField("Max ATK", servant.maxATK, true)
+
     message.channel.send({embed});
     }
 
