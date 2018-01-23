@@ -14,8 +14,8 @@ exports.run = (client, message, args) => {
   var servantUrl ='';
   var client = client;
   var message = message;
-  var name = '';
-  console.log(`Required cirno page for for ${servantName}`);
+  var serName = '';
+  console.log(`Required cirno page for ${servantName}`);
 
     var callSwitch  = require(`./switch.js`);
     urlRef = callSwitch.parseName(servantName);
@@ -30,11 +30,11 @@ exports.run = (client, message, args) => {
         //$ = cheerio.load('div', '<div id="mw-content-text">...</div>');
         var $ = cheerio.load(html);
         var tableWithName = $('td.desc').first();
-        name = $(tableWithName).children().first().text();
+        serName = $(tableWithName).children().first().text();
       }
     });
-
+    console.log(serName);
     message.channel.send(`URL: ${servantUrl}
-Name: ${name}`);
+Name: ${serName}`);
   }
 }
