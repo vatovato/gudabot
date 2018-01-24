@@ -101,6 +101,9 @@ exports.parseName = (servantName) => {
     urlRef="160";
     break;
     case "suzuka gozen":
+    case "saber suzuka gozen":
+    case "saber tate eboshi":
+    case "tate eboshi":
     urlRef="165";
     break;
     case "saber frankenstein":
@@ -215,6 +218,7 @@ exports.parseName = (servantName) => {
     break;
     case "archer inferno":
     case "inferno archer":
+    case "tomoe gozen":
     urlRef="184";
     break;
     case "altera the sun":
