@@ -500,7 +500,9 @@ exports.parseName = (servantName) => {
     case "irisviel holy grail":
     urlRef="111";
     break;
-    case "Xuanzang Sanzang":
+    case "xuanzang sanzang":
+    case "genjou sanzou":
+    case "xuanzang":
     urlRef="113";
     break;
     case "caster nitocris":
