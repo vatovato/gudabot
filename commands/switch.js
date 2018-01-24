@@ -205,6 +205,8 @@ exports.parseName = (servantName) => {
     break;
     case "emiya alter":
     case "alter emiya":
+    case "detroit emiya":
+    case "demiya":
     urlRef="157";
     break;
     case "helena blavatsky":
@@ -315,6 +317,10 @@ exports.parseName = (servantName) => {
     urlRef="141";
     break;
     case "enkidu":
+    case "chain of heaven":
+    case "tohsaka rin":
+    case "rin tohsaka":
+    case "archer enkidu":
     urlRef="143";
     break;
     case "medusa lancer":
@@ -413,6 +419,7 @@ exports.parseName = (servantName) => {
     urlRef="132";
     break;
     case "quetzalcoatl":
+    case "feathered serpent":
     urlRef="144";
     break;
     case "resistance rider":
@@ -710,6 +717,8 @@ exports.parseName = (servantName) => {
     break;
     case "mysterious heroine x alter":
     case "mhx alter":
+    case "mysterious sailor x":
+    case "berserker mhx":
     urlRef="155";
     break;
     case "hijikata toshizo":
@@ -734,6 +743,8 @@ exports.parseName = (servantName) => {
     break;
     case "jeanne d'arc":
     case "jeanne":
+    case "ruler jeanne":
+    case "ruler jeanne d'arc":
     urlRef="059";
     break;
     case "amakusa shirou":
@@ -747,16 +758,29 @@ exports.parseName = (servantName) => {
     urlRef="173";
     break;
     case "count of monte cristo":
+    case "edmond dantes":
+    case "dantes":
+    case "avenger edmond":
+    case "avenger dantes":
+    case "avenger edmond dantes":
+    case "edmond":
     urlRef="096";
     break;
     case "jeanne d'arc alter":
     case "jeanne alter":
+    case "jalter":
+    case "avenger jeanne":
+    case "avenger jeanne d'arc":
+    case "avenger jeanne d'arc alter":
+    case "avenger jeanne alter":
     urlRef="106";
     break;
     case "angra mainyu":
     urlRef="107";
     break;
     case "gorgon":
+    case "avenger gorgon":
+    case "avenger medusa":
     urlRef="147";
     break;
     case "shinjuku avenger":
