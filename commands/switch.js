@@ -214,6 +214,7 @@ exports.parseName = (servantName) => {
     urlRef="180";
     break;
     case "archer inferno":
+    case "inferno archer":
     urlRef="184";
     break;
     case "altera the sun":
