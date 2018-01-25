@@ -13,6 +13,7 @@ const embed = new Discord.RichEmbed()
   .addField("**!npchart**","Link to NP Damage Comparisons")
   .addField("**!master**","Brings the Weekly Master Missions and their recommended areas")
   .addField("**!servant**","Brings some servant information and a link to the servant's cirnopedia")
+  .addField("**!valentine**","Shows current and next servant rate ups for Valentine event")
   .addField("**Meme functions**","!umu, !padoru, !weeb, !officer...")
 
 message.channel.send({embed}).catch(console.error);
