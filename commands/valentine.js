@@ -53,8 +53,8 @@ for(let i=1; i<17; i++) {
     var hours = Math.floor(times.time[i].diff(now, 'minutes') / 60);
     var minutes = times.time[i].diff(now, 'minutes') % 60;
     console.log("The time now is: " + now.format());
-    console.log("Current rate up is for " + times.serClass[i-1] + ".");
-    console.log("Next rate up for " + times.serClass[i] + " Class is in " + hours + " hours and " + minutes + " minutes.");
+    console.log("Current rate up is for **" + times.serClass[i-1] + "**.");
+    console.log("Next rate up for **" + times.serClass[i] + "** Class is in " + hours + " hours and " + minutes + " minutes.");
     message.channel.send(`Current rate up is for ${times.serClass[i-1]} Class. Next rate up for ${times.serClass[i]} Class is in ${hours} hours and ${minutes} minutes.`);
     flag = 1;
     return;
