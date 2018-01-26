@@ -45,17 +45,17 @@ times.time[17] = moment.utc('2018-02-10T00:00:00');
 times.serClass[17] = 'Undefined Servant';
 
 for(let i=1; i<17; i++) {
-  /* console.log("i: " + i);
-  console.log("Time -1 vs now: " + times.time[i-1].diff(now, 'minutes'));
-  console.log("Time +1 vs now: " + times.time[i+1].diff(now,'minutes'));
-  console.log(times.serClass[i]);*/
-  if(now.diff(times.time[i-1], 'minutes') <= 0 && now.diff(times.time[i+1],'minutes') >= 0) {
-    var hours = Math.floor(times.time[i+1].diff(now, 'minutes') / 60);
-    var minutes = times.time[i+1].diff(now, 'minutes') % 60;
+
+  if(times.time[i-1].diff(now, 'minutes') <= 0 && times.time[i].diff(now, 'minutes') >= 0) {
+    /*console.log("Now: " + now.utc());
+    console.log("Difference against i-1: " + now.diff(times.time[i-1], 'hours'));
+    console.log("Difference against i: " + times.time[i].diff(now,'hours'));*/
+    var hours = Math.floor(times.time[i].diff(now, 'minutes') / 60);
+    var minutes = times.time[i].diff(now, 'minutes') % 60;
     console.log("The time now is: " + now.format());
-    console.log("Current rate up is for " + times.serClass[i] + ".");
-    console.log("Next rate up for " + times.serClass[i+1] + " Class is in " + hours + " hours and " + minutes + " minutes.");
-    message.channel.send(`Current rate up is for ${times.serClass[i]} Class. Next rate up for ${times.serClass[i+1]} Class is in ${hours} hours and ${minutes} minutes.`);
+    console.log("Current rate up is for " + times.serClass[i-1] + ".");
+    console.log("Next rate up for " + times.serClass[i] + " Class is in " + hours + " hours and " + minutes + " minutes.");
+    message.channel.send(`Current rate up is for ${times.serClass[i-1]} Class. Next rate up for ${times.serClass[i]} Class is in ${hours} hours and ${minutes} minutes.`);
     flag = 1;
     return;
   }
