@@ -9,5 +9,5 @@ randomless, neki, lavenza, karnapolice, einbroch, david, sabrekins, grazzt, baek
 haly, laiza, arti, sean, hubb, gryffinp, furiosa, mupod, jeff chickendig, strifeser, sabin (pretends to be), zanzura, ibnchi, shinypogs, hubb, wei, ihokeren, fateshirou, nightengale, sadness enchancement ex, dandte, saci
 
 **EX Rank Luck**
-remembrance, saberkins, xia, ironraven`).catch(console.error);
+remembrance, saberkins, xianaphryz, ironraven`).catch(console.error);
 }
