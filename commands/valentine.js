@@ -7,7 +7,7 @@ var times = {
 var now = moment.utc();
 var flag = 0;
 var argClass = args[0];
-
+console.log("Requested valentine command.");
 times.time[0] = moment.utc('2018-01-10T00:00:00');
 times.serClass[0] = 'Undefined Servant';
 times.time[1] = moment.utc('2018-01-26T00:00:00');
@@ -53,9 +53,7 @@ for(let i=1; i<17; i++) {
     console.log("Difference against i: " + times.time[i].diff(now,'hours'));*/
     var hours = Math.floor(times.time[i].diff(now, 'minutes') / 60);
     var minutes = times.time[i].diff(now, 'minutes') % 60;
-    console.log("The time now is: " + now.format());
-    console.log("Current rate up is for **" + times.serClass[i-1] + "**.");
-    console.log("Next rate up for **" + times.serClass[i] + "** Class is in " + hours + " hours and " + minutes + " minutes.");
+
     message.channel.send(`Current rate up is for **${times.serClass[i-1]} Class**. Next rate up for **${times.serClass[i]} Class** is in ${hours} hours and ${minutes} minutes.`);
     flag = 1;
     return;
@@ -66,17 +64,17 @@ for(let i=1; i<17; i++) {
   }
 }
 if(flag === 0) {
-  console.log("Flag is 0");
+
   var hours = Math.floor(times.time[1].diff(now, 'minutes') / 60);
   var minutes = times.time[1].diff(now, 'minutes') % 60;
-  console.log("No rate up at this time. Next rate up is for " + times.serClass[1] + " Class in " + hours + " hours " + minutes + " minutes.");
+
   message.channel.send(`No rate up at this time. Next rate up is for ${times.serClass[1]} Class in ${hours} hours and ${minutes} minutes.`);
 }
 } else {
   argClass = argClass.toLowerCase();
-  console.log(argClass);
+
   var flag2 = 0;
-  console.log("Times length: " + times.time.length);
+
   for(let j = 1; j<times.time.length; j++) {
     if(times.serClass[j].toLowerCase() == argClass && times.time[j].diff(now,'minutes')>0) {
       var rateUpTime = moment(times.time[j]).format("dddd, MMMM Do YYYY, h:mm:ss a");
