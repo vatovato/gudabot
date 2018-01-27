@@ -79,7 +79,7 @@ if(flag === 0) {
   console.log("Times length: " + times.time.length);
   for(let j = 1; j<times.time.length; j++) {
     if(times.serClass[j].toLowerCase() == argClass && times.time[j].diff(now,'minutes')>0) {
-      var rateUpTime = moment(times.time[j]).format("dddd, MMMM Do YYYY, h:mm:ss");
+      var rateUpTime = moment(times.time[j]).format("dddd, MMMM Do YYYY, h:mm:ss a");
       message.channel.send(`Next rate up for ${argClass} is on ${rateUpTime}.`);
       flag2 = 1;
       return;
