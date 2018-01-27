@@ -6,6 +6,7 @@ var times = {
 };
 var now = moment.utc();
 var flag = 0;
+var argClass = args[0];
 
 times.time[0] = moment.utc('2018-01-10T00:00:00');
 times.serClass[0] = 'Undefined Servant';
@@ -43,7 +44,7 @@ times.time[16] = moment.utc('2018-02-02T12:00:00');
 times.serClass[16] = 'Saber';
 times.time[17] = moment.utc('2018-02-10T00:00:00');
 times.serClass[17] = 'Undefined Servant';
-
+if(typeof argClass == 'undefined') {
 for(let i=1; i<17; i++) {
 
   if(times.time[i-1].diff(now, 'minutes') <= 0 && times.time[i].diff(now, 'minutes') >= 0) {
@@ -70,5 +71,22 @@ if(flag === 0) {
   var minutes = times.time[1].diff(now, 'minutes') % 60;
   console.log("No rate up at this time. Next rate up is for " + times.serClass[1] + " Class in " + hours + " hours " + minutes + " minutes.");
   message.channel.send(`No rate up at this time. Next rate up is for ${times.serClass[1]} Class in ${hours} hours and ${minutes} minutes.`);
+}
+} else {
+  argClass = argClass.toLowerCase();
+  console.log(argClass);
+  var flag2 = 0;
+  console.log("Times length: " + times.time.length);
+  for(let j = 1; j<times.time.length; j++) {
+    if(times.serClass[j].toLowerCase() == argClass && times.time[j].diff(now,'minutes')>0) {
+      var rateUpTime = moment(times.time[j]).format("dddd, MMMM Do YYYY, h:mm:ss");
+      message.channel.send(`Next rate up for ${argClass} is on ${rateUpTime}.`);
+      flag2 = 1;
+      return;
+    }
+  }
+  if(flag === 0) {
+    message.channel.send(`No more rate ups for ${argClass} Class servants, or wrong Class entered.`);
+  }
 }
 }
