@@ -1,6 +1,7 @@
 exports.run = (client, message, args) => {
 const Discord = require('discord.js');
 var requestedMat = args.join(" ").toLowerCase();
+console.log("Length: " + requestedMat.length);
 var materials = {
   name: [],
   area: [],
@@ -430,6 +431,8 @@ if(requestedMat == "help") {
   3. **Gems (Blue Gems)**: **!drop Gems of [servant_class]**, or **!drop blue [servant_class]**. For example, **!drop gems of rider**.
   4. **Monuments** can be called with **!drop [servant_class] monument** or **!drop monument [servant_class]**, and also plural. For example, **!drop berserker monuments**.
   5. **Pieces** can be called with **!drop [servant_class] piece** or **!drop piece [servant_class]**, and also plural. For example, **!drop piece assassin**.`);
+} else  if(requestedMat.length == 0) {
+  message.channel.send("You didn't request any material. Type !drop help to see how to use this command.");
 } else {
 for (let i=0; i<materials.ap.length; i++) {
   for(let indice in materials.name[i]) {
@@ -442,7 +445,7 @@ for (let i=0; i<materials.ap.length; i++) {
 }
 console.log("Flag after search: " + flag);
 if(flag == 0) {
-  message.channel.send("No material with such name");
+  message.channel.send("No material with such name. Type !drop help to see how to use this command.");
 } else {
   const embed = new Discord.RichEmbed()
   .setTitle(materials.name[flagPosition][0])
