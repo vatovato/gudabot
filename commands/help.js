@@ -14,6 +14,9 @@ const embed = new Discord.RichEmbed()
   .addField("**!master**","Brings the Weekly Master Missions and their recommended areas")
   .addField("**!servant**","Brings some servant information and a link to the servant's cirnopedia")
   .addField("**!valentine**","Shows current and next servant rate ups for Valentine event")
+  .addField("**!yt [search_string]**","Returns a link to YouTube with the search string")
+  .addField("**!bondce [servant_name]**","Brings the Bond CE for the Servant")
+  .addField("**!drop [material_name]**","Brings the best farming spot for the Material")
   .addField("**Meme functions**","!umu, !padoru, !weeb, !officer...")
 
 message.channel.send({embed}).catch(console.error);
