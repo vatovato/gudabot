@@ -433,8 +433,8 @@ if(requestedMat == "help") {
 } else {
 for (let i=0; i<materials.ap.length; i++) {
   for(let indice in materials.name[i]) {
-    mat2LowerCase = materials.name[i][indice].toLowerCase();
-    if(m2atLowerCase === requestedMat) {
+    var matLowerCase = materials.name[i][indice].toLowerCase();
+    if(matLowerCase === requestedMat) {
       flagPosition = i;
       flag = 1;
     }
