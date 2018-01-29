@@ -1,7 +1,6 @@
 exports.run = (client, message, args) => {
 const Discord = require('discord.js');
 var requestedMat = args.join(" ").toLowerCase();
-console.log("Length: " + requestedMat.length);
 var materials = {
   name: [],
   area: [],
@@ -443,7 +442,6 @@ for (let i=0; i<materials.ap.length; i++) {
     }
   }
 }
-console.log("Flag after search: " + flag);
 if(flag == 0) {
   message.channel.send("No material with such name. Type !drop help to see how to use this command.");
 } else {
