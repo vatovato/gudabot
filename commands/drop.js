@@ -36,7 +36,7 @@ materials.apPerDrop[2] = '27.9';
 materials.dropChance[2] = '50.1%';
 materials.image[2] = 'http://fate-go.cirnopedia.org/icons/item/item_018.png';
 
-materials.name[3] = ['Void`s Dust', 'Voids Dust', 'Dust'];
+materials.name[3] = ['Void`s Dust', 'Voids Dust', 'Dust', 'Void Dust'];
 materials.area[3] = 'Septem';
 materials.quest[3] = 'Massilia';
 materials.ap[3] = '9';
@@ -421,15 +421,15 @@ materials.dropChance[49] = '76%';
 materials.image[49] = 'http://fate-go.cirnopedia.org/icons/item/item_031.png';
 
 if(requestedMat == "help") {
-  message.channel.send(`- The command accepts plurals or singulars of materials (except Servant specific materials such as monuments or gems).
-- So if you need to know drop rates for Dragon Fangs, for example, you could type !drop dragon fang, !drop dragon fangs, !drop fang or !drop fangs.
-- There are exceptions such as Void's dust, where you must avoid using the ' because it crashes the bot. In such case, please use !drop dust or !drop dusts.
+  message.channel.send(`- The command accepts **plurals or singulars** of materials (except Servant specific materials such as monuments or gems).
+- So if you need to know drop rates for Dragon Fangs, for example, you would type **!drop dragon fang**, **!drop dragon fangs**, **!drop fang** or **!drop fangs**.
+- There are exceptions such as Void's dust, where you must avoid using the ' because it crashes the bot. In such case, please use **!drop dust** or **!drop dusts**.
 - Servant specific materials can be called as follows:
-  1. Secret Gems (Gold Gems): !drop Secret Gem of [servant_class], !drop gold [servant_class] or !yellow [servant_class]. For example, !drop gold saber.
-  2. Magic Gems (Red Gems): !drop Magic Gems of [servant_class], or !drop red [servant_class]. For example, !drop red archer.
-  3. Gems (Blue Gems): !drop Gems of [servant_class], or !drop blue [servant_class]. For example, !drop gems of rider.
-  4. Monuments can be called with !drop [servant_class] monument or !drop monument [servant_class], and also plural. For example, !drop berserker monuments.
-  5. Pieces can be called with !drop [servant_class] piece or !drop piece [servant_class], and also plural. For example, !drop piece assassin.`);
+  1. **Secret Gems (Gold Gems)**: **!drop Secret Gem of [servant_class]**, **!drop gold [servant_class]** or **!yellow [servant_class]**. For example, **!drop gold saber**.
+  2. **Magic Gems (Red Gems)**: **!drop Magic Gems of [servant_class]**, or **!drop red [servant_class]**. For example, **!drop red archer**.
+  3. **Gems (Blue Gems)**: **!drop Gems of [servant_class]**, or **!drop blue [servant_class]**. For example, **!drop gems of rider**.
+  4. **Monuments** can be called with **!drop [servant_class] monument** or **!drop monument [servant_class]**, and also plural. For example, **!drop berserker monuments**.
+  5. **Pieces** can be called with **!drop [servant_class] piece** or **!drop piece [servant_class]**, and also plural. For example, **!drop piece assassin**.`);
 } else {
 for (let i=0; i<materials.ap.length; i++) {
   for(let indice in materials.name[i]) {
