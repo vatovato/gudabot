@@ -98,6 +98,7 @@ exports.parseName = (servantName) => {
     case "arthur pendragon prototype":
     case "arthur prototype":
     case "prototype arthur":
+    case "arthur":
     urlRef="160";
     break;
     case "suzuka gozen":
