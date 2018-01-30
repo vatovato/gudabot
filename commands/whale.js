@@ -3,10 +3,10 @@ exports.run = (client, message, args) => {
 ustnap, rephin, boat, kayos90, neki, grimmjow, jonjonaug, dark494, randomdude
 
 **Dolphin Tier**
-randomless, lavenza, karnapolice, einbroch, david, sabrekins, grazzt, baekshi, remembrance, unknown, t-rex, shinogu, azusa
+randomless, lavenza, karnapolice, einbroch, david, sabrekins, grazzt, baekshi, remembrance, unknown, t-rex, shinogu, azusa, mupod, pureauthor
 
 **F2P**
-haly, laiza, arti, sean, hubb, gryffinp, furiosa, mupod, jeff chickendig, strifeser, sabin (pretends to be), zanzura, ibnchi, shinypogs, hubb, wei, ihokeren, fateshirou, nightengale, sadness enchancement ex, dandte, saci
+haly, laiza, arti, sean, hubb, gryffinp, furiosa, jeff chickendig, strifeser, sabin (pretends to be), zanzura, ibnchi, shinypogs, hubb, wei, ihokeren, fateshirou, nightengale, sadness enchancement ex, dandte, saci
 
 **EX Rank Luck**
 remembrance, saberkins, xianaphryz, ironraven`).catch(console.error);
