@@ -22,26 +22,26 @@ request(servantCall, function(error, response, html) {
       case "0":
       var aImage0 = $('a[title="Default Form"]').attr('href');
       ascensionImage0 = "http://fate-go.cirnopedia.org/" + aImage0;
-      message.channel.send("",{files: [ascensionImage0]}).catch(console.error);
+      //message.channel.send("",{files: [ascensionImage0]}).catch(console.error);
+      message.guild.channels.find("name", "ascension-images").sendMessage("",{files: [ascensionImage0]}).catch(console.error);
       break;
 
       case "1":
       var aImage1 = $('a[title="1st Ascension Form"]').attr('href');
       ascensionImage1 = "http://fate-go.cirnopedia.org/" + aImage1;
-      message.channel.send("",{files: [ascensionImage1]}).catch(console.error);
+      message.guild.channels.find("name", "ascension-images").sendMessage("",{files: [ascensionImage1]}).catch(console.error);
       break;
 
       case "2":
       var aImage2 = $('a[title="2nd Ascension Form"]').attr('href');
       ascensionImage2 = "http://fate-go.cirnopedia.org/" + aImage2;
-      message.channel.send("",{files: [ascensionImage2]}).catch(console.error);
+      message.guild.channels.find("name", "ascension-images").sendMessage("",{files: [ascensionImage2]}).catch(console.error); 
       break;
 
       case "3":
       var aImage3 = $('a[title="Final Ascension Form"]').attr('href');
       ascensionImage3 = "http://fate-go.cirnopedia.org/" + aImage3;
-      message.channel.send("Go to #nsfw for this one.");
-      message.guild.channels.find("name", "nsfw").sendMessage("",{files: [ascensionImage3]}).catch(console.error); 
+      message.guild.channels.find("name", "ascension-images").sendMessage("",{files: [ascensionImage3]}).catch(console.error);
       break;
     }
 
