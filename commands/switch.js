@@ -342,7 +342,7 @@ exports.parseName = (servantName) => {
     case "lancer minamoto no raikou":
     case "lancer minamoto-no-raikou":
     case "lancer yorimitsu":
-    case lancer "ushi gozen":
+    case "lancer ushi gozen":
     urlRef="181";
     break;
     case "parvati":
