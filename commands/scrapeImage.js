@@ -40,7 +40,8 @@ request(servantCall, function(error, response, html) {
       case "3":
       var aImage3 = $('a[title="Final Ascension Form"]').attr('href');
       ascensionImage3 = "http://fate-go.cirnopedia.org/" + aImage3;
-      message.channel.send("",{files: [ascensionImage3]}).catch(console.error);
+      message.channel.send("Go to #nsfw for this one.");
+      message.guild.channels.find("name", "nsfw").sendMessage("",{files: [ascensionImage3]}).catch(console.error); 
       break;
     }
 
