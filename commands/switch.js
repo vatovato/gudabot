@@ -343,6 +343,8 @@ exports.parseName = (servantName) => {
     case "lancer minamoto-no-raikou":
     case "lancer yorimitsu":
     case "lancer ushi gozen":
+    case "lancer raikou":
+    case "summer raikou":
     urlRef="181";
     break;
     case "parvati":
@@ -767,6 +769,7 @@ exports.parseName = (servantName) => {
     case "berserker minamoto":
     case "berserker yorimitsu":
     case "berserker ushi gozen":
+    case "berserker raikou":
     urlRef="114";
     break;
     case "ibaraki douji":
