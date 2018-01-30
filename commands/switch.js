@@ -27,6 +27,8 @@ exports.parseName = (servantName) => {
     case "umu":
     case "nero claudius caesar augustus germanicus":
     case "nero claudius":
+    case "umu rojo":
+    case "rojo umu":
     urlRef='005';
     break;
     case "siegfried":
@@ -65,6 +67,8 @@ exports.parseName = (servantName) => {
     case "bride umu":
     case "umu bride":
     case "nero claudius bride":
+    case "umu blanco":
+    case "blanco umu":
     urlRef="090";
     break;
     case "ryougi shiki":
@@ -579,6 +583,8 @@ exports.parseName = (servantName) => {
     case "caster nero":
     case "caster umu":
     case "caster nero claudius":
+    case "umu verano":
+    case "verano umu":
     urlRef="175";
     break;
     case "okeanos caster":
