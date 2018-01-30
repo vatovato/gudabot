@@ -4,14 +4,16 @@ var imageNumber = imageNumber;
 var request = require('request');
 var cheerio = require('cheerio');
 const Discord = require('discord.js');
-
+var message = message;
 
 var ascensionImage0 = '';
 var ascensionImage1 = '';
 var ascensionImage2 = '';
 var ascensionImage3 = '';
 
-
+if(message.channel.name !== "ascension-images") {
+  message.channel.send("This command only works on the #ascension-images channel.");
+} else {
 request(servantCall, function(error, response, html) {
   if(!error && response.statusCode == 200) {
     //$ = cheerio.load('div', '<div id="mw-content-text">...</div>');
@@ -35,7 +37,7 @@ request(servantCall, function(error, response, html) {
       case "2":
       var aImage2 = $('a[title="2nd Ascension Form"]').attr('href');
       ascensionImage2 = "http://fate-go.cirnopedia.org/" + aImage2;
-      message.guild.channels.find("name", "ascension-images").sendMessage("",{files: [ascensionImage2]}).catch(console.error); 
+      message.guild.channels.find("name", "ascension-images").sendMessage("",{files: [ascensionImage2]}).catch(console.error);
       break;
 
       case "3":
@@ -49,4 +51,5 @@ request(servantCall, function(error, response, html) {
 
   }
 });
+}
 }
