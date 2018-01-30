@@ -338,21 +338,38 @@ exports.parseName = (servantName) => {
     break;
     case "minamoto-no-raikou":
     case "minamoto no raikou":
+    case "lancer minamoto":
+    case "lancer minamoto no raikou":
+    case "lancer minamoto-no-raikou":
+    case "lancer yorimitsu":
+    case lancer "ushi gozen":
     urlRef="181";
     break;
     case "parvati":
+    case "lancer parvati":
+    case "lancer sakura":
+    case "lancer matou sakura":
     urlRef="183";
     break;
     case "houzouin inshun":
     case "inshun":
     case "houzouin":
+    case "lancer houzouin":
+    case "lancer inshun":
+    case "lancer purgatorio":
     urlRef="186";
     break;
     case "nezha":
+    case "lancer nezha":
     urlRef="193";
     break;
     case "eresh":
     case "ereshkigal":
+    case "lancer eresh":
+    case "lancer ereshkigal":
+    case "lancer rin":
+    case "lancer tohsaka":
+    case "lancer tohsaka rin":
     urlRef="196";
     break;
     case "medusa":
@@ -415,6 +432,10 @@ exports.parseName = (servantName) => {
     urlRef="108";
     break;
     case "rider sakata kintoki":
+    case "rider golden":
+    case "golden rider":
+    case "rider kintoki":
+    case "rider sakata":
     urlRef="115";
     break;
     case "ozymandias":
@@ -528,6 +549,8 @@ exports.parseName = (servantName) => {
     break;
     case "summer marie antoinette":
     case "marie antoinette summer":
+    case "caster marie":
+    case "caster marie antoinette":
     urlRef="130";
     break;
     case "illyasviel von einzbern":
@@ -551,43 +574,66 @@ exports.parseName = (servantName) => {
     case "umu summer":
     case "summer umu":
     case "summer nero claudius":
+    case "caster nero":
+    case "caster umu":
+    case "caster nero claudius":
     urlRef="175";
     break;
     case "okeanos caster":
+    case "caster okeanos":
+    case "caster circe":
+    case "circe":
     urlRef="192";
     break;
     case "midrash caster":
+    case "caster midrash":
+    case "queen of sheba":
+    case "caster queen of sheba":
     urlRef="194";
     break;
     case "sasaki koujirou":
+    case "sasaki kojirou":
+    case "assassin sasaki":
+    case "assassin sasaki koujirou":
     urlRef="039";
     break;
     case "hassan of the cursed arm":
     urlRef="040";
     break;
     case "stheno":
+    case "assassin stheno":
+    case "first gorgon sister":
     urlRef="041";
     break;
     case "jing ke":
+    case "assassin jing ke":
     urlRef="042";
     break;
     case "charles henri sanson":
     case "charles-henri sanson":
     case "sanson":
+    case "assassin sanson":
     urlRef="043";
     break;
     case "phantom of the opera":
     case "phantom":
+    case "assassin phantom":
+    case "assassin phantom of the opera":
     urlRef="044";
     break;
     case "mata hari":
+    case "assassin mata hari":
+    case "assassin matahari":
     urlRef="045";
     break;
     case "carmilla":
+    case "assassin carmilla":
     urlRef="046";
     break;
     case "jack the ripper":
     case "jack":
+    case "assassin jack":
+    case "assassin jack the ripper":
     urlRef="075";
     break;
     case "henry jekyll & hide":
@@ -668,6 +714,9 @@ exports.parseName = (servantName) => {
     urlRef="050";
     break;
     case "berserker sakata kintoki":
+    case "berserker golden":
+    case "berserker sakata":
+    case "berserker kintoki":
     urlRef="051";
     break;
     case "vlad iii":
@@ -715,6 +764,9 @@ exports.parseName = (servantName) => {
     case "berserker minamoto no raikou":
     case "berserker minamoto-no-raikou":
     case "berserker minamoto":
+    case "berserker minamoto":
+    case "berserker yorimitsu":
+    case "berserker ushi gozen":
     urlRef="114";
     break;
     case "ibaraki douji":
