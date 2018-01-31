@@ -12,7 +12,7 @@ var ascensionImage2 = '';
 var ascensionImage3 = '';
 
 if(message.channel.name !== "ascension-images") {
-  message.channel.send("This command only works on the " + `<#408036456813166592>` + " channel.");
+  message.channel.send("This command only works in the " + `<#408036456813166592>` + " channel.");
 } else {
 request(servantCall, function(error, response, html) {
   if(!error && response.statusCode == 200) {
