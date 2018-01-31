@@ -69,6 +69,7 @@ exports.parseName = (servantName) => {
     case "nero claudius bride":
     case "umu blanco":
     case "blanco umu":
+    case "nero blanco":
     urlRef="090";
     break;
     case "ryougi shiki":
