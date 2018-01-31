@@ -301,7 +301,7 @@ materials.apPerDrop[34] = '8.3';
 materials.dropChance[34] = '120.8%';
 materials.image[34] = 'http://fate-go.cirnopedia.org/icons/item/item_046.png';
 
-materials.name[35] = ['Gem of Berserker','Blue Berserker'.'Berserker Blue'];
+materials.name[35] = ['Gem of Berserker','Blue Berserker','Berserker Blue'];
 materials.area[35] = 'Chaldea (Wednesday)';
 materials.quest[35] = 'Berserker 10AP';
 materials.ap[35] = '10';
