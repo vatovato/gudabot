@@ -1,6 +1,7 @@
 exports.run = (client, message, args) => {
 const Discord = require('discord.js');
 var requestedMat = args.join(" ").toLowerCase();
+console.log("Requested Drop Rate for: " + requestedMat);
 var materials = {
   name: [],
   area: [],
@@ -196,7 +197,7 @@ materials.apPerDrop[22] = '167.6';
 materials.dropChance[22] = '23.9%';
 materials.image[22] = 'http://fate-go.cirnopedia.org/icons/item/item_063.png';
 
-materials.name[23] = ['Magic Gem of Saber','Red Saber'];
+materials.name[23] = ['Magic Gem of Saber','Red Saber', 'Saber Red'];
 materials.area[23] = 'Chaldea (Sunday)';
 materials.quest[23] = 'Saber 30AP';
 materials.ap[23] = '30';
@@ -204,7 +205,7 @@ materials.apPerDrop[23] = '23.9';
 materials.dropChance[23] = '125.3%';
 materials.image[23] = 'http://fate-go.cirnopedia.org/icons/item/item_049.png';
 
-materials.name[23] = ['Magic Gem of Archer','Red Archer'];
+materials.name[23] = ['Magic Gem of Archer','Red Archer','Archer Red'];
 materials.area[23] = 'Chaldea (Monday)';
 materials.quest[23] = 'Archer 30AP';
 materials.ap[23] = '30';
@@ -212,7 +213,7 @@ materials.apPerDrop[23] = '22.9';
 materials.dropChance[23] = '130.9%';
 materials.image[23] = 'http://fate-go.cirnopedia.org/icons/item/item_050.png';
 
-materials.name[24] = ['Magic Gem of Lancer','Red Lancer'];
+materials.name[24] = ['Magic Gem of Lancer','Red Lancer','Lancer Red'];
 materials.area[24] = 'Chaldea (Tuesday)';
 materials.quest[24] = 'Lancer 30AP';
 materials.ap[24] = '30';
@@ -220,7 +221,7 @@ materials.apPerDrop[24] = '23.5';
 materials.dropChance[24] = '127.8%';
 materials.image[24] = 'http://fate-go.cirnopedia.org/icons/item/item_051.png';
 
-materials.name[25] = ['Magic Gem of Rider','Red Rider'];
+materials.name[25] = ['Magic Gem of Rider','Red Rider','Rider Red'];
 materials.area[25] = 'Chaldea (Thursday)';
 materials.quest[25] = 'Rider 20AP';
 materials.ap[25] = '20';
@@ -228,7 +229,7 @@ materials.apPerDrop[25] = '24.3';
 materials.dropChance[25] = '82.1%';
 materials.image[25] = 'http://fate-go.cirnopedia.org/icons/item/item_052.png';
 
-materials.name[26] = ['Magic Gem of Caster','Red Caster'];
+materials.name[26] = ['Magic Gem of Caster','Red Caster','Caster Red'];
 materials.area[26] = 'Chaldea (Friday)';
 materials.quest[26] = 'Caster 30AP';
 materials.ap[26] = '30';
@@ -236,7 +237,7 @@ materials.apPerDrop[26] = '17.5';
 materials.dropChance[26] = '171.3%';
 materials.image[26] = 'http://fate-go.cirnopedia.org/icons/item/item_053.png';
 
-materials.name[27] = ['Magic Gem of Assassin','Red Assassin'];
+materials.name[27] = ['Magic Gem of Assassin','Red Assassin','Assassin Red'];
 materials.area[27] = 'Chaldea (Saturday)';
 materials.quest[27] = 'Assassin 20AP';
 materials.ap[27] = '20';
@@ -244,7 +245,7 @@ materials.apPerDrop[27] = '21';
 materials.dropChance[27] = '95.3%';
 materials.image[27] = 'http://fate-go.cirnopedia.org/icons/item/item_054.png';
 
-materials.name[28] = ['Magic Gem of Berserker','Red Berserker'];
+materials.name[28] = ['Magic Gem of Berserker','Red Berserker','Berserker Red'];
 materials.area[28] = 'Chaldea (Wednesday)';
 materials.quest[28] = 'Berserker 30AP';
 materials.ap[28] = '30';
@@ -252,7 +253,7 @@ materials.apPerDrop[28] = '21.5';
 materials.dropChance[28] = '139.6%';
 materials.image[28] = 'http://fate-go.cirnopedia.org/icons/item/item_055.png';
 
-materials.name[29] = ['Gem of Saber','Blue Saber'];
+materials.name[29] = ['Gem of Saber','Blue Saber','Saber Blue'];
 materials.area[29] = 'Chaldea (Sunday)';
 materials.quest[29] = 'Saber 10AP';
 materials.ap[29] = '10';
@@ -260,7 +261,7 @@ materials.apPerDrop[29] = '7.5';
 materials.dropChance[29] = '133.6%';
 materials.image[29] = 'http://fate-go.cirnopedia.org/icons/item/item_041.png';
 
-materials.name[30] = ['Gem of Archer','Blue Archer'];
+materials.name[30] = ['Gem of Archer','Blue Archer','Archer Blue'];
 materials.area[30] = 'Chaldea (Monday)';
 materials.quest[30] = '10AP';
 materials.ap[30] = '10';
@@ -268,7 +269,7 @@ materials.apPerDrop[30] = '7.8';
 materials.dropChance[30] = '128.1%';
 materials.image[30] = 'http://fate-go.cirnopedia.org/icons/item/item_042.png';
 
-materials.name[31] = ['Gem of Lancer','Blue Lancer'];
+materials.name[31] = ['Gem of Lancer','Blue Lancer','Lancer Blue'];
 materials.area[31] = 'Chaldea (Tuesday)';
 materials.quest[31] = '10AP';
 materials.ap[31] = '10';
@@ -276,7 +277,7 @@ materials.apPerDrop[31] = '7.2';
 materials.dropChance[31] = '138.4%';
 materials.image[31] = 'http://fate-go.cirnopedia.org/icons/item/item_043.png';
 
-materials.name[32] = ['Gem of Rider','Blue Rider'];
+materials.name[32] = ['Gem of Rider','Blue Rider','Rider Blue'];
 materials.area[32] = 'Chaldea (Thursday)';
 materials.quest[32] = 'Rider 10AP';
 materials.ap[32] = '10';
@@ -284,7 +285,7 @@ materials.apPerDrop[32] = '9';
 materials.dropChance[32] = '111.3%';
 materials.image[32] = 'http://fate-go.cirnopedia.org/icons/item/item_044.png';
 
-materials.name[33] = ['Gem of Caster','Blue Caster'];
+materials.name[33] = ['Gem of Caster','Blue Caster','Caster Blue'];
 materials.area[33] = 'Chaldea (Friday)';
 materials.quest[33] = 'Caster 10AP';
 materials.ap[33] = '10';
@@ -292,7 +293,7 @@ materials.apPerDrop[33] = '7.6';
 materials.dropChance[33] = '131.2%';
 materials.image[33] = 'http://fate-go.cirnopedia.org/icons/item/item_045.png';
 
-materials.name[34] = ['Gem of Assassin','Blue Assassin'];
+materials.name[34] = ['Gem of Assassin','Blue Assassin','Assassin Blue'];
 materials.area[34] = 'Chaldea (Saturday)';
 materials.quest[34] = 'Assassin 10AP';
 materials.ap[34] = '10';
@@ -300,7 +301,7 @@ materials.apPerDrop[34] = '8.3';
 materials.dropChance[34] = '120.8%';
 materials.image[34] = 'http://fate-go.cirnopedia.org/icons/item/item_046.png';
 
-materials.name[35] = ['Gem of Berserker','Blue Berserker'];
+materials.name[35] = ['Gem of Berserker','Blue Berserker'.'Berserker Blue'];
 materials.area[35] = 'Chaldea (Wednesday)';
 materials.quest[35] = 'Berserker 10AP';
 materials.ap[35] = '10';
