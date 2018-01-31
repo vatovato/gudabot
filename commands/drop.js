@@ -197,13 +197,13 @@ materials.apPerDrop[22] = '167.6';
 materials.dropChance[22] = '23.9%';
 materials.image[22] = 'http://fate-go.cirnopedia.org/icons/item/item_063.png';
 
-materials.name[23] = ['Magic Gem of Saber','Red Saber', 'Saber Red'];
-materials.area[23] = 'Chaldea (Sunday)';
-materials.quest[23] = 'Saber 30AP';
-materials.ap[23] = '30';
-materials.apPerDrop[23] = '23.9';
-materials.dropChance[23] = '125.3%';
-materials.image[23] = 'http://fate-go.cirnopedia.org/icons/item/item_049.png';
+materials.name[50] = ['Magic Gem of Saber','Red Saber', 'Saber Red'];
+materials.area[50] = 'Chaldea (Sunday)';
+materials.quest[50] = 'Saber 30AP';
+materials.ap[50] = '30';
+materials.apPerDrop[50] = '23.9';
+materials.dropChance[50] = '125.3%';
+materials.image[50] = 'http://fate-go.cirnopedia.org/icons/item/item_049.png';
 
 materials.name[23] = ['Magic Gem of Archer','Red Archer','Archer Red'];
 materials.area[23] = 'Chaldea (Monday)';
@@ -443,6 +443,8 @@ for (let i=0; i<materials.ap.length; i++) {
     }
   }
 }
+/*console.log("Flag: " + flag);
+console.log("Flag Position: " + flagPosition);*/
 if(flag == 0) {
   message.channel.send("No material with such name. Type !drop help to see how to use this command.");
 } else {
