@@ -1,4 +1,4 @@
-exports.run = (client, message, args) => {
+/*exports.run = (client, message, args) => {
 var moment = require('moment');
 var times = {
   time: [],
@@ -48,9 +48,7 @@ if(typeof argClass == 'undefined') {
 for(let i=1; i<17; i++) {
 
   if(times.time[i-1].diff(now, 'minutes') <= 0 && times.time[i].diff(now, 'minutes') >= 0) {
-    /*console.log("Now: " + now.utc());
-    console.log("Difference against i-1: " + now.diff(times.time[i-1], 'hours'));
-    console.log("Difference against i: " + times.time[i].diff(now,'hours'));*/
+
     var hours = Math.floor(times.time[i].diff(now, 'minutes') / 60);
     var minutes = times.time[i].diff(now, 'minutes') % 60;
 
@@ -88,3 +86,5 @@ if(flag === 0) {
   }
 }
 }
+*/
+message.channel.send("Current rate up is for Saber Class. After this, you can all go back to your daily lives. See the sun. Talk to friends. Maybe write that book you keep postponing.");
