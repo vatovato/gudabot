@@ -59,6 +59,7 @@ client.on("message", message => {
       var authorId = message.author.id;
       var authorName = message.author.username;
       var authorNickname = message.author.nickname;
+      console.log(authorNickname);
       var fc = args.join(" ");
       if(args.length == 0) {
         message.channel.send("You did not add your Friend Code. Use !addfc friend_code. For example, !addfc 123,123,123.");
