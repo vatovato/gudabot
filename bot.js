@@ -5,6 +5,8 @@ const fs = require("fs");
 const express = require('express');
 const app = express();
 var http = require('http');
+const sql = require("sqlite");
+sql.open("./friend.sqlite");
 
 
 // Set the port of our application
@@ -52,7 +54,61 @@ client.on("message", message => {
     const args = message.content.slice(process.env.PREFIX.length).trim().split(/ +/g);
     const command = args.shift().toLowerCase();
 
-    // The list of if/else is replaced with those simple 2 lines:
+    //sqlite portion of the add Friend Code command
+    if(command === "addfc") {
+      var authorId = message.author.id;
+      var authorName = message.author.username;
+      var fc = args.join(" ");
+      if(args.length == 0) {
+        message.channel.send("You did not add your Friend Code. Use !addfc friend_code. For example, !addfc 123,123,123.");
+      } else {
+      console.log(authorName + " wants to add / update his friend code.");
+      sql.get(`SELECT * FROM friends WHERE userId ="${authorId}"`).then(row => {
+        if (!row) {
+          console.log("User did not exist. Creating.");
+          sql.run("INSERT INTO friends (userId, friendCode) VALUES (?, ?)", [authorId, fc]);
+          message.channel.send(`**${authorName}**, you have created your Friend Code as **${fc}**.`);
+        } else {
+          console.log("User already exists. Updating.");
+          sql.run(`UPDATE friends SET friendCode = "${fc}" WHERE userId = "${authorId}"`);
+          message.channel.send(`**${authorName}**, you have updated your Friend Code to **${fc}**.`);
+        }
+
+      }).catch(() => {
+        console.error;
+        console.log("Error.");
+        sql.run("CREATE TABLE IF NOT EXISTS friends (userId TEXT, friendCode TEXT)").then(() => {
+          console.log("Table did not exist. Creating table and inserting user.");
+          sql.run("INSERT INTO friends (userId, friendCode) VALUES (?, ?)", [authorId, fc]);
+          message.channel.send(`Table did not exist. Created table and added **${fc}** to User **${authorName}**.`);
+        });
+      });
+    }
+      return;
+    }
+
+    //sqlite portion of the request Friend Code command
+    if(command === "myfc") {
+      var authorId = message.author.id;
+      var authorName = message.author.username;
+      console.log(authorName + " wants to call his Friend Code.");
+      sql.get(`SELECT * FROM friends WHERE userId ="${authorId}"`).then(row => {
+      if (!row) {
+        message.channel.send("You don't exist inside the table. First use !addfc friend_code. For example, !addfc 123,123,123.");
+      } else {
+        message.channel.send(`Friend Code for **${authorName}** is **${row.friendCode}**.`)
+      }
+      //sql.run(`UPDATE friends SET friendCode = ${fc} WHERE userId = ${authorId}`);
+    }).catch(() => {
+      console.error;
+      console.log("Error.");
+          message.channel.send(`Something went wrong, please try again.`);
+    });
+      return;
+    }
+
+    // Calls the command from the commands folder, along with Discord Client
+    // and arguments
     try {
         let commandFile = require(`./commands/${command}.js`);
         commandFile.run(client, message, args);
