@@ -85,5 +85,6 @@ if(flag === 0) {
     message.channel.send(`No more rate ups for ${argClass} Class servants, or wrong Class entered.`);
   }
 }*/
-message.channel.send("Valentine rate up is over. Go drink some water. Eat something healthy, soak up the sun a bit. That Kara no Kyoukai banner is right around the corner.");
+message.channel.send("",{files: ['https://i.imgur.com/joHFAYD.png']});
+message.channel.send("What the hell do you mean I'm not useful anymore...?");
 }
