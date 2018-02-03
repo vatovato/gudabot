@@ -58,22 +58,21 @@ client.on("message", message => {
     if(command === "addfc") {
       var authorId = message.author.id;
       var authorName = message.author.username;
-      var authorNickname = message.author.nick;
       var fc = args.join(" ");
       if(args.length == 0) {
         message.channel.send("You did not add your Friend Code. Use !addfc friend_code. For example, !addfc 123,123,123.");
       } else {
-      console.log(authorName + "(" + authorNickname + ")" + " wants to add / update his friend code.");
+      console.log(authorName + " wants to add / update his friend code.");
       sql.get(`SELECT * FROM friends WHERE userId ="${authorId}"`).then(row => {
         if (!row) {
           console.log("User did not exist. Creating.");
           sql.run("INSERT INTO friends (userId, friendCode) VALUES (?, ?)", [authorId, fc]);
-          message.channel.send(`**${authorNickname}**, you have created your Friend Code as **${fc}**.`);
+          message.channel.send(`**${authorName}**, you have created your Friend Code as **${fc}**.`);
         } else {
           console.log("User already exists. Updating.");
           console.log(message.author);
           sql.run(`UPDATE friends SET friendCode = "${fc}" WHERE userId = "${authorId}"`);
-          message.channel.send(`**${authorNickname}**, you have updated your Friend Code to **${fc}**.`);
+          message.channel.send(`**${authorName}**, you have updated your Friend Code to **${fc}**.`);
         }
 
       }).catch(() => {
@@ -82,7 +81,7 @@ client.on("message", message => {
         sql.run("CREATE TABLE IF NOT EXISTS friends (userId TEXT, friendCode TEXT)").then(() => {
           console.log("Table did not exist. Creating table and inserting user.");
           sql.run("INSERT INTO friends (userId, friendCode) VALUES (?, ?)", [authorId, fc]);
-          message.channel.send(`Table did not exist. Created table and added **${fc}** to User **${authorNickname}**.`);
+          message.channel.send(`Table did not exist. Created table and added **${fc}** to User **${authorName}**.`);
         });
       });
     }
@@ -93,13 +92,12 @@ client.on("message", message => {
     if(command === "myfc") {
       var authorId = message.author.id;
       var authorName = message.author.username;
-      var authorNickname = message.author.nick;
       console.log(authorName + "(" + authorNickname + ")" + " wants to call his Friend Code.");
       sql.get(`SELECT * FROM friends WHERE userId ="${authorId}"`).then(row => {
       if (!row) {
-        message.channel.send(`${authorNickname}, you don't exist inside the table. First use !addfc friend_code. For example, !addfc 123,123,123.`);
+        message.channel.send(`${authorName}, you don't exist inside the table. First use !addfc friend_code. For example, !addfc 123,123,123.`);
       } else {
-        message.channel.send(`Friend Code for **${authorNickname}** is **${row.friendCode}**.`)
+        message.channel.send(`Friend Code for **${authorName}** is **${row.friendCode}**.`)
       }
       //sql.run(`UPDATE friends SET friendCode = ${fc} WHERE userId = ${authorId}`);
     }).catch(() => {
