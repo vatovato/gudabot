@@ -58,7 +58,7 @@ client.on("message", message => {
     if(command === "addfc") {
       var authorId = message.author.id;
       var authorName = message.author.username;
-      var authorNickname = message.author.nickname;
+      var authorNickname = message.author.nick;
       var fc = args.join(" ");
       if(args.length == 0) {
         message.channel.send("You did not add your Friend Code. Use !addfc friend_code. For example, !addfc 123,123,123.");
@@ -93,6 +93,7 @@ client.on("message", message => {
     if(command === "myfc") {
       var authorId = message.author.id;
       var authorName = message.author.username;
+      var authorNickname = message.author.nick;
       console.log(authorName + "(" + authorNickname + ")" + " wants to call his Friend Code.");
       sql.get(`SELECT * FROM friends WHERE userId ="${authorId}"`).then(row => {
       if (!row) {
