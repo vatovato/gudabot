@@ -889,6 +889,10 @@ exports.parseName = (servantName) => {
     case "beast ii":
     urlRef="149";
     break;
+    case "semiramis":
+    case "queen of assyria":
+    urlRef="199";
+    break;
   }
 return urlRef;
 }
