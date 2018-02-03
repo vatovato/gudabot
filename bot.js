@@ -92,7 +92,7 @@ client.on("message", message => {
     if(command === "myfc") {
       var authorId = message.author.id;
       var authorName = message.author.username;
-      console.log(authorName + "(" + authorNickname + ")" + " wants to call his Friend Code.");
+      console.log(authorName + " wants to call his Friend Code.");
       sql.get(`SELECT * FROM friends WHERE userId ="${authorId}"`).then(row => {
       if (!row) {
         message.channel.send(`${authorName}, you don't exist inside the table. First use !addfc friend_code. For example, !addfc 123,123,123.`);
