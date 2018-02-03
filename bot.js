@@ -70,6 +70,7 @@ client.on("message", message => {
           message.channel.send(`**${authorName}**, you have created your Friend Code as **${fc}**.`);
         } else {
           console.log("User already exists. Updating.");
+          console.log(message.author);
           sql.run(`UPDATE friends SET friendCode = "${fc}" WHERE userId = "${authorId}"`);
           message.channel.send(`**${authorName}**, you have updated your Friend Code to **${fc}**.`);
         }
@@ -94,7 +95,7 @@ client.on("message", message => {
       console.log(authorName + " wants to call his Friend Code.");
       sql.get(`SELECT * FROM friends WHERE userId ="${authorId}"`).then(row => {
       if (!row) {
-        message.channel.send("You don't exist inside the table. First use !addfc friend_code. For example, !addfc 123,123,123.");
+        message.channel.send(`${authorName}, you don't exist inside the table. First use !addfc friend_code. For example, !addfc 123,123,123.`);
       } else {
         message.channel.send(`Friend Code for **${authorName}** is **${row.friendCode}**.`)
       }

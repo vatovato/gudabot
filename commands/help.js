@@ -17,6 +17,7 @@ const embed = new Discord.RichEmbed()
   .addField("**!yt [search_string]**","Returns a link to YouTube with the search string")
   .addField("**!bondce [servant_name]**","Brings the Bond CE for the Servant")
   .addField("**!drop [material_name]**","Brings the best farming spot for the Material")
+  .addField("**!addfc [friend_code] & !myfc**", "!addfc [friend_code] associates your FGO Friend Code to your username. So next time you have an open slot, you can execute !myfc to bring up your Friend Code.")
   .addField("**Meme functions**","!umu, !padoru, !weeb, !officer...")
 
 message.channel.send({embed}).catch(console.error);
