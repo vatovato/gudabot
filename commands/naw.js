@@ -13,7 +13,9 @@ var memes = ['','The ~installing the game~ MADNESS!!1! Will I Install From Play 
 `I Hold Your Hand While You Cross The Street! + ~Chew Food For Money~ (Pee Comes Out From Here, Viewer)`,
 `ARE YOU EVEN SERIOUS?! 2 Million Download Campaing! I Repeat Everything The Original Announcement Says! (Plus Useless Comments Because 10 Minutes Is A Long Time You Guys)`,
 `FREE QUARTZ?!?!?! No, But Watch My Video **Anyway!**`,
-`**Is FGO ~Pay2Win~??** F2P vs P2P & "Pay 2 Waifu" Explained for Fate: Grand Order NA [FGO NA] (This is an actual video title, I did not make this one up, I swear)`];
+`**Is FGO ~Pay2Win~??** F2P vs P2P & "Pay 2 Waifu" Explained for Fate: Grand Order NA [FGO NA] (This is an actual video title, I did not make this one up, I swear)`,
+`kayos SECRETLY LOVES ME ~~Or Maybe He IS Me~~ [FGO DRAMA] + OMG MY FIRST RAP VIDEO GUYS!!!!!`];
+
 var place = Math.floor((Math.random() * 15) + 1);
 var sendMeme = memes[place];
 console.log("Meme: " + sendMeme);
