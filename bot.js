@@ -5,8 +5,11 @@ const fs = require("fs");
 const express = require('express');
 const app = express();
 var http = require('http');
-const sql = require("sqlite");
-sql.open("./friend.sqlite");
+const Enmap = require('enmap');
+const EnmapLevel = require('enmap-level');
+
+const tableSource = new EnmapLevel({name: "friend"});
+const friend = new Enmap({provider: tableSource});
 
 
 // Set the port of our application
@@ -60,30 +63,17 @@ client.on("message", message => {
       var authorName = message.author.username;
       var fc = args.join(" ");
       if(args.length == 0) {
-        message.channel.send("You did not add your Friend Code. Use !addfc friend_code. For example, !addfc 123,123,123.");
+        message.channel.send(`**${authorName}**, you did not add your Friend Code. Use !addfc friend_code. For example, !addfc 123,123,123.`);
+      } else if(friend.has(`${authorId}`)) {
+        console.log(authorName + " wants to update his Friend Code.");
+        friend.set(`${authorId}`,`${fc}`);
+        var updatedFriendCode = friend.get(`${authorId}`);
+        message.channel.send(`**${authorName}**, you updated your Friend Code to **${updatedFriendCode}**.`);
       } else {
-      console.log(authorName + " wants to add / update his friend code.");
-      sql.get(`SELECT * FROM friends WHERE userId ="${authorId}"`).then(row => {
-        if (!row) {
-          console.log("User did not exist. Creating.");
-          sql.run("INSERT INTO friends (userId, friendCode) VALUES (?, ?)", [authorId, fc]);
-          message.channel.send(`**${authorName}**, you have created your Friend Code as **${fc}**.`);
-        } else {
-          console.log("User already exists. Updating.");
-          console.log(message.author);
-          sql.run(`UPDATE friends SET friendCode = "${fc}" WHERE userId = "${authorId}"`);
-          message.channel.send(`**${authorName}**, you have updated your Friend Code to **${fc}**.`);
-        }
-
-      }).catch(() => {
-        console.error;
-        console.log("Error.");
-        sql.run("CREATE TABLE IF NOT EXISTS friends (userId TEXT, friendCode TEXT)").then(() => {
-          console.log("Table did not exist. Creating table and inserting user.");
-          sql.run("INSERT INTO friends (userId, friendCode) VALUES (?, ?)", [authorId, fc]);
-          message.channel.send(`Table did not exist. Created table and added **${fc}** to User **${authorName}**.`);
-        });
-      });
+      console.log(authorName + " wants to add his Friend Code.");
+      friend.set(`${authorId}`,`${fc}`);
+      var newFriendCode = friend.get(`${authorId}`);
+      message.channel.send(`**${authorName}**, you created your Friend Code as **${newFriendCode}**.`);
     }
       return;
     }
@@ -93,18 +83,13 @@ client.on("message", message => {
       var authorId = message.author.id;
       var authorName = message.author.username;
       console.log(authorName + " wants to call his Friend Code.");
-      sql.get(`SELECT * FROM friends WHERE userId ="${authorId}"`).then(row => {
-      if (!row) {
-        message.channel.send(`${authorName}, you don't exist inside the table. First use !addfc friend_code. For example, !addfc 123,123,123.`);
+      if(!friend.has(`${authorId}`)) {
+        message.channel.send(`**${authorName}**, you're not on the table yet. Use !addfc friend_code first. For example, !addfc 123,123,123.`);
       } else {
-        message.channel.send(`Friend Code for **${authorName}** is **${row.friendCode}**.`)
-      }
-      //sql.run(`UPDATE friends SET friendCode = ${fc} WHERE userId = ${authorId}`);
-    }).catch(() => {
-      console.error;
-      console.log("Error.");
-          message.channel.send(`Something went wrong, please try again.`);
-    });
+      var friendCode = friend.get(`${authorId}`);
+      console.log("Friend Code: " + friendCode);
+      message.channel.send(`**${authorName}**, your Friend Code is **${friendCode}**.`);
+    }
       return;
     }
 
