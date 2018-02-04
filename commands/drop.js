@@ -87,26 +87,26 @@ materials.image[8] = 'http://fate-go.cirnopedia.org/icons/item/item_007.png';
 
 materials.name[9] = ['Eternal Gear', 'Eternal Gears', 'Gear', 'Gears'];
 materials.area[9] = 'London';
-materials.quest[9] = 'Old Street';
-materials.ap[9] = '15';
-materials.apPerDrop[9] = '25.3';
-materials.dropChance[9] = '59.3%';
+materials.quest[9] = 'Clerkenwell';
+materials.ap[9] = '18';
+materials.apPerDrop[9] = '67.6';
+materials.dropChance[9] = '26.6%';
 materials.image[9] = 'http://fate-go.cirnopedia.org/icons/item/item_016.png';
 
 materials.name[10] = ['Forbidden Page','Page','Pages','Forbidden Pages'];
 materials.area[10] = 'London';
 materials.quest[10] = 'Hyde Park';
 materials.ap[10] = '20';
-materials.apPerDrop[10] = '110.8';
-materials.dropChance[10] = '18.1%';
+materials.apPerDrop[10] = '72.8';
+materials.dropChance[10] = '27.5%';
 materials.image[10] = 'http://fate-go.cirnopedia.org/icons/item/item_017.png';
 
 materials.name[11] = ['Homunculus Baby','Homunculus','Baby'];
 materials.area[11] = 'London';
-materials.quest[11] = 'City of London';
-materials.ap[11] = '15';
-materials.apPerDrop[11] = '24.8';
-materials.dropChance[11] = '60.4%';
+materials.quest[11] = 'Southwark';
+materials.ap[11] = '19';
+materials.apPerDrop[11] = '61.4';
+materials.dropChance[11] = '31%';
 materials.image[11] = 'http://fate-go.cirnopedia.org/icons/item/item_020.png';
 
 materials.name[12] = ['Meteor Horseshoe','Horseshoe','Horse Shoe','Horse Shoes','Horseshoes'];
@@ -350,11 +350,11 @@ materials.dropChance[40] = '54.9%';
 materials.image[40] = 'http://fate-go.cirnopedia.org/icons/item/item_037.png';
 
 materials.name[41] = ['Assassin Monument', 'Monument Assassin', 'Assasin Monument', 'Monuments Assassin'];
-materials.area[41] = 'London';
-materials.quest[41] = 'White Chapel';
-materials.ap[41] = '15';
-materials.apPerDrop[41] = '34.8';
-materials.dropChance[41] = '43.2%';
+materials.area[41] = 'Chaldea (Saturday)';
+materials.quest[41] = 'Assasin 40AP';
+materials.ap[41] = '40';
+materials.apPerDrop[41] = '67.9';
+materials.dropChance[41] = '59%';
 materials.image[41] = 'http://fate-go.cirnopedia.org/icons/item/item_038.png';
 
 materials.name[42] = ['Berserker Monument', 'Monument Berserker', 'Berserker Monuments', 'Monuments Berserker'];
