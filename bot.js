@@ -5,11 +5,11 @@ const fs = require("fs");
 const express = require('express');
 const app = express();
 var http = require('http');
-const Enmap = require('enmap');
+/*const Enmap = require('enmap');
 const EnmapLevel = require('enmap-level');
 
 const tableSource = new EnmapLevel({name: "friend"});
-const friend = new Enmap({provider: tableSource});
+const friend = new Enmap({provider: tableSource});*/
 
 
 // Set the port of our application
@@ -57,8 +57,11 @@ client.on("message", message => {
     const args = message.content.slice(process.env.PREFIX.length).trim().split(/ +/g);
     const command = args.shift().toLowerCase();
 
-    //sqlite portion of the add Friend Code command
-    if(command === "addfc") {
+    //portion of the code that tried a Friend Code command
+    // Unfortunately Heroku kills both sqlite's table and enmap's table on
+    //every restart, so maintaining a persistent table is impossible,
+    //even when using enmap-level to maintain persistence.
+/*    if(command === "addfc") {
       var authorId = message.author.id;
       var authorName = message.author.username;
       var fc = args.join(" ");
@@ -91,7 +94,7 @@ client.on("message", message => {
       message.channel.send(`**${authorName}**, your Friend Code is **${friendCode}**.`);
     }
       return;
-    }
+    }*/
 
     // Calls the command from the commands folder, along with Discord Client
     // and arguments
