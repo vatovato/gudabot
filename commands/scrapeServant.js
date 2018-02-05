@@ -73,6 +73,7 @@ request("http://fate-go.cirnopedia.org/servant_all.php#nav", function(error, res
         servant.np = "**Noble Phantasm: " + nobleName;
         var nobleDesc1 = $(tableColumns).find('ch2').html();
         nobleDesc1 = nobleDesc1.replace(/<br>/g, "\n");
+        nobleDesc1 = nobleDesc1.replace("&amp;","&");
         var nobleDesc2 = $(tableColumns).find('ch3').text();
         nobleDesc2 = nobleDesc2.trim();
         var noble = $(tableColumns).find('img');
