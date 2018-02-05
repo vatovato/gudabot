@@ -320,6 +320,8 @@ exports.parseName = (servantName) => {
     urlRef="134";
     break;
     case "vlad iii extra":
+    case "vlad extra":
+    case "lancer vlad":
     urlRef="140";
     break;
     case "jeanne d'arc alter santa lily":
@@ -731,6 +733,7 @@ exports.parseName = (servantName) => {
     case "vlad iii":
     case "dracula":
     case "vlad tepes":
+    case "berserker vlad":
     urlRef="052";
     break;
     case "asterios":
