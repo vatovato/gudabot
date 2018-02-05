@@ -1,6 +1,10 @@
 exports.run = (client, message, args) => {
 const Discord = require('discord.js');
 var requestedMat = args.join(" ").toLowerCase();
+if(requestedMat === "bass") {
+message.channel.send("https://www.youtube.com/watch?v=XCawU6BE8P8");
+return;
+}
 console.log("Requested Drop Rate for: " + requestedMat);
 var materials = {
   name: [],
