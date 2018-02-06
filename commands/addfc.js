@@ -17,7 +17,7 @@ if(args.length == 0) {
     if (err) throw err;
     if(rows.length == 0) {
       console.log("User did not exist. Creating.");
-      connection.query(`INSERT INTO friends SET userId = '${authorId}', friendCode = '${fc}')`);
+      connection.query(`INSERT INTO friends SET userId = '${authorId}', friendCode = '${fc}'`);
       message.channel.send(`**${authorName}**, you have created your Friend Code as **${fc}**.`);
     } else {
       console.log("User already exists. Updating.");
