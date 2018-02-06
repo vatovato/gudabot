@@ -12,13 +12,7 @@ if(args.length == 0) {
 } else {
   console.log(authorName + " wants to add / update his friend code.");
   connection.query(`SELECT * FROM friends WHERE userId ="${authorId}"`, function(err, rows, fields) {
-    if (err) {
-      console.log(err);
-      connection.query("CREATE TABLE IF NOT EXISTS friends (userId TEXT, friendCode TEXT)");
-      console.log("Table did not exist, creating.");
-      connection.query(`INSERT INTO friends (userId, friendCode) VALUES (${authorId}, ${fc})`);
-      message.channel.send(`Table did not exist. Created table and added **${fc}** to User **${authorName}**.`);
-    }
+    if (err) throw err;
     if(!rows) {
       console.log("User did not exist. Creating.");
       connection.query(`INSERT INTO friends (userId, friendCode) VALUES (${authorId}, ${fc})`);
