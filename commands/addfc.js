@@ -13,7 +13,7 @@ if(args.length == 0) {
   console.log(authorName + " wants to add / update his friend code.");
   connection.query(`SELECT * FROM friends WHERE userId ="${authorId}"`, function(err, rows, fields) {
     if (err) throw err;
-    if(!rows) {
+    if(rows.length == 0) {
       console.log("User did not exist. Creating.");
       connection.query(`INSERT INTO friends (userId, friendCode) VALUES (${authorId}, ${fc})`);
       message.channel.send(`**${authorName}**, you have created your Friend Code as **${fc}**.`);
