@@ -6,14 +6,15 @@ var class4, class3, class2, class1;
 var nonclass4, nonclass3, nonclass2, nonclass1;
 var expPerCard = [1000, 3000, 9000, 27000];
 var expPerCardBonus = [1200, 3600, 10800, 32400];
+var messageTotal = '';
 
 expData = require('./exp.json');
 startInput = args[0];
 endInput = args[1];
 var startLevel = startInput;
 var endLevel = endInput;
-console.log(startLevel);
-console.log(endLevel);
+console.log("Requested EXP needed for level " + startLevel + " to level " + endLevel + ".");
+
 if(startLevel && startLevel > 0 && endLevel && endLevel <= 100 && startLevel < endLevel){
 var expNeeded = 0;
 var startExp = expData[startLevel-1].total;
@@ -29,11 +30,12 @@ for(var i = 0; i < 4; i++){
 	numNeeded = numNeeded.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 	var numNeededBonus = Math.ceil(expNeeded/perCardBonus);
 	numNeededBonus = numNeededBonus.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-  message.channel.send(idx + "* XP Cards (Class): " + numNeededBonus + "\n" + idx + "* XP Cards (Non-Class): " + numNeeded + "\n");
+  messageTotal += idx + "* XP Cards (Class): " + numNeededBonus + "\n" + idx + "* XP Cards (Non-Class): " + numNeeded + "\n\n";
 
 }
 expNeeded = expNeeded.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-message.channel.send("Total EXP Needed: " + expNeeded + " EXP.");
+messageTotal += "Total EXP Needed: " + expNeeded;
+message.channel.send(messageTotal);
 
 	}
 	else{
