@@ -15,7 +15,7 @@ var startLevel = startInput;
 var endLevel = endInput;
 console.log("Requested EXP needed for level " + startLevel + " to level " + endLevel + ".");
 
-if(startLevel && startLevel > 0 && endLevel && endLevel <= 100 && startLevel < endLevel){
+if(startLevel && startLevel > 0 && endLevel && endLevel <= 100 && startLevel - endLevel < 0){
 var expNeeded = 0;
 var startExp = expData[startLevel-1].total;
 var endExp = expData[endLevel-1].total;
