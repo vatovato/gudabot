@@ -25,5 +25,5 @@ if(args.length == 0) {
     }
   });
 }
-
+connection.end();
 }
