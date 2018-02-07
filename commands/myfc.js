@@ -11,15 +11,13 @@ var connection = mysql.createConnection(process.env.JAWSDB_URL);
 
   console.log(authorName + " wants to call his friend code.");
   connection.query(`SELECT * FROM friends WHERE userId ='${authorId}'`, function(err, rows, fields) {
-    console.log("rows after query: " + rows);
     if (err) throw err;
     if(rows.length == 0) {
       console.log("User did not exist.");
       message.channel.send(`**${authorName}**, you did not create your entry yet. Use !addfc friend_code. For example, !addfc 123,123,123.`);
     } else {
-      console.log("rows inside else: " + rows);
-      var friendCode = rows.friendCode;
-      var friendCode2 = fields.friendCode;
+      var friendCode = connection.query(`SELECT friendCode FROM friends WHERE userId = '${authorId}'`);
+      var friendCode2 = rows[0].friendCode;
       console.log("rows.friendCode: " + friendCode);
       console.log("fields.friendCode: " + friendCode2);
       message.channel.send(`**${authorName}**, your Friend Code is **${friendCode}**.`);
