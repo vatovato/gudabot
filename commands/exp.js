@@ -6,65 +6,38 @@ var class4, class3, class2, class1;
 var nonclass4, nonclass3, nonclass2, nonclass1;
 var expPerCard = [1000, 3000, 9000, 27000];
 var expPerCardBonus = [1200, 3600, 10800, 32400];
-var finishedLoad = false;
-$(document).ready(function() {
-	startInput = document.getElementById("start-lvl");
-	endInput = document.getElementById("target-lvl");
-    calcButton = document.getElementById("calcButton");
-    expText = document.getElementById("exp-needed");
-      $.getJSON('/sites/grandorder/data/exp.json',
-            function(data) {
-                expData = data;
-            	finishedLoad = true;
-                checkValid();
-            });
-    });
 
-function calculate(){
-	var startLevel = parseInt(startInput.value);
-	var endLevel = parseInt(endInput.value);
-	console.log(startLevel);
-	console.log(endLevel);
-	var expNeeded = 0;
-	var startExp = expData[startLevel-1].total;
-	var endExp = expData[endLevel-1].total;
-	expNeeded = endExp - startExp;
+expData = require('./exp.json');
+startInput = args[0];
+endInput = args[1];
+var startLevel = startInput;
+var endLevel = endInput;
+console.log(startLevel);
+console.log(endLevel);
+if(startLevel && startLevel > 0 && endLevel && endLevel <= 100 && startLevel < endLevel){
+var expNeeded = 0;
+var startExp = expData[startLevel-1].total;
+var endExp = expData[endLevel-1].total;
+expNeeded = endExp - startExp;
 
+for(var i = 0; i < 4; i++){
+	//html id #
+	var idx = i+1;
+	var perCard = expPerCard[i];
+	var perCardBonus = expPerCardBonus[i];
+	var numNeeded = Math.ceil(expNeeded/perCard);
+	numNeeded = numNeeded.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+	var numNeededBonus = Math.ceil(expNeeded/perCardBonus);
+	numNeededBonus = numNeededBonus.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  message.channel.send(idx + "* XP Cards (Class): " + numNeededBonus + "\n" + idx + "* XP Cards (Non-Class): " + numNeeded + "\n");
 
-	for(var i = 0; i < 4; i++){
-		//html id #
-		var idx = i+1;
-		var perCard = expPerCard[i];
-		var perCardBonus = expPerCardBonus[i];
-
-		var numNeeded = Math.ceil(expNeeded/perCard);
-		numNeeded = numberWithCommas(numNeeded);
-		var numNeededBonus = Math.ceil(expNeeded/perCardBonus);
-		numNeededBonus = numberWithCommas(numNeededBonus);
-
-		var numCards = document.getElementById("nonclass" + idx);
-		var numCardsBonus = document.getElementById("class" + idx);
-
-		numCards.innerHTML = numNeeded;
-		numCardsBonus.innerHTML = numNeededBonus;
-	}
-	expNeeded = numberWithCommas(expNeeded);
-	expText.innerHTML = expNeeded;
 }
+expNeeded = expNeeded.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+message.channel.send("Total Experience Needed: " + expNeeded);
 
-function checkValid(){
-	var startLevel = parseInt(startInput.value);
-	var endLevel = parseInt(endInput.value);
-	if(startLevel && startLevel > 0 && endLevel && endLevel <= 100 && startLevel < endLevel && finishedLoad){
-		calcButton.disabled = false;
 	}
 	else{
-		calcButton.disabled = true;
+		message.channel.send(`You did not set the correct levels for this function. Use !exp starting_level final_level, where the levels can be between 1 and 100.
+For example, !exp 1 70 calculates the cards needed for taking a level 1 Servant to level 70.`);
 	}
-}
-
-function numberWithCommas(x) {
-    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-}
-
 }
