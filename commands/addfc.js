@@ -8,7 +8,6 @@ console.log("friendCode: " + fc);
 var mysql = require('mysql');
 var connection = mysql.createConnection(process.env.JAWSDB_URL);
 
-connection.connect();
 if(args.length == 0) {
   message.channel.send("You did not add your Friend Code. Use !addfc friend_code. For example, !addfc 123,123,123.");
 } else {
@@ -26,12 +25,5 @@ if(args.length == 0) {
     }
   });
 }
-/*connection.query('SELECT 1 + 1 AS solution', function(err, rows, fields) {
-  if (err) throw err;
-
-  console.log('The solution is: ', rows[0].solution);
-});*/
-
-//connection.end();
 
 }

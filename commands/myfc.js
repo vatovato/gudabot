@@ -16,12 +16,9 @@ var connection = mysql.createConnection(process.env.JAWSDB_URL);
       console.log("User did not exist.");
       message.channel.send(`**${authorName}**, you did not create your entry yet. Use !addfc friend_code. For example, !addfc 123,123,123.`);
     } else {
-      var friendCode = connection.query(`SELECT friendCode FROM friends WHERE userId = '${authorId}'`);
-      var friendCode2 = rows[0].friendCode;
-      console.log("rows.friendCode: " + friendCode);
-      console.log("fields.friendCode: " + friendCode2);
+      var friendCode = rows[0].friendCode;
       message.channel.send(`**${authorName}**, your Friend Code is **${friendCode}**.`);
     }
   });
-
+connection.end();
 }
