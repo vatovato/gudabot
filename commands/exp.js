@@ -33,7 +33,7 @@ for(var i = 0; i < 4; i++){
 
 }
 expNeeded = expNeeded.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-message.channel.send("Total Experience Needed: " + expNeeded);
+message.channel.send("Total EXP Needed: " + expNeeded + " EXP.");
 
 	}
 	else{
