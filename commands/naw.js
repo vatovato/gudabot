@@ -16,7 +16,7 @@ var memes = ['','The ~installing the game~ MADNESS!!1! Will I Install From Play 
 `**Is FGO ~Pay2Win~??** F2P vs P2P & "Pay 2 Waifu" Explained for Fate: Grand Order NA [FGO NA] (This is an actual video title, I did not make this one up, I swear)`,
 `kayos SECRETLY LOVES ME ~~Or Maybe He IS Me~~ [FGO DRAMA] + OMG MY FIRST RAP VIDEO GUYS!!!!!`];
 
-var place = Math.floor((Math.random() * 15) + 1);
+var place = Math.floor((Math.random() * 16) + 1);
 var sendMeme = memes[place];
 console.log("Meme: " + sendMeme);
 message.channel.send(`${sendMeme}`);
