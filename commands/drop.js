@@ -452,8 +452,8 @@ console.log("Flag Position: " + flagPosition);*/
 if(flag == 0) {
   message.channel.send("No material with such name. Type !drop help to see how to use this command.");
 } else {
-  let scrapeMat = require('scrapemat.js');
-  scrapemat.run(client, message, materials.wikiUrl);
+  //let scrapeMat = require('scrapemat.js');
+  //scrapemat.run(client, message, materials.wikiUrl);
   const embed = new Discord.RichEmbed()
   .setTitle(materials.name[flagPosition][0])
   .setThumbnail(materials.image[flagPosition])
