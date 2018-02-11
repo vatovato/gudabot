@@ -1,19 +1,25 @@
-exports.run = (client, message, args) => {
+exports.run = (client, message, args, callback) => {
 
   var request = require('request');
   var cheerio = require('cheerio');
   const Discord = require('discord.js');
   var wikiUrl = args;
+  console.log("URL: " + wikiUrl);
   var servantList = '';
-  request(wikiUrl, function(error, response, html) {
+  var finalList = '';
+    request(wikiUrl, function(error, response, html) {
+    var list = '';
+    if (error) throw error;
     if(!error && response.statusCode == 200) {
       var $ = cheerio.load(html);
-      var divWithServants = $('div[style="display:inline-block;position:relative;margin-right:5px"]').toArray();
-      for (let divs of divWithServants) {
+      var divWithName = $('div[class="InumWrapper hidden"]').toArray();
+      for(let divs of divWithName) {
         var servantName = $(divs).find('a').attr('title');
-        servantList += servantName + " - ";
-      }
+        //console.log(servantName);
+        list += servantName + ", ";
+        }
+        callback(list);
 }
-console.log("Servants: " + servantList);
 });
+
 }
