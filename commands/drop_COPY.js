@@ -542,11 +542,26 @@ for (let i=0; i<materials.ap.length; i++) {
     }
   }
 }
-
+/*console.log("Flag: " + flag);
+console.log("Flag Position: " + flagPosition);*/
 if(flag == 0) {
   message.channel.send("No material with such name. Type !drop help to see how to use this command.");
 } else {
-
+  /*let scrapeMat = require('./scrapemat.js');
+  scrapeMat.run(client, message, materials.url[flagPosition], function writeValue(list) {
+    list = list.slice(0,-2);
+    materials.servants[flagPosition] = list;
+    const embed = new Discord.RichEmbed()
+    .setTitle(materials.name[flagPosition][0])
+    .setURL(materials.url[flagPosition])
+    .setThumbnail(materials.image[flagPosition])
+    .setDescription(`${materials.area[flagPosition]}: ${materials.quest[flagPosition]} [${materials.ap[flagPosition]} AP]`)
+    .addField("AP Per Drop", materials.apPerDrop[flagPosition])
+    .addField("Drop Chance", materials.dropChance[flagPosition])
+    .addField("Servants who need it", materials.servants[flagPosition])
+    message.channel.send({embed});
+  });*/
+  //console.log("materials.servants fuera de funcion: " + materials.servants[flagPosition]);
   const embed = new Discord.RichEmbed()
   .setTitle(materials.name[flagPosition][0])
   .setThumbnail(materials.image[flagPosition])
@@ -556,6 +571,5 @@ if(flag == 0) {
   .addField("Drop Chance", materials.dropChance[flagPosition])
 
   message.channel.send({embed});
-}
 }
 }
