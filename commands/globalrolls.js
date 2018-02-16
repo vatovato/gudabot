@@ -3,12 +3,7 @@ exports.run = (client, message, args) => {
 var authorName = message.author.username;
 var authorId = message.author.id;
 var mysql = require('mysql');
-var connection = mysql.createConnection({
-    host     : 'izm96dhhnwr2ieg0.cbetxkdyhwsb.us-east-1.rds.amazonaws.com',
-    user     : 'q1851bkxpbck29af',
-    password : 'aruks8byfph462fs',
-    database : 'z9za3d9s22bfizav'
-  });
+var connection = mysql.createConnection(process.env.JAWSDB_URL);
 
 
   connection.query(`SELECT * FROM rolls_global WHERE globalID = 0`, function(err, rows, fields) {
