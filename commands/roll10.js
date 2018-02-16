@@ -67,7 +67,7 @@ var sendMessage = "**" + userCalling + "'s Roll**\n\n";
 }*/
 
 function simulate() {
-  console.log(authorName + " requested 10 rolls.");
+  console.log(userCalling + " requested 10 rolls.");
     var pulledServant = false;
     var pulledHigh = false;
     for (var i = 0; i < 10; i++) {
