@@ -1,5 +1,13 @@
 exports.run = (client, message, args) => {
+if(message.channel.name !== "bot-rolls") {
+    message.channel.send("This command only works in the " + `<#414193770276454400>` + " channel.");
+  } else {
 const Discord = require('discord.js');
+
+var userCalling = message.author.username;
+var authorId = message.author.id;
+var mysql = require('mysql');
+var connection = mysql.createConnection(process.env.JAWSDB_URL);
 
 var currFiveStars = [],
     currFourStars = [],
@@ -55,14 +63,14 @@ currFourStars = currFourStars.concat(fourStarStory);
 currThreeStars = threeStarBase.slice();
 currThreeStars = currThreeStars.concat(threeStarStory);
 
-var sendMessage = "";
+var sendMessage = "**" + userCalling + "'s Roll**\n\n";
 
 /*function addFeaturedToList(array, servant) {
     array.push(servant);
 }*/
 
 function simulate() {
-  console.log("----------------------------\nInside function simulate\n----------------------------");
+  console.log(userCalling + " requested 10 rolls.");
     var pulledServant = false;
     var pulledHigh = false;
     for (var i = 0; i < 10; i++) {
@@ -120,6 +128,19 @@ function simulate() {
     moneySpent = moneySpent.toFixed(2);
     console.log("Quartz Spent: " + quartzSpent);
     console.log("Money Spent: " + moneySpent);
+    connection.query(`SELECT * FROM rolls_users WHERE roll_user_id ='${authorId}'`, function(err, rows, fields) {
+      if (err) throw err;
+      if(rows.length == 0) {
+        console.log("User did not exist. Creating.");
+        connection.query(`INSERT INTO rolls_users (roll_user_id, roll_user_name, roll_user_quartz, roll_user_money) VALUES ('${authorId}', '${userCalling}', 30,  17.1)`);
+        connection.query(`UPDATE rolls_global SET total_quartz = total_quartz + 30, total_rolls = total_rolls + 1, total_money = total_money + 17.1 WHERE globalID = 0`);
+      } else {
+        console.log("User already exists. Updating.");
+        connection.query(`UPDATE rolls_users SET roll_user_quartz = roll_user_quartz + 30, roll_user_money = roll_user_money + 17.1 WHERE roll_user_id = '${authorId}'`);
+        connection.query(`UPDATE rolls_global SET total_quartz = total_quartz + 30, total_rolls = total_rolls + 1, total_money = total_money + 17.1 WHERE globalID = 0`);
+      }
+    });
+    //connection.end();
     message.channel.send(`${sendMessage}`);
 }
 
@@ -152,6 +173,8 @@ function pullEssence(stars, rowNum) {
         pullFeatured = checkFeatured(featuredChance, featured5eChance);
         essence = pullFeaturedObj(pullFeatured, currFeatured5E, currFiveStarEss);
         console.log("5* Essence: " + essence);
+        connection.query(`UPDATE rolls_global SET essences = essences + 1 WHERE globalID = 0`);
+        connection.query(`UPDATE rolls_users SET roll_user_essences = roll_user_essences + 1 WHERE roll_user_id = ${authorId}`);
         var essenceObj2 = getEssence(essence);
         var element = essenceObj2.path + essence;
         if (essencesPulled[element] == null) {
@@ -168,10 +191,10 @@ function pullEssence(stars, rowNum) {
     //currPortrait = essenceObj.uri;
     //currLink = essenceObj.path;
     currStars = starsT;
-    if(currStars == "★★★★★") {
+    if(currStars == "★★★★★" || currStars == "★★★★") {
     sendMessage += "***" + currStars + " Essence - " + essence + " (" + essenceURL + ")***\n";
   } else {
-    sendMessage += currStars + " Essence - " + essence + " (" + essenceURL + ")\n";
+    sendMessage += currStars + " Essence - " + essence + "\n";
   }
 }
 
@@ -218,8 +241,11 @@ function pullServant(stars, rowNum) {
         pullFeatured = checkFeatured(featuredChance, featured5sChance);
         servant = pullFeaturedObj(pullFeatured, currFeatured5S, currFiveStars);
         console.log("5* Servant: " + servant);
+        connection.query(`UPDATE rolls_global SET servants = servants + 1 WHERE globalID = 0`);
+        connection.query(`UPDATE rolls_users SET roll_user_servants = roll_user_servants + 1 WHERE roll_user_id = ${authorId}`);
         var servantObj2 = getServant(servant);
         var element = servantObj2.path + servant;
+
         /*var servantURL = "https://grandorder.gamepress.gg" + servantObj2.path;
         message.channel.send(`★★★★★ ${servant} (${servantURL})`);*/
         if (servantsPulled[element] == null) {
@@ -239,10 +265,10 @@ function pullServant(stars, rowNum) {
     currLink = servantObj.path;
     currStars = starsT;
     servantURL = "https://grandorder.gamepress.gg" + servantObj.path;
-    if(currStars == "★★★★★") {
-      sendMessage += "***" + currStars + " Servant - " + servant + " (" + servantURL + ")***\n";
+    if(currStars == "★★★★★" || currStars == "★★★★") {
+      sendMessage += "***" + currStars + " Servant - " + servant + "***\n";
     } else {
-    sendMessage += currStars + " Servant - " + servant + " (" + servantURL + ")\n";
+    sendMessage += currStars + " Servant - " + servant + "\n";
   }
 }
 
@@ -282,4 +308,5 @@ function getEssence(name) {
 }
 
 simulate();
-}
+} //End ELSE that runs the whole script
+} //End exports.run
