@@ -3,9 +3,10 @@ exports.run = (client, message, args) => {
 var authorName = message.author.username;
 var authorId = message.author.id;
 var mysql = require('mysql');
-var connection = mysql.createConnection(process.env.JAWSDB_URL);
+var pool = mysql.createPool(process.env.JAWSDB_URL);
 
-
+  pool.getConnection(function(error, connection) {
+    if (error) throw error;
   connection.query(`SELECT * FROM rolls_users WHERE roll_user_id ='${authorId}'`, function(err, rows, fields) {
     if (err) throw err;
     if(rows.length == 0) {
@@ -22,6 +23,8 @@ Quartz Spent: ${quartz} - Money Spent: $${money}
 This got you ${servants} 5* Servants and ${essences} 5* CEs.`);
     }
     //connection.end();
+    connection.destroy();
+  });
   });
 
 }
