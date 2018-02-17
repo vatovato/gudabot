@@ -21,7 +21,7 @@ var connection = mysql.createConnection(process.env.JAWSDB_URL);
 Quartz Spent: ${quartz} - Money Spent: $${money}
 This got you ${servants} 5* Servants and ${essences} 5* CEs.`);
     }
-    connection.end();
+    //connection.end();
   });
 
 }
