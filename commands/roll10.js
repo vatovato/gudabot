@@ -140,6 +140,7 @@ function simulate() {
         connection.query(`UPDATE rolls_global SET total_quartz = total_quartz + 30, total_rolls = total_rolls + 1, total_money = total_money + 17.1 WHERE globalID = 0`);
       }
     });
+    connection.end();
     message.channel.send(`${sendMessage}`);
 }
 
