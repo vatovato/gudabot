@@ -1,4 +1,7 @@
 exports.run = (client, message, args) => {
+if(message.channel.name !== "bot-rolls") {
+    message.channel.send("This command only works in the " + `<#414193770276454400>` + " channel.");
+  } else {
 const Discord = require('discord.js');
 
 var userCalling = message.author.username;
@@ -304,4 +307,5 @@ function getEssence(name) {
 }
 
 simulate();
-}
+} //End ELSE that runs the whole script
+} //End exports.run
