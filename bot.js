@@ -62,21 +62,6 @@ client.on("message", message => {
       return;
     }
 
-    //sqlite portion of the request Friend Code command
-    if(command === "myfc") {
-      var authorId = message.author.id;
-      var authorName = message.author.username;
-      console.log(authorName + " wants to call his Friend Code.");
-      if(!friend.has(`${authorId}`)) {
-        message.channel.send(`**${authorName}**, you're not on the table yet. Use !addfc friend_code first. For example, !addfc 123,123,123.`);
-      } else {
-      var friendCode = friend.get(`${authorId}`);
-      console.log("Friend Code: " + friendCode);
-      message.channel.send(`**${authorName}**, your Friend Code is **${friendCode}**.`);
-    }
-      return;
-    }*/
-
     // Calls the command from the commands folder, along with Discord Client
     // and arguments
     try {
