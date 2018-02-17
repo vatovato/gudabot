@@ -5,11 +5,9 @@ const fs = require("fs");
 const express = require('express');
 const app = express();
 var http = require('http');
-/*const Enmap = require('enmap');
-const EnmapLevel = require('enmap-level');
 
-const tableSource = new EnmapLevel({name: "friend"});
-const friend = new Enmap({provider: tableSource});*/
+var mysql = require('mysql');
+var connection = mysql.createConnection(process.env.JAWSDB_URL);
 
 
 // Set the port of our application
@@ -57,27 +55,10 @@ client.on("message", message => {
     const args = message.content.slice(process.env.PREFIX.length).trim().split(/ +/g);
     const command = args.shift().toLowerCase();
 
-    //portion of the code that tried a Friend Code command
-    // Unfortunately Heroku kills both sqlite's table and enmap's table on
-    //every restart, so maintaining a persistent table is impossible,
-    //even when using enmap-level to maintain persistence.
-/*    if(command === "addfc") {
-      var authorId = message.author.id;
-      var authorName = message.author.username;
-      var fc = args.join(" ");
-      if(args.length == 0) {
-        message.channel.send(`**${authorName}**, you did not add your Friend Code. Use !addfc friend_code. For example, !addfc 123,123,123.`);
-      } else if(friend.has(`${authorId}`)) {
-        console.log(authorName + " wants to update his Friend Code.");
-        friend.set(`${authorId}`,`${fc}`);
-        var updatedFriendCode = friend.get(`${authorId}`);
-        message.channel.send(`**${authorName}**, you updated your Friend Code to **${updatedFriendCode}**.`);
-      } else {
-      console.log(authorName + " wants to add his Friend Code.");
-      friend.set(`${authorId}`,`${fc}`);
-      var newFriendCode = friend.get(`${authorId}`);
-      message.channel.send(`**${authorName}**, you created your Friend Code as **${newFriendCode}**.`);
-    }
+
+    if(command === "roll10" || command === "myrolls" || command === "resetrolls" || command === "globalrolls") {
+      let commandFile = require(`./commands/${command}.js`);
+      commandFile.run(client, message, connection);
       return;
     }
 

@@ -1,4 +1,4 @@
-exports.run = (client, message, args) => {
+exports.run = (client, message, connection) => {
 if(message.channel.name !== "bot-rolls") {
       message.channel.send("This command only works in the " + `<#414193770276454400>` + " channel.");
     } else {
@@ -6,8 +6,6 @@ const Discord = require('discord.js');
 
 var userCalling = message.author.username;
 var authorId = message.author.id;
-var mysql = require('mysql');
-var pool = mysql.createPool(process.env.JAWSDB_URL);
 
 var currFiveStars = [],
     currFourStars = [],
@@ -128,8 +126,7 @@ function simulate() {
     moneySpent = moneySpent.toFixed(2);
     console.log("Quartz Spent: " + quartzSpent);
     console.log("Money Spent: " + moneySpent);
-    pool.getConnection(function(error, connection) {
-      if (error) throw error;
+
       connection.query(`SELECT * FROM rolls_users WHERE roll_user_id ='${authorId}'`, function(err, rows, fields) {
       if (err) throw err;
       if(rows.length == 0) {
@@ -141,10 +138,7 @@ function simulate() {
         connection.query(`UPDATE rolls_users SET roll_user_quartz = roll_user_quartz + 30, roll_user_money = roll_user_money + 17.1 WHERE roll_user_id = '${authorId}'`);
         connection.query(`UPDATE rolls_global SET total_quartz = total_quartz + 30, total_rolls = total_rolls + 1, total_money = total_money + 17.1 WHERE globalID = 0`);
       }
-      //connection.end();
-      connection.destroy();
     });
-  });
     message.channel.send(`${sendMessage}`);
 }
 
@@ -177,12 +171,10 @@ function pullEssence(stars, rowNum) {
         pullFeatured = checkFeatured(featuredChance, featured5eChance);
         essence = pullFeaturedObj(pullFeatured, currFeatured5E, currFiveStarEss);
         console.log("5* Essence: " + essence);
-        pool.getConnection(function(error, connection) {
-          if(error) throw error;
-        pool.query(`UPDATE rolls_global SET essences = essences + 1 WHERE globalID = 0`);
-        pool.query(`UPDATE rolls_users SET roll_user_essences = roll_user_essences + 1 WHERE roll_user_id = ${authorId}`);
-        connection.destroy();
-      });
+
+        connection.query(`UPDATE rolls_global SET essences = essences + 1 WHERE globalID = 0`);
+        connection.query(`UPDATE rolls_users SET roll_user_essences = roll_user_essences + 1 WHERE roll_user_id = ${authorId}`);
+
         var essenceObj2 = getEssence(essence);
         var element = essenceObj2.path + essence;
         if (essencesPulled[element] == null) {
@@ -249,12 +241,10 @@ function pullServant(stars, rowNum) {
         pullFeatured = checkFeatured(featuredChance, featured5sChance);
         servant = pullFeaturedObj(pullFeatured, currFeatured5S, currFiveStars);
         console.log("5* Servant: " + servant);
-        pool.getConnection(function(error, connection) {
-          if(error) throw error;
-        pool.query(`UPDATE rolls_global SET servants = servants + 1 WHERE globalID = 0`);
-        pool.query(`UPDATE rolls_users SET roll_user_servants = roll_user_servants + 1 WHERE roll_user_id = ${authorId}`);
-        connection.destroy();
-      });
+
+        connection.query(`UPDATE rolls_global SET servants = servants + 1 WHERE globalID = 0`);
+        connection.query(`UPDATE rolls_users SET roll_user_servants = roll_user_servants + 1 WHERE roll_user_id = ${authorId}`);
+
         var servantObj2 = getServant(servant);
         var element = servantObj2.path + servant;
 

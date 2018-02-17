@@ -1,12 +1,8 @@
-exports.run = (client, message, args) => {
+exports.run = (client, message, connection) => {
 
 var authorName = message.author.username;
 var authorId = message.author.id;
-var mysql = require('mysql');
-var pool = mysql.createPool(process.env.JAWSDB_URL);
 
-pool.getConnection(function(error, connection) {
-  if (error) throw error;
   connection.query(`SELECT * FROM rolls_users WHERE roll_user_id ='${authorId}'`, function(err, rows, fields) {
     if (err) throw err;
     if(rows.length == 0) {
@@ -17,9 +13,6 @@ pool.getConnection(function(error, connection) {
       connection.query(`UPDATE rolls_users SET roll_user_quartz = 0, roll_user_money = 0, roll_user_essences = 0, roll_user_servants=0 WHERE roll_user_id = ${authorId}`);
       message.channel.send(`**${authorName}** you have reset your rolls.`);
     }
-    //connection.end();
-    connection.destroy();
   });
-});  
 
 }
