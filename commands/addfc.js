@@ -1,12 +1,10 @@
-exports.run = (client, message, args) => {
-//message.channel.send("Sorry, turns out persistence isn't free in Heroku so no automatic friend code adding and calling.");
+exports.run = (client, message, connection) => {
+
 var authorId = message.author.id;
 console.log("authorId: " + authorId);
 var authorName = message.author.username;
 var fc = args.join(" ");
 console.log("friendCode: " + fc);
-var mysql = require('mysql');
-var connection = mysql.createConnection(process.env.JAWSDB_URL);
 
 if(args.length == 0) {
   message.channel.send("You did not add your Friend Code. Use !addfc friend_code. For example, !addfc 123,123,123.");
@@ -24,5 +22,5 @@ if(args.length == 0) {
       message.channel.send(`**${authorName}**, you have updated your Friend Code to **${fc}**.`);
     }
   });
-}
+ }
 }
