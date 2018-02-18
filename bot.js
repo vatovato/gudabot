@@ -56,9 +56,14 @@ client.on("message", message => {
     const command = args.shift().toLowerCase();
 
 
-    if(command === "roll10" || command === "myrolls" || command === "resetrolls" || command === "globalrolls" || command === "addfc"  || command === "myfc") {
+    if(command === "roll10" || command === "myrolls" || command === "resetrolls" || command === "globalrolls" || command === "myfc") {
       let commandFile = require(`./commands/${command}.js`);
       commandFile.run(client, message, connection);
+      return;
+    }
+    if(command === "addfc") {
+      let commandFile = require(`./commands/addfc.js`)
+      commandFile.run(client, message, connection, args);
       return;
     }
 

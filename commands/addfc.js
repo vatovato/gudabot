@@ -1,4 +1,4 @@
-exports.run = (client, message, connection) => {
+exports.run = (client, message, connection, args) => {
 
 var authorId = message.author.id;
 console.log("authorId: " + authorId);
