@@ -18,6 +18,8 @@ const embed = new Discord.RichEmbed()
   .addField("**!bondce [servant_name]**","Brings the Bond CE for the Servant")
   .addField("**!drop [material_name]**","Brings the best farming spot for the Material")
   .addField("**!daily**","Daily EXP Cards and Training Grounds")
+  .addField("**!addfc [friend code] & !myfc**","!addfc [friend code] adds your friend code and any other information you may need to a database, which you can then call back with !myfc every time you have a slot open and want to add friends from this channel")
+  .addField("**!roll10 & !myrolls & !resetrolls**", "!roll10 simulates using 30 Quartz in game to summon 10 cards. !myrolls tells you how much money and quartz you've spent, while !resetrolls resets that counter back to zero.")
   .addField("**Meme functions**","!umu, !padoru, !weeb, !officer...")
 
 message.channel.send({embed}).catch(console.error);
