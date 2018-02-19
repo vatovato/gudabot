@@ -12,22 +12,22 @@ var currFiveStars = [],
     currThreeStars = [];
 //curr = current + event summons
 //these need to be updated as the permanent hero lists get updated
-var fiveStarBase = ["Altria Pendragon", "Altera", "Zhuge Liang (El-Melloi II)", "Vlad III", "Jeanne d'Arc", "Orion", "Francis Drake", "Tamamo no Mae", "Jack the Ripper", "Mordred"];
+var fiveStarBase = ["Altria Pendragon", "Altera", "Zhuge Liang (El-Melloi II)", "Vlad III", "Jeanne d Arc", "Orion", "Francis Drake", "Tamamo no Mae", "Jack the Ripper", "Mordred"];
 var fiveStarStory = ["Nikola Tesla"];
 var currFiveStars = fiveStarBase;
-var fourStarBase = ["Siegfried", "Chevalier d'Eon", "EMIYA", "Atalante", "Elisabeth Bathory", "Anne Bonny & Mary Read", "Marie Antoinette", "Saint Martha", "Stheno", "Carmilla", "Heracles", "Lancelot", "Tamamo Cat", "Nursery Rhyme", "Frankenstein"];
+var fourStarBase = ["Siegfried", "Chevalier d Eon", "EMIYA", "Atalante", "Elisabeth Bathory", "Anne Bonny & Mary Read", "Marie Antoinette", "Saint Martha", "Stheno", "Carmilla", "Heracles", "Lancelot", "Tamamo Cat", "Nursery Rhyme", "Frankenstein"];
 var fourStarStory = ["Medea (Lily)", "Nero Claudius", "Altria Pendragon (Alter)", "Altria Pendragon (Lancer Alter)"];
 var currFourStars = fourStarBase;
 var threeStarBase = ["Gaius Julius Caesar", "Gilles de Rais", "Robin Hood", "David", "Euryale", "Cu Chulainn", "Cu Chulainn (Prototype)", "Romulus", "Hektor", "Medusa", "Boudica", "Ushiwakamaru", "Alexander", "Medea", "Mephistopheles", "Jing Ke", "Lu Bu Fengxian", "Darius III", "Kiyohime", "Diarmuid ua Duibhne", "Fergus mac Roich",  "Paracelsus von Hohenheim", "Charles Babbage", "Henry Jekyll & Hyde"];
 var threeStarStory = ["Cu Chulainn (Caster)", "Gilles de Rais (Caster)"];
 var currThreeStars = threeStarBase;
-var fiveStarEss = ["Formal Craft", "Imaginary Around", "Limited/Zero Over", "Kaleidoscope", "Heaven's Feel", "Prisma Cosmos", "The Black Grail", "Victor of the Moon", "Another Ending", "A Fragment of 2030", "500-Year Obsession"];
+var fiveStarEss = ["Formal Craft", "Imaginary Around", "Limited/Zero Over", "Kaleidoscope", "Heaven s Feel", "Prisma Cosmos", "The Black Grail", "Victor of the Moon", "Another Ending", "A Fragment of 2030", "500-Year Obsession"];
 var currFiveStarEss = fiveStarEss;
-var fourStarEss = ["Iron-Willed Training", "Primeval Curse", "Projection", "Gandr", "Verdant Sound of Destruction", "Gem Magecraft: Antumbra", "Be Elegant", "The Imaginary Element", "Divine Banquet", "Angel's Song", "Seal Designation Enforcer", "Holy Shroud of Magdalene", "With One Strike", "Code Cast", "Knight's Dignity", "Awakened Will", "Necromancy", "Golden Millennium Tree"];
+var fourStarEss = ["Iron-Willed Training", "Primeval Curse", "Projection", "Gandr", "Verdant Sound of Destruction", "Gem Magecraft: Antumbra", "Be Elegant", "The Imaginary Element", "Divine Banquet", "Angel s Song", "Seal Designation Enforcer", "Holy Shroud of Magdalene", "With One Strike", "Code Cast", "Knight s Dignity", "Awakened Will", "Necromancy", "Golden Millennium Tree"];
 var currFourStarEss = fourStarEss;
 // OLD ONES: var threeStarEss = ["Azoth Blade", "False Attendant's Writings", "The Azure Black Keys", "The Verdant Black Keys", "The Crimson Black Keys", "Rin's Pendant", "Spell Tome", "Dragon's Meridian", "Sorcery Ore", "Dragonkin", "Mooncell Automaton", "Runestones", "Anchors Aweigh", "Demonic Boar", "Clock Tower"];
 //TODO need to add these ce's first
-var threeStarEss = ["Mooncell Automaton", "Runestones", "Anchors Aweigh", "Demonic Boar", "Clock Tower", "Ryudoji Temple", "Mana Gauge", "Elixir of Love", "Storch Ritter", "Hermitage", "Motored Cuirassier", "Stuffed Lion", "Lugh's Halo"];
+var threeStarEss = ["Mooncell Automaton", "Runestones", "Anchors Aweigh", "Demonic Boar", "Clock Tower", "Ryudoji Temple", "Mana Gauge", "Elixir of Love", "Storch Ritter", "Hermitage", "Motored Cuirassier", "Stuffed Lion", "Lugh s Halo"];
 var currThreeStarEss = threeStarEss;
 
 var currFeatured3S = [], currFeatured4S = [], currFeatured5S = [];
@@ -172,7 +172,6 @@ function pullEssence(stars, rowNum) {
         essence = pullFeaturedObj(pullFeatured, currFeatured5E, currFiveStarEss);
         console.log("5* Essence: " + essence);
 
-        essence = essence.replace("'", "\'");
         connection.query(`UPDATE rolls_global SET essences = essences + 1 WHERE globalID = 0`);
         connection.query(`UPDATE rolls_users SET roll_user_essences = roll_user_essences + 1, essenceName = CONCAT(essenceName, '\n- ', '${essence}') WHERE roll_user_id = ${authorId}`);
 
@@ -243,7 +242,6 @@ function pullServant(stars, rowNum) {
         servant = pullFeaturedObj(pullFeatured, currFeatured5S, currFiveStars);
         console.log("5* Servant: " + servant);
 
-        servant = servant.replace("'", "\'");
         connection.query(`UPDATE rolls_global SET servants = servants + 1 WHERE globalID = 0`);
         connection.query(`UPDATE rolls_users SET roll_user_servants = roll_user_servants + 1, servantName = CONCAT(servantName, '\n- ', '${servant}') WHERE roll_user_id = ${authorId}`);
 
