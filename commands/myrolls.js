@@ -18,8 +18,8 @@ connection.query(`SELECT * FROM rolls_users WHERE roll_user_id ='${authorId}'`, 
       var servantNames = rows[0].servantName;
       var essenceNames = rows[0].essenceName;
       sendMessage = `**${authorName}**
-      Quartz Spent: ${quartz} - Money Spent: $${money}
-      This got you ${servants} 5* Servants and ${essences} 5* CEs.`;
+Quartz Spent: ${quartz} - Money Spent: $${money}
+This got you ${servants} 5* Servants and ${essences} 5* CEs.`;
       if(rows[0].servantName.length > 0) {
        sendMessage += `\nServants obtained: ${servantNames}`;
       }

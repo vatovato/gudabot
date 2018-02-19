@@ -6,7 +6,7 @@ var authorId = message.author.id;
   connection.query(`SELECT * FROM rolls_users WHERE roll_user_id ='${authorId}'`, function(err, rows, fields) {
     if (err) throw err;
     if(rows.length == 0) {
-      console.log("User requested roll reset but did not exist.");
+      console.log(authorName + " requested roll reset but did not exist.");
       message.channel.send("You did not roll yet. Try !roll10 first.");
     } else {
       console.log("User requested roll reset.");
