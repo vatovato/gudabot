@@ -30,8 +30,12 @@ var currFourStarEss = fourStarEss;
 var threeStarEss = ["Mooncell Automaton", "Runestones", "Anchors Aweigh", "Demonic Boar", "Clock Tower", "Ryudoji Temple", "Mana Gauge", "Elixir of Love", "Storch Ritter", "Hermitage", "Motored Cuirassier", "Stuffed Lion", "Lugh s Halo"];
 var currThreeStarEss = threeStarEss;
 
-var currFeatured3S = [], currFeatured4S = [], currFeatured5S = [];
-var currFeatured3E = [], currFeatured4E = [], currFeatured5E = [];
+var currFeatured3S = [];
+var currFeatured4S = [];
+var currFeatured5S = ["Ryougi Shiki (Saber)"];
+var currFeatured3E = ["Sprinter", "Repeat Magic"];
+var currFeatured4E = ["Chorus", "Summers Precognition", "Mystic Eyes of Distortion", "Vivid Dance of Fists"];
+var currFeatured5E = ["Threefold Barrier", "Grand Puppeteer", "Mature Gentleman", "Decapitating Bunny 2018"];
 var servants = [], essences = [], allServants = [], campaigns = [];
 var servantsPulled = [], essencesPulled = [], servantsPulled4 = [];
 //elements
