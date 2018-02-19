@@ -10,7 +10,7 @@ var authorId = message.author.id;
       message.channel.send("You did not roll yet. Try !roll10 first.");
     } else {
       console.log("User requested roll reset.");
-      connection.query(`UPDATE rolls_users SET roll_user_quartz = 0, roll_user_money = 0, roll_user_essences = 0, roll_user_servants=0 WHERE roll_user_id = ${authorId}`);
+      connection.query(`UPDATE rolls_users SET roll_user_quartz = 0, roll_user_money = 0, roll_user_essences = 0, roll_user_servants=0, servantName='', essenceName='' WHERE roll_user_id = ${authorId}`);
       message.channel.send(`**${authorName}** you have reset your rolls.`);
     }
   });

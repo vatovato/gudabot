@@ -173,7 +173,7 @@ function pullEssence(stars, rowNum) {
         console.log("5* Essence: " + essence);
 
         connection.query(`UPDATE rolls_global SET essences = essences + 1 WHERE globalID = 0`);
-        connection.query(`UPDATE rolls_users SET roll_user_essences = roll_user_essences + 1 WHERE roll_user_id = ${authorId}`);
+        connection.query(`UPDATE rolls_users SET roll_user_essences = roll_user_essences + 1, essenceName = CONCAT(essenceName, '\n- ', '${essence}') WHERE roll_user_id = ${authorId}`);
 
         var essenceObj2 = getEssence(essence);
         var element = essenceObj2.path + essence;
@@ -243,7 +243,7 @@ function pullServant(stars, rowNum) {
         console.log("5* Servant: " + servant);
 
         connection.query(`UPDATE rolls_global SET servants = servants + 1 WHERE globalID = 0`);
-        connection.query(`UPDATE rolls_users SET roll_user_servants = roll_user_servants + 1 WHERE roll_user_id = ${authorId}`);
+        connection.query(`UPDATE rolls_users SET roll_user_servants = roll_user_servants + 1, servantName = CONCAT(servantName, '\n- ', '${servant}') WHERE roll_user_id = ${authorId}`);
 
         var servantObj2 = getServant(servant);
         var element = servantObj2.path + servant;
