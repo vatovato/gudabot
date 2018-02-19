@@ -172,6 +172,7 @@ function pullEssence(stars, rowNum) {
         essence = pullFeaturedObj(pullFeatured, currFeatured5E, currFiveStarEss);
         console.log("5* Essence: " + essence);
 
+        essence = essence.replace("'", "\'");
         connection.query(`UPDATE rolls_global SET essences = essences + 1 WHERE globalID = 0`);
         connection.query(`UPDATE rolls_users SET roll_user_essences = roll_user_essences + 1, essenceName = CONCAT(essenceName, '\n- ', '${essence}') WHERE roll_user_id = ${authorId}`);
 
@@ -242,6 +243,7 @@ function pullServant(stars, rowNum) {
         servant = pullFeaturedObj(pullFeatured, currFeatured5S, currFiveStars);
         console.log("5* Servant: " + servant);
 
+        servant = servant.replace("'", "\'");
         connection.query(`UPDATE rolls_global SET servants = servants + 1 WHERE globalID = 0`);
         connection.query(`UPDATE rolls_users SET roll_user_servants = roll_user_servants + 1, servantName = CONCAT(servantName, '\n- ', '${servant}') WHERE roll_user_id = ${authorId}`);
 
