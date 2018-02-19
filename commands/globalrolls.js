@@ -18,9 +18,9 @@ connection.query(`SELECT * FROM rolls_users ORDER BY roll_user_quartz DESC LIMIT
   if(error) throw error;
       message.channel.send(`
 **TOP 3 WHALES**
-1. ${rows[0].roll_user_name}. ${rows[0].roll_user_quartz} Quartz, $${rows[0].roll_user_money}, ${rows[0].roll_user_servants} 5* Servants and ${rows[0].roll_user_essences} 5* Essences.
-2. ${rows[1].roll_user_name}. ${rows[1].roll_user_quartz} Quartz, $${rows[1].roll_user_money}, ${rows[1].roll_user_servants} 5* Servants and ${rows[1].roll_user_essences} 5* Essences.
-3. ${rows[2].roll_user_name}. ${rows[2].roll_user_quartz} Quartz, $${rows[2].roll_user_money}, ${rows[2].roll_user_servants} 5* Servants and ${rows[2].roll_user_essences} 5* Essences.`);
+1. **${rows[0].roll_user_name}** | ${rows[0].roll_user_quartz} Quartz | $${rows[0].roll_user_money} | ${rows[0].roll_user_servants} 5* Servants | ${rows[0].roll_user_essences} 5* Essences.
+2. **${rows[1].roll_user_name}** | ${rows[1].roll_user_quartz} Quartz | $${rows[1].roll_user_money} | ${rows[1].roll_user_servants} 5* Servants | ${rows[1].roll_user_essences} 5* Essences.
+3. **${rows[2].roll_user_name}** | ${rows[2].roll_user_quartz} Quartz | $${rows[2].roll_user_money} | ${rows[2].roll_user_servants} 5* Servants | ${rows[2].roll_user_essences} 5* Essences.`);
 });
 } else {
   message.channel.send("Sorry, only furiosa can use this command.");
