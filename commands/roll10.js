@@ -34,8 +34,8 @@ var currFeatured3S = [];
 var currFeatured4S = [];
 var currFeatured5S = ["Ryougi Shiki (Saber)"];
 var currFeatured3E = ["Sprinter", "Repeat Magic"];
-var currFeatured4E = ["Chorus", "Summers Precognition", "Mystic Eyes of Distortion", "Vivid Dance of Fists"];
-var currFeatured5E = ["Threefold Barrier", "Grand Puppeteer", "Mature Gentleman", "Decapitating Bunny 2018"];
+var currFeatured4E = ["Mystic Eyes of Distortion", "Vivid Dance of Fists"];
+var currFeatured5E = ["Grand Puppeteer", "Mature Gentleman"];
 var servants = [], essences = [], allServants = [], campaigns = [];
 var servantsPulled = [], essencesPulled = [], servantsPulled4 = [];
 //elements
