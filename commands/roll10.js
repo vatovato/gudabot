@@ -1,5 +1,5 @@
 exports.run = (client, message, connection) => {
-if(message.channel.name !== "general") {
+if(message.channel.name !== "bot-rolls") {
       message.channel.send("This command only works in the " + `<#414193770276454400>` + " channel.");
     } else {
 const Discord = require('discord.js');
