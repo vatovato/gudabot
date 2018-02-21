@@ -1,11 +1,16 @@
 exports.run = (client, message, connection) => {
-if(message.channel.name !== "bot-rolls") {
+if(message.channel.name !== "general") {
       message.channel.send("This command only works in the " + `<#414193770276454400>` + " channel.");
     } else {
 const Discord = require('discord.js');
 
 var userCalling = message.author.username;
 var authorId = message.author.id;
+var fiveStarIcons = {
+  serName: [],
+  serIcon: []
+};
+var fiveStarFlag = 0;
 
 var currFiveStars = [],
     currFourStars = [],
@@ -144,6 +149,11 @@ function simulate() {
       }
     });
     message.channel.send(`${sendMessage}`);
+    if(fiveStarIcons.serName.length > 0) {
+      for(let i=0; i<fiveStarIcons.serName.length;i++) {
+      message.channel.send(`Congratulations! You've obtained ${fiveStarIcons.serName[i]}`,{files: [fiveStarIcons.serIcon[i]]});
+      }
+    }
 }
 
 function pullEssence(stars, rowNum) {
@@ -192,7 +202,6 @@ function pullEssence(stars, rowNum) {
     currText = essence;
     var essenceObj = getEssence(essence);
     var essenceURL = "https://grandorder.gamepress.gg" + essenceObj.path;
-    //currPortrait = essenceObj.uri;
     //currLink = essenceObj.path;
     currStars = starsT;
     if(currStars == "★★★★★" || currStars == "★★★★") {
@@ -267,11 +276,18 @@ function pullServant(stars, rowNum) {
     currText = servant;
     currCell = className;
     var servantObj = getServant(servant);
-    currPortrait = servantObj.uri;
+    //currPortrait = servantObj.uri;
     currLink = servantObj.path;
-    currStars = starsT;
     servantURL = "https://grandorder.gamepress.gg" + servantObj.path;
-    if(currStars == "★★★★★" || currStars == "★★★★") {
+    if(typeof servantObj.uri !== 'undefined'){
+      currPortrait = servantObj.uri; }
+    currStars = starsT;
+    if(currStars == "★★★★★") {
+      sendMessage += "***" + currStars + " Servant - " + servant + "***\n";
+      fiveStarIcons.serName[fiveStarFlag] = servant;
+      fiveStarIcons.serIcon[fiveStarFlag] = currPortrait;
+      fiveStarFlag++;
+    } else if (currStars == "★★★★"){
       sendMessage += "***" + currStars + " Servant - " + servant + "***\n";
     } else {
     sendMessage += currStars + " Servant - " + servant + "\n";

@@ -196,7 +196,9 @@ exports.parseName = (servantName) => {
     case "archer anne bonny & mary read":
     case "archer anne mary":
     case "archer anne & mary":
+    case "archer anne and mary":
     case "archer boob pirates":
+    case "archer yuri pirates":
     urlRef="131";
     break;
     case "chloe von einzbern":
@@ -420,8 +422,11 @@ exports.parseName = (servantName) => {
     case "rider mary read":
     case "rider anne bonny & mary read":
     case "rider anne mary":
+    case "rider anne and mary":
     case "rider anne & mary":
     case "rider boob pirates":
+    case "rider yuri pirates":
+
     urlRef="066";
     break;
     case "santa alter":
@@ -894,7 +899,14 @@ exports.parseName = (servantName) => {
     break;
     case "semiramis":
     case "queen of assyria":
+    case "assassin semiramis":
     urlRef="199";
+    break;
+    case "asagami fujino":
+    case "archer asagami fujino":
+    case "archer fujino":
+    case "fujino":
+    urlRef = "200";
     break;
   }
 return urlRef;

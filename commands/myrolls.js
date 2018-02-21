@@ -21,10 +21,10 @@ connection.query(`SELECT * FROM rolls_users WHERE roll_user_id ='${authorId}'`, 
 Quartz Spent: ${quartz} - Money Spent: $${money}
 This got you ${servants} 5* Servants and ${essences} 5* CEs.`;
       if(rows[0].servantName.length > 0) {
-       sendMessage += `\nServants obtained: ${servantNames}`;
+       sendMessage += `\n\n**Servants obtained:** ${servantNames}`;
       }
       if(rows[0].essenceName.length > 0) {
-       sendMessage += `\nEssences obtained: ${essenceNames}`;
+       sendMessage += `\n\n**Essences obtained:** ${essenceNames}`;
       }
       message.channel.send(sendMessage);
     }

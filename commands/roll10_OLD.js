@@ -1,39 +1,41 @@
-exports.run = (client, message, args) => {
+exports.run = (client, message, connection) => {
 if(message.channel.name !== "bot-rolls") {
-    message.channel.send("This command only works in the " + `<#414193770276454400>` + " channel.");
-  } else {
+      message.channel.send("This command only works in the " + `<#414193770276454400>` + " channel.");
+    } else {
 const Discord = require('discord.js');
 
 var userCalling = message.author.username;
 var authorId = message.author.id;
-var mysql = require('mysql');
-var connection = mysql.createConnection(process.env.JAWSDB_URL);
 
 var currFiveStars = [],
     currFourStars = [],
     currThreeStars = [];
 //curr = current + event summons
 //these need to be updated as the permanent hero lists get updated
-var fiveStarBase = ["Altria Pendragon", "Altera", "Zhuge Liang (El-Melloi II)", "Vlad III", "Jeanne d'Arc", "Orion", "Francis Drake", "Tamamo no Mae", "Jack the Ripper", "Mordred"];
+var fiveStarBase = ["Altria Pendragon", "Altera", "Zhuge Liang (El-Melloi II)", "Vlad III", "Jeanne d Arc", "Orion", "Francis Drake", "Tamamo no Mae", "Jack the Ripper", "Mordred"];
 var fiveStarStory = ["Nikola Tesla"];
 var currFiveStars = fiveStarBase;
-var fourStarBase = ["Siegfried", "Chevalier d'Eon", "EMIYA", "Atalante", "Elisabeth Bathory", "Anne Bonny & Mary Read", "Marie Antoinette", "Saint Martha", "Stheno", "Carmilla", "Heracles", "Lancelot", "Tamamo Cat", "Nursery Rhyme", "Frankenstein"];
+var fourStarBase = ["Siegfried", "Chevalier d Eon", "EMIYA", "Atalante", "Elisabeth Bathory", "Anne Bonny & Mary Read", "Marie Antoinette", "Saint Martha", "Stheno", "Carmilla", "Heracles", "Lancelot", "Tamamo Cat", "Nursery Rhyme", "Frankenstein"];
 var fourStarStory = ["Medea (Lily)", "Nero Claudius", "Altria Pendragon (Alter)", "Altria Pendragon (Lancer Alter)"];
 var currFourStars = fourStarBase;
 var threeStarBase = ["Gaius Julius Caesar", "Gilles de Rais", "Robin Hood", "David", "Euryale", "Cu Chulainn", "Cu Chulainn (Prototype)", "Romulus", "Hektor", "Medusa", "Boudica", "Ushiwakamaru", "Alexander", "Medea", "Mephistopheles", "Jing Ke", "Lu Bu Fengxian", "Darius III", "Kiyohime", "Diarmuid ua Duibhne", "Fergus mac Roich",  "Paracelsus von Hohenheim", "Charles Babbage", "Henry Jekyll & Hyde"];
 var threeStarStory = ["Cu Chulainn (Caster)", "Gilles de Rais (Caster)"];
 var currThreeStars = threeStarBase;
-var fiveStarEss = ["Formal Craft", "Imaginary Around", "Limited/Zero Over", "Kaleidoscope", "Heaven's Feel", "Prisma Cosmos", "The Black Grail", "Victor of the Moon", "Another Ending", "A Fragment of 2030", "500-Year Obsession"];
+var fiveStarEss = ["Formal Craft", "Imaginary Around", "Limited/Zero Over", "Kaleidoscope", "Heaven s Feel", "Prisma Cosmos", "The Black Grail", "Victor of the Moon", "Another Ending", "A Fragment of 2030", "500-Year Obsession"];
 var currFiveStarEss = fiveStarEss;
-var fourStarEss = ["Iron-Willed Training", "Primeval Curse", "Projection", "Gandr", "Verdant Sound of Destruction", "Gem Magecraft: Antumbra", "Be Elegant", "The Imaginary Element", "Divine Banquet", "Angel's Song", "Seal Designation Enforcer", "Holy Shroud of Magdalene", "With One Strike", "Code Cast", "Knight's Dignity", "Awakened Will", "Necromancy", "Golden Millennium Tree"];
+var fourStarEss = ["Iron-Willed Training", "Primeval Curse", "Projection", "Gandr", "Verdant Sound of Destruction", "Gem Magecraft: Antumbra", "Be Elegant", "The Imaginary Element", "Divine Banquet", "Angel s Song", "Seal Designation Enforcer", "Holy Shroud of Magdalene", "With One Strike", "Code Cast", "Knight s Dignity", "Awakened Will", "Necromancy", "Golden Millennium Tree"];
 var currFourStarEss = fourStarEss;
 // OLD ONES: var threeStarEss = ["Azoth Blade", "False Attendant's Writings", "The Azure Black Keys", "The Verdant Black Keys", "The Crimson Black Keys", "Rin's Pendant", "Spell Tome", "Dragon's Meridian", "Sorcery Ore", "Dragonkin", "Mooncell Automaton", "Runestones", "Anchors Aweigh", "Demonic Boar", "Clock Tower"];
 //TODO need to add these ce's first
-var threeStarEss = ["Mooncell Automaton", "Runestones", "Anchors Aweigh", "Demonic Boar", "Clock Tower", "Ryudoji Temple", "Mana Gauge", "Elixir of Love", "Storch Ritter", "Hermitage", "Motored Cuirassier", "Stuffed Lion", "Lugh's Halo"];
+var threeStarEss = ["Mooncell Automaton", "Runestones", "Anchors Aweigh", "Demonic Boar", "Clock Tower", "Ryudoji Temple", "Mana Gauge", "Elixir of Love", "Storch Ritter", "Hermitage", "Motored Cuirassier", "Stuffed Lion", "Lugh s Halo"];
 var currThreeStarEss = threeStarEss;
 
-var currFeatured3S = [], currFeatured4S = [], currFeatured5S = [];
-var currFeatured3E = [], currFeatured4E = [], currFeatured5E = [];
+var currFeatured3S = [];
+var currFeatured4S = [];
+var currFeatured5S = ["Ryougi Shiki (Saber)"];
+var currFeatured3E = ["Sprinter", "Repeat Magic"];
+var currFeatured4E = ["Mystic Eyes of Distortion", "Vivid Dance of Fists"];
+var currFeatured5E = ["Grand Puppeteer", "Mature Gentleman"];
 var servants = [], essences = [], allServants = [], campaigns = [];
 var servantsPulled = [], essencesPulled = [], servantsPulled4 = [];
 //elements
@@ -128,7 +130,8 @@ function simulate() {
     moneySpent = moneySpent.toFixed(2);
     console.log("Quartz Spent: " + quartzSpent);
     console.log("Money Spent: " + moneySpent);
-    connection.query(`SELECT * FROM rolls_users WHERE roll_user_id ='${authorId}'`, function(err, rows, fields) {
+
+      connection.query(`SELECT * FROM rolls_users WHERE roll_user_id ='${authorId}'`, function(err, rows, fields) {
       if (err) throw err;
       if(rows.length == 0) {
         console.log("User did not exist. Creating.");
@@ -140,7 +143,6 @@ function simulate() {
         connection.query(`UPDATE rolls_global SET total_quartz = total_quartz + 30, total_rolls = total_rolls + 1, total_money = total_money + 17.1 WHERE globalID = 0`);
       }
     });
-    //connection.end();
     message.channel.send(`${sendMessage}`);
 }
 
@@ -173,8 +175,10 @@ function pullEssence(stars, rowNum) {
         pullFeatured = checkFeatured(featuredChance, featured5eChance);
         essence = pullFeaturedObj(pullFeatured, currFeatured5E, currFiveStarEss);
         console.log("5* Essence: " + essence);
+
         connection.query(`UPDATE rolls_global SET essences = essences + 1 WHERE globalID = 0`);
-        connection.query(`UPDATE rolls_users SET roll_user_essences = roll_user_essences + 1 WHERE roll_user_id = ${authorId}`);
+        connection.query(`UPDATE rolls_users SET roll_user_essences = roll_user_essences + 1, essenceName = CONCAT(essenceName, '\n- ', '${essence}') WHERE roll_user_id = ${authorId}`);
+
         var essenceObj2 = getEssence(essence);
         var element = essenceObj2.path + essence;
         if (essencesPulled[element] == null) {
@@ -241,8 +245,10 @@ function pullServant(stars, rowNum) {
         pullFeatured = checkFeatured(featuredChance, featured5sChance);
         servant = pullFeaturedObj(pullFeatured, currFeatured5S, currFiveStars);
         console.log("5* Servant: " + servant);
+
         connection.query(`UPDATE rolls_global SET servants = servants + 1 WHERE globalID = 0`);
-        connection.query(`UPDATE rolls_users SET roll_user_servants = roll_user_servants + 1 WHERE roll_user_id = ${authorId}`);
+        connection.query(`UPDATE rolls_users SET roll_user_servants = roll_user_servants + 1, servantName = CONCAT(servantName, '\n- ', '${servant}') WHERE roll_user_id = ${authorId}`);
+
         var servantObj2 = getServant(servant);
         var element = servantObj2.path + servant;
 
@@ -308,5 +314,5 @@ function getEssence(name) {
 }
 
 simulate();
-} //End ELSE that runs the whole script
-} //End exports.run
+}
+}
