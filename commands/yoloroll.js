@@ -80,7 +80,7 @@ function simulate() {
   console.log(userCalling + " requested 10 rolls.");
     var pulledServant = false;
     var pulledHigh = false;
-
+    var i = 0;
         var rarityNum = Math.floor(Math.random() * 100) + 1;
         //pulled 3* servant
         if (rarityNum < 40) {
