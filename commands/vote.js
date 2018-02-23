@@ -1,6 +1,6 @@
 exports.run = (client, message, connection, args) => {
 
-var vote = args.toLowerCase();
+var vote = args.toString().toLowerCase();
 var voterId = message.author.id;
 var voterName = message.author.username;
 console.log(voterName + " voted " + vote);
