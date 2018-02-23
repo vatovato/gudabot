@@ -61,7 +61,7 @@ client.on("message", message => {
       commandFile.run(client, message, connection);
       return;
     }
-    if(command === "addfc") {
+    if(command === "addfc" || command === "vote") {
       let commandFile = require(`./commands/addfc.js`)
       commandFile.run(client, message, connection, args);
       return;
