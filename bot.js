@@ -62,7 +62,7 @@ client.on("message", message => {
       return;
     }
     if(command === "addfc" || command === "vote") {
-      let commandFile = require(`./commands/addfc.js`)
+      let commandFile = require(`./commands/${command}.js`)
       commandFile.run(client, message, connection, args);
       return;
     }
