@@ -12,10 +12,10 @@ if(rows.length == 0) {
   message.channel.send(`${voterName} you voted ${vote}`);
 } else {
   connection.query(`UPDATE votes SET vote = ${vote} WHERE voterID = '${voterId}'`);
-  message.channel.send(`${authorName} you updated your vote to ${vote}`);
+  message.channel.send(`${voterName} you updated your vote to ${vote}`);
 }
 });
 } else {
-  message.channel.send(`${authorName} just 'yes' or 'no', please.`);
+  message.channel.send(`${voterName} just 'yes' or 'no', please.`);
 }
 }
