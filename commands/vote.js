@@ -11,7 +11,7 @@ if(rows.length == 0) {
   connection.query(`INSERT INTO votes (vote, voterID, voterName) VALUES ('${vote}', '${voterId}', '${voterName}')`);
   message.channel.send(`${voterName} you voted ${vote}`);
 } else {
-  connection.query(`UPDATE votes SET vote = ${vote} WHERE voterID = '${voterId}'`);
+  connection.query(`UPDATE votes SET vote = '${vote}' WHERE voterID = '${voterId}'`);
   message.channel.send(`${voterName} you updated your vote to ${vote}`);
 }
 });
