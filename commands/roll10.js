@@ -20,6 +20,7 @@ var currFiveStars = [],
 //var fiveStarBase = ["Altria Pendragon", "Altera", "Zhuge Liang (El-Melloi II)", "Vlad III", "Jeanne d Arc", "Orion", "Francis Drake", "Tamamo no Mae", "Jack the Ripper", "Mordred"];
 var fiveStarBase = ["Zhuge Liang (El-Melloi II)", "Vlad III", "Nikola Tesla"];
 //var fiveStarStory = ["Nikola Tesla"];
+var fiveStarStory = [];
 var currFiveStars = fiveStarBase;
 //var fourStarBase = ["Siegfried", "Chevalier d Eon", "EMIYA", "Atalante", "Elisabeth Bathory", "Anne Bonny & Mary Read", "Marie Antoinette", "Saint Martha", "Stheno", "Carmilla", "Heracles", "Lancelot", "Tamamo Cat", "Nursery Rhyme", "Frankenstein"];
 var fourStarBase = ["Siegfried", "Chevalier d Eon", "EMIYA", "Heracles", "Lancelot",];
