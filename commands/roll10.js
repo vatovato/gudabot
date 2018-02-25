@@ -42,7 +42,7 @@ var currThreeStarEss = threeStarEss;
 
 var currFeatured3S = ["Gilgamesh (Child)"];
 var currFeatured4S = ["Astolfo"];
-var currFeatured5S = ["Amakusa Shirou Tokisada", "Vlad III"];
+var currFeatured5S = ["Amakusa Shirou Tokisada", "Zhuge Liang (El-Melloi II)"];
 var currFeatured3E = [];
 var currFeatured4E = [];
 var currFeatured5E = [];
