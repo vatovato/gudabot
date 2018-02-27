@@ -42,7 +42,7 @@ var currThreeStarEss = threeStarEss;
 
 var currFeatured3S = ["Gilgamesh (Child)"];
 var currFeatured4S = ["Astolfo"];
-var currFeatured5S = ["Amakusa Shirou Tokisada", "Zhuge Liang (El-Melloi II)"];
+var currFeatured5S = ["Amakusa Shirou Tokisada", "Nikola Tesla"];
 var currFeatured3E = [];
 var currFeatured4E = [];
 var currFeatured5E = [];
@@ -145,11 +145,11 @@ function simulate() {
       if (err) throw err;
       if(rows.length == 0) {
         console.log("User did not exist. Creating.");
-        connection.query(`INSERT INTO rolls_users (roll_user_id, roll_user_name, roll_user_quartz, roll_user_money) VALUES ('${authorId}', '${userCalling}', 30,  17.1)`);
+        connection.query(`INSERT INTO rolls_users (roll_user_id, roll_user_name, roll_user_quartz, roll_user_money, globalQuartz, globalMoney) VALUES ('${authorId}', '${userCalling}', 30,  17.1, 30, 17.1)`);
         connection.query(`UPDATE rolls_global SET total_quartz = total_quartz + 30, total_rolls = total_rolls + 1, total_money = total_money + 17.1 WHERE globalID = 0`);
       } else {
         console.log("User already exists. Updating.");
-        connection.query(`UPDATE rolls_users SET roll_user_quartz = roll_user_quartz + 30, roll_user_money = roll_user_money + 17.1 WHERE roll_user_id = '${authorId}'`);
+        connection.query(`UPDATE rolls_users SET roll_user_quartz = roll_user_quartz + 30, roll_user_money = roll_user_money + 17.1, globalQuartz = globalQuartz + 30, globalMoney = globalMoney + 17.1 WHERE roll_user_id = '${authorId}'`);
         connection.query(`UPDATE rolls_global SET total_quartz = total_quartz + 30, total_rolls = total_rolls + 1, total_money = total_money + 17.1 WHERE globalID = 0`);
       }
     });
