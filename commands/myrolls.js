@@ -17,9 +17,12 @@ connection.query(`SELECT * FROM rolls_users WHERE roll_user_id ='${authorId}'`, 
       var essences = rows[0].roll_user_essences;
       var servantNames = rows[0].servantName;
       var essenceNames = rows[0].essenceName;
+      var globalQuartz = rows[0].globalQuartz;
+      var globalMoney = rows[0].globalMoney;
       sendMessage = `**${authorName}**
 Quartz Spent: ${quartz} - Money Spent: $${money}
-This got you ${servants} 5* Servants and ${essences} 5* CEs.`;
+This got you ${servants} 5* Servants and ${essences} 5* CEs.
+Globally, you have spent ${globalQuartz} Quartz and ${globalMoney}`;
       if(rows[0].servantName.length > 0) {
        sendMessage += `\n\n**Servants obtained:** ${servantNames}`;
       }
