@@ -189,6 +189,9 @@ exports.parseName = (servantName) => {
     case "summer altria pendragon":
     case "arturia summer":
     case "summer arturia":
+    case "archer arturia":
+    case "archer artoria":
+    case "archuria":
     urlRef="129";
     break;
     case "archer anne bonny":
