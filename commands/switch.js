@@ -1045,6 +1045,7 @@ exports.parseName = (servantName) => {
     case "abbe busoni":
     case "lord wilmore":
     case "zaccone":
+    case "monsieur zaccone":
     case "gankutsuo":
     case "secret owner of the banking firm thompson and french": //Yes I went there
     case "number 34":
