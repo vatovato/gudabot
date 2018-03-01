@@ -1040,6 +1040,14 @@ exports.parseName = (servantName) => {
     case "avenger dantes":
     case "avenger edmond dantes":
     case "edmond":
+    case "the count of monte cristo":
+    case "sinbad the sailor":
+    case "abbe busoni":
+    case "lord wilmore":
+    case "zaccone":
+    case "gankutsuo":
+    case "secret owner of the banking firm thompson and french": //Yes I went there
+    case "number 34":
     urlRef="096";
     wikiRef = 'http://fategrandorder.wikia.com/wiki/Edmond_Dantes';
     break;
