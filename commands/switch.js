@@ -2,6 +2,7 @@ exports.parseName = (servantName) => {
   var servantName = servantName;
   var urlRef = '';
   var wikiRef = '';
+  var returnValue = '';
 
   switch(servantName) {
     case "altria":
@@ -1134,5 +1135,6 @@ exports.parseName = (servantName) => {
     wikiRef = 'http://fategrandorder.wikia.com/wiki/Asagami_Fujino';
     break;
   }
-return urlRef;
+returnValue = urlRef + " " + wikiRef;
+return returnValue;
 }

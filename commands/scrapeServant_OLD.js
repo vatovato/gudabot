@@ -94,44 +94,23 @@ request("http://fate-go.cirnopedia.org/servant_all.php#nav", function(error, res
       i++;
     }
     servant.image = "http://fate-go.cirnopedia.org/icons/servant/servant_"+urlRef+"1.png";
+    //message.channel.send(`Name: ${servant.name}
+//Image: ${servant.image}`);
+    const embed = new Discord.RichEmbed()
+    .setTitle(servant.name)
+    .setThumbnail(servant.image)
+    .setURL(servantCall)
+    .addField("Class", servant.serClass, true)
+    .addField("Rarity", servant.rarity, true)
+    .addField("Base HP", servant.baseHP, true)
+    .addField("Base ATK", servant.baseATK, true)
+    .addField("Max HP", servant.maxHP, true)
+    .addField("Max ATK", servant.maxATK, true)
+    .addField("Cards", servant.cards)
+    .addField(servant.np, servant.npDesc)
 
-    request(wikiRef, function(error, response, html) {
-      if(!error && response.statusCode == 200) {
-        var $ = cheerio.load(html);
-       var growthCurve = $('a[href="/wiki/Leveling#Growth_Curves"]').closest('td').text();
-       growthCurve = growthCurve.replace('Growth Curve:', '');
-       growthCurve = growthCurve.trim();
-       console.log("GrowthCurve: "+growthCurve);
-
-       var alignments = $('a[href="/wiki/Alignments"]').closest('td').text();
-       alignments = alignments.replace('Alignments:','');
-       alignments = alignments.trim();
-       console.log("Alignments: "+alignments);
-
-       var traits = $('a[href="/wiki/Traits"]').closest('td').text();
-       traits = traits.replace('Traits:','');
-       traits = traits.trim();
-       console.log("Traits: "+traits);
-
-       const embed = new Discord.RichEmbed()
-       .setTitle(servant.name)
-       .setThumbnail(servant.image)
-       .setURL(servantCall)
-       .addField("Class", servant.serClass, true)
-       .addField("Rarity", servant.rarity, true)
-       .addField("Base HP", servant.baseHP, true)
-       .addField("Base ATK", servant.baseATK, true)
-       .addField("Max HP", servant.maxHP, true)
-       .addField("Max ATK", servant.maxATK, true)
-       .addField("Growth Curve", growthCurve, true)
-       .addField("Alignments",alignments, true)
-       .addField("Traits",traits)
-       .addField("Cards", servant.cards)
-       .addField(servant.np, servant.npDesc)
-
-       message.channel.send({embed});
-      }
-    });
+    message.channel.send({embed});
     }
+
   });
 }
