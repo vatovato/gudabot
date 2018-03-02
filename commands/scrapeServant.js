@@ -2,8 +2,6 @@ exports.run = (servantUrl, urlRef, wikiRef, client, message) => {
 var servantCall = servantUrl;
 var urlRef = urlRef;
 var wikiRef = wikiRef;
-console.log("urlRef: "+urlRef);
-console.log("wikiRef: "+wikiRef);
 var request = require('request');
 var cheerio = require('cheerio');
 const Discord = require('discord.js');
@@ -23,7 +21,6 @@ var servant = {
 
 // Retrieves Servant Name from Servant specific URL
 request("http://fate-go.cirnopedia.org/servant_all.php#nav", function(error, response, html) {
-  console.log("Inside first request.");
   if(!error && response.statusCode == 200) {
     //$ = cheerio.load('div', '<div id="mw-content-text">...</div>');
     var $ = cheerio.load(html);
@@ -99,7 +96,6 @@ request("http://fate-go.cirnopedia.org/servant_all.php#nav", function(error, res
     servant.image = "http://fate-go.cirnopedia.org/icons/servant/servant_"+urlRef+"1.png";
 
     request(wikiRef, function(error, response, html) {
-      console.log("Inside second request.");
       if(!error && response.statusCode == 200) {
         var $ = cheerio.load(html);
        var growthCurve = $('a[href="/wiki/Leveling#Growth_Curves"]').closest('td').text();
