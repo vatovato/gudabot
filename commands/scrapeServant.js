@@ -108,7 +108,7 @@ request("http://fate-go.cirnopedia.org/servant_all.php#nav", function(error, res
        alignments = alignments.trim();
        console.log("Alignments: "+alignments);
 
-       var traits = $('a[href="/wiki/Traits"]').closest('td').text();
+       var traits = $('a[href="/wiki/Traits"]').closest('td').first().text();
        traits = traits.replace('Traits:','');
        traits = traits.trim();
        console.log("Traits: "+traits);
