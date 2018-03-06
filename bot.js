@@ -79,4 +79,8 @@ client.on("message", message => {
 
 });
 
+client.on("messageDelete", (messageDelete) => {
+ console.log(`DELETED MESSAGE ALERT: ${messageDelete.author.tag} deleted "${messageDelete.content}".`);
+});
+
 client.login(process.env.BOT_TOKEN);
