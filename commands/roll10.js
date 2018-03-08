@@ -37,7 +37,7 @@ var currThreeStarEss = threeStarEss;
 
 var currFeatured3S = [];
 var currFeatured4S = [];
-var currFeatured5S = ["Edmond Dantes"];
+var currFeatured5S = [];
 var currFeatured3E = [];
 var currFeatured4E = [];
 var currFeatured5E = [];
