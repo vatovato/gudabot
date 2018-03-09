@@ -673,6 +673,9 @@ exports.parseName = (servantName) => {
     break;
     case "irisviel":
     case "irisviel holy grail":
+    case "caster irisviel":
+    case "caster iris":
+    case "iris":
     urlRef="111";
     wikiRef = 'http://fategrandorder.wikia.com/wiki/Irisviel_(Dress_of_Heaven)';
     break;
