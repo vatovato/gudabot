@@ -15,5 +15,5 @@ exports.run = (client, message, args) => {
 
   let sentence = markov.makeChain();
 console.log(sentence);
-//message.channel.send(`${sendMeme}`);
+message.channel.send(`${sentence}`);
 }
