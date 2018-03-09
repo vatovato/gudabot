@@ -37,7 +37,7 @@ var currThreeStarEss = threeStarEss;
 
 var currFeatured3S = [];
 var currFeatured4S = [];
-var currFeatured5S = [];
+var currFeatured5S = ["Jeanne d Arc", "Vlad III"];
 var currFeatured3E = [];
 var currFeatured4E = [];
 var currFeatured5E = [];
@@ -188,7 +188,7 @@ function pullEssence(stars, rowNum) {
     //currLink = essenceObj.path;
     currStars = starsT;
     if(currStars == "★★★★★" || currStars == "★★★★") {
-    sendMessage += "***" + currStars + " Essence - " + essence + " (" + essenceURL + ")***\n";
+    sendMessage += "***" + currStars + " Essence - " + essence + " (<" + essenceURL + ">)***\n";
   } else {
     sendMessage += currStars + " Essence - " + essence + "\n";
   }
