@@ -10,7 +10,9 @@ exports.run = (client, message, args) => {
     console.log(`Required ascension materials for ${servantName}`);
 
     var callSwitch = require(`./switch.js`);
-    urlRef = callSwitch.parseName(servantName);
+    var returnValue = callSwitch.parseName(servantName);
+    returnValue = returnValue.split(" ");
+    urlRef = returnValue[0];
 
     if (urlRef.length == 0) {
       message.channel.send(`Invalid Servant name. Try Google: ${searchUrl}`);

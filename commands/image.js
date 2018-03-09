@@ -19,7 +19,9 @@ Image number: ${imageNumber}`);
       //Calls the switch else table with all the servant nicknames
       // and their cirno 3-digit code
       var callSwitch  = require(`./switch.js`);
-      urlRef = callSwitch.parseName(servantName);
+      var returnValue = callSwitch.parseName(servantName);
+      returnValue = returnValue.split(" ");
+      urlRef = returnValue[0];
 
       // If the search in the table didn't bring any results,
       // shows an error message.
