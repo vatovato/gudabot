@@ -17,7 +17,7 @@ var currFiveStars = [],
     currThreeStars = [];
 //curr = current + event summons
 //these need to be updated as the permanent hero lists get updated
-var fiveStarBase = ["Altria Pendragon", "Altera", "Zhuge Liang (El-Melloi II)", "Vlad III", "Jeanne d Arc", "Orion", "Francis Drake", "Tamamo no Mae", "Jack the Ripper", "Mordred","Nikola Tesla"];
+var fiveStarBase = ["Altria Pendragon", "Altera", "Zhuge Liang (El-Melloi II)", "Orion", "Francis Drake", "Tamamo no Mae", "Jack the Ripper", "Mordred","Nikola Tesla"];
 var fiveStarStory = [];
 var currFiveStars = fiveStarBase;
 var fourStarBase = ["Siegfried", "Chevalier d Eon", "EMIYA", "Atalante", "Elisabeth Bathory", "Anne Bonny & Mary Read", "Marie Antoinette", "Saint Martha", "Stheno", "Carmilla", "Heracles", "Lancelot", "Tamamo Cat", "Nursery Rhyme", "Frankenstein", "Astolfo"];
