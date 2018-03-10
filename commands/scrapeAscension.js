@@ -83,7 +83,7 @@ request(servantCall, function(error, response, html) {
 
     }
     //console.log(sendMessage);
-    sendMessage += "\nMaterials List: http://fate-go.cirnopedia.org/item.php";
+    sendMessage += "\nMaterials List: <http://fate-go.cirnopedia.org/item.php>";
     message.channel.send(`${sendMessage}`).catch(console.error);
 
     //console.log(servant.ascensions[0].materials[0].imageUrl);
