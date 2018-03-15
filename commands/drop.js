@@ -520,6 +520,46 @@ materials.image[49] = 'http://fate-go.cirnopedia.org/icons/item/item_031.png';
 materials.url[49] = 'http://fategrandorder.wikia.com/wiki/Berserker_Piece';
 materials.servants[49] = 'All Berserker Class Servants';
 
+materials.name[51] = ['Tearstone of Blood', 'Tears', 'Tear', 'Blood Tears', 'Blood Tear'];
+materials.area[51] = 'America';
+materials.quest[51] = 'Alexandria';
+materials.ap[51] = '18';
+materials.apPerDrop[51] = '176';
+materials.dropChance[51] = '10.2%';
+materials.image[51] = 'http://fate-go.cirnopedia.org/icons/item/item_111.png';
+materials.url[51] = 'http://fategrandorder.wikia.com/wiki/Bloodstone_Tear';
+materials.servants[51] = '';
+
+materials.name[52] = ['Black Tallow', 'Tallow', 'Black Tallows', 'Tallows', 'Black Grease', 'Grease'];
+materials.area[52] = 'America';
+materials.quest[52] = 'Lubbock';
+materials.ap[52] = '18';
+materials.apPerDrop[52] = '146.7';
+materials.dropChance[52] = '12.3%';
+materials.image[52] = 'http://fate-go.cirnopedia.org/icons/item/item_112.png';
+materials.url[52] = 'http://fategrandorder.wikia.com/wiki/Black_Tallow';
+materials.servants[52] = '';
+
+materials.name[53] = ['Spirit Root', 'Root', 'Spirit Roots', 'Roots'];
+materials.area[53] = 'America';
+materials.quest[53] = 'Washington';
+materials.ap[53] = '20';
+materials.apPerDrop[53] = '281.7';
+materials.dropChance[53] = '7.1%';
+materials.image[53] = 'http://fate-go.cirnopedia.org/icons/item/item_113.png';
+materials.url[53] = 'http://fategrandorder.wikia.com/wiki/Spirit_Root';
+materials.servants[53] = '';
+
+materials.name[54] = ['War Horn', 'War Horns', 'Horn', 'Horns'];
+materials.area[54] = 'America';
+materials.quest[54] = 'Kearney';
+materials.ap[54] = '18';
+materials.apPerDrop[54] = '141.9';
+materials.dropChance[54] = '12.7%';
+materials.image[54] = 'http://fate-go.cirnopedia.org/icons/item/item_114.png';
+materials.url[54] = 'http://fategrandorder.wikia.com/wiki/Warhorse%27s_Immature_Horn';
+materials.servants[54] = '';
+
 if(requestedMat == "help") {
   message.channel.send(`- The command accepts **plurals or singulars** of materials (except Servant specific materials such as monuments or gems).
 - So if you need to know drop rates for Dragon Fangs, for example, you would type **!drop dragon fang**, **!drop dragon fangs**, **!drop fang** or **!drop fangs**.
