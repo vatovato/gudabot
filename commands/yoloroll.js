@@ -17,14 +17,15 @@ var currFiveStars = [],
     currThreeStars = [];
 //curr = current + event summons
 //these need to be updated as the permanent hero lists get updated
-var fiveStarBase = ["Altria Pendragon", "Altera", "Zhuge Liang (El-Melloi II)", "Orion", "Francis Drake", "Tamamo no Mae", "Jack the Ripper", "Mordred", "Jeanne d Arc", "Vlad III"];
-var fiveStarStory = ["Nikola Tesla"];
+var fiveStarBase = ["Altria Pendragon", "Altera", "Zhuge Liang (El-Melloi II)", "Orion", "Francis Drake", "Tamamo no Mae", "Jack the Ripper", "Jeanne d Arc", "Vlad III", "Mordred","Nikola Tesla"];
+var fiveStarStory = [];
 var currFiveStars = fiveStarBase;
-var fourStarBase = ["Siegfried", "Chevalier d Eon", "EMIYA", "Atalante", "Elisabeth Bathory", "Anne Bonny & Mary Read", "Marie Antoinette", "Saint Martha", "Stheno", "Carmilla", "Heracles", "Lancelot", "Tamamo Cat", "Astolfo"];
-var fourStarStory = ["Medea (Lily)", "Nero Claudius", "Altria Pendragon (Alter)", "Altria Pendragon (Lancer Alter)"];
+var fourStarBase = ["Siegfried", "Chevalier d Eon", "EMIYA", "Atalante", "Elisabeth Bathory", "Anne Bonny & Mary Read", "Marie Antoinette", "Saint Martha", "Stheno", "Carmilla", "Heracles", "Lancelot", "Tamamo Cat", "Astolfo", "Nursery Rhyme", "Frankenstein", "Altria Pendragon (Lancer Alter)"];
+var fourStarStory = ["Medea (Lily)", "Nero Claudius", "Altria Pendragon (Alter)"];
 var currFourStars = fourStarBase;
-var threeStarBase = ["Gaius Julius Caesar", "Gilles de Rais", "Robin Hood", "David", "Euryale", "Cu Chulainn", "Cu Chulainn (Prototype)", "Romulus", "Hektor", "Medusa", "Boudica", "Ushiwakamaru", "Alexander", "Medea", "Mephistopheles", "Jing Ke", "Lu Bu Fengxian", "Darius III", "Kiyohime", "Diarmuid ua Duibhne", "Fergus mac Roich", "Gilgamesh (Child)"];
-var threeStarStory = ["Cu Chulainn (Caster)", "Gilles de Rais (Caster)"];
+var threeStarBase = ["Gaius Julius Caesar", "Gilles de Rais", "Robin Hood", "David", "Euryale", "Cu Chulainn", "Cu Chulainn (Prototype)", "Romulus", "Hektor", "Medusa", "Boudica", "Ushiwakamaru", "Alexander", "Medea", "Mephistopheles", "Jing Ke", "Lu Bu Fengxian", "Darius III", "Kiyohime", "Diarmuid ua Duibhne", "Fergus mac Roich", "Gilgamesh (Child)", "Paracelsus von Hohenheim", "Charles Babbage", "Henry Jekyll & Hyde"];
+var threeStarStory = [];
+//var threeStarStory = ["Cu Chulainn (Caster)", "Gilles de Rais (Caster)"];
 var currThreeStars = threeStarBase;
 var fiveStarEss = ["Formal Craft", "Imaginary Around", "Limited/Zero Over", "Kaleidoscope", "Heaven s Feel", "Prisma Cosmos", "The Black Grail", "Victor of the Moon", "Another Ending", "A Fragment of 2030", "500-Year Obsession"];
 var currFiveStarEss = fiveStarEss;
@@ -35,12 +36,12 @@ var currFourStarEss = fourStarEss;
 var threeStarEss = ["Mooncell Automaton", "Runestones", "Anchors Aweigh", "Demonic Boar", "Clock Tower", "Ryudoji Temple", "Mana Gauge", "Elixir of Love", "Storch Ritter", "Hermitage", "Motored Cuirassier", "Stuffed Lion", "Lugh s Halo"];
 var currThreeStarEss = threeStarEss;
 
-var currFeatured3S = ["Paracelsus von Hohenheim", "Charles Babbage", "Henry Jekyll & Hyde"];
-var currFeatured4S = ["Nursery Rhyme", "Frankenstein", "Altria Pendragon (Lancer Alter)"];
-var currFeatured5S = ["Mordred","Nikola Tesla"];
-var currFeatured3E = [];
-var currFeatured4E = [];
-var currFeatured5E = [];
+var currFeatured3S = ["Billy the Kid", "Geronimo"];
+var currFeatured4S = ["Rama", "Helena Blavatsky"];
+var currFeatured5S = ["Nightingale"];
+var currFeatured3E = ["Beast of Billows"];
+var currFeatured4E = ["Record Holder"];
+var currFeatured5E = ["Ideal Holy King"];
 var servants = [], essences = [], allServants = [], campaigns = [];
 var servantsPulled = [], essencesPulled = [], servantsPulled4 = [];
 //elements
