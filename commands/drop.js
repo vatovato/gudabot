@@ -45,20 +45,20 @@ materials.image[1] = 'http://fate-go.cirnopedia.org/icons/item/item_009.png';
 materials.url[1] = 'http://fategrandorder.wikia.com/wiki/Hero%27s_Proof';
 
 materials.name[2] = ['Dragon Fang', 'Fang', 'Fangs','Dragon Fangs'];
-materials.area[2] = 'Okeanos';
-materials.quest[2] = 'Island of Wyverns';
-materials.ap[2] = '14';
-materials.apPerDrop[2] = '27.9';
-materials.dropChance[2] = '50.1%';
+materials.area[2] = 'America';
+materials.quest[2] = 'Deming';
+materials.ap[2] = '17';
+materials.apPerDrop[2] = '27.1';
+materials.dropChance[2] = '62.7%';
 materials.image[2] = 'http://fate-go.cirnopedia.org/icons/item/item_018.png';
 materials.url[2] = 'http://fategrandorder.wikia.com/wiki/Dragon_Fang';
 
 materials.name[3] = ['Void`s Dust', 'Voids Dust', 'Dust', 'Void Dust'];
-materials.area[3] = 'Septem';
-materials.quest[3] = 'Massilia';
-materials.ap[3] = '9';
-materials.apPerDrop[3] = '45.8';
-materials.dropChance[3] = '19.7%';
+materials.area[3] = 'America';
+materials.quest[3] = 'Charlotte';
+materials.ap[3] = '20';
+materials.apPerDrop[3] = '31.4';
+materials.dropChance[3] = '63.7%';
 materials.image[3] = 'http://fate-go.cirnopedia.org/icons/item/item_011.png';
 materials.url[3] = 'http://fategrandorder.wikia.com/wiki/Void%27s_Refuse';
 
@@ -108,11 +108,11 @@ materials.image[8] = 'http://fate-go.cirnopedia.org/icons/item/item_007.png';
 materials.url[8] = 'http://fategrandorder.wikia.com/wiki/Phoenix_Plume';
 
 materials.name[9] = ['Eternal Gear', 'Eternal Gears', 'Gear', 'Gears'];
-materials.area[9] = 'London';
-materials.quest[9] = 'Clerkenwell';
-materials.ap[9] = '18';
-materials.apPerDrop[9] = '67.6';
-materials.dropChance[9] = '26.6%';
+materials.area[9] = 'America';
+materials.quest[9] = 'Chicago';
+materials.ap[9] = '21';
+materials.apPerDrop[9] = '51.4';
+materials.dropChance[9] = '40.9%';
 materials.image[9] = 'http://fate-go.cirnopedia.org/icons/item/item_016.png';
 materials.url[9] = 'http://fategrandorder.wikia.com/wiki/Infinity_Gear';
 
@@ -144,11 +144,11 @@ materials.image[12] = 'http://fate-go.cirnopedia.org/icons/item/item_.png';
 materials.url[12] = 'http://fategrandorder.wikia.com/wiki/Meteoric_Horseshoe';
 
 materials.name[13] = ['Claw of Chaos','Claws of Chaos','Claw','Claws'];
-materials.area[13] = 'Chaldea (Wednesday)';
-materials.quest[13] = 'Berserker 40AP';
-materials.ap[13] = '40';
-materials.apPerDrop[13] = '346.7';
-materials.dropChance[13] = '11.5%';
+materials.area[13] = 'America';
+materials.quest[13] = 'Des Moines';
+materials.ap[13] = '18';
+materials.apPerDrop[13] = '87.7';
+materials.dropChance[13] = '20.5%';
 materials.image[13] = 'http://fate-go.cirnopedia.org/icons/item/item_013.png';
 materials.url[13] = 'http://fategrandorder.wikia.com/wiki/Talon_of_Chaos';
 
