@@ -19,7 +19,7 @@ var advice = ['',
 'https://i.imgur.com/47zI3oK.jpg',
 'https://i.imgur.com/ONlSgKw.jpg',
 'https://i.imgur.com/oFusFpN.jpg',
-'https://i.imgur.com/2h2YOhy.jpg'];
+'https://i.imgur.com/JxMurT6.jpg'];
 var place = Math.floor((Math.random() * 14) + 1);
 var sendAdvice = advice[place];
 console.log("Meme: " + sendAdvice);
