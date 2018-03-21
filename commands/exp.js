@@ -21,18 +21,17 @@ var startExp = expData[startLevel-1].total;
 var endExp = expData[endLevel-1].total;
 expNeeded = endExp - startExp;
 
-for(var i = 0; i < 4; i++){
-	//html id #
-	var idx = i+1;
-	var perCard = expPerCard[i];
-	var perCardBonus = expPerCardBonus[i];
+
+	var idx = 4;
+	var perCard = expPerCard[3];
+	var perCardBonus = expPerCardBonus[3];
 	var numNeeded = Math.ceil(expNeeded/perCard);
 	numNeeded = numNeeded.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 	var numNeededBonus = Math.ceil(expNeeded/perCardBonus);
 	numNeededBonus = numNeededBonus.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   messageTotal += idx + "* XP Cards (Class): " + numNeededBonus + "\n" + idx + "* XP Cards (Non-Class): " + numNeeded + "\n\n";
 
-}
+
 expNeeded = expNeeded.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 messageTotal += "Total EXP Needed: " + expNeeded;
 message.channel.send(messageTotal);
