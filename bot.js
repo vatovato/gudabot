@@ -61,7 +61,7 @@ client.on("message", message => {
       commandFile.run(client, message, connection);
       return;
     }
-    if(command === "addfc" || command === "vote") {
+    if(command === "addfc" || command === "wl" || command =="wlimage" || command == "addwl") {
       let commandFile = require(`./commands/${command}.js`)
       commandFile.run(client, message, connection, args);
       return;
