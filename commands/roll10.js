@@ -38,7 +38,7 @@ var currThreeStarEss = threeStarEss;
 
 var currFeatured3S = ["Billy the Kid", "Geronimo"];
 var currFeatured4S = ["Rama", "Helena Blavatsky"];
-var currFeatured5S = ["Nightingale"];
+var currFeatured5S = ["Nightingale", "Queen Medb"];
 var currFeatured3E = ["Beast of Billows"];
 var currFeatured4E = ["Record Holder"];
 var currFeatured5E = ["Ideal Holy King"];
