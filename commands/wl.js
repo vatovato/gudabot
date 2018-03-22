@@ -11,7 +11,7 @@ if(typeof(args) == "undefined") {
 } else {
   wishowner = args;
 }
-
+console.log("wishowner: " + wishowner);
 const Discord = require('discord.js');
 
 console.log(nickname + " wants to call " + wishowner + "'s wishlist.");
