@@ -4,9 +4,9 @@ var userID = message.author.id;
 var username = message.author.username;
 var nickname = message.member.nickname;
 var wishowner = '';
-
+console.log("args: " + args);
 //if the user only calls !wishlist, it assumes it's asking for its own wishlist. Otherwise it looks for the args in the db
-if(typeof(args) == "undefined") {
+if(args == "") {
   wishowner = username;
 } else {
   wishowner = args;
@@ -14,7 +14,7 @@ if(typeof(args) == "undefined") {
 console.log("wishowner: " + wishowner);
 const Discord = require('discord.js');
 
-console.log(nickname + " wants to call " + wishowner + "'s wishlist.");
+console.log(username + " wants to call " + wishowner + "'s wishlist.");
 connection.query(`SELECT * FROM wishlist WHERE username LIKE '%${wishowner}%'`, function(err, rows, fields) {
   if (err) throw err;
   if(rows.length == 0) {
