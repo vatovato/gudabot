@@ -17,11 +17,19 @@ var defaultImage = "https://i.imgur.com/bqd5u1r.png";
     if(rows.length == 0) {
       console.log("User did not exist. Creating.");
       connection.query(`INSERT INTO wishlist SET userID = '${userID}', username = '${username}', nickname = '${nickname}', wishlist = '${wishlist}', imageURL = '${defaultImage}'`);
-      message.channel.send(`**${username}**, you have created your wishlist as **${wishlist}**.`);
+          if(nickname === null) {
+          message.channel.send(`**${username}**, you have created your wishlist as **${wishlist}**.`);
+        } else {
+          message.channel.send(`**${nickname}**, you have created your wishlist as **${wishlist}**.`);
+        }
     } else {
       console.log("User already exists. Updating.");
       connection.query(`UPDATE wishlist SET wishlist = '${wishlist}'  WHERE userID = '${userID}'`);
-      message.channel.send(`**${username}**, you have updated your wishlist to **${wishlist}**.`);
+          if(nickname === null) {
+          message.channel.send(`**${username}**, you have updated your wishlist to **${wishlist}**.`);
+        } else {
+          message.channel.send(`**${nickname}**, you have updated your wishlist to **${wishlist}**.`);
+        }
     }
   });
 

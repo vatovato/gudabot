@@ -36,7 +36,7 @@ exports.run = (client, message, connection, args) => {
         message.channel.send(`**${username}**, you don't exist in the table yet. Use !addwl [wishlist] first.`);
       } else {
         connection.query(`UPDATE wishlist SET imageURL = '${servantUrl}' WHERE userID = ${userID}`);
-        message.channel.send(`${username}, you added your image. Call !wishlist to see it.`);
+        message.channel.send(`${username}, you added your image. Call !wl to see it.`);
       }
     });
   }
