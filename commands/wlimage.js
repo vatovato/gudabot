@@ -16,7 +16,7 @@ exports.run = (client, message, connection, args) => {
   var servantUrl ='';
   var client = client;
   var message = message;
-  console.log(`Required adding ${servantName} image to ${nickname}'s wishlist.`);
+  console.log(`Required adding ${servantName} image to ${username}'s wishlist.`);
 
     var callSwitch  = require(`./switch.js`);
     var returnValue = callSwitch.parseName(servantName);
@@ -33,10 +33,10 @@ exports.run = (client, message, connection, args) => {
       if (err) throw err;
       if(rows.length == 0) {
         console.log("User did not exist.");
-        message.channel.send(`**${nickname}**, you don't exist in the table yet. Use !addwl [wishlist] first.`);
+        message.channel.send(`**${username}**, you don't exist in the table yet. Use !addwl [wishlist] first.`);
       } else {
         connection.query(`UPDATE wishlist SET imageURL = '${servantUrl}' WHERE userID = ${userID}`);
-        message.channel.send(`${nickname}, you added your image. Call !wishlist to see it.`);
+        message.channel.send(`${username}, you added your image. Call !wishlist to see it.`);
       }
     });
   }
