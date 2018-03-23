@@ -507,6 +507,8 @@ exports.parseName = (servantName) => {
     wikiRef = 'http://fategrandorder.wikia.com/wiki/Alexander';
     break;
     case "marie antoinette":
+    case "rider marie":
+    case "rider marie antoinette":
     urlRef="029";
     wikiRef = 'http://fategrandorder.wikia.com/wiki/Marie_Antoinette';
     break;
