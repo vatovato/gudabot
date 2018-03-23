@@ -391,12 +391,18 @@ exports.parseName = (servantName) => {
     break;
     case "kiyohime":
     case "kiyo":
+    case "lancer kiyo":
+    case "lancer kiyohime":
+    case "summer kiyo":
+    case "summer kiyohime":
     urlRef="134";
     wikiRef = 'http://fategrandorder.wikia.com/wiki/Kiyohime_(Lancer)';
     break;
     case "vlad iii extra":
     case "vlad extra":
     case "lancer vlad":
+    case "lancer vlad extra":
+    case "lancer vlad iii extra":
     urlRef="140";
     wikiRef = 'http://fategrandorder.wikia.com/wiki/Vlad_III_(EXTRA)';
     break;
@@ -408,18 +414,20 @@ exports.parseName = (servantName) => {
     break;
     case "enkidu":
     case "chain of heaven":
-    case "tohsaka rin":
-    case "rin tohsaka":
     case "archer enkidu":
     urlRef="143";
     wikiRef = 'http://fategrandorder.wikia.com/wiki/Enkidu';
     break;
     case "medusa lancer":
     case "lancer medusa":
+    case "ana":
     urlRef="146";
     wikiRef = 'http://fategrandorder.wikia.com/wiki/Medusa_(Lancer)';
     break;
     case "jaguar warrior":
+    case "fujimura taiga":
+    case "taiga":
+    case "lancer taiga":
     urlRef="148";
     wikiRef = 'http://fategrandorder.wikia.com/wiki/Jaguar_Man';
     break;
@@ -467,6 +475,7 @@ exports.parseName = (servantName) => {
     wikiRef = 'http://fategrandorder.wikia.com/wiki/Ereshkigal';
     break;
     case "medusa":
+    case "rider medusa":
     urlRef="023";
     wikiRef = 'http://fategrandorder.wikia.com/wiki/Medusa';
     break;
@@ -504,11 +513,14 @@ exports.parseName = (servantName) => {
     case "martha":
     case "saint martha":
     case "st martha":
+    case "rider martha":
     urlRef="030";
     wikiRef = 'http://fategrandorder.wikia.com/wiki/Saint_Martha';
     break;
     case "francis drake":
     case "drake":
+    case "rider drake":
+    case "rider francis drake":
     urlRef="065";
     wikiRef = 'http://fategrandorder.wikia.com/wiki/Francis_Drake';
     break;
