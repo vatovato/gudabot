@@ -28,7 +28,7 @@ connection.query(`SELECT * FROM wishlist WHERE userID = '${userID}'`, function(e
     const embed = new Discord.RichEmbed()
     .setTitle(`${embedName}'s Wishlist`)
     .setThumbnail(image)
-    .setDescription(userwishlist)
+    .setDescription(userWishlist)
     message.channel.send({embed});
   }
 });
@@ -62,7 +62,7 @@ connection.query(`SELECT * FROM wishlist WHERE userID = '${userID}'`, function(e
       const embed = new Discord.RichEmbed()
       .setTitle(`${userUsername}'s Wishlist`)
       .setThumbnail(image)
-      .setDescription(`${userWishlist}`)
+      .setDescription(userWishlist)
       message.channel.send({embed});
     }
   });
