@@ -22,6 +22,7 @@ connection.query(`SELECT * FROM wishlist WHERE userID = '${userID}'`, function(e
   } else {
     console.log("User already exists. Updating.");
     connection.query(`UPDATE wishlist SET wishlist = '${wishlist}', username = '${username}' WHERE userID = '${userID}'`);
+    message.channel.send(`**${username}** you have updated your wishlist with **${wishlist}**`);
   }
 });
 
@@ -36,7 +37,7 @@ connection.query(`SELECT * FROM wishlist WHERE userID = '${userID}'`, function(e
     } else {
       console.log("User already exists. Updating.");
       connection.query(`UPDATE wishlist SET wishlist = '${wishlist}', username = '${username}', nickname = '${nickname}'  WHERE userID = '${userID}'`);
-      message.channel.send(`**${nickname}**, you have updated your wishlist to **${wishlist}**.`);
+      message.channel.send(`**${nickname}**, you have updated your wishlist to **${wishlist}**`);
     }
   });
  }
