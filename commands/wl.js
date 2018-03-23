@@ -19,7 +19,7 @@ connection.query(`SELECT * FROM wishlist WHERE userID = '${userID}'`, function(e
     var userNickname = rows[0].nickname;
     var userWishlist = rows[0].wishlist;
     var embedName = '';
-      if(userNickname === null) {
+      if(userNickname == "null") {
         embedName = userUsername;
       } else {
         embedName = userNickname;
