@@ -8,6 +8,7 @@ if(typeof(args) == "undefined") {
 
 var nickname = message.member.nickname;
 var wishlist = args.toString().replace(/,/g, " ");
+wishlist = wishlist.replace(/'/g, " ");
 var defaultImage = "https://i.imgur.com/bqd5u1r.png";
 
 if(nickname === null) {
