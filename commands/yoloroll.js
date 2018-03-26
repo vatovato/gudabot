@@ -1,8 +1,20 @@
-exports.run = (client, message, connection) => {
+exports.run = (client, message, connection, args) => {
 if(message.channel.name !== "bot-rolls") {
       message.channel.send("This command only works in the " + `<#414193770276454400>` + " channel.");
     } else {
 const Discord = require('discord.js');
+
+var rollCounter = 1;
+
+if(args != "") {
+  if(!isNaN(args)) {
+    if(args <= 10) {
+    rollCounter = args;
+  } else {
+    rollCounter = 10;
+   }
+  }
+}
 
 var userCalling = message.author.username;
 var authorId = message.author.id;
@@ -81,7 +93,7 @@ function simulate() {
   console.log(userCalling + " requested 1 roll.");
     var pulledServant = false;
     var pulledHigh = false;
-    var i = 0;
+        for (var i = 0; i < rollCounter; i++) {
         var rarityNum = Math.floor(Math.random() * 100) + 1;
         //pulled 3* servant
         if (rarityNum < 40) {
@@ -114,10 +126,10 @@ function simulate() {
             pulledHigh = true;
             pullEssence(5, i);
         }
-
+      }
     //30 quartz per 10 summon
-    quartzSpent += 3;
-    moneySpent = quartzSpent * 0.57;
+    quartzSpent += 3*rollCounter;
+    moneySpent = (quartzSpent * 0.57) * rollCounter;
     moneySpent = moneySpent.toFixed(2);
     console.log("Quartz Spent: " + quartzSpent);
     console.log("Money Spent: " + moneySpent);
