@@ -37,8 +37,8 @@ var threeStarEss = ["Mooncell Automaton", "Runestones", "Anchors Aweigh", "Demon
 var currThreeStarEss = threeStarEss;
 
 var currFeatured3S = ["Billy the Kid", "Geronimo"];
-var currFeatured4S = ["Rama", "Helena Blavatsky"];
-var currFeatured5S = ["Nightingale", "Queen Medb"];
+var currFeatured4S = ["Rama", "Helena Blavatsky", "Thomas Edison"];
+var currFeatured5S = ["Nightingale", "Queen Medb", "Cu Chulainn (Alter)"];
 var currFeatured3E = ["Beast of Billows"];
 var currFeatured4E = ["Record Holder"];
 var currFeatured5E = ["Ideal Holy King"];
