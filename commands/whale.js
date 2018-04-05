@@ -1,5 +1,5 @@
 exports.run = (client, message, args) => {
-    message.channel.send(`**Unlimited Wallet Tier**
+    message.channel.send(`**Unlimited Quartz Works**
 rephin
 
 **Whale Tier**
