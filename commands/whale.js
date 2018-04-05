@@ -1,13 +1,19 @@
 exports.run = (client, message, args) => {
-    message.channel.send(`**Whale Tier**
-ustnap, rephin, boat, kayos90, neki, grimmjow, jonjonaug, dark494, randomdude, safflower, pureauthor
+    message.channel.send(`**Unlimited Wallet Tier**
+rephin
+
+**Whale Tier**
+ustnap, boat, kayos90, neki, grimmjow, jonjonaug, dark494, randomdude, safflower, pureauthor
 
 **Dolphin Tier**
-randomless, lavenza, karnapolice, einbroch, david, sabrekins, grazzt, baekshi, remembrance, unknown, t-rex, shinogu, azusa, mupod, dandte, enronjp, zanzura
+randomless, karnapolice, einbroch, david, sabrekins, baekshi, remembrance, unknown, t-rex (spook king), shinogu, azusa, mupod, dandte, enronjp, zanzura
 
 **F2P**
-haly, laiza, arti, sean, furiosa, jeff chickendig, strifeser, sabin (pretends to be), ibnchi, shinypogs, hubb, wei, ihokeren, fateshirou, nightengale, sadness enchancement ex, saci, zerokool, line x
+haly, laiza, arti, sean, jeff chickendig, strifeser, ibnchi, shinypogs, hubb, wei, ihokeren, fateshirou, nightengale, sadness enchancement ex, saci, zerokool, line x
 
 **EX Rank Luck**
-remembrance, saberkins, xianaphryz, ironraven, hentailover, jommyjomjom, gryffinp, sirkenai`).catch(console.error);
+remembrance, saberkins, xianaphryz, ironraven, hentailover, jommyjomjom, gryffinp, sirkenai
+
+**F Rank Luck**
+sabin, furiosa, lavenza, grazzt`).catch(console.error);
 }

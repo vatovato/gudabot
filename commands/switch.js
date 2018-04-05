@@ -311,6 +311,8 @@ exports.parseName = (servantName) => {
     break;
     case "cu prototype":
     case "cu chulainn prototype":
+    case "proto cu":
+    case "prototype cu":
     urlRef="020";
     wikiRef = 'http://fategrandorder.wikia.com/wiki/Cu_Chulainn_(Prototype)';
     break;

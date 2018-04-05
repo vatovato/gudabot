@@ -35,7 +35,7 @@ var currFiveStars = fiveStarBase;
 var fourStarBase = ["Siegfried", "Chevalier d Eon", "EMIYA", "Atalante", "Elisabeth Bathory", "Anne Bonny & Mary Read", "Marie Antoinette", "Saint Martha", "Stheno", "Carmilla", "Heracles", "Lancelot", "Tamamo Cat", "Astolfo", "Nursery Rhyme", "Frankenstein", "Altria Pendragon (Lancer Alter)"];
 var fourStarStory = ["Medea (Lily)", "Nero Claudius", "Altria Pendragon (Alter)"];
 var currFourStars = fourStarBase;
-var threeStarBase = ["Gaius Julius Caesar", "Gilles de Rais", "Robin Hood", "David", "Euryale", "Cu Chulainn", "Cu Chulainn (Prototype)", "Romulus", "Hektor", "Medusa", "Boudica", "Ushiwakamaru", "Alexander", "Medea", "Mephistopheles", "Jing Ke", "Lu Bu Fengxian", "Darius III", "Kiyohime", "Diarmuid ua Duibhne", "Fergus mac Roich", "Gilgamesh (Child)", "Paracelsus von Hohenheim", "Charles Babbage", "Henry Jekyll & Hyde"];
+var threeStarBase = ["Gaius Julius Caesar", "Gilles de Rais", "Robin Hood", "David", "Euryale", "Cu Chulainn", "Cu Chulainn (Prototype)", "Romulus", "Hektor", "Medusa", "Boudica", "Ushiwakamaru", "Alexander", "Medea", "Mephistopheles", "Jing Ke", "Lu Bu Fengxian", "Darius III", "Kiyohime", "Diarmuid ua Duibhne", "Fergus mac Roich", "Gilgamesh (Child)", "Paracelsus von Hohenheim", "Charles Babbage", "Henry Jekyll & Hyde", "Billy the Kid", "Geronimo"];
 var threeStarStory = [];
 //var threeStarStory = ["Cu Chulainn (Caster)", "Gilles de Rais (Caster)"];
 var currThreeStars = threeStarBase;
@@ -48,12 +48,12 @@ var currFourStarEss = fourStarEss;
 var threeStarEss = ["Mooncell Automaton", "Runestones", "Anchors Aweigh", "Demonic Boar", "Clock Tower", "Ryudoji Temple", "Mana Gauge", "Elixir of Love", "Storch Ritter", "Hermitage", "Motored Cuirassier", "Stuffed Lion", "Lugh s Halo"];
 var currThreeStarEss = threeStarEss;
 
-var currFeatured3S = ["Billy the Kid", "Geronimo"];
-var currFeatured4S = ["Rama", "Helena Blavatsky", "Thomas Edison"];
-var currFeatured5S = ["Nightingale", "Queen Medb", "Cu Chulainn (Alter)"];
-var currFeatured3E = ["Beast of Billows"];
-var currFeatured4E = ["Record Holder"];
-var currFeatured5E = ["Ideal Holy King"];
+var currFeatured3S = [];
+var currFeatured4S = ["Thomas Edison"];
+var currFeatured5S = ["Cu Chulainn (Alter)", "Jeanne d Arc (Alter)"];
+var currFeatured3E = [];
+var currFeatured4E = ["Gentle Affection", "Art of Death", "Art of the Poisonous Snake"];
+var currFeatured5E = [];
 var servants = [], essences = [], allServants = [], campaigns = [];
 var servantsPulled = [], essencesPulled = [], servantsPulled4 = [];
 //elements
