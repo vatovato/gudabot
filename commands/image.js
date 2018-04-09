@@ -15,7 +15,7 @@ exports.run = (client, message, args) => {
     console.log(`Servant name: ${servantName}
 Image number: ${imageNumber}`);
     // Checks if the number placed is a number between 1 and 4
-    if(imageNumber >= 0 && imageNumber <= 3) {
+    if(imageNumber >= 0 && imageNumber <= 4) {
       //Calls the switch else table with all the servant nicknames
       // and their cirno 3-digit code
       var callSwitch  = require(`./switch.js`);
@@ -33,7 +33,7 @@ Image number: ${imageNumber}`);
         servantUrl = 'http://fate-go.cirnopedia.org/servant_profile.php?servant=' + urlRef
         console.log(`URL for Servant: ${servantUrl}`);
         let commandFile2 = require(`./scrapeImage.js`);
-        commandFile2.run(servantUrl, imageNumber, client, message);
+        commandFile2.run(servantUrl, imageNumber, client, message, urlRef);
           }
     } else {
       message.channel.send(`There's no such thing as a level ${imageNumber} Ascension`);
