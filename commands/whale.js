@@ -3,7 +3,7 @@ exports.run = (client, message, args) => {
 rephin
 
 **Whale Tier**
-ustnap, boat, kayos90, neki, grimmjow, jonjonaug, dark494, randomdude, safflower, pureauthor, t-rex (spook king)
+ustnap, boat, kayos90, neki (currently in denial), grimmjow, jonjonaug, dark494, randomdude, safflower, pureauthor, t-rex (spook king)
 
 **Dolphin Tier**
 randomless, karnapolice, einbroch, david, sabrekins, baekshi, remembrance, unknown, shinogu, azusa, mupod, dandte, enronjp, zanzura
