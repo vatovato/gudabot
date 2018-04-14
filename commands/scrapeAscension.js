@@ -17,6 +17,11 @@ var servant = {
 // Message to be sent to Discord channel
 var sendMessage = '';
 
+if(servantCall == "http://fate-go.cirnopedia.org/servant_profile.php?servant=001.1") {
+  message.channel.send("Mash Ascends with Story, no mats needed.");
+  return;
+}
+
 request(servantCall, function(error, response, html) {
   if(!error && response.statusCode == 200) {
     //$ = cheerio.load('div', '<div id="mw-content-text">...</div>');
