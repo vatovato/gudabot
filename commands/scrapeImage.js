@@ -54,6 +54,15 @@ request(servantCall, function(error, response, html) {
       ascensionImage4 = "http://fate-go.cirnopedia.org/icons/chibi_servant_card/servant_" + urlRef + ".png";
       message.guild.channels.find("name", "ascension-images").sendMessage("",{files: [ascensionImage4]}).catch(console.error);
       break;
+
+      case "5":
+      if(urlRef == "005" || urlRef == "106" || urlRef == "183" || urlRef == "099" || urlRef == "094" || urlRef == "160") {
+      ascensionImage5 = "http://fate-go.cirnopedia.org/icons/chibi_servant_card/servant_" + urlRef + ".png";
+      message.guild.channels.find("name", "ascension-images").sendMessage("",{files: [ascensionImage5]}).catch(console.error);
+    } else {
+      message.channel.send("This Servant doesn't have an extra costume.");
+    }
+      break;
     }
 
     //console.log(sendMessage);
