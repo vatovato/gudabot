@@ -5,6 +5,14 @@ exports.parseName = (servantName) => {
   var returnValue = '';
 
   switch(servantName) {
+
+    case "mash":
+    case "mashu":
+    case "best kouhai":
+    case "mash kyrielight":
+    urlRef = '001.1';
+    wikiRef = 'http://fategrandorder.wikia.com/wiki/Mashu_Kyrielight';
+    break;
     case "altria":
     case "arturia":
     case "arturia pendragon":
