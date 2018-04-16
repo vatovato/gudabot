@@ -25,5 +25,6 @@ var sendAdvice = advice[place];
 console.log("Meme: " + sendAdvice);
 message.channel.send("",{files: [sendAdvice]});*/
 
-message.channel.send("",{files: ["https://i.imgur.com/rKIx0QD.jpg"]});
+//message.channel.send("",{files: ["https://i.imgur.com/rKIx0QD.jpg"]});
+message.channel.send("",{files: ["https://i.imgur.com/lpqn9H1.png"]});
 }
