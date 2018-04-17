@@ -17,10 +17,12 @@ var currFiveStars = [],
     currThreeStars = [];
 //curr = current + event summons
 //these need to be updated as the permanent hero lists get updated
-var fiveStarBase = ["Altria Pendragon", "Altera", "Zhuge Liang (El-Melloi II)", "Orion", "Francis Drake", "Tamamo no Mae", "Jack the Ripper", "Jeanne d Arc", "Vlad III", "Mordred","Nikola Tesla"];
+var fiveStarBase = ["Altria Pendragon", "Altera", "Zhuge Liang (El-Melloi II)", "Orion", "Francis Drake", "Tamamo no Mae", "Jack the Ripper", "Jeanne d Arc", "Vlad III", "Mordred","Nikola Tesla", "Arjuna", "Karna", "Nightingale"];
 var fiveStarStory = [];
 var currFiveStars = fiveStarBase;
-var fourStarBase = ["Siegfried", "Chevalier d Eon", "EMIYA", "Atalante", "Elisabeth Bathory", "Anne Bonny & Mary Read", "Marie Antoinette", "Saint Martha", "Stheno", "Carmilla", "Heracles", "Lancelot", "Tamamo Cat", "Astolfo", "Nursery Rhyme", "Frankenstein", "Altria Pendragon (Lancer Alter)"];
+var fourStarBase = ["Siegfried", "Chevalier d Eon", "EMIYA", "Atalante", "Elisabeth Bathory", "Anne Bonny & Mary Read",
+"Marie Antoinette", "Saint Martha", "Stheno", "Carmilla", "Heracles", "Lancelot", "Tamamo Cat", "Astolfo", "Nursery Rhyme",
+"Frankenstein", "Altria Pendragon (Lancer Alter)", "Thomas Edison", "Helena Blavatsky", "Rama"];
 var fourStarStory = ["Medea (Lily)", "Nero Claudius", "Altria Pendragon (Alter)"];
 var currFourStars = fourStarBase;
 var threeStarBase = ["Gaius Julius Caesar", "Gilles de Rais", "Robin Hood", "David", "Euryale", "Cu Chulainn", "Cu Chulainn (Prototype)", "Romulus", "Hektor", "Medusa", "Boudica", "Ushiwakamaru", "Alexander", "Medea", "Mephistopheles", "Jing Ke", "Lu Bu Fengxian", "Darius III", "Kiyohime", "Diarmuid ua Duibhne", "Fergus mac Roich", "Gilgamesh (Child)", "Paracelsus von Hohenheim", "Charles Babbage", "Henry Jekyll & Hyde", "Billy the Kid", "Geronimo"];
@@ -37,10 +39,10 @@ var threeStarEss = ["Mooncell Automaton", "Runestones", "Anchors Aweigh", "Demon
 var currThreeStarEss = threeStarEss;
 
 var currFeatured3S = [];
-var currFeatured4S = ["Thomas Edison"];
-var currFeatured5S = ["Cu Chulainn (Alter)", "Jeanne d Arc (Alter)"];
+var currFeatured4S = ["Lancelot", "Gilles de Rais (Caster)", "Diarmuid ua Duibhne"];
+var currFeatured5S = ["Gilgamesh", "Altria Pendragon"];
 var currFeatured3E = [];
-var currFeatured4E = ["Gentle Affection", "Art of Death", "Art of the Poisonous Snake"];
+var currFeatured4E = [];
 var currFeatured5E = [];
 var servants = [], essences = [], allServants = [], campaigns = [];
 var servantsPulled = [], essencesPulled = [], servantsPulled4 = [];
