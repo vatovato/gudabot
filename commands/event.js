@@ -1,3 +1,3 @@
 exports.run = (client, message, args) => {
-    message.channel.send(`FINALLY JALTER http://fate-go.us/event/`).catch(console.error);
+    message.channel.send(`Iskandar, y'all! http://fate-go.us/event_fatezero/sp/`).catch(console.error);
 }
