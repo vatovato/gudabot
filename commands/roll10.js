@@ -38,8 +38,8 @@ var currFourStarEss = fourStarEss;
 var threeStarEss = ["Mooncell Automaton", "Runestones", "Anchors Aweigh", "Demonic Boar", "Clock Tower", "Ryudoji Temple", "Mana Gauge", "Elixir of Love", "Storch Ritter", "Hermitage", "Motored Cuirassier", "Stuffed Lion", "Lugh s Halo"];
 var currThreeStarEss = threeStarEss;
 
-var currFeatured3S = [];
-var currFeatured4S = ["Lancelot", "Gilles de Rais (Caster)", "Diarmuid ua Duibhne"];
+var currFeatured3S = ["Gilles de Rais (Caster)", "Diarmuid ua Duibhne"];
+var currFeatured4S = ["Lancelot"];
 var currFeatured5S = ["Gilgamesh", "Altria Pendragon"];
 var currFeatured3E = [];
 var currFeatured4E = [];
