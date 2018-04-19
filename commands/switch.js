@@ -450,6 +450,8 @@ exports.parseName = (servantName) => {
     case "lancer ushi gozen":
     case "lancer raikou":
     case "summer raikou":
+    case "lancer mama":
+    case "lancer mama raikou":
     urlRef="181";
     wikiRef = 'http://fategrandorder.wikia.com/wiki/Minamoto_no_Yorimitsu_(Lancer)';
     break;
@@ -1005,6 +1007,8 @@ exports.parseName = (servantName) => {
     case "berserker yorimitsu":
     case "berserker ushi gozen":
     case "berserker raikou":
+    case "berserker mama":
+    case "berserker mama raikou":
     urlRef="114";
     wikiRef = 'http://fategrandorder.wikia.com/wiki/Ushi_Gozen';
     break;
