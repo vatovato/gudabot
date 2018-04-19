@@ -785,6 +785,8 @@ exports.parseName = (servantName) => {
     wikiRef = 'http://fategrandorder.wikia.com/wiki/Sasaki_Kojirou';
     break;
     case "hassan of the cursed arm":
+    case "cursed arm":
+    case "cursed arm hassan":
     urlRef="040";
     wikiRef = 'http://fategrandorder.wikia.com/wiki/Cursed_Arm_Hassan';
     break;
@@ -852,6 +854,11 @@ exports.parseName = (servantName) => {
     wikiRef = 'http://fategrandorder.wikia.com/wiki/EMIYA_(Assassin)';
     break;
     case "hassan of hundred persona":
+    case "hundred face hassan":
+    case "absassin":
+    case "hassan of the hundred personas":
+    case "hundred faced hassan":
+    case "hundred faces":
     urlRef="110";
     wikiRef = 'http://fategrandorder.wikia.com/wiki/Hundred-Faced_Hassan';
     break;
@@ -1092,6 +1099,10 @@ exports.parseName = (servantName) => {
     wikiRef = 'http://fategrandorder.wikia.com/wiki/Jeanne_d%27Arc_(Alter)';
     break;
     case "angra mainyu":
+    case "angra":
+    case "avenger angra":
+    case "avenger angra mainyu":
+    case "angry mango":
     urlRef="107";
     wikiRef = 'http://fategrandorder.wikia.com/wiki/Angra_Mainyu';
     break;
