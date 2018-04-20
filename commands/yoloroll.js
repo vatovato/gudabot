@@ -35,7 +35,7 @@ var currFiveStars = fiveStarBase;
 var fourStarBase = ["Siegfried", "Chevalier d Eon", "EMIYA", "Atalante", "Elisabeth Bathory", "Anne Bonny & Mary Read",
 "Marie Antoinette", "Saint Martha", "Stheno", "Carmilla", "Heracles", "Lancelot", "Tamamo Cat", "Astolfo", "Nursery Rhyme",
 "Frankenstein", "Altria Pendragon (Lancer Alter)", "Helena Blavatsky", "Rama"];
-var fourStarStory = ["Medea (Lily)", "Nero Claudius", "Altria Pendragon (Alter)"];
+var fourStarStory = [];
 var currFourStars = fourStarBase;
 var threeStarBase = ["Gaius Julius Caesar", "Gilles de Rais", "Robin Hood", "David", "Euryale", "Cu Chulainn", "Cu Chulainn (Prototype)", "Romulus", "Hektor", "Medusa", "Boudica", "Ushiwakamaru", "Alexander", "Medea", "Mephistopheles", "Jing Ke", "Lu Bu Fengxian", "Darius III", "Kiyohime", "Diarmuid ua Duibhne", "Fergus mac Roich", "Gilgamesh (Child)", "Paracelsus von Hohenheim", "Charles Babbage", "Henry Jekyll & Hyde", "Billy the Kid", "Geronimo"];
 var threeStarStory = [];
