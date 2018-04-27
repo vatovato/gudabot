@@ -17,8 +17,25 @@ var advice = ['',
 'https://i.imgur.com/RY0Xjy5.png',
 'https://i.imgur.com/uo5VO94.png',
 'https://i.imgur.com/hgWvahM.png',
-'https://i.imgur.com/XgMLF7d.png'];
-var place = Math.floor((Math.random() * 12) + 1);
+'https://i.imgur.com/XgMLF7d.png',
+'https://i.imgur.com/eUl3zTc.png',
+'https://i.imgur.com/2PVoiue.png',
+'https://i.imgur.com/OOwCNyF.jpg',
+'https://i.imgur.com/cgwR35h.jpg',
+'https://i.imgur.com/YCIaHGf.jpg',
+'https://i.imgur.com/FNZhUOv.png',
+'https://i.imgur.com/7ebHi4k.png',
+'https://i.imgur.com/IC38qq5.png',
+'https://i.imgur.com/RflFEYo.jpg',
+'https://i.imgur.com/OhMAN61.png',
+'https://i.imgur.com/qHFHmbQ.png',
+'https://i.imgur.com/3AvatUE.png',
+'https://i.imgur.com/I3pqYSs.jpg',
+'https://i.imgur.com/3O7YiZU.png',
+'https://i.imgur.com/Q6Rlq2z.png',
+'https://i.imgur.com/0LjuEVj.jpg',
+'https://i.imgur.com/kIafYhw.png'];
+var place = Math.floor((Math.random() * 29) + 1);
 var sendAdvice = advice[place];
 console.log("Meme: " + sendAdvice);
 message.channel.send("",{files: [sendAdvice]});
