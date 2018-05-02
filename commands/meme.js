@@ -35,8 +35,9 @@ var advice = ['',
 'https://i.imgur.com/Q6Rlq2z.png',
 'https://i.imgur.com/0LjuEVj.jpg',
 'https://i.imgur.com/kIafYhw.png',
-'https://i.imgur.com/4wAGGHQ.png'];
-var place = Math.floor((Math.random() * 30) + 1);
+'https://i.imgur.com/4wAGGHQ.png',
+'https://i.imgur.com/gx0QIw6.jpg'];
+var place = Math.floor((Math.random() * 31) + 1);
 var sendAdvice = advice[place];
 console.log("Meme: " + sendAdvice);
 message.channel.send("",{files: [sendAdvice]});
