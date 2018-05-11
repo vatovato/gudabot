@@ -36,8 +36,27 @@ var advice = ['',
 'https://i.imgur.com/0LjuEVj.jpg',
 'https://i.imgur.com/kIafYhw.png',
 'https://i.imgur.com/4wAGGHQ.png',
-'https://i.imgur.com/gx0QIw6.jpg'];
-var place = Math.floor((Math.random() * 31) + 1);
+'https://i.imgur.com/gx0QIw6.jpg',
+'https://i.imgur.com/0yoV14k.jpg',
+'https://i.imgur.com/oCmLhaT.jpg',
+'https://i.imgur.com/s64Vg1H.jpg',
+'https://i.imgur.com/HND0AYA.png',
+'https://i.imgur.com/m5z7cW5.png',
+'https://i.imgur.com/cW194ua.jpg',
+'https://i.imgur.com/FRdUdYh.jpg',
+'https://i.imgur.com/QGznmix.jpg',
+'https://i.imgur.com/Hn2EHhK.jpg',
+'https://i.imgur.com/yctvGop.jpg',
+'https://i.imgur.com/ge8HTRp.jpg',
+'https://i.imgur.com/yFx4MfK.jpg',
+'https://i.imgur.com/h1SgpXM.png',
+'https://i.imgur.com/VtwYH0u.jpg',
+'https://i.imgur.com/bKZP4C3.jpg',
+'https://i.imgur.com/gelZTdZ.png',
+'https://i.imgur.com/JlqIukV.png',
+'https://i.imgur.com/F3j3XTq.png',
+'https://i.imgur.com/QppT1jC.png'];
+var place = Math.floor((Math.random() * 50) + 1);
 var sendAdvice = advice[place];
 console.log("Meme: " + sendAdvice);
 message.channel.send("",{files: [sendAdvice]});
