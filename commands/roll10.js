@@ -40,10 +40,10 @@ var currThreeStarEss = threeStarEss;
 
 var currFeatured3S = [];
 var currFeatured4S = [];
-var currFeatured5S = ["Iskandar"];
-var currFeatured3E = ["Self Geas Scroll"];
-var currFeatured4E = ["Innocent Maiden"];
-var currFeatured5E = ["Before Awakening", "Volumen Hydrargyrum"];
+var currFeatured5S = ["Shuten-douji"];
+var currFeatured3E = [];
+var currFeatured4E = [];
+var currFeatured5E = [];
 var servants = [], essences = [], allServants = [], campaigns = [];
 var servantsPulled = [], essencesPulled = [], servantsPulled4 = [];
 //elements
