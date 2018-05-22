@@ -55,8 +55,21 @@ var advice = ['',
 'https://i.imgur.com/gelZTdZ.png',
 'https://i.imgur.com/JlqIukV.png',
 'https://i.imgur.com/F3j3XTq.png',
-'https://i.imgur.com/QppT1jC.png'];
-var place = Math.floor((Math.random() * 50) + 1);
+'https://i.imgur.com/QppT1jC.png',
+'https://i.imgur.com/Ed3q2UV.jpg', //Just use herc
+'https://i.imgur.com/r92XMHw.png', //Again with the washija
+'https://i.imgur.com/574T3rc.png', //Merry Merlin
+'https://i.imgur.com/Mq3PhQy.png', //Taste a loli
+'https://i.imgur.com/M3rnDoF.png', //Telling neki problems
+'https://i.imgur.com/l1cFvfN.png', //Okay no need to save money
+'https://i.imgur.com/vlgpIun.jpg', //Giving up on everything
+'https://i.imgur.com/5rr0gVg.jpg', //Tinder is like gacha
+'https://i.imgur.com/k0FRDmQ.jpg', //Pedo when they make it pedo
+'https://i.imgur.com/fhnTVNr.jpg', //I just aborted
+'https://i.imgur.com/pjIzhoq.jpg', //anime mom lewds
+'https://i.imgur.com/hriyk4m.jpg' //Take my mana quru
+];
+var place = Math.floor((Math.random() * 62) + 1);
 var sendAdvice = advice[place];
 console.log("Meme: " + sendAdvice);
 message.channel.send("",{files: [sendAdvice]});
