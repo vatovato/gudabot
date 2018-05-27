@@ -81,8 +81,7 @@ exports.run = (client, message, args) => {
           }
           i++;
         }
-        /*console.log("name: " + bondCE.name + "\nThumbnail: " + bondCE.image + "\nURL: " + bondCE.url + "\nServantName: " + bondCE.icon + "\nRarity: " + bondCE.rarity + "\nCost: " + bondCE.cost);
-        console.log("hp: " + bondCE.hp + "\natk: " + bondCE.atk + "\neffect: " + bondCE.effect + "urlRef: " + urlRef);*/
+
         const embed = new Discord.RichEmbed()
         .setTitle(bondCE.name)
         .setThumbnail(bondCE.image)
