@@ -23,7 +23,9 @@ exports.run = (client, message, args) => {
   console.log(`Required bond CE for ${servantName}`);
 
   var callSwitch = require(`./switch.js`);
-  urlRef = callSwitch.parseName(servantName);
+  var returnValue = callSwitch.parseName(servantName);
+  returnValue = returnValue.split(" ");
+  urlRef = returnValue[0];
 
   if (urlRef.length == 0) {
     message.channel.send(`Invalid Servant name. Try Google: ${searchUrl}`);
@@ -79,6 +81,8 @@ exports.run = (client, message, args) => {
           }
           i++;
         }
+        /*console.log("name: " + bondCE.name + "\nThumbnail: " + bondCE.image + "\nURL: " + bondCE.url + "\nServantName: " + bondCE.icon + "\nRarity: " + bondCE.rarity + "\nCost: " + bondCE.cost);
+        console.log("hp: " + bondCE.hp + "\natk: " + bondCE.atk + "\neffect: " + bondCE.effect + "urlRef: " + urlRef);*/
         const embed = new Discord.RichEmbed()
         .setTitle(bondCE.name)
         .setThumbnail(bondCE.image)
