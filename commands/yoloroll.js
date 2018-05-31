@@ -51,8 +51,8 @@ var threeStarEss = ["Mooncell Automaton", "Runestones", "Anchors Aweigh", "Demon
 var currThreeStarEss = threeStarEss;
 
 var currFeatured3S = [];
-var currFeatured4S = [];
-var currFeatured5S = ["Shuten-douji"];
+var currFeatured4S = ["Li Shuwen"];
+var currFeatured5S = ["Xuanzang Sanzang"];
 var currFeatured3E = [];
 var currFeatured4E = [];
 var currFeatured5E = [];
