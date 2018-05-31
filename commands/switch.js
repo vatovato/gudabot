@@ -709,6 +709,8 @@ exports.parseName = (servantName) => {
     case "xuanzang sanzang":
     case "genjou sanzou":
     case "xuanzang":
+    case "sanzang":
+    case "sanzo":
     urlRef="113";
     wikiRef = 'http://fategrandorder.wikia.com/wiki/Xuanzang';
     break;
