@@ -68,8 +68,38 @@ var advice = ['',
 'https://i.imgur.com/fhnTVNr.jpg', //I just aborted
 'https://i.imgur.com/pjIzhoq.jpg', //anime mom lewds
 'https://i.imgur.com/hriyk4m.jpg' //Take my mana quru
+'https://i.imgur.com/R88Wrll.png', //I just aborted 2
+'https://i.imgur.com/WUWTmJS.jpg', //neki making friends
+'https://i.imgur.com/mLVfDDQ.jpg', //not having qp
+'https://i.imgur.com/Y7NbLWg.jpg', //child dies in Africa
+'https://i.imgur.com/PPiVZlX.png', //I wish neki was my dad
+'https://i.imgur.com/qbABCSu.png', //damage is just a number
+'https://i.imgur.com/gV4VdM2.png', //never trust a neki
+'https://i.imgur.com/ralqDbI.png', //got my nudes?
+'https://i.imgur.com/Iw97U6m.png', //had a look in the nsfw channel
+'https://i.imgur.com/aYNlf7p.png', //wishing to be kintoki
+'https://i.imgur.com/LTqaZNS.jpg', //kimiko ragequit
+'https://i.imgur.com/5X1yHdM.jpg', //neki in pms
+'https://i.imgur.com/tKERVZD.jpg', //family portrait of saberfaces
+'https://i.imgur.com/Ym6K1gx.png', //heart of the gacha
+'https://i.imgur.com/hfwGZKq.png', //surprised not surprised
+'https://i.imgur.com/nc4ZFpp.png', //y'all come too fast
+'https://i.imgur.com/WtMoljA.png', //gacha will never betray me
+'https://i.imgur.com/eyflUZ9.png', //guDABot
+'https://i.imgur.com/s6XUyDi.png', //bans lolis and vaginas
+'https://i.imgur.com/lrcnkwb.png', //loli alert
+'https://i.imgur.com/yEi3LVH.png', //dab emoticon
+'https://i.imgur.com/NKokW7y.png', //don't get me arrested
+'https://i.imgur.com/bJlxvuF.png', //skimpy neros
+'https://i.imgur.com/c0sIl7e.jpg', //dreamy femboys
+'https://i.imgur.com/XadZpT2.jpg', //loli stop signal
+'https://i.imgur.com/qYxuYgk.jpg', //unarchive or stop lewds
+'https://i.imgur.com/gGNZggu.jpg', //rephin avatar change
+'https://i.imgur.com/MMYpojR.jpg', //fateshirou dab resetera
+'https://i.imgur.com/6tAerHz.png', //girl haly
+'https://i.imgur.com/wWe48tq.png' //legal loli
 ];
-var place = Math.floor((Math.random() * 62) + 1);
+var place = Math.floor((Math.random() * 92) + 1);
 var sendAdvice = advice[place];
 console.log("Meme: " + sendAdvice);
 message.channel.send("",{files: [sendAdvice]});
