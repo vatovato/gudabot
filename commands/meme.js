@@ -67,7 +67,7 @@ var advice = ['',
 'https://i.imgur.com/k0FRDmQ.jpg', //Pedo when they make it pedo
 'https://i.imgur.com/fhnTVNr.jpg', //I just aborted
 'https://i.imgur.com/pjIzhoq.jpg', //anime mom lewds
-'https://i.imgur.com/hriyk4m.jpg' //Take my mana quru
+'https://i.imgur.com/hriyk4m.jpg', //Take my mana quru
 'https://i.imgur.com/R88Wrll.png', //I just aborted 2
 'https://i.imgur.com/WUWTmJS.jpg', //neki making friends
 'https://i.imgur.com/mLVfDDQ.jpg', //not having qp
