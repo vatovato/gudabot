@@ -264,6 +264,9 @@ exports.parseName = (servantName) => {
     wikiRef = 'http://fategrandorder.wikia.com/wiki/Chloe_von_Einzbern';
     break;
     case "ishtar":
+    case "archer ishtar":
+    case "archer rin":
+    case "tohsakarcher":
     urlRef="142";
     wikiRef = 'http://fategrandorder.wikia.com/wiki/Ishtar';
     break;
@@ -605,7 +608,10 @@ exports.parseName = (servantName) => {
     urlRef="179";
     wikiRef = 'http://fategrandorder.wikia.com/wiki/Artoria_Pendragon_(Rider_Alter)';
     break;
-    case "ishtar":
+    case "rider ishtar":
+    case "summer ishtar":
+    case "summer rin":
+    case "rider rin":
     urlRef="182";
     wikiRef = 'http://fategrandorder.wikia.com/wiki/Ishtar_(Rider)';
     break;
