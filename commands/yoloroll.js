@@ -53,7 +53,7 @@ var currThreeStarEss = threeStarEss;
 var currFeatured3S = ["Fuuma Kotarou"];
 var currFeatured4S = ["Ibaraki-douji"];
 var currFeatured5S = ["Minamoto no Raikou"];
-var currFeatured3E = ["Hidden Sword Pheasant Reveal"];
+var currFeatured3E = ["Hidden Sword Pheasant Reversal"];
 var currFeatured4E = ["Faithful Companions"];
 var currFeatured5E = ["Dumplings Over Flowers"];
 var servants = [], essences = [], allServants = [], campaigns = [];
