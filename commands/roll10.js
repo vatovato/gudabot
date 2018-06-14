@@ -38,12 +38,12 @@ var currFourStarEss = fourStarEss;
 var threeStarEss = ["Mooncell Automaton", "Runestones", "Anchors Aweigh", "Demonic Boar", "Clock Tower", "Ryudoji Temple", "Mana Gauge", "Elixir of Love", "Storch Ritter", "Hermitage", "Motored Cuirassier", "Stuffed Lion", "Lugh s Halo"];
 var currThreeStarEss = threeStarEss;
 
-var currFeatured3S = [];
-var currFeatured4S = ["Li Shuwen"];
-var currFeatured5S = ["Xuanzang Sanzang"];
-var currFeatured3E = [];
-var currFeatured4E = [];
-var currFeatured5E = [];
+var currFeatured3S = ["Fuuma Kotarou"];
+var currFeatured4S = ["Ibaraki-douji"];
+var currFeatured5S = ["Minamoto no Raikou"];
+var currFeatured3E = ["Hidden Sword Pheasant Reveal"];
+var currFeatured4E = ["Faithful Companions"];
+var currFeatured5E = ["Dumplings Over Flowers"];
 var servants = [], essences = [], allServants = [], campaigns = [];
 var servantsPulled = [], essencesPulled = [], servantsPulled4 = [];
 //elements
