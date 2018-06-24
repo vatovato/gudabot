@@ -1,3 +1,3 @@
 exports.run = (client, message, args) => {
-    message.channel.send(`Iskandar, y'all! http://fate-go.us/event_fatezero/sp/`).catch(console.error);
+    message.channel.send(`Mama Raikou is here! http://fate-go.cirnopedia.org/quest_event_us_20180613.php#nav`).catch(console.error);
 }

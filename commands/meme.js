@@ -97,7 +97,13 @@ var advice = ['',
 'https://i.imgur.com/gGNZggu.jpg', //rephin avatar change
 'https://i.imgur.com/MMYpojR.jpg', //fateshirou dab resetera
 'https://i.imgur.com/6tAerHz.png', //girl haly
-'https://i.imgur.com/wWe48tq.png' //legal loli
+'https://i.imgur.com/wWe48tq.png', //legal loli
+'https://i.imgur.com/kr1nIkm.jpg', //Kiyo's brother
+'https://i.imgur.com/n7rtu6V.jpg', //refuse to kill tama
+'https://i.imgur.com/Bjl8vBu.jpg', //i'd do cu alter
+'https://i.imgur.com/dOVet73.jpg', //getting pinged to talk to someone
+'https://i.imgur.com/MLQwjKV.jpg', //rolling for ce teehee
+'https://i.imgur.com/vCMetus.jpg'  //okita's long sword
 ];
 var place = Math.floor((Math.random() * 92) + 1);
 var sendAdvice = advice[place];
