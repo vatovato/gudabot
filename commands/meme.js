@@ -105,7 +105,7 @@ var advice = ['',
 'https://i.imgur.com/MLQwjKV.jpg', //rolling for ce teehee
 'https://i.imgur.com/vCMetus.jpg'  //okita's long sword
 ];
-var place = Math.floor((Math.random() * 92) + 1);
+var place = Math.floor((Math.random() * 106) + 1);
 var sendAdvice = advice[place];
 console.log("Meme: " + sendAdvice);
 message.channel.send("",{files: [sendAdvice]});
