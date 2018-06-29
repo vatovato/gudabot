@@ -1184,6 +1184,90 @@ exports.parseName = (servantName) => {
     urlRef = "200";
     wikiRef = 'http://fategrandorder.wikia.com/wiki/Asagami_Fujino';
     break;
+    case "anastasia":
+    case "duchess of russia":
+    case "shvibzik":
+    case "anastasia nikolaevna romanova":
+    urlRef = "201";
+    wikiRef = 'http://fategrandorder.wikia.com/wiki/Anastasia_Nikolaevna_Romanova';
+    break;
+    case "atalante alter":
+    case "berserker atalante":
+    case "berserker nyatalante":
+    case "nyatalanter":
+    urlRef = "202";
+    wikiRef = 'http://fategrandorder.wikia.com/wiki/Atalanta_(Alter)';
+    break;
+    case "avicebron":
+    case "caster solomon":
+    urlRef = "203";
+    wikiRef = 'http://fategrandorder.wikia.com/wiki/Avicebron';
+    break;
+    case "salieri":
+    case "antonio salieri":
+    case "avenger salieri":
+    case "avenger antonio salieri":
+    urlRef = "204";
+    wikiRef = 'http://fategrandorder.wikia.com/wiki/Antonio_Salieri';
+    break;
+    case "ivan the terrible":
+    case "rider ivan":
+    case "rider ivan the terrible":
+    case "ivan":
+    urlRef = "205";
+    wikiRef = 'http://fategrandorder.wikia.com/wiki/Ivan_the_Terrible';
+    break;
+    case "achilleus":
+    case "achilles":
+    case "rider achilles":
+    case "rider achilleus":
+    urlRef = "206";
+    wikiRef = 'http://fategrandorder.wikia.com/wiki/Achilles';
+    break;
+    case "cheiron":
+    case "sagittarius":
+    case "chiron":
+    case "archer chiron":
+    case "archer cheiron":
+    case "archer sagittarius":
+    urlRef = "207";
+    wikiRef = 'http://fategrandorder.wikia.com/wiki/Chiron';
+    break;
+    case "sieg":
+    case "fafnir":
+    case "caster sieg":
+    case "caster fafnir":
+    urlRef = "208";
+    wikiRef = 'http://fategrandorder.wikia.com/wiki/Sieg';
+    break;
+    case "okita souji alter":
+    case "okita alter":
+    case "okitalter":
+    case "alterego okita":
+    case "alterego okita souji":
+    case "majin":
+    urlRef = "209";
+    wikiRef = 'http://fategrandorder.wikia.com/wiki/Okita_S%C5%8Dji_(Alter)';
+    break;
+    case "okada izou":
+    case "okada":
+    case "izou":
+    case "assassin okada izou":
+    case "assassin okada":
+    case "assassin izou":
+    case "hitokiri":
+    case "assassin hitokiri":
+    urlRef = "210";
+    wikiRef = 'http://fategrandorder.wikia.com/wiki/Okada_Iz%C5%8D';
+    break;
+    case "sakamoto ryouma":
+    case "rider sakamoto ryouma":
+    case "saitani umetarou":
+    case "rider saitani umetarou":
+    case "rider ryouma":
+    urlRef = "211";
+    wikiRef = 'http://fategrandorder.wikia.com/wiki/Sakamoto_Ry%C5%8Dma';
+    break;
   }
 returnValue = urlRef + " " + wikiRef;
 return returnValue;

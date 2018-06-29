@@ -560,6 +560,46 @@ materials.image[54] = 'http://fate-go.cirnopedia.org/icons/item/item_114.png';
 materials.url[54] = 'http://fategrandorder.wikia.com/wiki/Warhorse%27s_Immature_Horn';
 materials.servants[54] = '';
 
+materials.name[55] = ['Chain of Fools', 'Chain', 'Chains'];
+materials.area[55] = 'Camelot';
+materials.quest[55] = 'Wilderness of Death';
+materials.ap[55] = '19';
+materials.apPerDrop[55] = '29.9';
+materials.dropChance[55] = '63.5%';
+materials.image[55] = 'http://fate-go.cirnopedia.org/icons/item/item_151.png';
+materials.url[55] = 'https://fategrandorder.wikia.com/wiki/Chains_of_the_Fool';
+materials.servants[55] = '';
+
+materials.name[56] = ['Medal of Great Knight', 'Medal', 'Medals'];
+materials.area[56] = 'Camelot';
+materials.quest[56] = 'Sovereign Castle';
+materials.ap[56] = '21';
+materials.apPerDrop[56] = '56.9';
+materials.dropChance[56] = '36.9%';
+materials.image[56] = 'http://fate-go.cirnopedia.org/icons/item/item_153.png';
+materials.url[56] = 'https://fategrandorder.wikia.com/wiki/Medal_of_Great_Knight';
+materials.servants[56] = '';
+
+materials.name[57] = ['Lamp of Demon Sealing', 'Lamp', 'Lamps'];
+materials.area[57] = 'Camelot';
+materials.quest[57] = 'Concealed Village';
+materials.ap[57] = '21';
+materials.apPerDrop[57] = '120';
+materials.dropChance[57] = '17.5%';
+materials.image[57] = 'http://fate-go.cirnopedia.org/icons/item/item_152.png';
+materials.url[57] = 'http://fategrandorder.wikia.com/wiki/Lamp_of_Demon_Sealing';
+materials.servants[57] = '';
+
+materials.name[58] = ['Scarab of Wisdom', 'Scarab', 'Scarabs'];
+materials.area[58] = 'Camelot';
+materials.quest[58] = 'Great Temple';
+materials.ap[58] = '22';
+materials.apPerDrop[58] = '210.4';
+materials.dropChance[58] = '10.5%';
+materials.image[58] = 'http://fate-go.cirnopedia.org/icons/item/item_154.png';
+materials.url[58] = 'http://fategrandorder.wikia.com/wiki/Scarab_of_Wisdom';
+materials.servants[58] = '';
+
 if(requestedMat == "help") {
   message.channel.send(`- The command accepts **plurals or singulars** of materials (except Servant specific materials such as monuments or gems).
 - So if you need to know drop rates for Dragon Fangs, for example, you would type **!drop dragon fang**, **!drop dragon fangs**, **!drop fang** or **!drop fangs**.
