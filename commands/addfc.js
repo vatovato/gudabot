@@ -3,6 +3,7 @@ exports.run = (client, message, connection, args) => {
 var authorId = message.author.id;
 console.log("authorId: " + authorId);
 var authorName = message.author.username;
+console.log("args: " + args);
 var fc = args.join(" ");
 console.log("friendCode: " + fc);
 
