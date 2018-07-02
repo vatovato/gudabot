@@ -56,12 +56,12 @@ client.on("message", message => {
     const command = args.shift().toLowerCase();
 
 
-    if(command === "roll10" || command === "myrolls" || command === "resetrolls" || command === "globalrolls" || command === "myfc" || command === "addshout" ||command === "deleteshout") {
+    if(command === "roll10" || command === "myrolls" || command === "resetrolls" || command === "globalrolls" || command === "myfc" || command === "addshout" || command === "deleteshout") {
       let commandFile = require(`./commands/${command}.js`);
       commandFile.run(client, message, connection);
       return;
     }
-    if(command === "addfc" || command === "wl" || command =="wlimage" || command == "addwl" || command === "yoloroll", command === "shout") {
+    if(command === "addfc" || command === "wl" || command =="wlimage" || command == "addwl" || command === "yoloroll" || command === "shout") {
       let commandFile = require(`./commands/${command}.js`)
       commandFile.run(client, message, connection, args);
       return;

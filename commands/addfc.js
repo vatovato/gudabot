@@ -1,11 +1,11 @@
 exports.run = (client, message, connection, args) => {
 
 var authorId = message.author.id;
-console.log("authorId: " + authorId);
+//console.log("authorId: " + authorId);
 var authorName = message.author.username;
-console.log("args: " + args);
+//console.log("args: " + args);
 var fc = args.join(" ");
-console.log("friendCode: " + fc);
+//console.log("friendCode: " + fc);
 
 if(args.length == 0) {
   message.channel.send("You did not add your Friend Code. Use !addfc friend_code. For example, !addfc 123,123,123.");
