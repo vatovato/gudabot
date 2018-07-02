@@ -103,9 +103,10 @@ var advice = ['',
 'https://i.imgur.com/Bjl8vBu.jpg', //i'd do cu alter
 'https://i.imgur.com/dOVet73.jpg', //getting pinged to talk to someone
 'https://i.imgur.com/MLQwjKV.jpg', //rolling for ce teehee
-'https://i.imgur.com/vCMetus.jpg'  //okita's long sword
+'https://i.imgur.com/vCMetus.jpg',  //okita's long sword
+'https://i.imgur.com/j0IZfLu.jpg'  //all about david
 ];
-var place = Math.floor((Math.random() * 106) + 1);
+var place = Math.floor((Math.random() * 107) + 1);
 var sendAdvice = advice[place];
 console.log("Meme: " + sendAdvice);
 message.channel.send("",{files: [sendAdvice]});
