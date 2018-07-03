@@ -23,6 +23,7 @@ const embed = new Discord.RichEmbed()
   .addField("**!quartz [end_date format YYYY-MM-DD] [total logins] [login streak]", "Returns an approximate amount of quartz and tickets you get from today until the end date. You must provide all three variables, like so: !quartz 2018-04-04 120 50, where the date is March 4th, your total login count is 120 and your current login streak is 50.")
   .addField("**!friendlist**", "Link to the Excel with the names of Era / Discord users for adding friends")
   .addField("!wl & !wlimage & !addwl", "Add your wishlist with !addwl, then call your wishlist with !wl or a friend's wishlist with !wl [username]. Add an image with !wlimage [servant_name]")
+  .addField("!addrole & !deleterole", "Adds or deletes user from the Notifications role, which is used to ping FGO related notifications to those who want to receive them.")
   .addField("**Meme functions**","!umu, !padoru, !weeb, !officer...")
 
 message.channel.send({embed}).catch(console.error);
