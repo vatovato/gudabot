@@ -7,7 +7,7 @@ exports.run = (client, message, args) => {
            message.channel.send(message.member.nickname+", you're already on the role.");
        }
        else{
-           message.member.addRole('463714859503058955'); //If they don't, add it.
+           message.member.addRole('463714859503058955').catch(console.error); //If they don't, add it.
            message.channel.send("Added Notifications role to user " + message.member.nickname+".");
        }
 }

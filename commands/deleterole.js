@@ -4,7 +4,7 @@ exports.run = (client, message, args) => {
    //}
   // let myRole = message.guild.roles.find("name", "Notifications");
        if(message.member.roles.has('463714859503058955')){ //If they're on the role, delete them.
-            message.member.removeRole('463714859503058955');
+            message.member.removeRole('463714859503058955').catch(console.error);
            message.channel.send("Removed " +message.member.nickname+" from the Notifications role.");
        }
        else{
