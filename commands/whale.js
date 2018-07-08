@@ -15,5 +15,5 @@ haly, arti, sean, jeff chickendig, strifeser, ibnchi, shinypogs, hubb, wei, ihok
 remembrance, saberkins, xianaphryz, ironraven, hentailover, jommyjomjom, gryffinp, sirkenai, qurupeke, saci, karnapolice, david
 
 **F Rank Luck**
-furiosa, lavenza, grazzt, laiza`).catch(console.error);
+furiosa (spook emperor), lavenza, grazzt, laiza`).catch(console.error);
 }

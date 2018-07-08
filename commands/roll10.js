@@ -41,9 +41,9 @@ var currThreeStarEss = threeStarEss;
 var currFeatured3S = ["Hassan of the Serenity", "Tawara Touta"];
 var currFeatured4S = ["Nitocris", "Lancelot (Saber)"];
 var currFeatured5S = ["Ozymandias"];
-var currFeatured3E = ["Origin Bullet"];
+var currFeatured3E = ["Battle of Camlann"];
 var currFeatured4E = ["Covering Fire"];
-var currFeatured5E = ["Battle of Camlann"];
+var currFeatured5E = ["Origin Bullet"];
 var servants = [], essences = [], allServants = [], campaigns = [];
 var servantsPulled = [], essencesPulled = [], servantsPulled4 = [];
 //elements
