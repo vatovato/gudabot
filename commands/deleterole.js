@@ -91,7 +91,7 @@ exports.run = (client, message, args) => {
 			}
 			break;
 		default: //when the args are not a valid role
-			message.chanel.send("You don't have the " + role + "role. Probably for good reason.");
+			message.channel.send("You don't have the " + role + "role. Probably for good reason.");
 			break;
 	}
 }

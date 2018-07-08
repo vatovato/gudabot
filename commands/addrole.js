@@ -71,7 +71,7 @@ exports.run = (client, message, args) => {
 			}
 			break;
 		default: //when the args are not a valid role
-			message.chanel.send("You cannot make yourself a " + role);
+			message.channel.send("You cannot make yourself a " + role);
 			break;
 	}
 }
