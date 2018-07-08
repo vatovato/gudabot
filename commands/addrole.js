@@ -1,12 +1,12 @@
 exports.run = (client, message, args) => {
 
 	const SaberID='465534758827589642';
-	const LancerID='';
-	const ArcherID='';
-	const RiderID='';
-	const CasterID='';
-	const AssassinID='';
-	const BerserkerID='';
+	const LancerID='465552289684520970';
+	const ArcherID='465552334580088832';
+	const RiderID='465552440532402187';
+	const CasterID='465552490952261652';
+	const AssassinID='465552550138216478';
+	const BerserkerID='465552649446752261';
 	const NotificationsID='463714859503058955';
 	var role= args.join(" ").toLowerCase();
 	switch(role){ //Check what role the user requested
@@ -69,6 +69,9 @@ exports.run = (client, message, args) => {
 						break;
 				}
 			}
+			break;
+		default: //when the args are not a valid role
+			message.chanel.send("You cannot make yourself a " + role);
 			break;
 	}
 }
