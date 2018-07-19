@@ -44,11 +44,11 @@ var threeStarEss = ["Mooncell Automaton", "Runestones", "Anchors Aweigh", "Demon
 var currThreeStarEss = threeStarEss;
 
 var currFeatured3S = [];
-var currFeatured4S = [];
-var currFeatured5S = ["Leonardo da Vinci"];
-var currFeatured3E = ["Fire Flower"];
-var currFeatured4E = ["Golfish Scooping"];
-var currFeatured5E = ["Partake with the King", "Leisure Stroll"];
+var currFeatured4S = ["Tristan", "Gawain"];
+var currFeatured5S = ["Altria Pendragon (Lancer)"];
+var currFeatured3E = [];
+var currFeatured4E = [];
+var currFeatured5E = [];
 var servants = [], essences = [], allServants = [], campaigns = [];
 var servantsPulled = [], essencesPulled = [], servantsPulled4 = [];
 //elements

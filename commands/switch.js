@@ -1268,6 +1268,28 @@ exports.parseName = (servantName) => {
     urlRef = "211";
     wikiRef = 'http://fategrandorder.wikia.com/wiki/Sakamoto_Ry%C5%8Dma';
     break;
+    case "napoleon":
+    case "archer napoleon":
+    case "napoleon bonaparte":
+    case "archer napoleon bonaparte":
+    case "napoleone":
+    case "archer napoleone":
+    urlRef = "212";
+    wikiRef = "http://fategrandorder.wikia.com/wiki/Napoleon";
+    break;
+    case "sigurd":
+    case "saber sigurd":
+    case "king of noble warriors":
+    urlRef = "213";
+    wikiRef = "http://fategrandorder.wikia.com/wiki/Sigurd";
+    break;
+    case "valyrie":
+    case "lancer valkyrie":
+    case "thrud":
+    case "hildr":
+    case "ortlinde":
+    urlRef = "214";
+    wikiRef = "http://fategrandorder.wikia.com/wiki/Valkyrie";
   }
 returnValue = urlRef + " " + wikiRef;
 return returnValue;
