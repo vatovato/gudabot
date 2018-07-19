@@ -1283,7 +1283,7 @@ exports.parseName = (servantName) => {
     urlRef = "213";
     wikiRef = "http://fategrandorder.wikia.com/wiki/Sigurd";
     break;
-    case "valyrie":
+    case "valkyrie":
     case "lancer valkyrie":
     case "thrud":
     case "hildr":
