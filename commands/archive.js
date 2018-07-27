@@ -1,6 +1,7 @@
 exports.run = (client, message, args) => {
 	const ArchivedRole='384924912982425601';
 	var target= message.mentions.members.first(); //Finding the victim
+	console.log("");
 	if (message.member.hasPermission("KICK_MEMBERS")) { //Check to see if the caller is a mod.
 		if(!target){message.channel.send("I'm sorry, but that command didn't include a valid @ mention."); return;}//First of all let's see if there was even a valid mention in there.
 		if(!target.hasPermission("KICK_MEMBERS")) {//Check to see if the TARGET is a mod.
@@ -15,8 +16,8 @@ exports.run = (client, message, args) => {
 			message.channel.send("You cannot archive that user, because they are a mod/admin. Also, your attempt just pinged them, so, have fun with that.");
 		}
 	} else { //If the caller is not a mod, then they get slapped.
-		if (!message.channel.id=="436192216134844447"){ //If the message is from the archive, ignore it completely.
-			message.channel.send(`${message.author.username} has proven to be a troublemaker (or a dabber), and has been summarily archived. Consider this lesson carefully.`);
+		if (message.channel.id != "436192216134844447"){ //If the message is from the archive, ignore it completely.
+			message.channel.send(`${message.author.username} has tried to send someone to the archive while not being a mod, and has thus thrown themselves to the archive. The irony...`);
 			message.member.addRole(ArchivedRole).catch(console.error);
 		}
 }
