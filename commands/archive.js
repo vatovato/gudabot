@@ -1,7 +1,8 @@
 exports.run = (client, message, args) => {
 	const ArchivedRole='384924912982425601';
 	var target = 0;
-	target= message.mentions.members.first(); //Finding the victim
+	target= message.mentions.members.first();
+	console.log("target: " + target); //Finding the victim
 	console.log(message.author.username + " attempted to archive " + target.nickname);
 	if (message.member.hasPermission("KICK_MEMBERS")) { //Check to see if the caller is a mod.
 		if(!target) {message.channel.send("I'm sorry, but that command didn't include a valid @ mention."); return;}//First of all let's see if there was even a valid mention in there.
