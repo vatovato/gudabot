@@ -44,8 +44,8 @@ var threeStarEss = ["Mooncell Automaton", "Runestones", "Anchors Aweigh", "Demon
 var currThreeStarEss = threeStarEss;
 
 var currFeatured3S = [];
-var currFeatured4S = ["Tristan", "Gawain"];
-var currFeatured5S = ["Altria Pendragon (Lancer)"];
+var currFeatured4S = ["Mordred (Rider)", "Marie Antoinette (Caster)", "Anne Bonny & Mary Read (Archer)"];
+var currFeatured5S = ["Tamamo no Mae (Lancer)"];
 var currFeatured3E = [];
 var currFeatured4E = [];
 var currFeatured5E = [];
