@@ -23,7 +23,7 @@ var fiveStarStory = [];
 var currFiveStars = fiveStarBase;
 var fourStarBase = ["Siegfried", "Chevalier d Eon", "EMIYA", "Atalante", "Elisabeth Bathory", "Anne Bonny & Mary Read",
 "Marie Antoinette", "Saint Martha", "Stheno", "Carmilla", "Heracles", "Lancelot", "Tamamo Cat", "Astolfo", "Nursery Rhyme",
-"Frankenstein", "Altria Pendragon (Lancer Alter)", "Helena Blavatsky", "Rama", "Nitocris", "Lancelot (Saber)"];
+"Frankenstein", "Helena Blavatsky", "Rama", "Nitocris", "Lancelot (Saber)"];
 var fourStarStory = [];
 var currFourStars = fourStarBase;
 var threeStarBase = ["Gaius Julius Caesar", "Gilles de Rais", "Robin Hood", "David", "Euryale", "Cu Chulainn",
