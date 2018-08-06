@@ -106,9 +106,11 @@ var advice = ['',
 'https://i.imgur.com/vCMetus.jpg',  //okita's long sword
 'https://i.imgur.com/j0IZfLu.jpg',  //all about david
 'https://i.imgur.com/FVIdHWL.png',
-'https://i.imgur.com/uo3U0HZ.png'  //glopping napoleon
+'https://i.imgur.com/uo3U0HZ.png',  //glopping napoleon
+'https://i.imgur.com/rPgSaLU.png', //shingou and furoisa
+'https://i.imgur.com/MWgxb40.jpg'  //say hi david
 ];
-var place = Math.floor((Math.random() * 101) + 1);
+var place = Math.floor((Math.random() * 103) + 1);
 var sendAdvice = advice[place];
 console.log("Meme: " + sendAdvice);
 message.channel.send("",{files: [sendAdvice]});
