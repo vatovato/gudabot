@@ -1290,6 +1290,12 @@ exports.parseName = (servantName) => {
     case "ortlinde":
     urlRef = "214";
     wikiRef = "http://fategrandorder.wikia.com/wiki/Valkyrie";
+
+    case "caster scathach":
+    case "caster skadi":
+    case "skadi":
+    urlRef = "215";
+    wikiRef = "http://fategrandorder.wikia.com/wiki/Sc%C3%A1thach-Ska%C3%B0i";
   }
 returnValue = urlRef + " " + wikiRef;
 return returnValue;
