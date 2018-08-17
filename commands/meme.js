@@ -111,7 +111,7 @@ var advice = ['',
 'https://i.imgur.com/MWgxb40.jpg',  //say hi david
 'https://i.imgur.com/JxZ4etL.png' //spamming the bot
 ];
-var place = Math.floor((Math.random() * 103) + 1);
+var place = Math.floor((Math.random() * 104) + 1);
 var sendAdvice = advice[place];
 console.log("Meme: " + sendAdvice);
 message.channel.send("",{files: [sendAdvice]});
