@@ -513,6 +513,8 @@ exports.parseName = (servantName) => {
     break;
     case "ushi":
     case "ushiwakamaru":
+    case "rider ushiwakamaru":
+    case "rider ushi":
     urlRef="027";
     wikiRef = 'http://fategrandorder.wikia.com/wiki/Ushiwakamaru';
     break;
@@ -1290,12 +1292,73 @@ exports.parseName = (servantName) => {
     case "ortlinde":
     urlRef = "214";
     wikiRef = "http://fategrandorder.wikia.com/wiki/Valkyrie";
-
+    break;
     case "caster scathach":
     case "caster skadi":
     case "skadi":
     urlRef = "215";
     wikiRef = "http://fategrandorder.wikia.com/wiki/Sc%C3%A1thach-Ska%C3%B0i";
+    break;
+
+    case "archer jeanne":
+    case "archer jeanne d arc":
+    case "archer jannu":
+    case "summer jeanne":
+    case "summer jeanne d arc":
+    case "summer jannu":
+    urlRef = "216";
+    wikiRef = "http://fategrandorder.wikia.com/wiki/Jeanne_d%27Arc_(Archer)";
+    break;
+    case "lancer ibaraki":
+    case "lancer ibaraki douji":
+    case "lancer ibaraki-douji":
+    case "summer ibaraki":
+    case "summer ibaraki douji":
+    case "summer ibaraki-douji":
+    urlRef = "217";
+    wikiRef = "http://fategrandorder.wikia.com/wiki/Ibaraki_D%C5%8Dji_(Lancer)";
+    break;
+    case "assassin ushiwakamaru":
+    case "assassin ushi":
+    case "summer ushiwakamaru":
+    case "summer ushi":
+    urlRef = "218";
+    wikiRef = "http://fategrandorder.wikia.com/wiki/Ushiwakamaru_(Assassin)";
+    break;
+    case "berserker jalter":
+    case "berserker jeanne of arc alter":
+    case "berserker jannu alter":
+    case "berserker jeanne alter":
+    case "summer jalter":
+    case "summer jeanne alter":
+    case "summer jannu alter":
+    urlRef = "219";
+    wikiRef = "http://fategrandorder.wikia.com/wiki/Jeanne_d%27Arc_(Berserker_Alter)";
+    break;
+    case "moon cancer bb":
+    case "summer bb":
+    case "mooncancer bb":
+    urlRef = "220";
+    wikiRef = "http://fategrandorder.wikia.com/wiki/B_B_(Summer)";
+    break;
+    case "saber queen medb":
+    case "saber medb":
+    case "saber medbed":
+    case "saber queen medbed":
+    case "summer medb":
+    case "summer medbed":
+    case "summer queen medb":
+    urlRef = "221";
+    wikiRef = "http://fategrandorder.wikia.com/wiki/Medb_(Saber)";
+    break;
+    case "mysterious heroine xx":
+    case "mhxx":
+    case "foreigner mhxx":
+    case "summer mhxx":
+    urlRef = "222";
+    wikiRef = "http://fategrandorder.wikia.com/wiki/Mysterious_Heroine_XX";
+    break;
+
   }
 returnValue = urlRef + " " + wikiRef;
 return returnValue;
