@@ -56,7 +56,7 @@ request(servantCall, function(error, response, html) {
       break;
 
       case "5":
-      if(urlRef == "005" || urlRef == "106" || urlRef == "183" || urlRef == "099" || urlRef == "094" || urlRef == "160") {
+      if(urlRef == "005" || urlRef == "106" || urlRef == "183" || urlRef == "099" || urlRef == "094" || urlRef == "160" || urlRef == "220") {
       ascensionImage5 = "http://fate-go.cirnopedia.org/icons/servant_card/" + urlRef + "5.jpg";
       message.guild.channels.find("name", "ascension-images").sendMessage("",{files: [ascensionImage5]}).catch(console.error);
     } else if (urlRef == "001.1"){
