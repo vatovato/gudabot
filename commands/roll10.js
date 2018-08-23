@@ -44,11 +44,11 @@ var threeStarEss = ["Mooncell Automaton", "Runestones", "Anchors Aweigh", "Demon
 var currThreeStarEss = threeStarEss;
 
 var currFeatured3S = [];
-var currFeatured4S = ["Mordred (Rider)", "Marie Antoinette (Caster)", "Anne Bonny & Mary Read (Archer)"];
-var currFeatured5S = ["Tamamo no Mae (Lancer)"];
-var currFeatured3E = [];
-var currFeatured4E = [];
-var currFeatured5E = [];
+var currFeatured4S = ["Helena Blavatsky", "Medea (Lily)", "Nursery Rhyme"];
+var currFeatured5S = ["Illyasviel von Einzbern"];
+var currFeatured3E = ["Zunga Zunga"];
+var currFeatured4E = ["Kill on Sight"];
+var currFeatured5E = ["Magical Girl of Sapphire"];
 var servants = [], essences = [], allServants = [], campaigns = [];
 var servantsPulled = [], essencesPulled = [], servantsPulled4 = [];
 //elements
