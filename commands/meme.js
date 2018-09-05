@@ -109,9 +109,13 @@ var advice = ['',
 'https://i.imgur.com/uo3U0HZ.png',  //glopping napoleon
 'https://i.imgur.com/rPgSaLU.png', //shingou and furoisa
 'https://i.imgur.com/MWgxb40.jpg',  //say hi david
-'https://i.imgur.com/JxZ4etL.png' //spamming the bot
+'https://i.imgur.com/JxZ4etL.png', //spamming the bot
+'https://i.imgur.com/Gc7teFD.png', //rememe biggest boner
+'https://i.imgur.com/sQFKwDW.png', //mentioning underage girls
+'https://i.imgur.com/qbMlSdH.png', //corrupt lazy fat
+'https://i.imgur.com/8cQlAY9.png' //:dab:
 ];
-var place = Math.floor((Math.random() * 104) + 1);
+var place = Math.floor((Math.random() * 108) + 1);
 var sendAdvice = advice[place];
 console.log("Meme: " + sendAdvice);
 message.channel.send("",{files: [sendAdvice]});
