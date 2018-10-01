@@ -13,6 +13,10 @@ exports.parseName = (servantName) => {
     urlRef = '001.1';
     wikiRef = 'http://fategrandorder.wikia.com/wiki/Mashu_Kyrielight';
     break;
+    case "mash orthenaus":
+    urlRef = '001.2';
+    wikiRef = 'http://fategrandorder.wikia.com/wiki/Mashu_Kyrielight';
+    break;
     case "altria":
     case "arturia":
     case "arturia pendragon":
@@ -1366,6 +1370,11 @@ exports.parseName = (servantName) => {
     case "summer mhxx":
     urlRef = "222";
     wikiRef = "http://fategrandorder.wikia.com/wiki/Mysterious_Heroine_XX";
+    break;
+    case "saber diarmuid":
+    case "saber diarmuid ua duibhne":
+    urlRef = "223";
+    wikiRef = "http://fategrandorder.wikia.com/wiki/Diarmuid_Ua_Duibhne_(Saber)";
     break;
 
   }
