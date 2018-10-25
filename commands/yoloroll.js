@@ -55,12 +55,12 @@ var currFourStarEss = fourStarEss;
 var threeStarEss = ["Mooncell Automaton", "Runestones", "Anchors Aweigh", "Demonic Boar", "Clock Tower", "Ryudoji Temple", "Mana Gauge", "Elixir of Love", "Storch Ritter", "Hermitage", "Motored Cuirassier", "Stuffed Lion", "Lugh s Halo", "Battle of Camlann"];
 var currThreeStarEss = threeStarEss;
 
-var currFeatured3S = ["Gaius Julius Caesar", "Boudica", "Romulus"];
-var currFeatured4S = ["Nero Claudius"];
-var currFeatured5S = ["Nero Claudius (Bride)"];
-var currFeatured3E = ["Howl at the Moon"];
-var currFeatured4E = ["Original Legion"];
-var currFeatured5E = ["Glory is With Me"];
+var currFeatured3S = [];
+var currFeatured4S = ["Vlad III (EXTRA)"];
+var currFeatured5S = ["Cleopatra"];
+var currFeatured3E = ["Count Romani Archaman s Hospitality"];
+var currFeatured4E = ["Witch Under the Moonlight"];
+var currFeatured5E = ["Dangerous Beast"];
 var servants = [], essences = [], allServants = [], campaigns = [];
 var servantsPulled = [], essencesPulled = [], servantsPulled4 = [];
 //elements
