@@ -13,6 +13,10 @@ exports.parseName = (servantName) => {
     urlRef = '001.1';
     wikiRef = 'http://fategrandorder.wikia.com/wiki/Mashu_Kyrielight';
     break;
+    case "mash orthenaus":
+    urlRef = '001.2';
+    wikiRef = 'http://fategrandorder.wikia.com/wiki/Mashu_Kyrielight';
+    break;
     case "altria":
     case "arturia":
     case "arturia pendragon":
@@ -124,6 +128,11 @@ exports.parseName = (servantName) => {
     break;
     case "elisabeth bathory brave":
     case "elisabeth brave":
+    case "elizabeth bathory brave":
+    case "elizabeth brave":
+    case "saber elizabeth":
+    case "saber liz":
+    case "saber elizabeth bathory":
     urlRef="138";
     wikiRef = 'http://fategrandorder.wikia.com/wiki/Elizabeth_Bathory_(Brave)';
     break;
@@ -309,9 +318,9 @@ exports.parseName = (servantName) => {
     urlRef="017";
     wikiRef = 'http://fategrandorder.wikia.com/wiki/Cu_Chulainn';
     break;
-    case "elizabeth bathory":
-    case "elizabeth":
+    case "lancer elizabeth bathory":
     case "lancer elizabeth":
+    case "lancer liz":
     urlRef="018";
     wikiRef = 'http://fategrandorder.wikia.com/wiki/Elizabeth_Bathory';
     break;
@@ -658,6 +667,10 @@ exports.parseName = (servantName) => {
     wikiRef = 'http://fategrandorder.wikia.com/wiki/Cu_Chulainn_(Caster)';
     break;
     case "elizabeth bathory halloween":
+    case "caster elizabeth bathory":
+    case "caster elizabeth":
+    case "caster liz":
+    case "halloween liz":
     urlRef="061";
     wikiRef = 'http://fategrandorder.wikia.com/wiki/Elizabeth_Bathory_(Halloween)';
     break;
@@ -1357,6 +1370,11 @@ exports.parseName = (servantName) => {
     case "summer mhxx":
     urlRef = "222";
     wikiRef = "http://fategrandorder.wikia.com/wiki/Mysterious_Heroine_XX";
+    break;
+    case "saber diarmuid":
+    case "saber diarmuid ua duibhne":
+    urlRef = "223";
+    wikiRef = "http://fategrandorder.wikia.com/wiki/Diarmuid_Ua_Duibhne_(Saber)";
     break;
 
   }
