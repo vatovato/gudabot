@@ -114,8 +114,11 @@ var advice = ['',
 'https://i.imgur.com/sQFKwDW.png', //mentioning underage girls
 'https://i.imgur.com/qbMlSdH.png', //corrupt lazy fat
 'https://i.imgur.com/8cQlAY9.png' //:dab:
+'https://i.imgur.com/iWekyAF.jpg', //fatshirou
+'https://i.imgur.com/XN1FIdL.png', //ntr woody
+'https://i.imgur.com/V4u01We.png' //laiza quit
 ];
-var place = Math.floor((Math.random() * 108) + 1);
+var place = Math.floor((Math.random() * 111) + 1);
 var sendAdvice = advice[place];
 console.log("Meme: " + sendAdvice);
 message.channel.send("",{files: [sendAdvice]});
