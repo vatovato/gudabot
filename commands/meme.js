@@ -117,6 +117,7 @@ var advice = ['',
 'https://i.imgur.com/iWekyAF.jpg', //fatshirou
 'https://i.imgur.com/XN1FIdL.png', //ntr woody
 'https://i.imgur.com/V4u01We.png' //laiza quit
+
 ];
 var place = Math.floor((Math.random() * 111) + 1);
 var sendAdvice = advice[place];
