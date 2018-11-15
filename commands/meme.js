@@ -113,7 +113,7 @@ var advice = ['',
 'https://i.imgur.com/Gc7teFD.png', //rememe biggest boner
 'https://i.imgur.com/sQFKwDW.png', //mentioning underage girls
 'https://i.imgur.com/qbMlSdH.png', //corrupt lazy fat
-'https://i.imgur.com/8cQlAY9.png' //:dab:
+'https://i.imgur.com/8cQlAY9.png', //:dab:
 'https://i.imgur.com/iWekyAF.jpg', //fatshirou
 'https://i.imgur.com/XN1FIdL.png', //ntr woody
 'https://i.imgur.com/V4u01We.png' //laiza quit
