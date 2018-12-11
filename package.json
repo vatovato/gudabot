@@ -13,6 +13,7 @@
     "enmap": "^0.4.6",
     "enmap-level": "^1.0.1",
     "express": "^4.16.4",
+    "leveldown": "^4.0.1",
     "markov-generator": "^1.2.2",
     "moment": "^2.22.2",
     "mysql": "^2.16.0",
