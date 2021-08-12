@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "cheerio": "^1.0.0-rc.2",
-    "discord.js": "^11.4.2",
+    "discord.js": "^13.1.0",
     "ejs": "^2.6.1",
     "enmap": "^0.4.6",
     "enmap-level": "^1.0.1",
