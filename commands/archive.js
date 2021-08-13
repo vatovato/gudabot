@@ -12,7 +12,7 @@ exports.run = (client, message, args) => {
 				target.addRole(ArchivedRole).catch(console.error);
 			}else{//If the target was archived, unarchive them.
 				message.channel.send(target.displayname + " has been released from the Archive. Pending good behavior.");
-				target.roles.cache.remove(ArchivedRole).catch(console.error);
+				target.roles.remove(ArchivedRole).catch(console.error);
 			}
 		}else{ //If the target was a mod, taunt the caller about their failure.
 			message.channel.send("You cannot archive that user, because they are a mod/admin. Also, your attempt just pinged them, so, have fun with that.");
@@ -21,7 +21,7 @@ exports.run = (client, message, args) => {
 
 		if ( message.author.id == "399159458590228480" ) {
 			message.channel.send(`${message.author.username} is memeing`);
-			message.member.roles.cache.remove(ArchivedRole).catch(console.error); // Sephi can save himself
+			message.member.roles.remove(ArchivedRole).catch(console.error); // Sephi can save himself
 		}
 		else {
 			if (message.channel.id != "590423788735299584"){ //If the message is from the archive, ignore it completely.
