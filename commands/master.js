@@ -102,9 +102,10 @@ exports.run = (client, message, args) => {
     .then(response => response.json())
       .then(data => {
         for ( var i = 0; i < data[2].missions.length; ++i ) {
-            console.log("Adding Mission: " + data[2].missions[i].name);
             var count = i+1;
-            sendMessage += count.toString() + ". " + data[2].missions[i].name + "\n";
+            var mission = count.toString() + ". " + data[2].missions[i].name + "\n";
+            console.log("Adding Mission: " + mission);
+            sendMessage += mission;
           }
         })
   message.channel.send(sendMessage);
