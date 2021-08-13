@@ -4,9 +4,9 @@ exports.run = (client, message, args) => {
 	target= message.mentions.members.first();
 	console.log("target: " + target); //Finding the victim
 	//console.log(message.author.username + " attempted to archive " + target.displayname);
-	if (message.member.hasPermission("KICK_MEMBERS")) { //Check to see if the caller is a mod.
+	if (message.member.permissions.has("KICK_MEMBERS")) { //Check to see if the caller is a mod.
 		if(!target) {message.channel.send("I'm sorry, but that command didn't include a valid @ mention."); return;}//First of all let's see if there was even a valid mention in there.
-		if(!target.hasPermission("KICK_MEMBERS")) {//Check to see if the TARGET is a mod.
+		if(!target.permissions.has("KICK_MEMBERS")) {//Check to see if the TARGET is a mod.
 			if(!target.roles.has(ArchivedRole)){//And finally check if the target is already archived
 				message.channel.send(`${target.displayname} has proven to be a troublemaker (or a dabber), and has been summarily archived. Consider this lesson carefully.`);//If the target was unarchived, archive them.
 				target.addRole(ArchivedRole).catch(console.error);
