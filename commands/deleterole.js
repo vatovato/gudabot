@@ -20,7 +20,7 @@ exports.run = (client, message, args) => {
 		}
 		else{
 			console.log("Removing " + message.author.username + " from " + message.guild.roles.cache.find(dict[role]).name + " role.");
-			message.member.removeRole(dict[role]).catch(console.error); //If they do, remove it.
+			message.member.roles.remove(dict[role]).catch(console.error); //If they do, remove it.
 			message.channel.send("Removed " + message.guild.roles.cache.find(dict[role]).name + " role from user " + message.author.username+".");
 		}
 	}
