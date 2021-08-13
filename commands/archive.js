@@ -11,7 +11,7 @@ exports.run = (client, message, args) => {
 				message.channel.send(`${target.user.username} has proven to be a troublemaker (or a dabber), and has been summarily archived. Consider this lesson carefully.`).catch(console.error);//If the target was unarchived, archive them.
 				target.roles.add(ArchivedRole).catch(console.error);
 			}else{//If the target was archived, unarchive them.
-				message.channel.send(target..user.username + " has been released from the Archive. Pending good behavior.").catch(console.error);
+				message.channel.send(target.user.username + " has been released from the Archive. Pending good behavior.").catch(console.error);
 				target.roles.remove(ArchivedRole).catch(console.error);
 			}
 		}else{ //If the target was a mod, taunt the caller about their failure.
