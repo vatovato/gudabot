@@ -2,9 +2,13 @@ exports.run = (client, message, connection, args) => {
 
   var userID = message.author.id;
   var username = message.author.username;
-  var nickname = message.member.nickname;
-  var request = require('request');
   const fetch = require('node-fetch');
+  const atlasacademy = require('./atlasapihelper');
+
+  var servantClass = atlasacademy.getServantArgument(args);
+  if ( servantClass != null ) {
+    args.pop();
+  }
 
   //Concatenates all args to form the servant name called for the function
   var servantName = args.join(" ").toLowerCase();
@@ -18,20 +22,21 @@ exports.run = (client, message, connection, args) => {
       .then(data => {
         for ( var i = 0; i < data.length; ++i ) {
           if ( data[i].name.toLowerCase() == servantName ) {
-            connection.query(`SELECT * FROM wishlist WHERE userID = '${userID}'`, function(err, rows, fields) {
-              if (err) throw err;
-              if(rows.length == 0) {
-                console.log("User did not exist.");
-                message.channel.send(`**${username}**, you don't exist in the table yet. Use !addwl [wishlist] first.`);
-              } else {
-                connection.query(`UPDATE wishlist SET imageURL = '${data[i].extraAssets.faces.ascension[4]}' WHERE userID = ${userID}`);
-                message.channel.send(`${username}, you added your image. Call !wl to see it.`);
-              }
-            });
+            if ( servantClass == null || (servantClass != null && data[i].className == servantClass) ) {
+              connection.query(`SELECT * FROM wishlist WHERE userID = '${userID}'`, function(err, rows, fields) {
+                if (err) throw err;
+                if(rows.length == 0) {
+                    console.log("User did not exist.");
+                    message.channel.send(`**${username}**, you don't exist in the table yet. Use !addwl [wishlist] first.`);
+                } else {
+                    connection.query(`UPDATE wishlist SET imageURL = '${data[i].extraAssets.faces.ascension[4]}' WHERE userID = ${userID}`);
+                    message.channel.send(`${username}, you added your image. Call !wl to see it.`);
+                }
+              });
+            }
             return;
           }
         }
         message.channel.send(`Invalid Servant name. Try Google: ${searchUrl}`);
       })
-  
 }
