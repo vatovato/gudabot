@@ -47,7 +47,7 @@ exports.run = (data, client, message) => {
   servant.maxATK = data.atkMax.toString();
   console.log("MaxATK: "+servant.maxATK);
 
-  servant.cards = data.cards[0] + data.cards[1] + data.cards[2] + data.cards[3] + data.cards[4];
+  servant.cards = `${data.cards[0]}, ${data.cards[1]}, ${data.cards[2]}, ${data.cards[3]}, ${data.cards[4]}`;
   console.log("Cards: "+servant.cards);
 
   servant.np = "**Noble Phantasm: " + data.noblePhantasms[data.noblePhantasms.length - 1].name.trim() + "(" + data.noblePhantasms[data.noblePhantasms.length - 1].card + ")**";
@@ -57,7 +57,7 @@ exports.run = (data, client, message) => {
   console.log("NP Descr: "+servant.npDesc);
 
   servant.growthCurve = data.growhtCurve;
-  console.log("Growth Curve: "+servant.growthCurve);
+  console.log("Growth Curve: "+servant.growthCurve.toString());
 
   servant.alignments = "N/A";
   console.log("Alignments: "+servant.alignments);
