@@ -4,7 +4,7 @@ const { Discord, Intents } = require("discord.js");
 // Just give everything for now.
 const botIntents = new Intents(32767);
 
-const client = new Discord.Client({ intents: botIntents });
+const client = new Client({ intents: botIntents });
 const fs = require("fs");
 // Adds express to bypass Heroku's 30 minutes sleep
 const express = require('express');
