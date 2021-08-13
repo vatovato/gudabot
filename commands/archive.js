@@ -7,7 +7,7 @@ exports.run = (client, message, args) => {
 	if (message.member.permissions.has("KICK_MEMBERS") || message.author.id == "399159458590228480") { //Check to see if the caller is a mod.
 		if(!target) {message.channel.send("I'm sorry, but that command didn't include a valid @ mention."); return;}//First of all let's see if there was even a valid mention in there.
 		if(!target.permissions.has("KICK_MEMBERS")) {//Check to see if the TARGET is a mod.
-			if(!target.roles.has(ArchivedRole)){//And finally check if the target is already archived
+			if(!target.roles.cache.has(ArchivedRole)){//And finally check if the target is already archived
 				message.channel.send(`${target.displayname} has proven to be a troublemaker (or a dabber), and has been summarily archived. Consider this lesson carefully.`);//If the target was unarchived, archive them.
 				target.addRole(ArchivedRole).catch(console.error);
 			}else{//If the target was archived, unarchive them.
