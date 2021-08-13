@@ -1,3 +1,20 @@
+exports.run = (client, message, args) => {
+
+  const fetch = require('node-fetch');
+
+  fetch('https://api.atlasacademy.io/export/NA/nice_master_mission.json')
+    .then(response => response.json())
+      .then(data => {
+        var sendMessage = "**Weekly Master Missions**\n\n";
+        for ( var i = 0; i < data[2].missions.length; ++i ) {
+            var count = i+1;
+            var mission = count.toString() + ". " + data[2].missions[i].name + "\n";
+            sendMessage += mission;
+          }
+        message.channel.send(sendMessage);
+        })
+}
+
 /*exports.run = (client, message, args) => {
 var request = require('request');
 var cheerio = require('cheerio');
@@ -92,20 +109,3 @@ request("http://fate-go.cirnopedia.org/master_mission_us.php#nav", function(erro
 });
 }
 */
-exports.run = (client, message, args) => {
-
-  const fetch = require('node-fetch');
-
-  fetch('https://api.atlasacademy.io/export/NA/nice_master_mission.json')
-    .then(response => response.json())
-      .then(data => {
-        var sendMessage = "**Weekly Master Missions**\n\n";
-        for ( var i = 0; i < data[2].missions.length; ++i ) {
-            var count = i+1;
-            var mission = count.toString() + ". " + data[2].missions[i].name + "\n";
-            console.log("Adding Mission: " + mission);
-            sendMessage += mission;
-          }
-        message.channel.send(sendMessage);
-        })
-}
