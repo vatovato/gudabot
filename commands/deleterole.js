@@ -11,7 +11,7 @@ exports.run = (client, message, args) => {
 	var role= args.join(" ").toLowerCase();
 	switch(role){ //Check what role the user requested
 		case "notifications": //Notifications
-			if(!message.member.roles.has(NotificationsID)){ //If they don't have the role, do nothing
+			if(!message.member.roles.cache.has(NotificationsID)){ //If they don't have the role, do nothing
 				message.channel.send(message.author.username+", you don't have the Notifications role.");
 			}
 			else{
@@ -21,7 +21,7 @@ exports.run = (client, message, args) => {
 			}
 			break;
 		case "saber":
-			if(!message.member.roles.has(SaberID)){ //If they don't have the role, do nothing
+			if(!message.member.roles.cache.has(SaberID)){ //If they don't have the role, do nothing
 				message.channel.send(message.author.username+", you don't have the Saber role.");
 			}
 			else{
@@ -31,7 +31,7 @@ exports.run = (client, message, args) => {
 			}
 			break;
 		case "lancer":
-			if(!message.member.roles.has(NotificationsID)){ //If they don't have the role, do nothing
+			if(!message.member.roles.cache.has(NotificationsID)){ //If they don't have the role, do nothing
 				message.channel.send(message.author.username+", you don't have the Lancer role.");
 			}
 			else{
@@ -41,7 +41,7 @@ exports.run = (client, message, args) => {
 			}
 			break;
 		case "archer":
-			if(!message.member.roles.has(ArcherID)){ //If they don't have the role, do nothing
+			if(!message.member.roles.cache.has(ArcherID)){ //If they don't have the role, do nothing
 				message.channel.send(message.author.username+", you don't have the Archer role.");
 			}
 			else{
@@ -51,7 +51,7 @@ exports.run = (client, message, args) => {
 			}
 			break;
 		case "rider":
-			if(!message.member.roles.has(RiderID)){ //If they don't have the role, do nothing
+			if(!message.member.roles.cache.has(RiderID)){ //If they don't have the role, do nothing
 				message.channel.send(message.author.username+", you don't have the Rider role.");
 			}
 			else{
@@ -61,7 +61,7 @@ exports.run = (client, message, args) => {
 			}
 			break;
 		case "caster":
-			if(!message.member.roles.has(CasterID)){ //If they don't have the role, do nothing
+			if(!message.member.roles.cache.has(CasterID)){ //If they don't have the role, do nothing
 				message.channel.send(message.author.username+", you don't have the Caster role.");
 			}
 			else{
@@ -71,7 +71,7 @@ exports.run = (client, message, args) => {
 			}
 			break;
 		case "assassin":
-			if(!message.member.roles.has(AssassinID)){ //If they don't have the role, do nothing
+			if(!message.member.roles.cache.has(AssassinID)){ //If they don't have the role, do nothing
 				message.channel.send(message.author.username+", you don't have the Assassin role.");
 			}
 			else{
@@ -81,7 +81,7 @@ exports.run = (client, message, args) => {
 			}
 			break;
 		case "berserker":
-			if(!message.member.roles.has(BerserkerID)){ //If they don't have the role, do nothing
+			if(!message.member.roles.cache.has(BerserkerID)){ //If they don't have the role, do nothing
 				message.channel.send(message.author.username+", you don't have the Berserker role.");
 			}
 			else{
