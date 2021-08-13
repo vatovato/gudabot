@@ -24,7 +24,7 @@ exports.run = (client, message, connection, args) => {
       .then(data => {
         data.forEach((item) => {
           if ( item.name.toLowerCase() == servantName ) {
-            servantUrl = item.extraAssets.faces.ascension.4;
+            servantUrl = item.extraAssets.faces.ascension[4];
             message.channel.send(`Link to Atlas Academy: ${servantUrl}`);
             connection.query(`SELECT * FROM wishlist WHERE userID = '${userID}'`, function(err, rows, fields) {
               if (err) throw err;
