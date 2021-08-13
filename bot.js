@@ -3,21 +3,7 @@ const { Discord, Intents } = require("discord.js");
 // Discord.js v13 requires us to pass Intents to specify what events the bot should receive
 // Just give everything for now.
 const botIntents = new Intents();
-botIntents.add( Intents.FLAGS.GUILDS, 
-                Intents.FLAGS.GUILD_MEMBERS, 
-                Intents.FLAGS.BANS, 
-                Intents.FLAGS.GUILD_EMOJIS_AND_STICKERS,
-                Intents.FLAGS.GUILD_INTEGRATIONS, 
-                Intents.FLAGS.GUILD_WEBHOOKS, 
-                Intents.FLAGS.GUILD_INVITES, 
-                Intents.FLAGS.GUILD_VOICE_STATES, 
-                Intents.FLAGS.GUILD_PRESENCES, 
-                Intents.FLAGS.GUILD_MESSAGES, 
-                Intents.FLAGS.GUILD_MESSAGE_REACTIONS, 
-                Intents.FLAGS.GUILD_MESSAGE_TYPING, 
-                Intents.FLAGS.DIRECT_MESSAGES, 
-                Intents.FLAGS.DIRECT_MESSAGE_REACTIONS, 
-                Intents.FLAGS.DIRECT_MESSAGE_TYPING );
+botIntents.add(Intents.FLAGS.GUILDS);
 
 const client = new Discord.Client({ intents: botIntents });
 const fs = require("fs");
