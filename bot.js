@@ -2,8 +2,7 @@ const { Discord, Intents } = require("discord.js");
 
 // Discord.js v13 requires us to pass Intents to specify what events the bot should receive
 // Just give everything for now.
-const botIntents = new Intents();
-botIntents.add(Intents.FLAGS.GUILDS);
+const botIntents = new Intents(32767);
 
 const client = new Discord.Client({ intents: botIntents });
 const fs = require("fs");
