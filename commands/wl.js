@@ -29,7 +29,7 @@ connection.query(`SELECT * FROM wishlist WHERE userID = '${userID}'`, function(e
     .setTitle(`${embedName}'s Wishlist`)
     .setThumbnail(image)
     .setDescription(userWishlist)
-    message.channel.send({embed});
+    message.channel.send(embeds: [embed]);
   }
 });
 
@@ -52,7 +52,7 @@ connection.query(`SELECT * FROM wishlist WHERE userID = '${userID}'`, function(e
           .setTitle(`${userNickname}'s Wishlist`)
           .setThumbnail(image)
           .setDescription(userWishlist)
-          message.channel.send({embed});
+          message.channel.send(embeds: [embed]);
         }
       });
     } else {
@@ -63,7 +63,7 @@ connection.query(`SELECT * FROM wishlist WHERE userID = '${userID}'`, function(e
       .setTitle(`${userUsername}'s Wishlist`)
       .setThumbnail(image)
       .setDescription(userWishlist)
-      message.channel.send({embed});
+      message.channel.send(embeds: [embed]);
     }
   });
 }

@@ -635,7 +635,7 @@ if(flag == 0) {
   .addField("AP Per Drop", materials.apPerDrop[flagPosition])
   .addField("Drop Chance", materials.dropChance[flagPosition])
 
-  message.channel.send({embed});
+  message.channel.send(embeds: [embed]);
 }
 }
 }

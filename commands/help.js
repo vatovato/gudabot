@@ -26,5 +26,5 @@ const embed = new Discord.MessageEmbed()
   .addField("!addrole & !deleterole", "Adds or deletes user from the Notifications role, which is used to ping FGO related notifications to those who want to receive them.")
   .addField("**Meme functions**","!umu, !padoru, !weeb, !officer...")
 
-message.channel.send({embed}).catch(console.error);
+message.channel.send(embeds: [embed]).catch(console.error);
 }
