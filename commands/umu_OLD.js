@@ -7,7 +7,7 @@ exports.run = (client, message, args) => {
 var umuType = args.join(" ").toLowerCase();
 
 if(umuType == "rojo" or "") {
-    const embed = new Discord.RichEmbed()
+    const embed = new Discord.MessageEmbed()
         .setTitle("UMU","umu")
         .setImage("https://cdn.discordapp.com/emojis/401386848796016650.png")
         .setDescription("umu")
@@ -16,7 +16,7 @@ if(umuType == "rojo" or "") {
 
     message.channel.send({ embed });
   } else if (umuType == "blanco") {
-    const embedBlanco = new Discord.RichEmbed()
+    const embedBlanco = new Discord.MessageEmbed()
     .setTitle("UMU","umu")
     .setImage("https://i.imgur.com/Z8amJs7.png")
     .setDescription("umu")

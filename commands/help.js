@@ -1,7 +1,7 @@
 exports.run = (client, message, args) => {
 const Discord = require('discord.js');
 
-const embed = new Discord.RichEmbed()
+const embed = new Discord.MessageEmbed()
   .setTitle("List of Bot commands")
   .setColor(0x00AE86)
   .setThumbnail("https://cdn.discordapp.com/avatars/400632904553725952/3a9d2c61bd096f6b57aa5cc8d625698b.png")

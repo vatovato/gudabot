@@ -113,7 +113,7 @@ request("http://fate-go.cirnopedia.org/servant_all.php#nav", function(error, res
        traits = traits.trim();
        console.log("Traits: "+traits);
 
-       const embed = new Discord.RichEmbed()
+       const embed = new Discord.MessageEmbed()
        .setTitle(servant.name)
        .setThumbnail(servant.image)
        .setURL(servantCall)

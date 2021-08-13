@@ -82,7 +82,7 @@ exports.run = (client, message, args) => {
           i++;
         }
 
-        const embed = new Discord.RichEmbed()
+        const embed = new Discord.MessageEmbed()
         .setTitle(bondCE.name)
         .setThumbnail(bondCE.image)
         .setURL(bondCE.url)

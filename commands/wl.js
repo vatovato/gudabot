@@ -25,7 +25,7 @@ connection.query(`SELECT * FROM wishlist WHERE userID = '${userID}'`, function(e
         embedName = userNickname;
       }
     var image = rows[0].imageURL;
-    const embed = new Discord.RichEmbed()
+    const embed = new Discord.MessageEmbed()
     .setTitle(`${embedName}'s Wishlist`)
     .setThumbnail(image)
     .setDescription(userWishlist)
@@ -48,7 +48,7 @@ connection.query(`SELECT * FROM wishlist WHERE userID = '${userID}'`, function(e
           var userNickname = rows2[0].nickname;
           var userWishlist = rows2[0].wishlist;
           var image = rows2[0].imageURL;
-          const embed = new Discord.RichEmbed()
+          const embed = new Discord.MessageEmbed()
           .setTitle(`${userNickname}'s Wishlist`)
           .setThumbnail(image)
           .setDescription(userWishlist)
@@ -59,7 +59,7 @@ connection.query(`SELECT * FROM wishlist WHERE userID = '${userID}'`, function(e
       var userUsername = rows[0].username;
       var userWishlist = rows[0].wishlist;
       var image = rows[0].imageURL;
-      const embed = new Discord.RichEmbed()
+      const embed = new Discord.MessageEmbed()
       .setTitle(`${userUsername}'s Wishlist`)
       .setThumbnail(image)
       .setDescription(userWishlist)

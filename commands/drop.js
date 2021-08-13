@@ -627,7 +627,7 @@ if(flag == 0) {
   message.channel.send("No material with such name. Type !drop help to see how to use this command.");
 } else {
 
-  const embed = new Discord.RichEmbed()
+  const embed = new Discord.MessageEmbed()
   .setTitle(materials.name[flagPosition][0])
   .setThumbnail(materials.image[flagPosition])
   .setURL(materials.url[flagPosition])

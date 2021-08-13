@@ -96,7 +96,7 @@ request("http://fate-go.cirnopedia.org/servant_all.php#nav", function(error, res
     servant.image = "http://fate-go.cirnopedia.org/icons/servant/servant_"+urlRef+"1.png";
     //message.channel.send(`Name: ${servant.name}
 //Image: ${servant.image}`);
-    const embed = new Discord.RichEmbed()
+    const embed = new Discord.MessageEmbed()
     .setTitle(servant.name)
     .setThumbnail(servant.image)
     .setURL(servantCall)

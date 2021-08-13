@@ -7,7 +7,7 @@ exports.run = (client, message, args) => {
 var umuType = args.join(" ").toLowerCase();
 console.log(umuType);
 if(umuType == "rojo" || umuType == "") {
-    const embed = new Discord.RichEmbed()
+    const embed = new Discord.MessageEmbed()
         .setTitle("UMU","umu")
         .setImage("https://cdn.discordapp.com/emojis/401386848796016650.png")
         .setDescription("umu")
@@ -16,7 +16,7 @@ if(umuType == "rojo" || umuType == "") {
 
     message.channel.send({ embed });
   } else if (umuType == "blanco") {
-    const embed = new Discord.RichEmbed()
+    const embed = new Discord.MessageEmbed()
         .setTitle("UMU","umu")
         .setImage("https://i.imgur.com/Z8amJs7.png")
         .setDescription("umu")
@@ -25,7 +25,7 @@ if(umuType == "rojo" || umuType == "") {
 
     message.channel.send({ embed });
   } else if (umuType == "verano") {
-    const embed = new Discord.RichEmbed()
+    const embed = new Discord.MessageEmbed()
         .setTitle("UMU","umu")
         .setImage("https://i.imgur.com/3wXCF7X.jpg")
         .setDescription("umu")
