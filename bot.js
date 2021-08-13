@@ -1,5 +1,8 @@
 const Discord = require("discord.js");
-const client = new Discord.Client();
+
+// Discord.js v13 requires us to pass Intents to specify what events the bot should receive
+// Just give everything for now.
+const client = new Discord.Client({ intents: [Discord.Intents().all()] });
 const fs = require("fs");
 // Adds express to bypass Heroku's 30 minutes sleep
 const express = require('express');
