@@ -7,21 +7,21 @@
     "start": "node bot.js"
   },
   "engines": {
-    "node": "8.9.4"
+    "node": "16.0.0"
   },
   "dependencies": {
-    "cheerio": "^1.0.0-rc.2",
-    "discord.js": "^11.4.2",
-    "ejs": "^2.6.1",
-    "enmap": "^0.4.6",
-    "enmap-level": "^1.0.1",
-    "express": "^4.16.4",
-    "leveldown": "^4.0.1",
-    "markov-generator": "^1.2.2",
-    "moment": "^2.22.2",
-    "mysql": "^2.16.0",
-    "node-gyp": "^3.8.0",
+    "cheerio": "^1.0.0-rc.10",
+    "discord.js": "^13.1.0",
+    "ejs": "^3.1.6",
+    "enmap": "^5.8.7",
+    "express": "^4.17.1",
+    "level": "^7.0.0",
+    "leveldown": "^6.0.1",
+    "markov-generator": "^1.2.3",
+    "moment": "^2.29.1",
+    "mysql": "^2.18.1",
+    "node-gyp": "^8.1.0",
     "request": "^2.88.0",
-    "sqlite": "^2.9.3"
+    "sqlite": "^4.0.23"
   }
 }
