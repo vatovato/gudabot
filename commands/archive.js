@@ -8,10 +8,10 @@ exports.run = (client, message, args) => {
 		if(!target) {message.channel.send("I'm sorry, but that command didn't include a valid @ mention."); return;}//First of all let's see if there was even a valid mention in there.
 		if(!target.permissions.has("KICK_MEMBERS")) {//Check to see if the TARGET is a mod.
 			if(!target.roles.cache.has(ArchivedRole)){//And finally check if the target is already archived
-				message.channel.send(`${target.displayname} has proven to be a troublemaker (or a dabber), and has been summarily archived. Consider this lesson carefully.`).catch(console.error);//If the target was unarchived, archive them.
+				message.channel.send(`${target.user.username} has proven to be a troublemaker (or a dabber), and has been summarily archived. Consider this lesson carefully.`).catch(console.error);//If the target was unarchived, archive them.
 				target.roles.add(ArchivedRole).catch(console.error);
 			}else{//If the target was archived, unarchive them.
-				message.channel.send(target.displayname + " has been released from the Archive. Pending good behavior.").catch(console.error);
+				message.channel.send(target..user.username + " has been released from the Archive. Pending good behavior.").catch(console.error);
 				target.roles.remove(ArchivedRole).catch(console.error);
 			}
 		}else{ //If the target was a mod, taunt the caller about their failure.
@@ -20,7 +20,7 @@ exports.run = (client, message, args) => {
 	} else { //If the caller is not a mod, then they get slapped.
 
 		if (message.channel.id != "590423788735299584"){ //If the message is from the archive, ignore it completely.
-			message.channel.send(`${message.member.displayname} has tried to send someone to the archive while not being a mod, and has thus thrown themselves to the archive. The irony...`);
+			message.channel.send(`${message.member.user.username} has tried to send someone to the archive while not being a mod, and has thus thrown themselves to the archive. The irony...`);
 			message.member.roles.add(ArchivedRole).catch(console.error);
 		}
 	}	
