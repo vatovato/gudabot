@@ -1,5 +1,8 @@
 exports.run = (client, message, connection, args) => {
 
+
+  console.log(`Test wlimage`);
+
   var userID = message.author.id;
   var username = message.author.username;
   var nickname = message.member.nickname;
@@ -9,7 +12,7 @@ exports.run = (client, message, connection, args) => {
   //Concatenates all args to form the servant name called for the function
   var servantName = args.join(" ").toLowerCase();
   var invalidServantName = args.join("+").toLowerCase();
-  var searchUrl = "https://www.google.com.ar/search?q=" + invalidServantName + "+site%3Ahttps%3A%2F%2Fapps.atlasacademy.io";
+  var searchUrl = `https://www.google.com.ar/search?q= ${invalidServantName} +site%3Ahttps%3A%2F%2Fapps.atlasacademy.io`;
 
   //URL for the servant called in servantName
   var servantUrl ='';
@@ -21,8 +24,8 @@ exports.run = (client, message, connection, args) => {
       .then(data => {
         data.forEach((item) => {
           if ( item.name.toLowerCase() == servantName ) {
-            message.channel.send('Link to Atlas Academy: ' + item.extraAssets.faces.ascension.4);
             servantUrl = item.extraAssets.faces.ascension.4;
+            message.channel.send(`Link to Atlas Academy: ${servantUrl}`);
             connection.query(`SELECT * FROM wishlist WHERE userID = '${userID}'`, function(err, rows, fields) {
               if (err) throw err;
               if(rows.length == 0) {
