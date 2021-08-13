@@ -104,7 +104,7 @@ exports.run = (client, message, args) => {
         for ( var i = 0; i < data[2].missions.length; ++i ) {
             console.log("Adding Mission: " + data[2].missions[i].name);
             var count = i+1;
-            sendMessage += `${count.toString()}. ${data[2].missions[i].name} \n`;
+            sendMessage += count.toString() + ". " + data[2].missions[i].name + "\n";
           }
         })
   message.channel.send(sendMessage);
