@@ -85,6 +85,6 @@ if(flag === 0) {
     message.channel.send(`No more rate ups for ${argClass} Class servants, or wrong Class entered.`);
   }
 }*/
-message.channel.send("",{files: ['https://i.imgur.com/joHFAYD.png']});
+message.channel.send({files: ['https://i.imgur.com/joHFAYD.png']});
 message.channel.send("What the hell do you mean I'm not useful anymore...?");
 }

@@ -3,5 +3,5 @@ var memes = ['','https://i.imgur.com/jLkITgT.png','https://i.imgur.com/l5Wpa3t.j
 var place = Math.floor((Math.random() * 9) + 1);
 var sendMeme = memes[place];
 console.log("Meme: " + sendMeme);
-message.channel.send("",{files: [sendMeme]});
+message.channel.send({files: [sendMeme]});
 }

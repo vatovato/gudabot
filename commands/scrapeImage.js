@@ -25,7 +25,7 @@ request(servantCall, function(error, response, html) {
       ascensionImage0 = "http://fate-go.cirnopedia.org/icons/servant_card/" + urlRef + "1.jpg";
       //var aImage0 = $('a[title="Default Form"]').attr('href');
       //ascensionImage0 = "http://fate-go.cirnopedia.org/" + aImage0;
-      //message.channel.send("",{files: [ascensionImage0]}).catch(console.error);
+      //message.channel.send({files: [ascensionImage0]}).catch(console.error);
       message.guild.channels.find("name", "ascension-images").sendMessage("",{files: [ascensionImage0]}).catch(console.error);
       break;
 

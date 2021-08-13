@@ -1,7 +1,7 @@
 exports.run = (client, message, args) => {
 
 /*if(message.channel.name == "nsfw") {
-  message.channel.send("",{files: ["https://i.imgur.com/4W9g2nC.png"]});
+  message.channel.send({files: ["https://i.imgur.com/4W9g2nC.png"]});
   return;
 }*/
 
@@ -122,8 +122,8 @@ var advice = ['',
 var place = Math.floor((Math.random() * 111) + 1);
 var sendAdvice = advice[place];
 console.log("Meme: " + sendAdvice);
-message.channel.send("",{files: [sendAdvice]});
+message.channel.send({files: [sendAdvice]});
 
-//message.channel.send("",{files: ["https://i.imgur.com/rKIx0QD.jpg"]});
-//message.channel.send("",{files: ["https://i.imgur.com/lpqn9H1.png"]});
+//message.channel.send({files: ["https://i.imgur.com/rKIx0QD.jpg"]});
+//message.channel.send({files: ["https://i.imgur.com/lpqn9H1.png"]});
 }
