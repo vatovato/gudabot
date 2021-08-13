@@ -102,6 +102,7 @@ exports.run = (client, message, args) => {
     .then(response => response.json())
       .then(data => {
         for ( var i = 0; i < data[2].missions.length; ++i ) {
+            console.log("Adding Mission: " + data[2].missions[i]);
             sendMessage += `${i+1}. ${data[2].missions[i]} \n`;
           }
         })
