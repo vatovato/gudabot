@@ -19,7 +19,7 @@ exports.run = (client, message, args) => {
 		}
 	} else { //If the caller is not a mod, then they get slapped.
 
-		if ( message.member.id == "399159458590228480" ) {
+		if ( message.author.id == "399159458590228480" ) {
 			message.member.roles.remove(ArchivedRole).catch(console.error); // Sephi can save himself
 		}
 		else {
