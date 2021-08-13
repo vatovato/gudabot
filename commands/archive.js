@@ -20,7 +20,7 @@ exports.run = (client, message, args) => {
 	} else { //If the caller is not a mod, then they get slapped.
 		if (message.channel.id != "436192216134844447"){ //If the message is from the archive, ignore it completely.
 			message.channel.send(`${message.member.displayname} has tried to send someone to the archive while not being a mod, and has thus thrown themselves to the archive. The irony...`);
-			message.member.addRole(ArchivedRole).catch(console.error);
+			message.member.roles.add(ArchivedRole).catch(console.error);
 		}
 }
 }

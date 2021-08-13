@@ -16,7 +16,7 @@ exports.run = (client, message, args) => {
 			}
 			else{
 				console.log("Adding " + message.author.username + " to Notifications role.");
-				message.member.addRole(NotificationsID).catch(console.error); //If they don't, add it.
+				message.member.roles.add(NotificationsID).catch(console.error); //If they don't, add it.
 				message.channel.send("Added Notifications role to user " + message.author.username+".");
 			}
 			break;
@@ -34,37 +34,37 @@ exports.run = (client, message, args) => {
 				switch(role){ //Determine which class.
 					case "saber":
 						console.log("Adding " + message.author.username + " to Saber role.");
-						message.member.addRole(SaberID).catch(console.error); //Make the user a Saber.
+						message.member.roles.add(SaberID).catch(console.error); //Make the user a Saber.
 						message.channel.send("Added Saber role to user " + message.author.username+".");
 						break;
 					case "archer":
 						console.log("Adding " + message.author.username + " to archer role.");
-						message.member.addRole(ArcherID).catch(console.error); //Make the user an Archer.
+						message.member.roles.add(ArcherID).catch(console.error); //Make the user an Archer.
 						message.channel.send("Added Archer role to user " + message.author.username+".");
 						break;
 					case "lancer":
 						console.log("Adding " + message.author.username + " to Lancer role.");
-						message.member.addRole(LancerID).catch(console.error); //Make the user a Lancer.
+						message.member.roles.add(LancerID).catch(console.error); //Make the user a Lancer.
 						message.channel.send("Added Lancer role to user " + message.author.username+".");
 						break;
 					case "rider":
 						console.log("Adding " + message.author.username + " to Rider role.");
-						message.member.addRole(RiderID).catch(console.error); //Make the user a Rider.
+						message.member.roles.add(RiderID).catch(console.error); //Make the user a Rider.
 						message.channel.send("Added Rider role to user " + message.author.username+".");
 						break;
 					case "caster":
 						console.log("Adding " + message.author.username + " to Caster role.");
-						message.member.addRole(CasterID).catch(console.error); //Make the user a Caster.
+						message.member.roles.add(CasterID).catch(console.error); //Make the user a Caster.
 						message.channel.send("Added Caster role to user " + message.author.username+".");
 						break;
 					case "assassin":
 						console.log("Adding " + message.author.username + " to Assassin role.");
-						message.member.addRole(AssassinID).catch(console.error); //Make the user a Assassin.
+						message.member.roles.add(AssassinID).catch(console.error); //Make the user a Assassin.
 						message.channel.send("Added Assassin role to user " + message.author.username+".");
 						break;
 					case "berserker":
 						console.log("Adding " + message.author.username + " to Berserker role.");
-						message.member.addRole(BerserkerID).catch(console.error); //Make the user a Berserker.
+						message.member.roles.add(BerserkerID).catch(console.error); //Make the user a Berserker.
 						message.channel.send("Added Berserker role to user " + message.author.username+".");
 						break;
 				}
