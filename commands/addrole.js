@@ -28,7 +28,7 @@ exports.run = (client, message, args) => {
 			case "assassin":
 			case "berserker": //For all Class Roles
 				for (let i = 0; i < servantList.length; i++) {
-					if(message.member.roles.cache.has(dict[servantList[i]]){
+					if(message.member.roles.cache.has(dict[servantList[i]])){
 						//If the user has a Class Role already, break out of the switch case early.
 						message.channel.send(message.author.username+", you already have a Class.");
 						break;
