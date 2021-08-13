@@ -93,9 +93,8 @@ request("http://fate-go.cirnopedia.org/master_mission_us.php#nav", function(erro
 }
 */
 exports.run = (client, message, args) => {
-  var request = require('request');
-  var cheerio = require('cheerio');
-  const Discord = require('discord.js');
+
+  const fetch = require('node-fetch');
 
   var sendMessage = "**Weekly Master Missions**\n\n";
 
