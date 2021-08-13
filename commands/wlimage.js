@@ -33,8 +33,8 @@ exports.run = (client, message, connection, args) => {
                     message.channel.send(`${username}, you added your image. Call !wl to see it.`);
                 }
               });
+              return;
             }
-            return;
           }
         }
         message.channel.send(`Invalid Servant name. Try Google: ${searchUrl}`);
