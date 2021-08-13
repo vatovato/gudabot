@@ -56,7 +56,7 @@ exports.run = (data, client, message) => {
   servant.npDesc = data.noblePhantasms[data.noblePhantasms.length - 1].detail;
   console.log("NP Descr: "+servant.npDesc);
 
-  servant.growthCurve = data.growhtCurve.toString();
+  servant.growthCurve = data.growthCurve.toString();
   console.log("Growth Curve: "+servant.growthCurve);
 
   servant.alignments = "N/A";
