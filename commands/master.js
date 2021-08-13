@@ -105,6 +105,6 @@ exports.run = (client, message, args) => {
         for ( var i = 0; i < data[2].missions.length; ++i ) {
             sendMessage += `${i+1}. ${data[2].missions[i]} \n`;
           }
-        }
+        })
   message.channel.send(sendMessage);
 }
