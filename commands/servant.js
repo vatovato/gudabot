@@ -8,8 +8,6 @@ exports.run = (client, message, args) => {
   var invalidServantName = args.join("+").toLowerCase();
   var searchUrl = "https://www.google.com.ar/search?q=" + invalidServantName + "+site%3Ahttps%3A%2F%2Fapps.atlasacademy.io";
 
-  console.log(`Required adding ${servantName} image to ${username}'s wishlist.`);
-
   fetch('https://api.atlasacademy.io/export/JP/nice_servant_lang_en.json')
     .then(response => response.json())
       .then(data => {
