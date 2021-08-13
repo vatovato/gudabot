@@ -1,8 +1,8 @@
 const { Client, Intents } = require("discord.js");
 
 // Discord.js v13 requires us to pass Intents to specify what events the bot should receive
-// Just give everything for now.
-const botIntents = new Intents(32767);
+// Just give every non-privileged intent for now.
+const botIntents = new Intents(32509);
 
 const client = new Client({ intents: botIntents });
 const fs = require("fs");
