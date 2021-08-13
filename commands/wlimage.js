@@ -3,7 +3,7 @@ exports.run = (client, message, connection, args) => {
   var userID = message.author.id;
   var username = message.author.username;
   const fetch = require('node-fetch');
-  const atlasacademy = require('./atlasapihelper');
+  const atlasacademy = require('./atlasapihelper.js');
 
   var servantClass = atlasacademy.getServantArgument(args);
   if ( servantClass != null ) {
