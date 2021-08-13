@@ -93,23 +93,19 @@ request("http://fate-go.cirnopedia.org/master_mission_us.php#nav", function(erro
 }
 */
 exports.run = (client, message, args) => {
-var request = require('request');
-var cheerio = require('cheerio');
-const Discord = require('discord.js');
 
-var sendMessage = "**Weekly Master Missions**\n\n";
-request("https://grandorder.wiki/Master_Missions", function(error, response, html) {
-  if(!error && response.statusCode == 200) {
-    //$ = cheerio.load('div', '<div id="mw-content-text">...</div>');
-    var $ = cheerio.load(html);
-    var tableWithData = $('table[class=wikitable]').first();
-    var dataRows = $(tableWithData).find('td').toArray();
-    for (let i of dataRows) {
-      sendMessage += $(i).text().trim() + "\n";
+  const fetch = require('node-fetch');
 
-    }
-    message.channel.send(sendMessage);
-    //console.log(tableWithData.html());
-  }
-  });
+  fetch('https://api.atlasacademy.io/export/NA/nice_master_mission.json')
+    .then(response => response.json())
+      .then(data => {
+        var sendMessage = "**Weekly Master Missions**\n\n";
+        for ( var i = 0; i < data[2].missions.length; ++i ) {
+            var count = i+1;
+            var mission = count.toString() + ". " + data[2].missions[i].name + "\n";
+            console.log("Adding Mission: " + mission);
+            sendMessage += mission;
+          }
+        message.channel.send(sendMessage);
+        })
 }
