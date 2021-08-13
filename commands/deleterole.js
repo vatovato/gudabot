@@ -24,4 +24,7 @@ exports.run = (client, message, args) => {
 			message.channel.send("Removed " + message.guild.roles.cache.find(dict[role]).name + " role from user " + message.author.username+".");
 		}
 	}
+	else {
+		message.channel.send("Cannot find role " + role + " in this discord server");
+	}
 }
