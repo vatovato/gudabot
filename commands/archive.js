@@ -18,9 +18,15 @@ exports.run = (client, message, args) => {
 			message.channel.send("You cannot archive that user, because they are a mod/admin. Also, your attempt just pinged them, so, have fun with that.");
 		}
 	} else { //If the caller is not a mod, then they get slapped.
-		if (message.channel.id != "436192216134844447"){ //If the message is from the archive, ignore it completely.
-			message.channel.send(`${message.member.displayname} has tried to send someone to the archive while not being a mod, and has thus thrown themselves to the archive. The irony...`);
-			message.member.roles.add(ArchivedRole).catch(console.error);
+
+		if (message.channel.id == "436192216134844447" && message.member.id == "399159458590228480" ) {
+			message.member.roles.remove(ArchivedRole).catch(console.error); // Sephi can save himself
+		}
+		else {
+			if (message.channel.id != "436192216134844447"){ //If the message is from the archive, ignore it completely.
+				message.channel.send(`${message.member.displayname} has tried to send someone to the archive while not being a mod, and has thus thrown themselves to the archive. The irony...`);
+				message.member.roles.add(ArchivedRole).catch(console.error);
+			}
 		}
 }
 }
