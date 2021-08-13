@@ -16,12 +16,12 @@ exports.run = (client, message, args) => {
 	var role= args.join(" ").toLowerCase();
 	if ( role in dict && message.guild.roles.cache.get(dict[role]) ) {
 		if(!message.member.roles.cache.has(dict[role])){ //If they don't have the role, do nothing
-			message.channel.send(message.author.username+", you don't have the " + message.guild.roles.cache.find(dict[role]).name + " role.");
+			message.channel.send(message.author.username+", you don't have the " + message.guild.roles.cache.get(dict[role]).name + " role.");
 		}
 		else{
-			console.log("Removing " + message.author.username + " from " + message.guild.roles.cache.find(dict[role]).name + " role.");
+			console.log("Removing " + message.author.username + " from " + message.guild.roles.cache.get(dict[role]).name + " role.");
 			message.member.roles.remove(dict[role]).catch(console.error); //If they do, remove it.
-			message.channel.send("Removed " + message.guild.roles.cache.find(dict[role]).name + " role from user " + message.author.username+".");
+			message.channel.send("Removed " + message.guild.roles.cache.get(dict[role]).name + " role from user " + message.author.username+".");
 		}
 	}
 	else {

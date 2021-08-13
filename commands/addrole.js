@@ -35,9 +35,9 @@ exports.run = (client, message, args) => {
 					message.channel.send(message.author.username+", you're already on the role.");
 				}
 				else{
-					console.log("Adding " + message.author.username + " to " + message.guild.roles.cache.find(dict[role]).name + " role.");
+					console.log("Adding " + message.author.username + " to " + message.guild.roles.cache.get(dict[role]).name + " role.");
 					message.member.roles.add(dict[role]).catch(console.error); //If they don't, add it.
-					message.channel.send("Added " + message.guild.roles.cache.find(dict[role]).name + " role to user " + message.author.username+".");
+					message.channel.send("Added " + message.guild.roles.cache.get(dict[role]).name + " role to user " + message.author.username+".");
 				}
 				break;
 			default: //when the args are not a valid role
