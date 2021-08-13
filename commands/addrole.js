@@ -11,7 +11,7 @@ exports.run = (client, message, args) => {
 	var role= args.join(" ").toLowerCase();
 	switch(role){ //Check what role the user requested
 		case "notifications": //Notifications
-			if(message.member.roles.has(NotificationsID)){ //If they're on the role, do nothing.
+			if(message.member.roles.cache.has(NotificationsID)){ //If they're on the role, do nothing.
 				message.channel.send(message.author.username+", you're already on the role.");
 			}
 			else{
@@ -27,7 +27,7 @@ exports.run = (client, message, args) => {
 		case "caster":
 		case "assassin":
 		case "berserker": //For all Class Roles
-			if(message.member.roles.has(SaberID)||message.member.roles.has(LancerID)||message.member.roles.has(ArcherID)||message.member.roles.has(RiderID)||message.member.roles.has(CasterID)||message.member.roles.has(AssassinID)||message.member.roles.has(BerserkerID)){//Check if the user has a Class Role already.
+			if(message.member.roles.cache.has(SaberID)||message.member.roles.cache.has(LancerID)||message.member.roles.cache.has(ArcherID)||message.member.roles.cache.has(RiderID)||message.member.roles.cache.has(CasterID)||message.member.roles.cache.has(AssassinID)||message.member.roles.cache.has(BerserkerID)){//Check if the user has a Class Role already.
 				message.channel.send(message.author.username+", you already have a Class.");
 			}
 			else{ //If the user does not have a class, then add them to the requested class.
