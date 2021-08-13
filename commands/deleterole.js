@@ -16,7 +16,7 @@ exports.run = (client, message, args) => {
 			}
 			else{
 				console.log("Removing " + message.author.username + " from Notifications role.");
-				message.member.removeRole(NotificationsID).catch(console.error); //If they do, remove it.
+				message.member.roles.remove(NotificationsID).catch(console.error); //If they do, remove it.
 				message.channel.send("Removed Notifications role from user " + message.author.username+".");
 			}
 			break;
@@ -26,7 +26,7 @@ exports.run = (client, message, args) => {
 			}
 			else{
 				console.log("Removing " + message.author.username + " from Saber role.");
-				message.member.removeRole(SaberID).catch(console.error); //If they do, remove it.
+				message.member.roles.remove(SaberID).catch(console.error); //If they do, remove it.
 				message.channel.send("Removed Saber role from user " + message.author.username+".");
 			}
 			break;
@@ -36,7 +36,7 @@ exports.run = (client, message, args) => {
 			}
 			else{
 				console.log("Removing " + message.author.username + " from Lancer role.");
-				message.member.removeRole(LancerID).catch(console.error); //If they do, remove it.
+				message.member.roles.remove(LancerID).catch(console.error); //If they do, remove it.
 				message.channel.send("Removed Lancer role from user " + message.author.username+".");
 			}
 			break;
@@ -46,7 +46,7 @@ exports.run = (client, message, args) => {
 			}
 			else{
 				console.log("Removing " + message.author.username + " from Archer role.");
-				message.member.removeRole(ArcherID).catch(console.error); //If they do, remove it.
+				message.member.roles.remove(ArcherID).catch(console.error); //If they do, remove it.
 				message.channel.send("Removed Archer role from user " + message.author.username+".");
 			}
 			break;
@@ -56,7 +56,7 @@ exports.run = (client, message, args) => {
 			}
 			else{
 				console.log("Removing " + message.author.username + " from Rider role.");
-				message.member.removeRole(RiderID).catch(console.error); //If they do, remove it.
+				message.member.roles.remove(RiderID).catch(console.error); //If they do, remove it.
 				message.channel.send("Removed Rider role from user " + message.author.username+".");
 			}
 			break;
@@ -66,7 +66,7 @@ exports.run = (client, message, args) => {
 			}
 			else{
 				console.log("Removing " + message.author.username + " from Caster role.");
-				message.member.removeRole(CasterID).catch(console.error); //If they do, remove it.
+				message.member.roles.remove(CasterID).catch(console.error); //If they do, remove it.
 				message.channel.send("Removed Caster role from user " + message.author.username+".");
 			}
 			break;
@@ -76,7 +76,7 @@ exports.run = (client, message, args) => {
 			}
 			else{
 				console.log("Removing " + message.author.username + " from Assassin role.");
-				message.member.removeRole(AssassinID).catch(console.error); //If they do, remove it.
+				message.member.roles.remove(AssassinID).catch(console.error); //If they do, remove it.
 				message.channel.send("Removed Assassin role from user " + message.author.username+".");
 			}
 			break;
@@ -86,7 +86,7 @@ exports.run = (client, message, args) => {
 			}
 			else{
 				console.log("Removing " + message.author.username + " from Berserker role.");
-				message.member.removeRole(BerserkerID).catch(console.error); //If they do, remove it.
+				message.member.roles.remove(BerserkerID).catch(console.error); //If they do, remove it.
 				message.channel.send("Removed Berserker role from user " + message.author.username+".");
 			}
 			break;
