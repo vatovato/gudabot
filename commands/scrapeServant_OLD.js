@@ -109,7 +109,7 @@ request("http://fate-go.cirnopedia.org/servant_all.php#nav", function(error, res
     .addField("Cards", servant.cards)
     .addField(servant.np, servant.npDesc)
 
-    message.channel.send(embeds: [embed]);
+    message.channel.send({embeds: [embed]});
     }
 
   });

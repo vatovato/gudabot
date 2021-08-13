@@ -92,7 +92,7 @@ exports.run = (client, message, args) => {
         .addField("HP", bondCE.hp, true)
         .addField("ATK", bondCE.atk, true)
         .addField("Effect", bondCE.effect)
-        message.channel.send(embeds: [embed]);
+        message.channel.send({embeds: [embed]});
   }
 });
 }
