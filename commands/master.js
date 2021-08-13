@@ -96,17 +96,16 @@ exports.run = (client, message, args) => {
 
   const fetch = require('node-fetch');
 
-  var sendMessage = "**Weekly Master Missions**\n\n";
-
   fetch('https://api.atlasacademy.io/export/NA/nice_master_mission.json')
     .then(response => response.json())
       .then(data => {
+        var sendMessage = "**Weekly Master Missions**\n\n";
         for ( var i = 0; i < data[2].missions.length; ++i ) {
             var count = i+1;
             var mission = count.toString() + ". " + data[2].missions[i].name + "\n";
             console.log("Adding Mission: " + mission);
             sendMessage += mission;
           }
+        message.channel.send(sendMessage);
         })
-  message.channel.send(sendMessage);
 }
