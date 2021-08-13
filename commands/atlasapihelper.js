@@ -31,7 +31,7 @@ module.exports = {
 		else {
 			return null;
 		}
-	}
+	},
   	example: function () {
     	// memes
   	}
