@@ -16,7 +16,7 @@ exports.run = (data, client, message) => {
     npDesc: '',
     growthCurve: '',
     alignments: '',
-    traits:
+    traits: ''
   };
   console.log("Initialise Servant Data");
 
