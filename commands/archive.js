@@ -9,7 +9,7 @@ exports.run = (client, message, args) => {
 		if(!target.permissions.has("KICK_MEMBERS")) {//Check to see if the TARGET is a mod.
 			if(!target.roles.cache.has(ArchivedRole)){//And finally check if the target is already archived
 				message.channel.send(`${target.displayname} has proven to be a troublemaker (or a dabber), and has been summarily archived. Consider this lesson carefully.`);//If the target was unarchived, archive them.
-				target.addRole(ArchivedRole).catch(console.error);
+				target.roles.add(ArchivedRole).catch(console.error);
 			}else{//If the target was archived, unarchive them.
 				message.channel.send(target.displayname + " has been released from the Archive. Pending good behavior.");
 				target.roles.remove(ArchivedRole).catch(console.error);
