@@ -2,6 +2,7 @@ exports.run = (client, message, args) => {
 
 	var dict = {};
 
+	// Servant classes
 	dict["saber"]='465534758827589642';
 	dict["lancer"]='465552289684520970';
 	dict["archer"]='465552334580088832';
@@ -9,6 +10,9 @@ exports.run = (client, message, args) => {
 	dict["caster"]='465552490952261652';
 	dict["assassin"]='465552550138216478';
 	dict["berserker"]='465552649446752261';
+	const servantList = ["saber", "lancer", "archer", "rider", "caster", "assassin", "berserker"];
+
+	// Miscellaneous
 	dict["notifications"]='463714859503058955';
 	dict["mafia"]='869280280467349554';
 	dict["genshin"]='832605314728984606';
@@ -23,10 +27,12 @@ exports.run = (client, message, args) => {
 			case "caster":
 			case "assassin":
 			case "berserker": //For all Class Roles
-				if(message.member.roles.cache.has(dict["saber"])||message.member.roles.cache.has(dict["lancer"])||message.member.roles.cache.has(dict["archer"])||message.member.roles.cache.has(dict["rider"])||message.member.roles.cache.has(dict["caster"])||message.member.roles.cache.has(dict["assassin"])||message.member.roles.cache.has(dict["berserker"])){
-					//If the user has a Class Role already, break out of the switch case early.
-					message.channel.send(message.author.username+", you already have a Class.");
-					break;
+				for (let i = 0; i < servantList.length; i++) {
+					if(message.member.roles.cache.has(dict[servantList[i]]){
+						//If the user has a Class Role already, break out of the switch case early.
+						message.channel.send(message.author.username+", you already have a Class.");
+						break;
+					}
 				}
 			case "notifications": //Notifications
 			case "mafia": //Mafia
