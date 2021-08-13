@@ -1,24 +1,20 @@
-
 exports.run = (client, message, connection, args) => {
+
   var userID = message.author.id;
   var username = message.author.username;
   var nickname = message.member.nickname;
   var request = require('request');
+  const fetch = require('node-fetch');
 
-//Concatenates all args to form the servant name called for the function
+  //Concatenates all args to form the servant name called for the function
   var servantName = args.join(" ").toLowerCase();
   var invalidServantName = args.join("+").toLowerCase();
   var searchUrl = "https://www.google.com.ar/search?q=" + invalidServantName + "+site%3Ahttps%3A%2F%2Fapps.atlasacademy.io";
-  //Stores the 3 digit code that identifies a Servant in cirno
-  var urlRef = '';
 
   //URL for the servant called in servantName
   var servantUrl ='';
-  var client = client;
-  var message = message;
-  console.log(`Required adding ${servantName} image to ${username}'s wishlist.`);
 
-  var fetch = require('node-fetch');
+  console.log(`Required adding ${servantName} image to ${username}'s wishlist.`);
 
   fetch('https://api.atlasacademy.io/export/JP/nice_servant_lang_en.json')
     .then(response => response.json())
