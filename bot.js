@@ -52,7 +52,7 @@ fs.readdir("./events/", (err, files) => {
     });
 });
 
-client.on("message", message => {
+client.on("messageCreate", message => {
     if (message.author.bot) return;
     if (message.content.indexOf(process.env.PREFIX) !== 0) return;
 
