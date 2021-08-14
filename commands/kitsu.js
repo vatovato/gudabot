@@ -228,7 +228,7 @@ function createUserEmbed(message, type, item, waifu = null, stats = null, favour
 	.setTitle(item.name)
 	.setThumbnail(item.avatar ? item.avatar : "https://kitsu.io/kitsu-256-ed442f7567271af715884ca3080e8240.png")
 	.setURL("https://kitsu.io/users/" + item.slug)
-	.addField("Waifu", waifu ? waifu.canonicalName : "N/A", true)
+	.addField("Waifu", waifu ? waifu.attributes.canonicalName : "N/A", true)
 	.addField("Anime Finished", stats ? stats[0].attributes.statsData.completed : "0", true)
 	.addField("Most Watched Genre", animeCategoryString + " (" + animeCategoryCount.toString() + ")", true)
 	.addField("Content Rated", item.ratingsCount.toString(), true)
