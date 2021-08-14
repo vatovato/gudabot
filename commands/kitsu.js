@@ -105,6 +105,12 @@ async function handleKitsuCommand(message, commandString, args) {
 function createEmbed(message, type, item, genres = null) {
 	const Discord = require('discord.js');
 
+	const contentFilter = {
+	'hentai': 1,
+	'doujinshi': 2, 
+	'yaoi': 3
+	}
+
 	switch(type) {
 		case 'anime':
 		case 'manga':
@@ -113,7 +119,7 @@ function createEmbed(message, type, item, genres = null) {
 			if ( genres != null ) {
 				for (var i = 0; i < genres.length; ++i) {
 					genreString += (i > 0 ? ", " : "" ) + genres[i].attributes.name;
-					if ( genres[i].attributes.name.toLowerCase() == 'hentai' || genres[i].attributes.name.toLowerCase() == 'doujinshi' ) {
+					if ( genres[i].attributes.name.toLowerCase() in contentFilter ) {
 						message.channel.send(`Kitsu: Hentai content has been disabled, search result cannot be displayed.`);
 						return;
 					}
