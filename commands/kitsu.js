@@ -37,7 +37,7 @@ exports.run = (client, message, args) => {
 					fetch(searchUrl)
 					.then(response => response.json())
 						.then(data => {
-							if ( data.length ) {
+							if ( data.length != 0 ) {
 								const bestResult = data[0].attributes;
 								const embed = new Discord.MessageEmbed()
 								.setTitle(bestResult.canonicalTitle + "(" + bestResult.startDate.slice(0, 4) + ")")
@@ -51,7 +51,7 @@ exports.run = (client, message, args) => {
 								message.channel.send({embeds: [embed]});
 							}
 							else {
-								message.channel.send(`Kitsu: couldn't find a result with the search term "${commandString}"`);
+								message.channel.send(`Kitsu: couldn't find a result with the search term "${searchPrompt}"`);
 							}
 						})
 					break;
