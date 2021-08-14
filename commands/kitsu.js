@@ -50,17 +50,23 @@ async function handleKitsuCommand(message, commandString, args) {
 			if ( searchPrompt.length ) {
 				var searchUrl = "https://kitsu.io/api/edge/" + commandString + "?filter[text]=" + searchPrompt;
 				console.log("Querying " + searchUrl);
-				fetch(searchUrl)
-				.then(response => response.json())
-				.then(data => {
+
+				try {
+					const response = await fetch(searchUrl);
+					const data = await response.json();
+
 					console.log("Found " + data.meta.count.toString() + " results");
 					if ( data.meta.count > 0 ) {
-						createEmbed(message, commandString, data.data[0].attributes);
+						const genreResponse = await fetch(data.data[0].relationships.genres.links.related);
+						const genreData = await genreResponse.json();
+						createEmbed(message, commandString, data.data[0].attributes, genreData.data);
 					}
 					else {
 						message.channel.send(`Kitsu: couldn't find a result with the search term "${searchPrompt}"`);
 					}
-				})
+				} catch(err) {
+					console.log(err);
+				}
 			}
 			else {
 				message.channel.send(`Kitsu: Searching a random ${commandString}`);
@@ -85,12 +91,20 @@ async function handleKitsuCommand(message, commandString, args) {
 }
 
 // Handle JSON data and embed message here
-function createEmbed(message, type, item) {
+function createEmbed(message, type, item, genres = null) {
 	const Discord = require('discord.js');
 
 	switch(type) {
 		case 'anime':
 		case 'manga':
+			
+			var genreString = '';
+			if ( genres != null ) {
+				for (var i = 0; i < genres.length; ++i) {
+					genreString += (i > 0 ? ", " : "" ) + genres[i].attributes.name;
+				}
+			}
+
 			const embed = new Discord.MessageEmbed()
 			.setTitle(item.canonicalTitle + " (" + item.startDate.slice(0, 4) + ")")
 			.setThumbnail(item.posterImage.tiny)
@@ -100,6 +114,7 @@ function createEmbed(message, type, item) {
 			.addField("Approval", item.averageRating ? item.averageRating + "%" : "N/A", true)
 			.addField("Status", item.status ? item.status[0].toUpperCase() + item.status.substring(1) : "N/A", true)
 			.addField("Age Rating", item.ageRating ? item.ageRating + (item.ageRatingGuide ? "- " + item.ageRatingGuide : "") : "N/A", true)
+			.addField("Genres", genreString.length ? genreString : "N/A", true)
 			.addField("Synopsis", item.synopsis.length > 1000 ? item.synopsis.substring(0, 997) + "..." : item.synopsis)
 			message.channel.send({embeds: [embed]});
 		case 'user':
