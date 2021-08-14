@@ -69,24 +69,30 @@ async function handleKitsuCommand(message, commandString, args) {
 					console.log(err);
 				}
 			}
-			else if ( commandString != 'manga' ) {
+			else {
 				message.channel.send(`Kitsu: Searching a random ${commandString}`);
 				console.log("Querying the api for a random result");
-				fetch("https://kitsu.io/api/edge/" + commandString)
-				.then(response => response.json())
-				.then(data => {
-					//console.log("Found " + data.meta.count.toString() + " results");
+				try {
+					// Query manga/anime for total number of entries
+					const response = await fetch("https://kitsu.io/api/edge/" + commandString);
+					const data = await response.json();
+
+					// Lookup a random entry
 					var randomNumber = Math.floor(Math.random() * data.meta.count);
 					console.log("Querying " + "https://kitsu.io/api/edge/" + commandString + "?page[limit]=1&page[offset]=" + randomNumber.toString());
-					fetch("https://kitsu.io/api/edge/" + commandString + "?page[limit]=1&page[offset]=" + randomNumber.toString())
-					.then(response => response.json())
-					.then(randomItem => {
-						createEmbed(message, commandString, randomItem.data[0].attributes);
-					})
-				})
-			}
-			else {
-				message.channel.send(`Kitsu: Random manga lookup has been disabled as the Kitsu API doesn't let me filter questionable content out`);
+					const randResponse = await fetch("https://kitsu.io/api/edge/" + commandString + "?page[limit]=1&page[offset]=" + randomNumber.toString());
+					const randItem = await response.json();
+					
+					// Query Genres
+					console.log("Querying " + randItem.data[0].relationships.genres.links.related);
+					const genreResponse = await fetch(randItem.data[0].relationships.genres.links.related);
+					const genreData = await genreResponse.json();
+
+					createEmbed(message, commandString, randomItem.data[0].attributes);
+
+				} catch(err) {
+					console.log(err);
+				}
 			}
 			break;
 		case 'user':
@@ -107,6 +113,9 @@ function createEmbed(message, type, item, genres = null) {
 			if ( genres != null ) {
 				for (var i = 0; i < genres.length; ++i) {
 					genreString += (i > 0 ? ", " : "" ) + genres[i].attributes.name;
+					if ( genres[i].attributes.name.toLowerCase() == 'hentai' ) {
+						message.channel.send(`Kitsu: Hentai content has been disabled, search result cannot be displayed.`);
+					}
 				}
 			} else {
 				console.log("No genres found");
