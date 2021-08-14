@@ -10,8 +10,8 @@ exports.run = (client, message, args) => {
 	}
 	const kitsuDetails = {
 	'help': 'Shows a list of available commands',
-	'anime': 'Returns an anime that matches the search prompt', 
-	'manga': 'Returns a manga that matches the search prompt',
+	'anime': 'Search an anime. If no search terms are given, a random one will be returned', 
+	'manga': 'search a manga. If no search terms are given, a random one will be returned',
 	'user': 'Shows info about a specific user'
 	}
 
