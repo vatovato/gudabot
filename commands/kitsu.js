@@ -18,7 +18,7 @@ exports.run = (client, message, args) => {
 	if ( args.length ) {
 		const commandString = args.shift();
 		if ( commandString in kitsuCommands ) {
-			handleKitsuCommand(message, commandString, args).then(resp => console.log(resp)).catch(e => console.log(e));
+			handleKitsuCommand(message, commandString, args).then(console.log("API Query succeeded")).catch(e => console.log(e));
 		}
 		else {
 			message.channel.send(`Kitsu: command ${commandString} not recognised.\nUse '!kitsu help' for a list of available commands.`);
@@ -49,8 +49,8 @@ async function handleKitsuCommand(message, commandString, args) {
 			const searchPrompt = encodeURIComponent(args.join(" "));
 			if ( searchPrompt.length ) {
 				var searchUrl = "https://kitsu.io/api/edge/" + commandString + "?filter[text]=" + searchPrompt;
-				console.log("Querying " + searchUrl);
 
+				console.log("Querying " + searchUrl);
 				try {
 					const response = await fetch(searchUrl);
 					const data = await response.json();
@@ -116,10 +116,10 @@ function createEmbed(message, type, item, genres = null) {
 			.addField("Popularity Rank", item.popularityRank ? item.popularityRank.toString() : "N/A", true)
 			.addField("Rating Rank", item.ratingRank ? item.ratingRank.toString() : "N/A", true)
 			.addField("Approval", item.averageRating ? item.averageRating + "%" : "N/A", true)
-			.addField("Status", item.status ? item.status[0].toUpperCase() + item.status.substring(1) : "N/A", true)
 			.addField("Age Rating", item.ageRating ? item.ageRating + (item.ageRatingGuide ? "- " + item.ageRatingGuide : "") : "N/A", true)
 			.addField("Genres", genreString.length ? genreString : "N/A", true)
-			.addField("Synopsis", item.synopsis.length > 1000 ? item.synopsis.substring(0, 997) + "..." : item.synopsis)
+			.addField("Status", item.status ? item.status[0].toUpperCase() + item.status.substring(1) : "N/A", true)
+			.addField("Synopsis", item.synopsis.length ? (item.synopsis.length > 1000 ? item.synopsis.substring(0, 997) + "..." : item.synopsis) : "N/A")
 			message.channel.send({embeds: [embed]});
 		case 'user':
 		default:
