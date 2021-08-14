@@ -83,8 +83,10 @@ exports.run = (client, message, args) => {
 	}
 }
 
-// Handle the embed message here
+// Handle JSON data and embed message here
 function createEmbed(type, item) {
+	const Discord = require('discord.js');
+
 	switch(type) {
 		case 'anime':
 		case 'manga':
