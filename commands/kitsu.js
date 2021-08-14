@@ -53,7 +53,13 @@ exports.run = (client, message, args) => {
 			message.channel.send(`Invalid Servant name. Try Google: ${searchUrl}`);
 			})*/
   } else {
-		message.channel.send(`Kitsu: ${args[0]} argument not recognised. 
-							 Use "!kitsu help" for a list of available commands.`);
+		var errorString = '';
+		if ( args.length ) {
+			errorString += `Kitsu: ${args[0].toLowerCase()} argument not recognised.`;
+		} else {
+			errorString += `Kitsu: no argument found.`;
+		}
+		errorString += "\nUse '!kitsu help' for a list of available commands."
+		message.channel.send(errorString);
   }
 }
