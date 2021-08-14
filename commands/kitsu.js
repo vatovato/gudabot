@@ -45,7 +45,7 @@ exports.run = (client, message, args) => {
 								if ( data.meta.count > 0 ) {
 									//const bestResult = data.data[0].attributes;
 
-									createEmbed(commandString, data.data[0].attributes);
+									createEmbed(message, commandString, data.data[0].attributes);
 
 									/*
 									const embed = new Discord.MessageEmbed()
@@ -84,7 +84,7 @@ exports.run = (client, message, args) => {
 }
 
 // Handle JSON data and embed message here
-function createEmbed(type, item) {
+function createEmbed(message, type, item) {
 	const Discord = require('discord.js');
 
 	switch(type) {
