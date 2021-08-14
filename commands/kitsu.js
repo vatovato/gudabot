@@ -110,7 +110,7 @@ function createEmbed(message, type, item, genres = null) {
 
 			// Send embed to channel
 			const embed = new Discord.MessageEmbed()
-			.setTitle(item.canonicalTitle + " (" + item.startDate.slice(0, 4) + ")")
+			.setTitle(item.canonicalTitle + " (" + (item.startDate ? item.startDate.slice(0, 4) : "N/A") + ")")
 			.setThumbnail(item.posterImage.tiny)
 			.setURL("https://kitsu.io/" + type + "/" + item.slug)
 			.addField("Popularity Rank", item.popularityRank ? item.popularityRank.toString() : "N/A", true)
