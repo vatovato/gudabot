@@ -69,7 +69,7 @@ async function handleKitsuCommand(message, commandString, args) {
 					console.log(err);
 				}
 			}
-			else {
+			else if ( commandString != 'manga' ) {
 				message.channel.send(`Kitsu: Searching a random ${commandString}`);
 				console.log("Querying the api for a random result");
 				fetch("https://kitsu.io/api/edge/" + commandString)
@@ -84,6 +84,9 @@ async function handleKitsuCommand(message, commandString, args) {
 						createEmbed(message, commandString, randomItem.data[0].attributes);
 					})
 				})
+			}
+			else {
+				message.channel.send(`Kitsu: Random manga lookup has been disabled as the Kitsu API doesn't let me filter questionable content out`);
 			}
 			break;
 		case 'user':
