@@ -20,7 +20,7 @@ exports.run = (client, message, args) => {
 	if ( args.length ) {
 		const commandString = args.shift();
 		if ( commandString in kitsuCommands ) {
-			handleKitsuCommand(message, commandString).then(resp => console.log(resp)).catch(e => console.log(e));
+			handleKitsuCommand(message, commandString, args).then(resp => console.log(resp)).catch(e => console.log(e));
 		}
 		else {
 			message.channel.send(`Kitsu: command ${commandString} not recognised.\nUse '!kitsu help' for a list of available commands.`);
@@ -32,7 +32,7 @@ exports.run = (client, message, args) => {
 }
 
 // Asynchronous function that queries the Kitsu api
-async function handleKitsuCommand(message, commandString) {
+async function handleKitsuCommand(message, commandString, args) {
 	switch(commandString.toLowerCase()) {
 		case 'help':
 			const embed = new Discord.MessageEmbed()
