@@ -1,5 +1,5 @@
 exports.run = (client, message, args) => {
-
+  const Discord = require('discord.js');
   const fetch = require('node-fetch');
 
   // Possible arguments
