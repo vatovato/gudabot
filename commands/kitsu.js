@@ -20,56 +20,7 @@ exports.run = (client, message, args) => {
 	if ( args.length ) {
 		const commandString = args.shift();
 		if ( commandString in kitsuCommands ) {
-			switch(commandString.toLowerCase()) {
-				case 'help':
-					const embed = new Discord.MessageEmbed()
-					.setTitle("Kitsu Commands")
-					.setThumbnail("https://kitsu.io/kitsu-256-ed442f7567271af715884ca3080e8240.png")
-					.setURL("https://kitsu.io/");
-					for ( const [key, value] of Object.entries(kitsuCommands) ) {
-						embed.addField(value,kitsuDetails[key]);
-					}
-					message.channel.send({embeds: [embed]});
-					break;
-				case 'anime':
-				case 'manga':
-					//Concatenates all remaining args to form the search prompt, if there are any
-					const searchPrompt = encodeURIComponent(args.join(" "));
-					if ( searchPrompt.length ) {
-						var searchUrl = "https://kitsu.io/api/edge/" + commandString + "?filter[text]=" + searchPrompt;
-						console.log("Querying " + searchUrl);
-						fetch(searchUrl)
-						.then(response => response.json())
-						.then(data => {
-							console.log("Found " + data.meta.count.toString() + " results");
-							if ( data.meta.count > 0 ) {
-								createEmbed(message, commandString, data.data[0].attributes);
-							}
-							else {
-								message.channel.send(`Kitsu: couldn't find a result with the search term "${searchPrompt}"`);
-							}
-						})
-					}
-					else {
-						message.channel.send(`Kitsu: Searching a random ${commandString}`);
-						console.log("Querying the api for a random result");
-						fetch("https://kitsu.io/api/edge/" + commandString)
-						.then(response => response.json())
-						.then(data => {
-							console.log("Found " + data.meta.count.toString() + " results");
-							var randomNumber = Math.floor(Math.random() * data.meta.count);
-							fetch("https://kitsu.io/api/edge/" + commandString + "?page[limit]=1&page[offset]=" + randomNumber.toString())
-							.then(response => response.json())
-							.then(randomItem => {
-								createEmbed(message, commandString, randomItem.data[0].attributes);
-							})
-						})
-					}
-					break;
-				case 'user':
-				default:
-					break;
-			}
+			handleKitsuCommand(message, commandString).then(resp => console.log(resp)).catch(e => console.log(e));
 		}
 		else {
 			message.channel.send(`Kitsu: command ${commandString} not recognised.\nUse '!kitsu help' for a list of available commands.`);
@@ -77,6 +28,60 @@ exports.run = (client, message, args) => {
 	} 
 	else {
 		message.channel.send("Kitsu: no argument found.\nUse '!kitsu help' for a list of available commands.");
+	}
+}
+
+// Asynchronous function that queries the Kitsu api
+async function handleKitsuCommand(message, commandString) {
+	switch(commandString.toLowerCase()) {
+		case 'help':
+			const embed = new Discord.MessageEmbed()
+			.setTitle("Kitsu Commands")
+			.setThumbnail("https://kitsu.io/kitsu-256-ed442f7567271af715884ca3080e8240.png")
+			.setURL("https://kitsu.io/");
+			for ( const [key, value] of Object.entries(kitsuCommands) ) {
+				embed.addField(value,kitsuDetails[key]);
+			}
+			message.channel.send({embeds: [embed]});
+			break;
+		case 'anime':
+		case 'manga':
+			//Concatenates all remaining args to form the search prompt, if there are any
+			const searchPrompt = encodeURIComponent(args.join(" "));
+			if ( searchPrompt.length ) {
+				var searchUrl = "https://kitsu.io/api/edge/" + commandString + "?filter[text]=" + searchPrompt;
+				console.log("Querying " + searchUrl);
+				fetch(searchUrl)
+				.then(response => response.json())
+				.then(data => {
+					console.log("Found " + data.meta.count.toString() + " results");
+					if ( data.meta.count > 0 ) {
+						createEmbed(message, commandString, data.data[0].attributes);
+					}
+					else {
+						message.channel.send(`Kitsu: couldn't find a result with the search term "${searchPrompt}"`);
+					}
+				})
+			}
+			else {
+				message.channel.send(`Kitsu: Searching a random ${commandString}`);
+				console.log("Querying the api for a random result");
+				fetch("https://kitsu.io/api/edge/" + commandString)
+				.then(response => response.json())
+				.then(data => {
+					console.log("Found " + data.meta.count.toString() + " results");
+					var randomNumber = Math.floor(Math.random() * data.meta.count);
+					fetch("https://kitsu.io/api/edge/" + commandString + "?page[limit]=1&page[offset]=" + randomNumber.toString())
+					.then(response => response.json())
+					.then(randomItem => {
+						createEmbed(message, commandString, randomItem.data[0].attributes);
+					})
+				})
+			}
+			break;
+		case 'user':
+		default:
+			break;
 	}
 }
 
