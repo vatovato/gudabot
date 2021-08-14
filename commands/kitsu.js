@@ -1,7 +1,5 @@
 // Called by bot.js when kitsu command is given
 exports.run = (client, message, args) => {
-	const Discord = require('discord.js');
-	const fetch = require('node-fetch');
 
 	// Possible arguments
 	const kitsuCommands = {
@@ -33,6 +31,7 @@ exports.run = (client, message, args) => {
 
 // Asynchronous function that queries the Kitsu api
 async function handleKitsuCommand(message, commandString, args) {
+	const fetch = require('node-fetch');
 	switch(commandString.toLowerCase()) {
 		case 'help':
 			const embed = new Discord.MessageEmbed()
