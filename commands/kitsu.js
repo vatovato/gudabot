@@ -10,8 +10,8 @@ exports.run = (client, message, args) => {
 	}
 	const kitsuDetails = {
 	'help': 'Shows a list of available commands',
-	'anime': 'Returns an anime that matches the search prompt', 
-	'manga': 'Returns a manga that matches the search prompt',
+	'anime': 'Search an anime. If no search terms are given, a random one will be returned', 
+	'manga': 'search a manga. If no search terms are given, a random one will be returned',
 	'user': 'Shows info about a specific user'
 	}
 
@@ -75,8 +75,9 @@ async function handleKitsuCommand(message, commandString, args) {
 				fetch("https://kitsu.io/api/edge/" + commandString)
 				.then(response => response.json())
 				.then(data => {
-					console.log("Found " + data.meta.count.toString() + " results");
+					//console.log("Found " + data.meta.count.toString() + " results");
 					var randomNumber = Math.floor(Math.random() * data.meta.count);
+					console.log("Querying " + "https://kitsu.io/api/edge/" + commandString + "?page[limit]=1&page[offset]=" + randomNumber.toString());
 					fetch("https://kitsu.io/api/edge/" + commandString + "?page[limit]=1&page[offset]=" + randomNumber.toString())
 					.then(response => response.json())
 					.then(randomItem => {
@@ -110,16 +111,16 @@ function createEmbed(message, type, item, genres = null) {
 
 			// Send embed to channel
 			const embed = new Discord.MessageEmbed()
-			.setTitle(item.canonicalTitle + " (" + item.startDate.slice(0, 4) + ")")
+			.setTitle(item.canonicalTitle + " (" + (item.startDate ? item.startDate.slice(0, 4) : "N/A") + ")")
 			.setThumbnail(item.posterImage.tiny)
 			.setURL("https://kitsu.io/" + type + "/" + item.slug)
 			.addField("Popularity Rank", item.popularityRank ? item.popularityRank.toString() : "N/A", true)
 			.addField("Rating Rank", item.ratingRank ? item.ratingRank.toString() : "N/A", true)
 			.addField("Approval", item.averageRating ? item.averageRating + "%" : "N/A", true)
-			.addField("Age Rating", item.ageRating ? item.ageRating + (item.ageRatingGuide ? "- " + item.ageRatingGuide : "") : "N/A", true)
 			.addField("Genres", genreString.length ? genreString : "N/A", true)
+			.addField("Age Rating", item.ageRating ? item.ageRating + (item.ageRatingGuide ? "- " + item.ageRatingGuide : "") : "N/A", true)
 			.addField("Status", item.status ? item.status[0].toUpperCase() + item.status.substring(1) : "N/A", true)
-			.addField("Synopsis", item.synopsis.length ? (item.synopsis.length > 1000 ? item.synopsis.substring(0, 997) + "..." : item.synopsis) : "N/A")
+			.addField("Synopsis", item.synopsis && item.synopsis.trim() ? (item.synopsis.length > 1000 ? item.synopsis.substring(0, 997) + "..." : item.synopsis) : "N/A")
 			message.channel.send({embeds: [embed]});
 		case 'user':
 		default:
