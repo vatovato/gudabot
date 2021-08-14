@@ -113,8 +113,9 @@ function createEmbed(message, type, item, genres = null) {
 			if ( genres != null ) {
 				for (var i = 0; i < genres.length; ++i) {
 					genreString += (i > 0 ? ", " : "" ) + genres[i].attributes.name;
-					if ( genres[i].attributes.name.toLowerCase() == 'hentai' ) {
+					if ( genres[i].attributes.name.toLowerCase() == 'hentai' || genres[i].attributes.name.toLowerCase() == 'doujinshi' ) {
 						message.channel.send(`Kitsu: Hentai content has been disabled, search result cannot be displayed.`);
+						return;
 					}
 				}
 			} else {
