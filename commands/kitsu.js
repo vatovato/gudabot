@@ -40,33 +40,30 @@ exports.run = (client, message, args) => {
 						console.log("Querying " + searchUrl);
 						fetch(searchUrl)
 						.then(response => response.json())
-							.then(data => {
-								console.log("Found " + data.meta.count.toString() + " results");
-								if ( data.meta.count > 0 ) {
-									//const bestResult = data.data[0].attributes;
-
-									createEmbed(message, commandString, data.data[0].attributes);
-
-									/*
-									const embed = new Discord.MessageEmbed()
-									.setTitle(bestResult.canonicalTitle + " (" + bestResult.startDate.slice(0, 4) + ")")
-									.setThumbnail(bestResult.posterImage.tiny)
-									.setURL("https://kitsu.io/" + commandString + "/" + bestResult.slug)
-									.addField("Popularity Rank", bestResult.popularityRank ? bestResult.popularityRank.toString() : "N/A", true)
-									.addField("Rating Rank", bestResult.ratingRank ? bestResult.ratingRank.toString() : "N/A", true)
-									.addField("Approval", bestResult.averageRating ? bestResult.averageRating + "%" : "N/A", true)
-									.addField("Status", bestResult.status ? bestResult.status[0].toUpperCase() + bestResult.status.substring(1) : "N/A", true)
-									.addField("Age Rating", bestResult.ageRating ? bestResult.ageRating + (bestResult.ageRatingGuide ? "- " + bestResult.ageRatingGuide : "") : "N/A", true)
-									.addField("Synopsis", bestResult.synopsis.length > 1000 ? bestResult.synopsis.substring(0, 997) + "..." : bestResult.synopsis)
-									message.channel.send({embeds: [embed]});*/
-								}
-								else {
-									message.channel.send(`Kitsu: couldn't find a result with the search term "${searchPrompt}"`);
-								}
-							})
+						.then(data => {
+							console.log("Found " + data.meta.count.toString() + " results");
+							if ( data.meta.count > 0 ) {
+								createEmbed(message, commandString, data.data[0].attributes);
+							}
+							else {
+								message.channel.send(`Kitsu: couldn't find a result with the search term "${searchPrompt}"`);
+							}
+						})
 					}
 					else {
-						message.channel.send(`Kitsu: no search terms have been given`);
+						message.channel.send(`Kitsu: Searching a random ${commandString}`);
+						console.log("Querying the api for a random result");
+						fetch("https://kitsu.io/api/edge/" + commandString)
+						.then(response => response.json())
+						.then(data => {
+							console.log("Found " + data.meta.count.toString() + " results");
+							var randomNumber = Math.floor(Math.random() * data.meta.count);
+							fetch("https://kitsu.io/api/edge/" + commandString + "?page[limit]=1&page[offset]=" + randomNumber.toString())
+							.then(response => response.json())
+							.then(randomItem => {
+								createEmbed(message, commandString, randomItem.data[0].attributes);
+							})
+						})
 					}
 					break;
 				case 'user':
