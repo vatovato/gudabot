@@ -76,8 +76,8 @@ async function handleKitsuCommand(message, commandString, args) {
 				.then(response => response.json())
 				.then(data => {
 					//console.log("Found " + data.meta.count.toString() + " results");
-					console.log("Querying " + "https://kitsu.io/api/edge/" + commandString + "?page[limit]=1&page[offset]=" + randomNumber.toString());
 					var randomNumber = Math.floor(Math.random() * data.meta.count);
+					console.log("Querying " + "https://kitsu.io/api/edge/" + commandString + "?page[limit]=1&page[offset]=" + randomNumber.toString());
 					fetch("https://kitsu.io/api/edge/" + commandString + "?page[limit]=1&page[offset]=" + randomNumber.toString())
 					.then(response => response.json())
 					.then(randomItem => {
