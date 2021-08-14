@@ -33,7 +33,7 @@ exports.run = (client, message, args) => {
 					//Concatenates all remaining args to form the search prompt, if there are any
 					const searchPrompt = encodeURIComponent(args.join(" "));
 					if ( searchPrompt.length ) {
-						var searchUrl = "https://kitsu.io/api/edge/" + commandString + "?" + searchPrompt;
+						var searchUrl = "https://kitsu.io/api/edge/" + commandString + "?filter[text]=" + searchPrompt;
 						console.log("Querying " + searchUrl);
 						fetch(searchUrl)
 						.then(response => response.json())
