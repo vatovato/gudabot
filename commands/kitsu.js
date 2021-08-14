@@ -230,14 +230,14 @@ function createUserEmbed(message, type, item, waifu = null, stats = null, favour
 	.setURL("https://kitsu.io/users/" + item.slug)
 	.addField("Waifu", waifu ? waifu.attributes.canonicalName : "N/A", true)
 	.addField("Anime Finished", stats ? stats[0].attributes.statsData.completed.toString() : "0", true)
-	.addField("Favorite Anime Genre (Watched)", animeCategoryString + " (" + animeCategoryCount.toString() + ")", true)
+	.addField("Favorite Genre (Watched)", animeCategoryString + " (" + animeCategoryCount.toString() + ")", true)
 	.addField("Content Rated", item.ratingsCount.toString(), true)
 	.addField("Manga Finished", stats ? stats[2].attributes.statsData.completed.toString() : "0", true)
-	.addField("Favorite Manga Genre (Read)", mangaCategoryString + " (" + mangaCategoryCount.toString() + ")", true)
+	.addField("Favorite Genre (Read)", mangaCategoryString + " (" + mangaCategoryCount.toString() + ")", true)
 	.addField("Favorites", "N/A")
 
 	if ( waifu ) {
-		embed.setImage(waifu.attributes.image.original);
+		embed.setImage("https://media.kitsu.io/characters/images/" + waifu.id.toString() + "/original.jpg");
 	}
 
 	message.channel.send({embeds: [embed]});
