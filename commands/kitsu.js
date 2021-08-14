@@ -116,8 +116,8 @@ function createEmbed(message, type, item, genres = null) {
 			.addField("Popularity Rank", item.popularityRank ? item.popularityRank.toString() : "N/A", true)
 			.addField("Rating Rank", item.ratingRank ? item.ratingRank.toString() : "N/A", true)
 			.addField("Approval", item.averageRating ? item.averageRating + "%" : "N/A", true)
-			.addField("Age Rating", item.ageRating ? item.ageRating + (item.ageRatingGuide ? "- " + item.ageRatingGuide : "") : "N/A", true)
 			.addField("Genres", genreString.length ? genreString : "N/A", true)
+			.addField("Age Rating", item.ageRating ? item.ageRating + (item.ageRatingGuide ? "- " + item.ageRatingGuide : "") : "N/A", true)
 			.addField("Status", item.status ? item.status[0].toUpperCase() + item.status.substring(1) : "N/A", true)
 			.addField("Synopsis", item.synopsis ? (item.synopsis.length > 1000 ? item.synopsis.substring(0, 997) + "..." : item.synopsis) : "N/A")
 			message.channel.send({embeds: [embed]});
