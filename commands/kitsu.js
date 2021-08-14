@@ -38,7 +38,7 @@ exports.run = (client, message, args) => {
 					.then(response => response.json())
 						.then(data => {
 							console.log("Found " + data.data.length.toString() + " results");
-							if ( data.data.length ) {
+							if ( data?.data?.length ) {
 								const bestResult = data.data[0].attributes;
 								const embed = new Discord.MessageEmbed()
 								.setTitle(bestResult.canonicalTitle + "(" + bestResult.startDate.slice(0, 4) + ")")
