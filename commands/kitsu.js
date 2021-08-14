@@ -37,8 +37,8 @@ exports.run = (client, message, args) => {
 					fetch(searchUrl)
 					.then(response => response.json())
 						.then(data => {
-							if ( data.length != 0 ) {
-								const bestResult = data[0].attributes;
+							if ( data.data.length != 0 ) {
+								const bestResult = data.data[0].attributes;
 								const embed = new Discord.MessageEmbed()
 								.setTitle(bestResult.canonicalTitle + "(" + bestResult.startDate.slice(0, 4) + ")")
 								.setThumbnail(bestResult.posterImage.tiny)
