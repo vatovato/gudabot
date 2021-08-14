@@ -99,7 +99,7 @@ async function handleKitsuCommand(message, commandString, args) {
 			//Concatenates all remaining args to form the search prompt, if there are any
 			const searchUser = encodeURIComponent(args.join(" "));
 			if ( searchUser.length ) {
-				var searchUrl = "https://kitsu.io/api/edge/users?filter[text]=" + searchUser;
+				var searchUrl = "https://kitsu.io/api/edge/users?filter[name]=" + searchUser + "&include=waifu,stats,favorites";
 
 				console.log("Querying " + searchUrl);
 				try {
