@@ -88,7 +88,7 @@ async function handleKitsuCommand(message, commandString, args) {
 					const genreResponse = await fetch(randItem.data[0].relationships.genres.links.related);
 					const genreData = await genreResponse.json();
 
-					createEmbed(message, commandString, randomItem.data[0].attributes);
+					createEmbed(message, commandString, randItem.data[0].attributes);
 
 				} catch(err) {
 					console.log(err);
