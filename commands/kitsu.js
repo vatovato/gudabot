@@ -97,9 +97,9 @@ async function handleKitsuCommand(message, commandString, args) {
 			break;
 		case 'user':
 			//Concatenates all remaining args to form the search prompt, if there are any
-			const searchPrompt = encodeURIComponent(args.join(" "));
-			if ( searchPrompt.length ) {
-				var searchUrl = "https://kitsu.io/api/edge/users?filter[text]=" + searchPrompt;
+			const searchUser = encodeURIComponent(args.join(" "));
+			if ( searchUser.length ) {
+				var searchUrl = "https://kitsu.io/api/edge/users?filter[text]=" + searchUser;
 
 				console.log("Querying " + searchUrl);
 				try {
@@ -125,7 +125,7 @@ async function handleKitsuCommand(message, commandString, args) {
 						createAnimeEmbed(message, commandString, data.data[0].attributes, waifuData.data, statsData.data, favoritesData.data);
 					}
 					else {
-						message.channel.send(`Kitsu: Couldn't find a user called "${searchPrompt}"`);
+						message.channel.send(`Kitsu: Couldn't find a user called "${searchUser}"`);
 					}
 				} catch(err) {
 					console.log(err);
