@@ -177,7 +177,6 @@ function createAnimeEmbed(message, type, item, genres = null) {
 	.addField("Status", item.status ? item.status[0].toUpperCase() + item.status.substring(1) : "N/A", true)
 	.addField("Synopsis", item.synopsis && item.synopsis.trim() ? (item.synopsis.length > 1000 ? item.synopsis.substring(0, 997) + "..." : item.synopsis) : "N/A")
 	message.channel.send({embeds: [embed]});
-	}
 }
 
 // Handle JSON data and embed user message here
@@ -242,5 +241,4 @@ function createUserEmbed(message, type, item, waifu = null, stats = null, favour
 	}
 
 	message.channel.send({embeds: [embed]});
-	}
 }
