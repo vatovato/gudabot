@@ -84,11 +84,11 @@ async function handleKitsuCommand(message, commandString, args) {
 					const randItem = await randResponse.json();
 					
 					// Query Genres
-					console.log("Querying " + randItem.data[0].relationships.genres.links.related);
+					console.log("Querying " + randItem.data.data[0].relationships.genres.links.related);
 					const genreResponse = await fetch(randItem.data[0].relationships.genres.links.related);
 					const genreData = await genreResponse.json();
 
-					createEmbed(message, commandString, randItem.data[0].attributes);
+					createEmbed(message, commandString, randItem.data[0].attributes, genreData.data);
 
 				} catch(err) {
 					console.log(err);
