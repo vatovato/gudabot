@@ -57,6 +57,7 @@ async function handleKitsuCommand(message, commandString, args) {
 
 					console.log("Found " + data.meta.count.toString() + " results");
 					if ( data.meta.count > 0 ) {
+						console.log("Querying " + data.data[0].relationships.genres.links.related);
 						const genreResponse = await fetch(data.data[0].relationships.genres.links.related);
 						const genreData = await genreResponse.json();
 						createEmbed(message, commandString, data.data[0].attributes, genreData.data);
@@ -97,14 +98,17 @@ function createEmbed(message, type, item, genres = null) {
 	switch(type) {
 		case 'anime':
 		case 'manga':
-			
+			// Parse through genre JSON
 			var genreString = '';
 			if ( genres != null ) {
 				for (var i = 0; i < genres.length; ++i) {
 					genreString += (i > 0 ? ", " : "" ) + genres[i].attributes.name;
 				}
+			} else {
+				console.log("No genres found");
 			}
 
+			// Send embed to channel
 			const embed = new Discord.MessageEmbed()
 			.setTitle(item.canonicalTitle + " (" + item.startDate.slice(0, 4) + ")")
 			.setThumbnail(item.posterImage.tiny)
