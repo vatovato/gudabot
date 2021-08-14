@@ -49,7 +49,7 @@ exports.run = (client, message, args) => {
 									.addField("Rating Rank", bestResult.ratingRank ? bestResult.ratingRank.toString() : "N/A", true)
 									.addField("Approval", bestResult.averageRating ? bestResult.averageRating + "%" : "N/A", true)
 									.addField("Status", bestResult.status ? bestResult.status[0].toUpperCase() + bestResult.status.substring(1) : "N/A", true)
-									.addField("Age Rating", bestResult.ageRating ? bestResult.ageRating : "N/A", true)
+									.addField("Age Rating", bestResult.ageRating ? bestResult.ageRating + bestResult.ageRatingGuide ? "- " + bestResult.ageRatingGuide : "" + : "N/A", true)
 									.addField("Synopsis", bestResult.synopsis.length > 1000 ? bestResult.synopsis.substring(0, 997) + "..." : bestResult.synopsis)
 									message.channel.send({embeds: [embed]});
 								}
