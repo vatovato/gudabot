@@ -81,7 +81,7 @@ async function handleKitsuCommand(message, commandString, args) {
 					var randomNumber = Math.floor(Math.random() * data.meta.count);
 					console.log("Querying " + "https://kitsu.io/api/edge/" + commandString + "?page[limit]=1&page[offset]=" + randomNumber.toString());
 					const randResponse = await fetch("https://kitsu.io/api/edge/" + commandString + "?page[limit]=1&page[offset]=" + randomNumber.toString());
-					const randItem = await response.json();
+					const randItem = await randResponse.json();
 					
 					// Query Genres
 					console.log("Querying " + randItem.data[0].relationships.genres.links.related);
