@@ -33,12 +33,13 @@ exports.run = (client, message, args) => {
 					//Concatenates all remaining args to form the search prompt
 					const searchPrompt = encodeURIComponent(args.join(" "));
 					var searchUrl = "https://kitsu.io/api/edge/" + commandString + "?" + searchPrompt;
+					console.log("Querying " + searchUrl);
 					
 					fetch(searchUrl)
 					.then(response => response.json())
 						.then(data => {
 							console.log("Found " + data.data.length.toString() + " results");
-							if ( data.data.length ) {
+							if ( data.meta.count > 0 ) {
 								const bestResult = data.data[0].attributes;
 								const embed = new Discord.MessageEmbed()
 								.setTitle(bestResult.canonicalTitle + "(" + bestResult.startDate.slice(0, 4) + ")")
