@@ -122,7 +122,7 @@ async function handleKitsuCommand(message, commandString, args) {
 						const favoritesResponse = await fetch(data.data[0].relationships.favorites.links.related);
 						const favoritesData = await favoritesResponse.json();
 
-						createAnimeEmbed(message, commandString, data.data[0].attributes, waifuData.data, statsData.data, favoritesData.data);
+						createUserEmbed(message, commandString, data.data[0].attributes, waifuData.data, statsData.data, favoritesData.data);
 					}
 					else {
 						message.channel.send(`Kitsu: Couldn't find a user called "${searchUser}"`);
