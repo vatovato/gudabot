@@ -19,7 +19,7 @@ exports.run = (client, message, args) => {
 		switch(args[0].toLowerCase()) {
 			case 'help':
 				const embed = new Discord.MessageEmbed()
-				.setTitle(Kitsu Commands)
+				.setTitle("Kitsu Commands")
 				.setThumbnail("https://kitsu.io/kitsu-256-ed442f7567271af715884ca3080e8240.png")
 				.setURL("https://kitsu.io/");
 				for ( const [key, value] of Object.entries(kitsuCommands) ) {
