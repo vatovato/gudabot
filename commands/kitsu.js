@@ -42,12 +42,13 @@ exports.run = (client, message, args) => {
 								if ( data.meta.count > 0 ) {
 									const bestResult = data.data[0].attributes;
 									const embed = new Discord.MessageEmbed()
-									.setTitle(bestResult.canonicalTitle + "(" + bestResult.startDate.slice(0, 4) + ")")
+									.setTitle(bestResult.canonicalTitle + " (" + bestResult.startDate.slice(0, 4) + ")")
 									.setThumbnail(bestResult.posterImage.tiny)
 									.setURL("https://kitsu.io/" + commandString + "/" + bestResult.slug)
 									.addField("Popularity Rank", bestResult.popularityRank ? bestResult.popularityRank.toString() : "N/A", true)
 									.addField("Rating Rank", bestResult.ratingRank ? bestResult.ratingRank.toString() : "N/A", true)
 									.addField("Approval", bestResult.averageRating ? bestResult.averageRating + "%" : "N/A", true)
+									.addField("Status", bestResult.status ? bestResult.status[0].toUpperCase() + bestResult.status.substring(1) : "N/A", true)
 									.addField("Age Rating", bestResult.ageRating ? bestResult.ageRating : "N/A", true)
 									.addField("Synopsis", bestResult.synopsis.length > 1000 ? bestResult.synopsis.substring(0, 997) + "..." : bestResult.synopsis)
 									message.channel.send({embeds: [embed]});
