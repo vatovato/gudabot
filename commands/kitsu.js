@@ -30,32 +30,36 @@ exports.run = (client, message, args) => {
 					break;
 				case 'anime':
 				case 'manga':
-					//Concatenates all remaining args to form the search prompt
+					//Concatenates all remaining args to form the search prompt, if there are any
 					const searchPrompt = encodeURIComponent(args.join(" "));
-					var searchUrl = "https://kitsu.io/api/edge/" + commandString + "?" + searchPrompt;
-					console.log("Querying " + searchUrl);
-					
-					fetch(searchUrl)
-					.then(response => response.json())
-						.then(data => {
-							console.log("Found " + data.data.length.toString() + " results");
-							if ( data.meta.count > 0 ) {
-								const bestResult = data.data[0].attributes;
-								const embed = new Discord.MessageEmbed()
-								.setTitle(bestResult.canonicalTitle + "(" + bestResult.startDate.slice(0, 4) + ")")
-								.setThumbnail(bestResult.posterImage.tiny)
-								.setURL("https://kitsu.io/" + commandString + "/" + bestResult.slug)
-								.addField("Popularity Rank", bestResult.popularityRank, true)
-								.addField("Rating Rank", bestResult.ratingRank, true)
-								.addField("Approval", bestResult.averageRating + "%", true)
-								.addField("Age Rating", bestResult.ageRating, true)
-								.addField("Synopsis", bestResult.synopsis.length > 1000 ? bestResult.synopsis.substring(0, 997) + "..." : bestResult.synopsis)
-								message.channel.send({embeds: [embed]});
-							}
-							else {
-								message.channel.send(`Kitsu: couldn't find a result with the search term "${searchPrompt}"`);
-							}
-						})
+					if ( searchPrompt.length ) {
+						var searchUrl = "https://kitsu.io/api/edge/" + commandString + "?" + searchPrompt;
+						console.log("Querying " + searchUrl);
+						fetch(searchUrl)
+						.then(response => response.json())
+							.then(data => {
+								console.log("Found " + data.data.length.toString() + " results");
+								if ( data.meta.count > 0 ) {
+									const bestResult = data.data[0].attributes;
+									const embed = new Discord.MessageEmbed()
+									.setTitle(bestResult.canonicalTitle + "(" + bestResult.startDate.slice(0, 4) + ")")
+									.setThumbnail(bestResult.posterImage.tiny)
+									.setURL("https://kitsu.io/" + commandString + "/" + bestResult.slug)
+									.addField("Popularity Rank", bestResult.popularityRank ? bestResult.popularityRank.toString() : "N/A", true)
+									.addField("Rating Rank", bestResult.ratingRank ? bestResult.ratingRank.toString() : "N/A", true)
+									.addField("Approval", bestResult.averageRating ? bestResult.averageRating + "%" : "N/A", true)
+									.addField("Age Rating", bestResult.ageRating ? bestResult.ageRating : "N/A", true)
+									.addField("Synopsis", bestResult.synopsis.length > 1000 ? bestResult.synopsis.substring(0, 997) + "..." : bestResult.synopsis)
+									message.channel.send({embeds: [embed]});
+								}
+								else {
+									message.channel.send(`Kitsu: couldn't find a result with the search term "${searchPrompt}"`);
+								}
+							})
+					}
+					else {
+						message.channel.send(`Kitsu: no search terms have been given`);
+					}
 					break;
 				default:
 					break;
