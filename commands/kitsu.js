@@ -101,7 +101,7 @@ async function handleKitsuCommand(message, commandString, args) {
 
 					console.log("Found " + data.meta.count.toString() + " results");
 					if ( data.meta && data.meta.count > 0 ) {
-						createUserEmbed(message, commandString, data.data[0].attributes, data.included);
+						createUserEmbed(message, commandString, data.data[0], data.included);
 					}
 					else {
 						message.channel.send(`Kitsu: Couldn't find a user called "${searchUser}"`);
@@ -163,8 +163,8 @@ function createUserEmbed(message, type, item, includedData) {
 	const Discord = require('discord.js');
 	
 	var userData = {
-		name: item.name,
-		avatar: item.avatar ? item.avatar.large : "https://kitsu.io/kitsu-256-ed442f7567271af715884ca3080e8240.png",
+		name: item.attributes.name,
+		avatar: item.attributes.avatar ? item.attributes.avatar.large : "https://kitsu.io/kitsu-256-ed442f7567271af715884ca3080e8240.png",
 		waifu: '',
 		waifuImage: '',
 		animeFinished: '',
@@ -173,7 +173,7 @@ function createUserEmbed(message, type, item, includedData) {
 		mangaFinished: '',
 		mangaGenre: '',
 		mangaGenreCount: 0,
-		contentRated: item.ratingsCount.toString(),
+		contentRated: item.attributes.ratingsCount.toString(),
 		favoriteAnime: '',
 		favoriteManga: '',
 		favoriteChars: ''
@@ -183,7 +183,7 @@ function createUserEmbed(message, type, item, includedData) {
 	for ( var i = 0; i < includedData.length; ++i ) {
 		switch(includedData[i].type) {
 			case 'characters':
-				if ( userData.waifu.length == 0 ) {
+				if ( item.relationships.waifu.data != null && !userData.waifu.length ) {
 					userData.waifu = includedData[i].attributes.canonicalName;
 					userData.waifuImage = includedData[i].attributes.image.original;
 				}
@@ -192,6 +192,10 @@ function createUserEmbed(message, type, item, includedData) {
 						userData.favoriteChars += ", ";
 					}
 					userData.favoriteChars += includedData[i].attributes.canonicalName;
+
+					if ( item.relationships.waifu.data == null && !userData.waifuImage.length ) {
+						userData.waifuImage = includedData[i].attributes.image.original;
+					}
 				}
 				break;
 			case 'anime':
@@ -243,7 +247,7 @@ function createUserEmbed(message, type, item, includedData) {
 	const embed = new Discord.MessageEmbed()
 	.setTitle(userData.name)
 	.setThumbnail(userData.avatar)
-	.setURL("https://kitsu.io/users/" + item.slug)
+	.setURL("https://kitsu.io/users/" + item.attributes.slug)
 	.addField("Waifu", userData.waifu.length ? userData.waifu : "N/A", true)
 	.addField("Anime Finished", userData.animeFinished.length ? userData.animeFinished : "0", true)
 	.addField("Favorite Anime Genre", (userData.animeGenre.length ? userData.animeGenre : "N/A") + " (" + userData.animeGenreCount.toString() + ")", true)
