@@ -62,13 +62,16 @@ async function handleFantasyCommand(message, commandString, args) {
 		case 'deadline':
 			var searchUrl = "https://fantasy.premierleague.com/api/bootstrap-static/";
 			const currentTime = Date.now();
+			console.log("Fantasy: Current UNIX time is " + currentTime.toString());
 			request(searchUrl, function(error, response, html) {
 				if(!error && response.statusCode == 200) {
 					const data = JSON.parse(html);
 					if ( data ) {
 						for ( var i = 0; i < data.events; ++i ) {
+							console.log("Fantasy: Deadline UNIX time is " + data.events[i].deadline_time_epoch.toString());
 							if ( data.events[i].deadline_time_epoch > currentTime ) { // Find the first gameweek in the future 
-								message.channel.send("The next transfer deadline is <t:" + data.events[i].deadline_time_epoch + ":R> (Hover your cursor over the countdown for a timestamp)");
+								message.channel.send("The next transfer deadline is <t:" + data.events[i].deadline_time_epoch.toString() + ":R> (Hover your cursor over the countdown for a timestamp)");
+								return;
 							}
 						}
 						message.channel.send("Fantasy: Cannot find a transfer deadline. Is the season over?");
