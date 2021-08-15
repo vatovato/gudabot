@@ -39,7 +39,7 @@ async function handleFantasyCommand(message, commandString, args) {
 			.setThumbnail(leagueLogo)
 			.setURL("https://fantasy.premierleague.com/leagues/" + leagueID + "/standings/c");
 			for ( const [key, value] of Object.entries(fantasyCommands) ) {
-				embed.addField(value,kitsuDetails[key]);
+				embed.addField(value,fantasyDetails[key]);
 			}
 			message.channel.send({embeds: [embed]});
 			break;
@@ -88,9 +88,9 @@ function createtableEmbed(message, type, item) {
 	.setTitle(item.league.name)
 	.setThumbnail(leagueLogo)
 	.setURL("https://fantasy.premierleague.com/leagues/" + leagueID + "/standings/c")
-	.addField("Player", playerTable.length : "N/A", true)
-	.addField("Weekly Points", weekTable.length : "N/A", true)
-	.addField("Total Points", totalTable.length : "N/A", true)
+	.addField("Player", playerTable.length ? playerTable : "N/A", true)
+	.addField("Weekly Points", weekTable.length ? weekTable : "N/A", true)
+	.addField("Total Points", totalTable.length ? totalTable : "N/A", true)
 	.addTimestamp();
 
 	message.channel.send({embeds: [embed]});
