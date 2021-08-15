@@ -67,6 +67,7 @@ async function handleFantasyCommand(message, commandString, args) {
 				if(!error && response.statusCode == 200) {
 					const data = JSON.parse(html);
 					if ( data ) {
+						console.log(data.events);
 						for ( var i = 0; i < data.events; ++i ) {
 							console.log("Fantasy: Deadline UNIX time is " + data.events[i].deadline_time_epoch.toString());
 							if ( data.events[i].deadline_time_epoch > currentTime ) { // Find the first gameweek in the future 
