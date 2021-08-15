@@ -56,13 +56,12 @@ async function handleFantasyCommand(message, commandString, args) {
 				const text = await response.text();
 				console.log("Log text");
 				console.log(text);
-				if ( text ) {
-					console.log(text);
+				//if ( text ) {
 					const data = JSON.parse(text);
 					createTableEmbed(message, commandString, data);
-				} else {
-					console.log("No text");
-				}
+				//} else {
+				//	console.log("No text");
+				//}
 
 			} catch(err) {
 				console.log(err);
