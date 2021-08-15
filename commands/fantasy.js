@@ -30,8 +30,9 @@ exports.run = (client, message, args) => {
 
 // Asynchronous function that queries the Fantasy Premier League api
 async function handleFantasyCommand(message, commandString, args) {
-	const fetch = require('node-fetch');
+	//const fetch = require('node-fetch');
 	const Discord = require('discord.js');
+	const request = require('request');
 
 	switch(commandString.toLowerCase()) {
 		case 'help':
@@ -47,7 +48,7 @@ async function handleFantasyCommand(message, commandString, args) {
 		case 'table':
 			//Concatenates all remaining args to form the search prompt, if there are any
 			var searchUrl = "https://fantasy.premierleague.com/api/leagues-classic/" + leagueID + "/standings/";
-
+			/*
 			console.log("Querying " + searchUrl);
 			try {
 				const response = await fetch(searchUrl);
@@ -57,7 +58,17 @@ async function handleFantasyCommand(message, commandString, args) {
 
 			} catch(err) {
 				console.log(err);
-			}
+			}*/
+
+			request(searchUrl, function(error, response, html) {
+				if(!error && response.statusCode == 200) {
+					const data = JSON.parse(html);
+					createTableEmbed(message, commandString, data);
+				} else {
+					console.log(response)
+				}
+			});
+
 			break;
 		default:
 			break;
