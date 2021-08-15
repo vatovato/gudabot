@@ -55,6 +55,7 @@ async function handleFantasyCommand(message, commandString, args) {
 				console.log(response);
 				const text = await response.text();
 				console.log("Log text");
+				console.log(text);
 				if ( text ) {
 					console.log(text);
 					const data = JSON.parse(text);
