@@ -32,6 +32,8 @@ exports.run = (client, message, args) => {
 // Asynchronous function that queries the Fantasy Premier League api
 async function handleFantasyCommand(message, commandString, args) {
 	const fetch = require('node-fetch');
+	const Discord = require('discord.js');
+
 	switch(commandString.toLowerCase()) {
 		case 'help':
 			const embed = new Discord.MessageEmbed()

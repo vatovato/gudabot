@@ -31,7 +31,9 @@ exports.run = (client, message, args) => {
 
 // Asynchronous function that queries the Kitsu api
 async function handleKitsuCommand(message, commandString, args) {
+	const Discord = require('discord.js');
 	const fetch = require('node-fetch');
+
 	switch(commandString.toLowerCase()) {
 		case 'help':
 			const embed = new Discord.MessageEmbed()
