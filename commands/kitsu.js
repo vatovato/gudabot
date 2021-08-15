@@ -164,7 +164,7 @@ function createUserEmbed(message, type, item, includedData) {
 	
 	var userData = {
 		name: item.attributes.name,
-		avatar: item.attributes.avatar ? item.avatar.large : "https://kitsu.io/kitsu-256-ed442f7567271af715884ca3080e8240.png",
+		avatar: item.attributes.avatar ? item.attributes.avatar.large : "https://kitsu.io/kitsu-256-ed442f7567271af715884ca3080e8240.png",
 		waifu: '',
 		waifuImage: '',
 		animeFinished: '',
