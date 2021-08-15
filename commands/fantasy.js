@@ -5,11 +5,11 @@ const leagueLogo = "https://resources.premierleague.com/premierleague/photo/2018
 // Possible arguments
 const fantasyCommands = {
 'help': 'help',
-'league': 'league',
+'table': 'table',
 }
 const fantasyDetails = {
 'help': 'Shows a list of available commands',
-'league': 'Shows the current leaderboard for the FGOEra Fantasy League',
+'table': 'Shows the current leaderboard for the FGOEra Fantasy League',
 }
 
 // Called by bot.js when fantasy command is given
