@@ -107,7 +107,7 @@ async function handleKitsuCommand(message, commandString, args) {
 					const data = await response.json();
 
 					console.log("Found " + data.meta.count.toString() + " results");
-					if ( data.meta.count > 0 ) {
+					if ( data && data.meta && data.meta.count > 0 ) {
 						
 						// Query waifu data
 						console.log("Querying " + data.data[0].relationships.waifu.links.related);
