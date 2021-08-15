@@ -54,7 +54,7 @@ async function handleFantasyCommand(message, commandString, args) {
 				const text = await response.text();
 				if ( text ) {
 					const data = JSON.parse(text);
-					createLeagueEmbed(message, commandString, data);
+					createTableEmbed(message, commandString, data);
 				}
 
 			} catch(err) {
@@ -67,7 +67,7 @@ async function handleFantasyCommand(message, commandString, args) {
 }
 
 // Handle JSON data and embed league table message here
-function createtableEmbed(message, type, item) {
+function createTableEmbed(message, type, item) {
 	const Discord = require('discord.js');
 
 	var playerTable = '';
