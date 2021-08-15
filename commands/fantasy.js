@@ -51,17 +51,9 @@ async function handleFantasyCommand(message, commandString, args) {
 			console.log("Querying " + searchUrl);
 			try {
 				const response = await fetch(searchUrl);
-				console.log("Log response");
-				console.log(response);
-				const text = await response.text();
-				console.log("Log text");
-				console.log(text);
-				//if ( text ) {
-					const data = JSON.parse(text);
-					createTableEmbed(message, commandString, data);
-				//} else {
-				//	console.log("No text");
-				//}
+				const data = await response.json();
+
+				createTableEmbed(message, commandString, data);
 
 			} catch(err) {
 				console.log(err);
