@@ -107,7 +107,7 @@ async function handleKitsuCommand(message, commandString, args) {
 					const data = await response.json();
 
 					console.log("Found " + data.meta.count.toString() + " results");
-					if ( data && data.meta && data.meta.count > 0 ) {
+					if ( data.meta && data.meta.count > 0 ) {
 						
 						// Query waifu data
 						console.log("Querying " + data.data[0].relationships.waifu.links.related);
@@ -226,7 +226,7 @@ function createUserEmbed(message, type, item, waifu = null, stats = null, favour
 	// Send embed to channel
 	const embed = new Discord.MessageEmbed()
 	.setTitle(item.name)
-	.setThumbnail(item.avatar ? item.avatar : "https://kitsu.io/kitsu-256-ed442f7567271af715884ca3080e8240.png")
+	.setThumbnail(item.avatar ? item.avatar.large : "https://kitsu.io/kitsu-256-ed442f7567271af715884ca3080e8240.png")
 	.setURL("https://kitsu.io/users/" + item.slug)
 	.addField("Waifu", waifu ? waifu.attributes.canonicalName : "N/A", true)
 	.addField("Anime Finished", stats ? stats[0].attributes.statsData.completed.toString() : "0", true)
@@ -237,7 +237,7 @@ function createUserEmbed(message, type, item, waifu = null, stats = null, favour
 	.addField("Favorites", "N/A")
 
 	if ( waifu ) {
-		embed.setImage("https://media.kitsu.io/characters/images/" + waifu.id.toString() + "/original.jpg");
+		embed.setImage(waifu.attributes.image.original);
 	}
 
 	message.channel.send({embeds: [embed]});
