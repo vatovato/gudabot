@@ -12,7 +12,7 @@ connection.query(`SELECT * FROM friends WHERE userId ='${authorId}'`, function(e
     message.channel.send(`**${authorName}**, you did not create your entry yet. Use !addfc friend_code. For example, !addfc 123,123,123.`);
   } else {
     var friendCode = rows[0].friendCode;
-    message.channel.send(`**${authorName}**, your Friend Code is **${friendCode}**`);
+    message.channel.send(`**${authorName}**, your Friend Code is **${friendCode} **`);
   }
  });
 }
