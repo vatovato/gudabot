@@ -54,7 +54,7 @@ fs.readdir("./events/", (err, files) => {
 
 client.on("messageCreate", message => {
     if (message.author.bot) return;
-    if (!message.guild.me.permissions.has("SEND_MESSAGES") ) return; // Prevent crashes with commands that send messages in channels where bot doesn't have permissions
+    if (!message.guild.me.permissionsIn(message.channel).has("SEND_MESSAGES") ) return; // Prevent crashes with commands that send messages in channels where bot doesn't have permissions
     if (message.content.indexOf(process.env.PREFIX) !== 0) return;
 
     // This is the best way to define args. Trust me.
