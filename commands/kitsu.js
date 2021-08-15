@@ -99,7 +99,7 @@ async function handleKitsuCommand(message, commandString, args) {
 			//Concatenates all remaining args to form the search prompt, if there are any
 			const searchUser = encodeURIComponent(args.join(" "));
 			if ( searchUser.length ) {
-				var searchUrl = "https://kitsu.io/api/edge/users?filter[name]=" + searchUser + "&include=waifu,stats,favorites";
+				var searchUrl = "https://kitsu.io/api/edge/users?filter[name]=" + searchUser + "&include=waifu,stats,favorites.item";
 
 				console.log("Querying " + searchUrl);
 				try {
@@ -108,21 +108,7 @@ async function handleKitsuCommand(message, commandString, args) {
 
 					console.log("Found " + data.meta.count.toString() + " results");
 					if ( data.meta && data.meta.count > 0 ) {
-						
-						// Query waifu data
-						console.log("Querying " + data.data[0].relationships.waifu.links.related);
-						const waifuResponse = await fetch(data.data[0].relationships.waifu.links.related);
-						const waifuData = await waifuResponse.json();
-						// Query stats data
-						console.log("Querying " + data.data[0].relationships.stats.links.related);
-						const statsResponse = await fetch(data.data[0].relationships.stats.links.related);
-						const statsData = await statsResponse.json();
-						// Query favorites data
-						console.log("Querying " + data.data[0].relationships.favorites.links.related);
-						const favoritesResponse = await fetch(data.data[0].relationships.favorites.links.related);
-						const favoritesData = await favoritesResponse.json();
-
-						createUserEmbed(message, commandString, data.data[0].attributes, waifuData.data, statsData.data, favoritesData.data);
+						createUserEmbed(message, commandString, data.data[0].attributes, data.included);
 					}
 					else {
 						message.channel.send(`Kitsu: Couldn't find a user called "${searchUser}"`);
@@ -180,61 +166,100 @@ function createAnimeEmbed(message, type, item, genres = null) {
 }
 
 // Handle JSON data and embed user message here
-function createUserEmbed(message, type, item, waifu = null, stats = null, favourites = null) {
+function createUserEmbed(message, type, item, includedData) {
 	const Discord = require('discord.js');
+	
+	var userData = {
+		name: item.name,
+		avatar: item.avatar ? item.avatar.large : "https://kitsu.io/kitsu-256-ed442f7567271af715884ca3080e8240.png",
+		waifu: '',
+		waifuImage: '',
+		animeFinished: '',
+		animeGenre: '',
+		animeGenreCount: 0,
+		mangaFinished: '',
+		mangaGenre: '',
+		mangaGenreCount: 0,
+		contentRated: item.ratingsCount.toString(),
+		favoriteAnime: '',
+		favoriteManga: '',
+		favoriteChars: ''
+	};
 
-	// Parse through anime categories
-	var animeCategoryString = 'N/A';
-	var animeCategoryCount = 0;
-	if ( stats != null ) {
-		for (const genre in stats[1].attributes.statsData.categories) {
-			if ( stats[1].attributes.statsData.categories[genre] > animeCategoryCount ) {
-				animeCategoryCount = stats[1].attributes.statsData.categories[genre];
-				animeCategoryString = genre;
-			}
+	// Parse through includedData
+	for ( var i = 0; i < includedData.length; ++i ) {
+		switch(includedData[i].type) {
+			case 'characters':
+				if ( userData.waifu.length == 0 ) {
+					userData.waifu = includedData[i].attributes.canonicalName;
+					userData.waifuImage = includedData[i].attributes.image.original;
+				}
+				else {
+					if ( userData.favoriteChars.length != 0 ) {
+						userData.favoriteChars += ", ";
+					}
+					userData.favoriteChars += includedData[i].attributes.canonicalName;
+				}
+				break;
+			case 'anime':
+				if ( userData.favoriteAnime.length != 0 ) {
+					userData.favoriteAnime += ", ";
+				}
+				userData.favoriteAnime += includedData[i].attributes.canonicalTitle;
+				break;
+			case 'manga':
+				if ( userData.favoriteManga.length != 0 ) {
+					userData.favoriteManga += ", ";
+				}
+				userData.favoriteManga += includedData[i].attributes.canonicalTitle;
+				break;
+			case 'stats':
+				switch(includedData[i].attributes.kind) {
+					case 'anime-amount-consumed':
+						userData.animeFinished = includedData[i].attributes.statsData.completed.toString();
+						break;
+					case 'anime-category-breakdown':
+						for (const genre in includedData[i].attributes.statsData.categories) {
+							if ( includedData[i].attributes.statsData.categories[genre] > userData.animeGenreCount ) {
+								userData.animeGenreCount = includedData[i].attributes.statsData.categories[genre];
+								userData.animeGenre = genre;
+							}
+						}
+						break;
+					case 'manga-amount-consumed':
+						userData.mangaFinished = includedData[i].attributes.statsData.completed.toString();
+						break;
+					case 'manga-category-breakdown':
+						for (const genre in includedData[i].attributes.statsData.categories) {
+							if ( includedData[i].attributes.statsData.categories[genre] > userData.mangaGenreCount ) {
+								userData.mangaGenreCount = includedData[i].attributes.statsData.categories[genre];
+								userData.mangaGenre = genre;
+							}
+						}
+						break;
+					default:
+						break;
+				}
+				break;
+			default:
+				break;
 		}
-	} else {
-		console.log("No genres found");
-	}
-	// Parse through manga categories
-	var mangaCategoryString = 'N/A';
-	var mangaCategoryCount = 0;
-	if ( stats != null ) {
-		for (const genre in stats[3].attributes.statsData.categories) {
-			if ( stats[1].attributes.statsData.categories[genre] > mangaCategoryCount ) {
-				mangaCategoryCount = stats[3].attributes.statsData.categories[genre];
-				mangaCategoryString = genre;
-			}
-		}
-	} else {
-		console.log("No genres found");
-	}
-	// Parse through favourite anime
-	var mangaCategoryString = 'N/A';
-	var mangaCategoryCount = 0;
-	if ( stats != null ) {
-		for (const genre in stats[3].attributes.statsData.categories) {
-			if ( stats[1].attributes.statsData.categories[genre] > mangaCategoryCount ) {
-				mangaCategoryCount = stats[3].attributes.statsData.categories[genre];
-				mangaCategoryString = genre;
-			}
-		}
-	} else {
-		console.log("No genres found");
 	}
 
 	// Send embed to channel
 	const embed = new Discord.MessageEmbed()
-	.setTitle(item.name)
-	.setThumbnail(item.avatar ? item.avatar.large : "https://kitsu.io/kitsu-256-ed442f7567271af715884ca3080e8240.png")
+	.setTitle(userData.name)
+	.setThumbnail(userData.avatar)
 	.setURL("https://kitsu.io/users/" + item.slug)
-	.addField("Waifu", waifu ? waifu.attributes.canonicalName : "N/A", true)
-	.addField("Anime Finished", stats ? stats[0].attributes.statsData.completed.toString() : "0", true)
-	.addField("Favorite Genre (Watched)", animeCategoryString + " (" + animeCategoryCount.toString() + ")", true)
-	.addField("Content Rated", item.ratingsCount.toString(), true)
-	.addField("Manga Finished", stats ? stats[2].attributes.statsData.completed.toString() : "0", true)
-	.addField("Favorite Genre (Read)", mangaCategoryString + " (" + mangaCategoryCount.toString() + ")", true)
-	.addField("Favorites", "N/A")
+	.addField("Waifu", userData.waifu.length ? userData.waifu : "N/A", true)
+	.addField("Anime Finished", userData.animeFinished.length ? userData.animeFinished : "0", true)
+	.addField("Favorite Genre (Watched)", userData.animeGenre + " (" + userData.animeGenreCount.toString() + ")", true)
+	.addField("Content Rated", userData.contentRated, true)
+	.addField("Manga Finished", userData.mangaFinished.length ? userData.mangaFinished : "0", true)
+	.addField("Favorite Genre (Read)", userData.mangaGenre + " (" + userData.mangaGenreCount.toString() + ")", true)
+	.addField("Favorite Anime", userData.favoriteAnime.length ? userData.favoriteAnime : "N/A")
+	.addField("Favorite Manga", userData.favoriteManga.length ? userData.favoriteManga : "N/A")
+	.addField("Favorite Characters", userData.favoriteChars.length ? userData.favoriteChars : "N/A")
 
 	if ( waifu ) {
 		embed.setImage(waifu.attributes.image.original);
