@@ -193,7 +193,9 @@ function createUserEmbed(message, type, item, includedData) {
 					}
 					userData.favoriteChars += includedData[i].attributes.canonicalName;
 
-					if ( item.relationships.waifu.data == null && !userData.waifuImage.length )
+					if ( item.relationships.waifu.data == null && !userData.waifuImage.length ) {
+						userData.waifuImage = includedData[i].attributes.image.original;
+					}
 				}
 				break;
 			case 'anime':
