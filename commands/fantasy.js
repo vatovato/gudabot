@@ -9,7 +9,7 @@ const fantasyCommands = {
 }
 const fantasyDetails = {
 'help': 'Shows a list of available commands',
-'anime': 'Shows the current leaderboard for the FGOEra Fantasy League',
+'league': 'Shows the current leaderboard for the FGOEra Fantasy League',
 }
 
 // Called by bot.js when fantasy command is given
