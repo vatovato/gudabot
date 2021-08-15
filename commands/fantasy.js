@@ -46,7 +46,7 @@ async function handleFantasyCommand(message, commandString, args) {
 			break;
 		case 'table':
 			//Concatenates all remaining args to form the search prompt, if there are any
-			var searchUrl = "https://fantasy.premierleague.com/api/leagues-classic/" + 1049182 + "/standings/";
+			var searchUrl = "https://fantasy.premierleague.com/api/leagues-classic/" + leagueID + "/standings/";
 
 			console.log("Querying " + searchUrl);
 			try {
