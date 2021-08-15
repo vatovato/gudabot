@@ -261,8 +261,8 @@ function createUserEmbed(message, type, item, includedData) {
 	.addField("Favorite Manga", userData.favoriteManga.length ? userData.favoriteManga : "N/A")
 	.addField("Favorite Characters", userData.favoriteChars.length ? userData.favoriteChars : "N/A")
 
-	if ( waifuImage.length ) {
-		embed.setImage(waifuImage);
+	if ( userData.waifuImage.length ) {
+		embed.setImage(userData.waifuImage);
 	}
 
 	message.channel.send({embeds: [embed]});
