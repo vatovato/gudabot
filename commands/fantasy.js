@@ -51,13 +51,11 @@ async function handleFantasyCommand(message, commandString, args) {
 			console.log("Querying " + searchUrl);
 			try {
 				const response = await fetch(searchUrl);
-				console.log("Log response");
-				console.log(response);
-				const data = await response.json();
-				console.log("Log data");
-				console.log(data);
-
-				createLeagueEmbed(message, commandString, data);
+				const text = await response.text();
+				if ( text ) {
+					const data = JSON.parse(text);
+					createLeagueEmbed(message, commandString, data);
+				}
 
 			} catch(err) {
 				console.log(err);
