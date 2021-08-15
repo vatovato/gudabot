@@ -70,7 +70,7 @@ async function handleFantasyCommand(message, commandString, args) {
 						console.log("Fantasy: " + data.events.length.toString() + " events found.");
 						for ( var i = 0; i < data.events.length; ++i ) {
 							if ( data.events[i].deadline_time_epoch > currentTime ) { // Find the first gameweek in the future 
-								message.channel.send("The next transfer deadline is <t:" + data.events[i].deadline_time_epoch.toString() + ":R>");
+								message.channel.send("Fantasy League: The next transfer deadline is <t:" + data.events[i].deadline_time_epoch.toString() + ":R>");
 								return;
 							}
 						}
