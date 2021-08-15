@@ -48,7 +48,7 @@ async function handleKitsuCommand(message, commandString, args) {
 			//Concatenates all remaining args to form the search prompt, if there are any
 			const searchPrompt = encodeURIComponent(args.join(" "));
 			if ( searchPrompt.length ) {
-				var searchUrl = "https://kitsu.io/api/edge/" + commandString + "?filter[text]=" + searchPrompt;
+				var searchUrl = "https://kitsu.io/api/edge/" + commandString + "?filter[text]=" + searchPrompt + "&include=genres";
 
 				console.log("Querying " + searchUrl);
 				try {
@@ -57,10 +57,7 @@ async function handleKitsuCommand(message, commandString, args) {
 
 					console.log("Found " + data.meta.count.toString() + " results");
 					if ( data.meta.count > 0 ) {
-						console.log("Querying " + data.data[0].relationships.genres.links.related);
-						const genreResponse = await fetch(data.data[0].relationships.genres.links.related);
-						const genreData = await genreResponse.json();
-						createAnimeEmbed(message, commandString, data.data[0].attributes, genreData.data);
+						createAnimeEmbed(message, commandString, data.data[0].attributes, data.included);
 					}
 					else {
 						message.channel.send(`Kitsu: Couldn't find a result with the search term "${searchPrompt}"`);
@@ -79,16 +76,12 @@ async function handleKitsuCommand(message, commandString, args) {
 
 					// Lookup a random entry
 					var randomNumber = Math.floor(Math.random() * data.meta.count);
-					console.log("Querying " + "https://kitsu.io/api/edge/" + commandString + "?page[limit]=1&page[offset]=" + randomNumber.toString());
-					const randResponse = await fetch("https://kitsu.io/api/edge/" + commandString + "?page[limit]=1&page[offset]=" + randomNumber.toString());
+					var randomUrl = "https://kitsu.io/api/edge/" + commandString + "?page[limit]=1&page[offset]=" + randomNumber.toString() + "&include=genres";
+					console.log("Querying " + randomUrl);
+					const randResponse = await fetch(randomUrl);
 					const randItem = await randResponse.json();
-					
-					// Query Genres
-					console.log("Querying " + randItem.data[0].relationships.genres.links.related);
-					const genreResponse = await fetch(randItem.data[0].relationships.genres.links.related);
-					const genreData = await genreResponse.json();
 
-					createAnimeEmbed(message, commandString, randItem.data[0].attributes, genreData.data);
+					createAnimeEmbed(message, commandString, randItem.data[0].attributes, randItem.included);
 
 				} catch(err) {
 					console.log(err);
