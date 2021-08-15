@@ -60,10 +60,10 @@ async function handleKitsuCommand(message, commandString, args) {
 						console.log("Querying " + data.data[0].relationships.genres.links.related);
 						const genreResponse = await fetch(data.data[0].relationships.genres.links.related);
 						const genreData = await genreResponse.json();
-						createEmbed(message, commandString, data.data[0].attributes, genreData.data);
+						createAnimeEmbed(message, commandString, data.data[0].attributes, genreData.data);
 					}
 					else {
-						message.channel.send(`Kitsu: couldn't find a result with the search term "${searchPrompt}"`);
+						message.channel.send(`Kitsu: Couldn't find a result with the search term "${searchPrompt}"`);
 					}
 				} catch(err) {
 					console.log(err);
@@ -88,7 +88,7 @@ async function handleKitsuCommand(message, commandString, args) {
 					const genreResponse = await fetch(randItem.data[0].relationships.genres.links.related);
 					const genreData = await genreResponse.json();
 
-					createEmbed(message, commandString, randItem.data[0].attributes, genreData.data);
+					createAnimeEmbed(message, commandString, randItem.data[0].attributes, genreData.data);
 
 				} catch(err) {
 					console.log(err);
@@ -96,13 +96,38 @@ async function handleKitsuCommand(message, commandString, args) {
 			}
 			break;
 		case 'user':
+			//Concatenates all remaining args to form the search prompt, if there are any
+			const searchUser = encodeURIComponent(args.join(" "));
+			if ( searchUser.length ) {
+				var searchUrl = "https://kitsu.io/api/edge/users?filter[name]=" + searchUser + "&include=waifu,stats,favorites.item";
+
+				console.log("Querying " + searchUrl);
+				try {
+					const response = await fetch(searchUrl);
+					const data = await response.json();
+
+					console.log("Found " + data.meta.count.toString() + " results");
+					if ( data.meta && data.meta.count > 0 ) {
+						createUserEmbed(message, commandString, data.data[0].attributes, data.included);
+					}
+					else {
+						message.channel.send(`Kitsu: Couldn't find a user called "${searchUser}"`);
+					}
+				} catch(err) {
+					console.log(err);
+				}
+			}
+			else {
+				message.channel.send(`Kitsu: No username has been specified.`);
+			}
+			break;
 		default:
 			break;
 	}
 }
 
-// Handle JSON data and embed message here
-function createEmbed(message, type, item, genres = null) {
+// Handle JSON data and embed anime/manga message here
+function createAnimeEmbed(message, type, item, genres = null) {
 	const Discord = require('discord.js');
 
 	const contentFilter = {
@@ -111,38 +136,134 @@ function createEmbed(message, type, item, genres = null) {
 	'yaoi': 3
 	}
 
-	switch(type) {
-		case 'anime':
-		case 'manga':
-			// Parse through genre JSON
-			var genreString = '';
-			if ( genres != null ) {
-				for (var i = 0; i < genres.length; ++i) {
-					genreString += (i > 0 ? ", " : "" ) + genres[i].attributes.name;
-					if ( genres[i].attributes.name.toLowerCase() in contentFilter ) {
-						message.channel.send(`Kitsu: Hentai content has been disabled, search result cannot be displayed.`);
-						return;
-					}
-				}
-			} else {
-				console.log("No genres found");
+	// Parse through genre JSON
+	var genreString = '';
+	if ( genres != null ) {
+		for (var i = 0; i < genres.length; ++i) {
+			genreString += (i > 0 ? ", " : "" ) + genres[i].attributes.name;
+			if ( genres[i].attributes.name.toLowerCase() in contentFilter ) {
+				message.channel.send(`Kitsu: Hentai content has been disabled, search result cannot be displayed.`);
+				return;
 			}
-
-			// Send embed to channel
-			const embed = new Discord.MessageEmbed()
-			.setTitle(item.canonicalTitle + " (" + (item.startDate ? item.startDate.slice(0, 4) : "N/A") + ")")
-			.setThumbnail(item.posterImage.tiny)
-			.setURL("https://kitsu.io/" + type + "/" + item.slug)
-			.addField("Popularity Rank", item.popularityRank ? item.popularityRank.toString() : "N/A", true)
-			.addField("Rating Rank", item.ratingRank ? item.ratingRank.toString() : "N/A", true)
-			.addField("Approval", item.averageRating ? item.averageRating + "%" : "N/A", true)
-			.addField("Genres", genreString.length ? genreString : "N/A", true)
-			.addField("Age Rating", item.ageRating ? item.ageRating + (item.ageRatingGuide ? "- " + item.ageRatingGuide : "") : "N/A", true)
-			.addField("Status", item.status ? item.status[0].toUpperCase() + item.status.substring(1) : "N/A", true)
-			.addField("Synopsis", item.synopsis && item.synopsis.trim() ? (item.synopsis.length > 1000 ? item.synopsis.substring(0, 997) + "..." : item.synopsis) : "N/A")
-			message.channel.send({embeds: [embed]});
-		case 'user':
-		default:
-			break;
+		}
+	} else {
+		console.log("No genres found");
 	}
+
+	// Send embed to channel
+	const embed = new Discord.MessageEmbed()
+	.setTitle(item.canonicalTitle + " (" + (item.startDate ? item.startDate.slice(0, 4) : "N/A") + ")")
+	.setThumbnail(item.posterImage.tiny)
+	.setURL("https://kitsu.io/" + type + "/" + item.slug)
+	.addField("Popularity Rank", item.popularityRank ? item.popularityRank.toString() : "N/A", true)
+	.addField("Rating Rank", item.ratingRank ? item.ratingRank.toString() : "N/A", true)
+	.addField("Approval", item.averageRating ? item.averageRating + "%" : "N/A", true)
+	.addField("Genres", genreString.length ? genreString : "N/A", true)
+	.addField("Age Rating", item.ageRating ? item.ageRating + (item.ageRatingGuide ? "- " + item.ageRatingGuide : "") : "N/A", true)
+	.addField("Status", item.status ? item.status[0].toUpperCase() + item.status.substring(1) : "N/A", true)
+	.addField("Synopsis", item.synopsis && item.synopsis.trim() ? (item.synopsis.length > 1000 ? item.synopsis.substring(0, 997) + "..." : item.synopsis) : "N/A")
+	message.channel.send({embeds: [embed]});
+}
+
+// Handle JSON data and embed user message here
+function createUserEmbed(message, type, item, includedData) {
+	const Discord = require('discord.js');
+	
+	var userData = {
+		name: item.name,
+		avatar: item.avatar ? item.avatar.large : "https://kitsu.io/kitsu-256-ed442f7567271af715884ca3080e8240.png",
+		waifu: '',
+		waifuImage: '',
+		animeFinished: '',
+		animeGenre: '',
+		animeGenreCount: 0,
+		mangaFinished: '',
+		mangaGenre: '',
+		mangaGenreCount: 0,
+		contentRated: item.ratingsCount.toString(),
+		favoriteAnime: '',
+		favoriteManga: '',
+		favoriteChars: ''
+	};
+
+	// Parse through includedData
+	for ( var i = 0; i < includedData.length; ++i ) {
+		switch(includedData[i].type) {
+			case 'characters':
+				if ( userData.waifu.length == 0 ) {
+					userData.waifu = includedData[i].attributes.canonicalName;
+					userData.waifuImage = includedData[i].attributes.image.original;
+				}
+				else {
+					if ( userData.favoriteChars.length != 0 ) {
+						userData.favoriteChars += ", ";
+					}
+					userData.favoriteChars += includedData[i].attributes.canonicalName;
+				}
+				break;
+			case 'anime':
+				if ( userData.favoriteAnime.length != 0 ) {
+					userData.favoriteAnime += ", ";
+				}
+				userData.favoriteAnime += includedData[i].attributes.canonicalTitle;
+				break;
+			case 'manga':
+				if ( userData.favoriteManga.length != 0 ) {
+					userData.favoriteManga += ", ";
+				}
+				userData.favoriteManga += includedData[i].attributes.canonicalTitle;
+				break;
+			case 'stats':
+				switch(includedData[i].attributes.kind) {
+					case 'anime-amount-consumed':
+						userData.animeFinished = includedData[i].attributes.statsData.completed.toString();
+						break;
+					case 'anime-category-breakdown':
+						for (const genre in includedData[i].attributes.statsData.categories) {
+							if ( includedData[i].attributes.statsData.categories[genre] > userData.animeGenreCount ) {
+								userData.animeGenreCount = includedData[i].attributes.statsData.categories[genre];
+								userData.animeGenre = genre;
+							}
+						}
+						break;
+					case 'manga-amount-consumed':
+						userData.mangaFinished = includedData[i].attributes.statsData.completed.toString();
+						break;
+					case 'manga-category-breakdown':
+						for (const genre in includedData[i].attributes.statsData.categories) {
+							if ( includedData[i].attributes.statsData.categories[genre] > userData.mangaGenreCount ) {
+								userData.mangaGenreCount = includedData[i].attributes.statsData.categories[genre];
+								userData.mangaGenre = genre;
+							}
+						}
+						break;
+					default:
+						break;
+				}
+				break;
+			default:
+				break;
+		}
+	}
+
+	// Send embed to channel
+	const embed = new Discord.MessageEmbed()
+	.setTitle(userData.name)
+	.setThumbnail(userData.avatar)
+	.setURL("https://kitsu.io/users/" + item.slug)
+	.addField("Waifu", userData.waifu.length ? userData.waifu : "N/A", true)
+	.addField("Anime Finished", userData.animeFinished.length ? userData.animeFinished : "0", true)
+	.addField("Favorite Anime Genre", (userData.animeGenre.length ? userData.animeGenre : "N/A") + " (" + userData.animeGenreCount.toString() + ")", true)
+	.addField("Voted", userData.contentRated, true)
+	.addField("Manga Finished", userData.mangaFinished.length ? userData.mangaFinished : "0", true)
+	.addField("Favorite Manga Genre", (userData.mangaGenre.length ? userData.mangaGenre : "N/A") + " (" + userData.mangaGenreCount.toString() + ")", true)
+	.addField("Favorite Anime", userData.favoriteAnime.length ? userData.favoriteAnime : "N/A")
+	.addField("Favorite Manga", userData.favoriteManga.length ? userData.favoriteManga : "N/A")
+	.addField("Favorite Characters", userData.favoriteChars.length ? userData.favoriteChars : "N/A")
+
+	if ( userData.waifuImage.length ) {
+		embed.setImage(userData.waifuImage);
+	}
+
+	message.channel.send({embeds: [embed]});
 }
