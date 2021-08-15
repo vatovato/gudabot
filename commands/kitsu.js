@@ -1,19 +1,19 @@
+// Possible arguments
+const kitsuCommands = {
+'help': 'help',
+'anime': 'anime anime_name', 
+'manga': 'manga manga_name',
+'user': 'user username'
+}
+const kitsuDetails = {
+'help': 'Shows a list of available commands',
+'anime': 'Search an anime. If no search terms are given, a random one will be returned', 
+'manga': 'search a manga. If no search terms are given, a random one will be returned',
+'user': 'Shows info about a specific user'
+}
+
 // Called by bot.js when kitsu command is given
 exports.run = (client, message, args) => {
-
-	// Possible arguments
-	const kitsuCommands = {
-	'help': 'help',
-	'anime': 'anime anime_name', 
-	'manga': 'manga manga_name',
-	'user': 'user username'
-	}
-	const kitsuDetails = {
-	'help': 'Shows a list of available commands',
-	'anime': 'Search an anime. If no search terms are given, a random one will be returned', 
-	'manga': 'search a manga. If no search terms are given, a random one will be returned',
-	'user': 'Shows info about a specific user'
-	}
 
 	if ( args.length ) {
 		const commandString = args.shift();
