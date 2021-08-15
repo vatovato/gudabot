@@ -81,6 +81,8 @@ async function handleKitsuCommand(message, commandString, args) {
 					var randomUrl = "https://kitsu.io/api/edge/" + commandString + "?page[limit]=1&page[offset]=" + randomNumber.toString() + "&include=genres";
 					console.log("Querying " + randomUrl);
 					const randResponse = await fetch(randomUrl);
+					console.log("Log response");
+					console.log(randResponse);
 					const randItem = await randResponse.json();
 
 					createAnimeEmbed(message, commandString, randItem.data[0].attributes, randItem.included);
