@@ -6,10 +6,12 @@ const leagueLogo = "https://resources.premierleague.com/premierleague/photo/2018
 const fantasyCommands = {
 'help': 'help',
 'table': 'table',
+'deadline': 'deadline'
 }
 const fantasyDetails = {
 'help': 'Shows a list of available commands',
 'table': 'Shows the current leaderboard for the FGOEra Fantasy League',
+'deadline': 'Shows a countdown of the current gameweek\'s transfer deadline'
 }
 
 // Called by bot.js when fantasy command is given
@@ -29,6 +31,7 @@ exports.run = (client, message, args) => {
 }
 
 // Asynchronous function that queries the Fantasy Premier League api
+// The Fantasy Premier League API doesn't work with fetch. Maybe it just returns a plain text? Use request and parse the html instead
 async function handleFantasyCommand(message, commandString, args) {
 	//const fetch = require('node-fetch');
 	const Discord = require('discord.js');
@@ -47,7 +50,6 @@ async function handleFantasyCommand(message, commandString, args) {
 			break;
 		case 'table':
 			var searchUrl = "https://fantasy.premierleague.com/api/leagues-classic/" + leagueID + "/standings/";
-			// The Fantasy Premier League API doesn't work with fetch. Maybe it just returns a plain text? Use request and parse the html instead
 			request(searchUrl, function(error, response, html) {
 				if(!error && response.statusCode == 200) {
 					const data = JSON.parse(html);
@@ -56,7 +58,25 @@ async function handleFantasyCommand(message, commandString, args) {
 					console.log(response)
 				}
 			});
-
+			break;
+		case 'deadline':
+			var searchUrl = "https://fantasy.premierleague.com/api/bootstrap-static/";
+			const currentTime = Date.now();
+			request(searchUrl, function(error, response, html) {
+				if(!error && response.statusCode == 200) {
+					const data = JSON.parse(html);
+					if ( data ) {
+						for ( var i = 0; i < data.events; ++i ) {
+							if ( data.events[i].deadline_time_epoch > currentTime ) { // Find the first gameweek in the future 
+								message.channel.send("The next transfer deadline is <t:" + data.events[i].deadline_time_epoch + ":d>");
+							}
+						}
+						message.channel.send("Fantasy: Cannot find a transfer deadline. Is the season over?");
+					}
+				} else {
+					console.log(response)
+				}
+			});
 			break;
 		default:
 			break;
