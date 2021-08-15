@@ -103,7 +103,7 @@ function createTableEmbed(message, type, item) {
 	.addField("Player", playerTable.length ? playerTable : "N/A", true)
 	.addField("Weekly Points", weekTable.length ? weekTable : "N/A", true)
 	.addField("Total Points", totalTable.length ? totalTable : "N/A", true)
-	.addTimestamp();
+	.setTimestamp();
 
 	message.channel.send({embeds: [embed]});
 }
