@@ -69,8 +69,7 @@ async function handleFantasyCommand(message, commandString, args) {
 					if ( data ) {
 						console.log("Fantasy: " + data.events.length.toString() + " events found.");
 						for ( var i = 0; i < data.events.length; ++i ) {
-							console.log("Fantasy: Timestamp is" + data.events[i].deadline_time_epoch.toString());
-							if ( data.events[i].deadline_time_epoch > currentTime ) { // Find the first gameweek in the future 
+							if ( data.events[i].deadline_time_epoch * 1000 > currentTime ) { // Find the first gameweek in the future 
 								message.channel.send("The next transfer deadline is <t:" + data.events[i].deadline_time_epoch.toString() + ":R> (Hover your cursor over the countdown for a timestamp)");
 								return;
 							}
