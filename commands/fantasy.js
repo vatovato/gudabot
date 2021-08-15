@@ -36,6 +36,7 @@ async function handleFantasyCommand(message, commandString, args) {
 	//const fetch = require('node-fetch');
 	const Discord = require('discord.js');
 	const request = require('request');
+	var username = message.author.username;
 
 	switch(commandString.toLowerCase()) {
 		case 'help':
@@ -49,6 +50,7 @@ async function handleFantasyCommand(message, commandString, args) {
 			message.channel.send({embeds: [embed]});
 			break;
 		case 'table':
+			console.log(username + "wants to call check the fantasy league table.");
 			var searchUrl = "https://fantasy.premierleague.com/api/leagues-classic/" + leagueID + "/standings/";
 			request(searchUrl, function(error, response, html) {
 				if(!error && response.statusCode == 200) {
@@ -60,6 +62,7 @@ async function handleFantasyCommand(message, commandString, args) {
 			});
 			break;
 		case 'deadline':
+			console.log(username + "wants to call check the fantasy league transfer deadline.");
 			var searchUrl = "https://fantasy.premierleague.com/api/bootstrap-static/";
 			const currentTime = Date.now() / 1000; // Date.now() returns time in milliseconds
 			request(searchUrl, function(error, response, html) {
