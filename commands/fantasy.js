@@ -68,7 +68,7 @@ async function handleFantasyCommand(message, commandString, args) {
 					if ( data ) {
 						for ( var i = 0; i < data.events; ++i ) {
 							if ( data.events[i].deadline_time_epoch > currentTime ) { // Find the first gameweek in the future 
-								message.channel.send("The next transfer deadline is <t:" + data.events[i].deadline_time_epoch + ":d>");
+								message.channel.send("The next transfer deadline is <t:" + data.events[i].deadline_time_epoch + ":R> (Hover your cursor over the countdown for a timestamp)");
 							}
 						}
 						message.channel.send("Fantasy: Cannot find a transfer deadline. Is the season over?");
