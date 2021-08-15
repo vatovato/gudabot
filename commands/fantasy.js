@@ -2,7 +2,7 @@
 const leagueID = '1049182'; // [2021-2022 League] This needs to be updated every year
 const leagueLogo = "https://resources.premierleague.com/premierleague/photo/2018/12/14/aface409-82b3-45c3-a20e-1aa1ea9d583d/PL-Lion.png"; // English Premier League Logo
 
-// Called by bot.js when kitsu command is given
+// Called by bot.js when fantasy command is given
 exports.run = (client, message, args) => {
 
 	// Possible arguments
