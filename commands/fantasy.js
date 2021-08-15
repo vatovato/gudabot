@@ -46,20 +46,8 @@ async function handleFantasyCommand(message, commandString, args) {
 			message.channel.send({embeds: [embed]});
 			break;
 		case 'table':
-			//Concatenates all remaining args to form the search prompt, if there are any
 			var searchUrl = "https://fantasy.premierleague.com/api/leagues-classic/" + leagueID + "/standings/";
-			/*
-			console.log("Querying " + searchUrl);
-			try {
-				const response = await fetch(searchUrl);
-				const data = await response.json();
-
-				createTableEmbed(message, commandString, data);
-
-			} catch(err) {
-				console.log(err);
-			}*/
-
+			// The Fantasy Premier League API doesn't work with fetch. Maybe it just returns a plain text? Use request and parse the html instead
 			request(searchUrl, function(error, response, html) {
 				if(!error && response.statusCode == 200) {
 					const data = JSON.parse(html);
