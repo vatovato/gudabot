@@ -69,10 +69,10 @@ client.on("messageCreate", message => {
                     'Authorization': 'Bearer ' + process.env.TWITTER_BEARER,
                 },
             })
-            .then(response => response.json())
+            .then(response => response.json()).catch(console.log(response))
             .then(data => { 
                 console.log(data);
-            });
+            }).catch(console.log(data));
 		}
         
 	}
