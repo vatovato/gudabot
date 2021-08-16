@@ -70,10 +70,10 @@ client.on("messageCreate", message => {
                     'Authorization': 'Bearer ' + process.env.TWITTER_BEARER,
                 },
             })
-            .then(response => console.log(response))
-            .then(data => { 
-                console.log(data);
-            });
+            .then(response => console.log(response));
+            //.then(data => { 
+            //    console.log(data);
+            //});
 		}
         
 	}
