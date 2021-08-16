@@ -56,41 +56,10 @@ client.on("messageCreate", message => {
     if (message.author.bot) return;
     if (!message.guild.me.permissionsIn(message.channel).has("SEND_MESSAGES") ) return; // Prevent crashes with commands that send messages in channels where bot doesn't have permissions
     // Substitute twitter links that contain videos with fxtwitter
-    if (message.content.includes("://twitter.com/")) {
-        const fetch = require('node-fetch');
-
-        const regex = /(https?:\/\/[^\s]+)/g;
-        const linksArray = message.content.match(regex);
-        var twitterIDs = [];
-        var searchUrl = "https://api.twitter.com/2/tweets?ids=";
-
-        for ( var i = 0; i < linksArray.length; ++i ) {
-            console.log("String (" + linksArray[i] + ") matched. Checking tweet content..." );
-
-            var twitterID = linksArray[i].replace(/\?.*$/,"").split('/').pop(); // Remove ?s= at the end, split with / and take the last element
-            console.log("Twitter ID is (" + twitterID.toString() + ")" );
-
-            if ( i > 0 ) {
-                searchUrl += ",";     
-			}
-            searchUrl += twitterID;
-		}
-        
-        searchUrl += "&expansions=attachments.media_keys";
-
-		console.log("Querying twitter api for tweet info (" + searchUrl + ")");
-        console.log("Twitter bearer is " + process.env.TWITTER_BEARER);
-        fetch(searchUrl, {
-            method: 'GET',
-            headers: {
-                'Authorization': 'Bearer ' + process.env.TWITTER_BEARER,
-            },
-        })
-        .then(response => response.json())
-        .then(data => { 
-            console.log(data);
-        });
-        
+    if (message.content.includes("twitter.com/")) {
+        let twitFix = require(`./plugins/twitfix.js`);
+        twitFix.run(client, message);
+        return;
 	}
     if (message.content.indexOf(process.env.PREFIX) !== 0) return;
 
