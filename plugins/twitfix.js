@@ -1,7 +1,7 @@
 // Called by bot.js when message has twitter links
 exports.run = (client, message) => {
     const fetch = require('node-fetch');
-    const regex = /(https?:\/\/[^\s]+)/g; // Regex to find all twitter links
+    const regex = /(https?:\/\/twitter[^\s]+)/g; // Regex to find all twitter links
 
     const linksArray = message.content.match(regex);
     var searchUrl = "https://api.twitter.com/2/tweets?ids=";
