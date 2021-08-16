@@ -64,14 +64,14 @@ async function handleFantasyCommand(message, commandString, args) {
 			});
 			break;
 		case 'user':
-			const searchManager = args.join(" ");
+			const searchManager = args.join(" ").toLowerCase();
 			console.log(username + " wants to check " + searchManager + "'s Fantasy League data");
 			// Search our league for the manager
 			request("https://fantasy.premierleague.com/api/leagues-classic/" + leagueID + "/standings/", function(leagueError, leagueResponse, leagueHtml) {
 				if(!leagueError && leagueResponse.statusCode == 200) {
 					const leagueData = JSON.parse(leagueHtml);
 					for ( var i = 0; i < leagueData.standings.results.length; ++i ) {
-						if ( searchManager == leagueData.standings.results[i].player_name ) {
+						if ( searchManager == leagueData.standings.results[i].player_name.toLowerCase() ) {
 							const managerID = leagueData.standings.results[i].entry;
 							const managerIndex = i;
 							// Search the player data for current week + player (footballer) info
