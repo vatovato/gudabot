@@ -129,10 +129,11 @@ exports.run = (client, message, args) => {
 
     const fetch = require('node-fetch');
     const albumHashes = [
-        'blnRJ4Q' // Sephi's testing album
+        'blnRJ4Q', // 0 - Sephi's testing album
+        'QI9iDQL', // 1 - Sephi's reupload of all the old memes
     ];
 
-    fetch("https://api.imgur.com/3/album/"+ albumHashes[0] + "/images", {
+    fetch("https://api.imgur.com/3/album/"+ albumHashes[1] + "/images", {
         method: 'GET',
         headers: {
             'Authorization': 'Client-ID ' + process.env.IMGUR_ID,
