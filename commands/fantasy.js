@@ -211,8 +211,8 @@ function createUserEmbed(message, type, managerIndex, gameWeek, leagueData, game
 		if ( gameData.elements[j].id.toString() in playerIndices ) {
 			playerCount++;
 
-			console.log("Fantasy: Player " + gameData.elements[j].first_name + " " + gameData.elements[j].second_name + " found!");
-			if ( !rolesLists[gameData.elements[j].element_type - 1].length ) {
+			//console.log("Fantasy: Player " + gameData.elements[j].first_name + " " + gameData.elements[j].second_name + " found!");
+			if ( rolesLists[gameData.elements[j].element_type - 1].length ) {
 				rolesLists[gameData.elements[j].element_type - 1] += ", ";
 			}
 			// Add <Player Name (TEAM)> to rolesLists at the index of its player type. 
