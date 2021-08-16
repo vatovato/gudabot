@@ -186,7 +186,7 @@ function createUserEmbed(message, type, managerIndex, gameWeek, leagueData, game
 	var viceCaptainIndex = 0;
 
 	// Loop through players picked and add them to the playerIndices object
-	console.log("Fantasy: Searching for players...");
+	//console.log("Fantasy: Searching for players...");
 	for ( var i = 0; i < manData.picks.length; ++i ) {
 		var position = i + 1;
 		playerIndices[manData.picks[i].element] = position;
@@ -196,12 +196,11 @@ function createUserEmbed(message, type, managerIndex, gameWeek, leagueData, game
 			viceCaptainIndex = playerIndices[manData.picks[i].element];
 		}
 	}
-	console.log("Players:")
-	console.log(playerIndices);
+	//console.log(playerIndices.length.toString() + " players found");
 
 	// Loop through gameData elements and find the players that match. Yes, we have to loop because players are not ordered by Element for some reason
 	var playerCount = 0;
-	for ( var j = 0; j < gameData.elements.length && playerCount < playerIndices.length; ++i ) {
+	for ( var j = 0; j < gameData.elements.length && playerCount < playerIndices.length; ++j ) {
 		if ( gameData.elements[j].id in playerIndices ) {
 			playerCount++;
 
