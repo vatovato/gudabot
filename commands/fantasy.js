@@ -6,11 +6,13 @@ const leagueLogo = "https://resources.premierleague.com/premierleague/photo/2018
 const fantasyCommands = {
 'help': 'help',
 'table': 'table',
+'user': 'user player_name',
 'deadline': 'deadline'
 }
 const fantasyDetails = {
 'help': 'Shows a list of available commands',
 'table': 'Shows the current leaderboard for the FGOEra Fantasy League',
+'user': 'Shows Fantasy League info about the given user'
 'deadline': 'Shows a countdown of the current gameweek\'s transfer deadline'
 }
 
@@ -58,6 +60,53 @@ async function handleFantasyCommand(message, commandString, args) {
 					createTableEmbed(message, commandString, data);
 				} else {
 					console.log(response)
+				}
+			});
+			break;
+		case 'user':
+			const searchManager = args.join(" ");
+			console.log(username + "wants to call check" + searchManager + "'s Fantasy League data");
+			// Search our league for the manager
+			request("https://fantasy.premierleague.com/api/leagues-classic/" + leagueID + "/standings/", function(leagueError, leagueResponse, leagueHtml) {
+				if(!leagueError && leagueResponse.statusCode == 200) {
+					const leagueData = JSON.parse(leagueHtml);
+					for ( var i = 0; i < leagueData.standings.results.length; ++i ) {
+						if ( searchManager == leagueData.standings.results[i].player_name ) {
+							const managerID = leagueData.standings.results[i].entry;
+							const managerIndex = i;
+							// Search the player data for current week + player (footballer) info
+							request("https://fantasy.premierleague.com/api/bootstrap-static/", function(gameError, gameResponse, gameHtml) {
+								if(!gameError && gameResponse.statusCode == 200) {
+									const gameData = JSON.parse(gameHtml);
+									for ( var j = 0; j < gameData.events.length; ++j ) {
+										if ( gameData.events[j].is_current ) {
+											// Search manager data for their lineup
+											const gameWeek = gameData.events[j].id;
+											const managerURL = "https://fantasy.premierleague.com/api/entry/" + managerID.toString() + "/event/" + gameWeek.toString() +"/picks/"
+											request(managerURL, function(manError, manResponse, manHtml) {
+												if(!manError && manResponse.statusCode == 200) {
+													const manData = JSON.parse(manHtml);
+													// Pass league, game and manager json data
+													createUserEmbed(message, commandString, managerIndex, gameWeek, leagueData, gameData, managerData);
+													return;
+												} else {
+													console.log(manResponse)
+												}
+											});
+										}
+									}
+									// No current gameweek
+									message.channel.send("Fantasy: Cannot find current gameweek. Is the season over?");
+								} else {
+									console.log(gameResponse)
+								}
+							});
+						}
+					}
+					// No manager of the name has been found
+					message.channel.send("Fantasy: Cannot find the manager " + searchManager + ". Please use <!fantasy table> for a list of managers");
+				} else {
+					console.log(leagueResponse)
 				}
 			});
 			break;
@@ -116,6 +165,65 @@ function createTableEmbed(message, type, item) {
 	.addField("Player", playerTable.length ? playerTable : "N/A", true)
 	.addField("Weekly Points", weekTable.length ? weekTable : "N/A", true)
 	.addField("Total Points", totalTable.length ? totalTable : "N/A", true)
+	.setTimestamp();
+
+	message.channel.send({embeds: [embed]});
+}
+
+// Handle JSON data and embed user info message here
+function createUserEmbed(message, type, managerIndex, gameWeek, leagueData, gameData, manData) {
+	const Discord = require('discord.js');
+
+	// Object containing player indices for lookup in the gamedata
+	var playerIndices = {};
+	var rolesLists = ['','','',''];
+
+	var captainIndex = 0;
+	var viceCaptainIndex = 0;
+
+	// Loop through players picked and add them to the playerIndices object
+	for ( var i = 0; i < manData.picks.length; ++i ) {
+		var position = i + 1;
+		playerIndices[manData.picks[i].element] = position;
+		if ( manData.picks[i].is_captain ) {
+			captainIndex = playerIndices[manData.picks[i].element];
+		} else if ( manData.picks[i].is_vice_captain ) {
+			viceCaptainIndex = playerIndices[manData.picks[i].element];
+		}
+	}
+
+	// Loop through gameData elements and find the players that match. Yes, we have to loop because players are not ordered by Element for some reason
+	var playerCount = 0;
+	for ( var j = 0; j < gameData.elements.length && playerCount < playerIndices.length; ++i ) {
+		if ( gameData.elements[j].id in playerIndices ) {
+			playerCount++;
+
+			if ( !rolesLists[gameData.elements[j].element_type - 1].length ) {
+				rolesLists[gameData.elements[j].element_type - 1] += ", ";
+			}
+			// Add <Player Name (TEAM)> to rolesLists at the index of its player type. 
+			rolesLists[gameData.elements[j].element_type - 1] += `${gameData.elements[j].first_name} ${gameData.elements[j].second_name} (${gameData.teams[gameData.elements[j].team_code].short_name})`;
+			if ( captainIndex == gameData.elements[j].id ) {
+				rolesLists[gameData.elements[j].element_type - 1] += "(C)";
+			}
+			if ( viceCaptainIndex == gameData.elements[j].id ) {
+				rolesLists[gameData.elements[j].element_type - 1] += "(VC)";
+			}
+		}
+	}
+	
+	// Create embed
+	const embed = new Discord.MessageEmbed()
+	.setTitle(leagueData.standings.results[managerIndex].player_name + " (" + leagueData.standings.results[managerIndex].entry_name + ")")
+	.setThumbnail(leagueLogo)
+	.setURL("https://fantasy.premierleague.com/entry/" + leagueData.standings.results[managerIndex].entry + "/event/" + gameWeek)
+	.addField("Rank", leagueData.standings.results[managerIndex].rank , true)
+	.addField("Weekly Points", leagueData.standings.results[managerIndex].event_total , true)
+	.addField("Total Points", leagueData.standings.results[managerIndex].total , true)
+	.addField("Goalkeepers", rolesLists[0].length ? rolesLists[0] : "N/A")
+	.addField("Defenders", rolesLists[1].length ? rolesLists[1] : "N/A")
+	.addField("Midfielders", rolesLists[2].length ? rolesLists[2] : "N/A")
+	.addField("Forwards", rolesLists[3].length ? rolesLists[3] : "N/A")
 	.setTimestamp();
 
 	message.channel.send({embeds: [embed]});
