@@ -55,6 +55,6 @@ exports.run = (client, message) => {
                 console.log("Error: cannot find twitter ID in the fixedLink object");     
 			}
 		}
-		message.channel.send({content: newMessage, reply: { messageReference: message.reference.messageId }});  
+		message.channel.send({content: newMessage, allowedMentions: {repliedUser: false}, reply: { messageReference: message.reference }});  
     });
 }
