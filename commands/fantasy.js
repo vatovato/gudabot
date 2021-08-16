@@ -87,7 +87,7 @@ async function handleFantasyCommand(message, commandString, args) {
 												if(!manError && manResponse.statusCode == 200) {
 													const manData = JSON.parse(manHtml);
 													// Pass league, game and manager json data
-													createUserEmbed(message, commandString, managerIndex, gameWeek, leagueData, gameData, managerData);
+													createUserEmbed(message, commandString, managerIndex, gameWeek, leagueData, gameData, manData);
 													return;
 												} else {
 													console.log(manResponse)
