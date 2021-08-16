@@ -47,14 +47,16 @@ exports.run = (client, message) => {
 		}
 
         // Add all tweets with links to the bot message
-        var newMessage = "Found " + twitterIDs.length + " tweet" + ( twitterIDs.length > 1 ? "s" : "") + " with video content.\n";
-        for ( var l = 0; l < twitterIDs.length; ++l ) {
-            if ( twitterIDs[l] in fixedLinks ) {
-                newMessage += fixedLinks[twitterIDs[l]] + "\n";
-            } else {
-                console.log("Error: cannot find twitter ID in the fixedLink object");     
-			}
-		}
-		message.channel.send({content: newMessage, allowedMentions: {repliedUser: false}, reply: { messageReference: message }});  
+        if ( twitterIDs.length ) {
+            var newMessage = "Found " + twitterIDs.length + " tweet" + ( twitterIDs.length > 1 ? "s" : "") + " with video content.\n";
+            for ( var l = 0; l < twitterIDs.length; ++l ) {
+                if ( twitterIDs[l] in fixedLinks ) {
+                    newMessage += fixedLinks[twitterIDs[l]] + "\n";
+                } else {
+                    console.log("Error: cannot find twitter ID in the fixedLink object");     
+			    }
+		    }
+		    message.channel.send({content: newMessage, allowedMentions: {repliedUser: false}, reply: { messageReference: message }});  
+        }
     });
 }
