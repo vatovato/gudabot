@@ -200,7 +200,7 @@ function createUserEmbed(message, type, managerIndex, gameWeek, leagueData, game
 
 	// Loop through gameData elements and find the players that match. Yes, we have to loop because players are not ordered by Element for some reason
 	var playerCount = 0;
-	console.log("Fantasy: Looping through " gameData.elements.length + " players...");
+	console.log("Fantasy: Looping through " + gameData.elements.length + " players...");
 	for ( var j = 0; j < gameData.elements.length && playerCount < playerIndices.length; ++j ) {
 		if ( gameData.elements[j].id in playerIndices ) {
 			playerCount++;
