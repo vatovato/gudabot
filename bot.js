@@ -67,7 +67,7 @@ client.on("messageCreate", message => {
         for ( var i = 0; i < linksArray.length; ++i ) {
             console.log("String (" + linksArray[i] + ") matched. Checking tweet content..." );
 
-            var twitterID = links.Array[i].replace(/\?.*$/,"").split('/').pop(); // Remove ?s= at the end, split with / and take the last element
+            var twitterID = linksArray[i].replace(/\?.*$/,"").split('/').pop(); // Remove ?s= at the end, split with / and take the last element
             console.log("Twitter ID is (" + twitterID.toString() + ")" );
 
             if ( i > 0 ) {
