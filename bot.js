@@ -78,7 +78,8 @@ client.on("messageCreate", message => {
         
         searchUrl += "?expansions=attachments.media_keys";
 
-		console.log("Querying twitter api for tweet info");
+		console.log("Querying twitter api for tweet info (" + searchUrl + ")");
+        console.log("Twitter bearer is " + process.env.TWITTER_BEARER);
         fetch(searchUrl, {
             method: 'GET',
             headers: {
