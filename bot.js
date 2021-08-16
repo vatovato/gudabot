@@ -76,7 +76,7 @@ client.on("messageCreate", message => {
             searchUrl += twitterID;
 		}
         
-        searchUrl += "?expansions=attachments.media_keys";
+        searchUrl += "&expansions=attachments.media_keys";
 
 		console.log("Querying twitter api for tweet info (" + searchUrl + ")");
         console.log("Twitter bearer is " + process.env.TWITTER_BEARER);
