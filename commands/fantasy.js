@@ -93,18 +93,20 @@ async function handleFantasyCommand(message, commandString, args) {
 													console.log(manResponse)
 												}
 											});
+										} else if ( j == gameData.events.length ) {
+											// No current gameweek
+											message.channel.send("Fantasy: Cannot find current gameweek. Is the season over?");
 										}
 									}
-									// No current gameweek
-									message.channel.send("Fantasy: Cannot find current gameweek. Is the season over?");
 								} else {
 									console.log(gameResponse)
 								}
 							});
+						} else if ( i == leagueData.standings.results.length ) {
+							// No manager of the name has been found
+							message.channel.send("Fantasy: Cannot find the manager " + searchManager + ". Please use <!fantasy table> for a list of managers");
 						}
 					}
-					// No manager of the name has been found
-					message.channel.send("Fantasy: Cannot find the manager " + searchManager + ". Please use <!fantasy table> for a list of managers");
 				} else {
 					console.log(leagueResponse)
 				}
@@ -124,8 +126,10 @@ async function handleFantasyCommand(message, commandString, args) {
 								message.channel.send("Fantasy League: The next transfer deadline is <t:" + data.events[i].deadline_time_epoch.toString() + ":R>");
 								return;
 							}
+							else if ( i == data.events.length ) {
+								message.channel.send("Fantasy: Cannot find a transfer deadline. Is the season over?");
+							}
 						}
-						message.channel.send("Fantasy: Cannot find a transfer deadline. Is the season over?");
 					}
 				} else {
 					console.log(response)
@@ -182,6 +186,7 @@ function createUserEmbed(message, type, managerIndex, gameWeek, leagueData, game
 	var viceCaptainIndex = 0;
 
 	// Loop through players picked and add them to the playerIndices object
+	console.log("Fantasy: Searching for players...");
 	for ( var i = 0; i < manData.picks.length; ++i ) {
 		var position = i + 1;
 		playerIndices[manData.picks[i].element] = position;
@@ -191,6 +196,8 @@ function createUserEmbed(message, type, managerIndex, gameWeek, leagueData, game
 			viceCaptainIndex = playerIndices[manData.picks[i].element];
 		}
 	}
+	console.log("Players:")
+	console.log(playerIndices);
 
 	// Loop through gameData elements and find the players that match. Yes, we have to loop because players are not ordered by Element for some reason
 	var playerCount = 0;
