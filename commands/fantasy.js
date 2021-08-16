@@ -52,7 +52,7 @@ async function handleFantasyCommand(message, commandString, args) {
 			message.channel.send({embeds: [embed]});
 			break;
 		case 'table':
-			console.log(username + "wants to call check the fantasy league table.");
+			console.log(username + " wants to check the fantasy league table.");
 			var searchUrl = "https://fantasy.premierleague.com/api/leagues-classic/" + leagueID + "/standings/";
 			request(searchUrl, function(error, response, html) {
 				if(!error && response.statusCode == 200) {
@@ -65,7 +65,7 @@ async function handleFantasyCommand(message, commandString, args) {
 			break;
 		case 'user':
 			const searchManager = args.join(" ");
-			console.log(username + "wants to call check" + searchManager + "'s Fantasy League data");
+			console.log(username + " wants to check " + searchManager + "'s Fantasy League data");
 			// Search our league for the manager
 			request("https://fantasy.premierleague.com/api/leagues-classic/" + leagueID + "/standings/", function(leagueError, leagueResponse, leagueHtml) {
 				if(!leagueError && leagueResponse.statusCode == 200) {
@@ -111,7 +111,7 @@ async function handleFantasyCommand(message, commandString, args) {
 			});
 			break;
 		case 'deadline':
-			console.log(username + "wants to call check the fantasy league transfer deadline.");
+			console.log(username + " wants to check the fantasy league transfer deadline.");
 			var searchUrl = "https://fantasy.premierleague.com/api/bootstrap-static/";
 			const currentTime = Date.now() / 1000; // Date.now() returns time in milliseconds
 			request(searchUrl, function(error, response, html) {
@@ -217,9 +217,9 @@ function createUserEmbed(message, type, managerIndex, gameWeek, leagueData, game
 	.setTitle(leagueData.standings.results[managerIndex].player_name + " (" + leagueData.standings.results[managerIndex].entry_name + ")")
 	.setThumbnail(leagueLogo)
 	.setURL("https://fantasy.premierleague.com/entry/" + leagueData.standings.results[managerIndex].entry + "/event/" + gameWeek)
-	.addField("Rank", leagueData.standings.results[managerIndex].rank , true)
-	.addField("Weekly Points", leagueData.standings.results[managerIndex].event_total , true)
-	.addField("Total Points", leagueData.standings.results[managerIndex].total , true)
+	.addField("Rank", leagueData.standings.results[managerIndex].rank.toString() , true)
+	.addField("Weekly Points", leagueData.standings.results[managerIndex].event_total.toString() , true)
+	.addField("Total Points", leagueData.standings.results[managerIndex].total.toString() , true)
 	.addField("Goalkeepers", rolesLists[0].length ? rolesLists[0] : "N/A")
 	.addField("Defenders", rolesLists[1].length ? rolesLists[1] : "N/A")
 	.addField("Midfielders", rolesLists[2].length ? rolesLists[2] : "N/A")
