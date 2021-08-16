@@ -1,7 +1,7 @@
 // Called by bot.js when message has twitter links
 exports.run = (client, message) => {
     const fetch = require('node-fetch');
-    const regex = /(https?:\/\/[^\s]+)/g;
+    const regex = /(https?:\/\/[^\s]+)/g; // Regex to find all twitter links
 
     const linksArray = message.content.match(regex);
     var searchUrl = "https://api.twitter.com/2/tweets?ids=";
@@ -13,14 +13,16 @@ exports.run = (client, message) => {
 
         const twitterID = linksArray[i].replace(/\?.*$/,"").split('/').pop(); // Remove ?s= at the end, split with / and take the last element
 
-        fixedLinks[twitterID] = linksArray[i].replace("https://twitter.com/","https://fxtwitter.com/");
+        if ( twitterID && twitterID.length ) {
+            fixedLinks[twitterID] = linksArray[i].replace("https://twitter.com/","https://fxtwitter.com/");
+            console.log("Twitter ID is (" + twitterID.toString() + ")" );
+            console.log(fixedLinks);
 
-        console.log("Twitter ID is (" + twitterID.toString() + ")" );
-
-        if ( i > 0 ) {
-            searchUrl += ",";     
-		}
-        searchUrl += twitterID;
+            if ( i > 0 ) {
+                searchUrl += ",";     
+		    }
+            searchUrl += twitterID;
+        }
 	}
         
     searchUrl += "&expansions=attachments.media_keys";
