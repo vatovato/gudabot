@@ -18,7 +18,7 @@ exports.run = (client, message, connection, args) => {
     console.log(`Required adding ${servantName} image to ${username}'s wishlist.`);
 
     if ( args.length == 1 && args[0].includes("https://") ) {
-        if ( args[0].includes(".gif") || args[0].includes(".png") || args[0].includes(".jpg") ) {
+        if ( args[0].includes(".gif") || args[0].includes(".png") || args[0].includes(".jpg") || args[0].includes(".jpeg") ) {
             connection.query(`UPDATE wishlist SET imageURL = '${args[0]}' WHERE userID = ${userID}`);
             message.channel.send(`${username}, you added your image. Call !wl to see it.`);
 		} 
