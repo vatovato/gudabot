@@ -61,20 +61,34 @@ client.on("messageCreate", message => {
 
         const regex = /(https?:\/\/[^\s]+)/g;
         const linksArray = message.content.match(regex);
+        var twitterIDs = [];
+        var searchUrl = "https://api.twitter.com/2/tweets?ids=";
 
         for ( var i = 0; i < linksArray.length; ++i ) {
             console.log("String (" + linksArray[i] + ") matched. Checking tweet content..." );
-            fetch('https://example.com/profile', {
-                method: 'GET', // or 'PUT'
-                headers: {
-                    'Authorization': 'Bearer ' + process.env.TWITTER_BEARER,
-                },
-            })
-            .then(response => console.log(response));
-            //.then(data => { 
-            //    console.log(data);
-            //});
+
+            var twitterID = links.Array[i].replace(/\?.*$/,"").split('/').pop(); // Remove ?s= at the end, split with / and take the last element
+            console.log("Twitter ID is (" + twitterID.toString() + ")" );
+
+            if ( i > 0 ) {
+                searchUrl += ",";     
+			}
+            searchUrl += twitterID;
 		}
+        
+        searchUrl += "?expansions=attachments.media_keys";
+
+		console.log("Querying twitter api for tweet info");
+        fetch(searchUrl, {
+            method: 'GET',
+            headers: {
+                'Authorization': 'Bearer ' + process.env.TWITTER_BEARER,
+            },
+        })
+        .then(response => response.body()))
+        .then(data => { 
+            console.log(data);
+        });
         
 	}
     if (message.content.indexOf(process.env.PREFIX) !== 0) return;
