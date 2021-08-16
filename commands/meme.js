@@ -131,7 +131,6 @@ exports.run = (client, message, args) => {
     const albumHashes = [
         'blnRJ4Q' // Sephi's testing album
     ];
-    var advice = [];
 
     fetch("https://api.imgur.com/3/album/"+ albumHashes[0] + "/images", {
         method: 'GET',
@@ -142,12 +141,10 @@ exports.run = (client, message, args) => {
     .then(response => response.json())
     .then(data => {
         
-        //var place = Math.floor((Math.random() * 111));
-        //var sendAdvice = advice[place];
-        //console.log("Meme: " + sendAdvice);
-        console.log(data);
-        message.channel.send("Memes");
-        //message.channel.send({files: [sendAdvice]});
+        var place = Math.floor((Math.random() * data.data.length)); // Random number between 0 and length of album - 1
+        var memeUrl = data.data[place].link;
+        console.log("Meme: " + memeUrl);
+        message.channel.send({files: [memeUrl]});
     });
 
     //message.channel.send({files: ["https://i.imgur.com/rKIx0QD.jpg"]});
