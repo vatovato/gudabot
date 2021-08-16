@@ -55,6 +55,27 @@ fs.readdir("./events/", (err, files) => {
 client.on("messageCreate", message => {
     if (message.author.bot) return;
     if (!message.guild.me.permissionsIn(message.channel).has("SEND_MESSAGES") ) return; // Prevent crashes with commands that send messages in channels where bot doesn't have permissions
+    // Substitute twitter links that contain videos with fxtwitter
+    if (message.content.includes("://twitter.com/")) {
+        const fetch = require('node-fetch');
+
+        const regex = /(https?:\/\/[^\s]+)/g;
+        const linksArray = message.content.match(regex);
+
+        for ( var i = 0; i < linksArray.length; ++i ) {
+            fetch('https://example.com/profile', {
+                method: 'GET', // or 'PUT'
+                headers: {
+                    'Authorization': 'Bearer ' + process.env.TWITTER_BEARER,
+                },
+            })
+            .then(response => response.json())
+            .then(data => { 
+                console.log(data);
+            });
+		}
+        
+	}
     if (message.content.indexOf(process.env.PREFIX) !== 0) return;
 
     // This is the best way to define args. Trust me.
