@@ -202,7 +202,7 @@ function createUserEmbed(message, type, managerIndex, gameWeek, leagueData, game
 	var playerCount = 0;
 	console.log("Fantasy: Looping through " + gameData.elements.length + " players...");
 	for ( var j = 0; j < gameData.elements.length && playerCount < playerIndices.length; ++j ) {
-		if ( gameData.elements[j].id in playerIndices ) {
+		if ( gameData.elements[j].id.toString() in playerIndices ) {
 			playerCount++;
 
 			console.log("Fantasy: Player " + gameData.elements[j].first_name + " " + gameData.elements[j].second_name + " found!");
