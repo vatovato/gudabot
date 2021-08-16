@@ -131,8 +131,9 @@ exports.run = (client, message, args) => {
     const albumHashes = [
         'blnRJ4Q', // 0 - Sephi's testing album
         'QI9iDQL', // 1 - Sephi's reupload of all the old memes
+        'O6qGyc0', // 2 - Furiosa's reupload of all the old memes + new memes
     ];
-    const albumID = albumHashes[1];
+    const albumID = albumHashes[2];
     fetch("https://api.imgur.com/3/album/"+ albumID + "/images", {
         method: 'GET',
         headers: {
