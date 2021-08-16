@@ -216,7 +216,8 @@ function createUserEmbed(message, type, managerIndex, gameWeek, leagueData, game
 				rolesLists[gameData.elements[j].element_type - 1] += ", ";
 			}
 			// Add <Player Name (TEAM)> to rolesLists at the index of its player type. 
-			rolesLists[gameData.elements[j].element_type - 1] += `${gameData.elements[j].first_name} ${gameData.elements[j].second_name} (${teamShortNames[gameData.elements[j].team_code.toString()]})`;
+			// Use short web_name instead of ${gameData.elements[j].first_name} ${gameData.elements[j].second_name} 
+			rolesLists[gameData.elements[j].element_type - 1] += `${gameData.elements[j].web_name} (${teamShortNames[gameData.elements[j].team_code.toString()]})`;
 			if ( captainIndex == gameData.elements[j].id ) {
 				rolesLists[gameData.elements[j].element_type - 1] += "(C)";
 			}
