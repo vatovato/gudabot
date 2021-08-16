@@ -12,7 +12,7 @@ const fantasyCommands = {
 const fantasyDetails = {
 'help': 'Shows a list of available commands',
 'table': 'Shows the current leaderboard for the FGOEra Fantasy League',
-'user': 'Shows Fantasy League info about the given user'
+'user': 'Shows Fantasy League info about the given user',
 'deadline': 'Shows a countdown of the current gameweek\'s transfer deadline'
 }
 
