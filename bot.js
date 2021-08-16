@@ -63,16 +63,17 @@ client.on("messageCreate", message => {
         const linksArray = message.content.match(regex);
 
         for ( var i = 0; i < linksArray.length; ++i ) {
+            console.log("String (" + linksArray[i] + ") matched. Checking tweet content..." );
             fetch('https://example.com/profile', {
                 method: 'GET', // or 'PUT'
                 headers: {
                     'Authorization': 'Bearer ' + process.env.TWITTER_BEARER,
                 },
             })
-            .then(response => response.json()).catch(console.log(response))
+            .then(response => console.log(response))
             .then(data => { 
                 console.log(data);
-            }).catch(console.log(data));
+            });
 		}
         
 	}
