@@ -40,7 +40,7 @@ exports.run = (client, message) => {
                 // Found a video/gif, find the tweet id by searching one that contain this video/gif's media key
                 for ( var k = 0; k < data.data.length; ++k ) {
                     if (  data.data[k].attachments.media_keys.includes(data.includes.media[j].media_key) ) {
-                        if ( !twitterIDs.include(data.data[k].id) ) {
+                        if ( !twitterIDs.includes(data.data[k].id) ) {
                             twitterIDs.push(data.data[k].id);                     
 						}
 					}           
