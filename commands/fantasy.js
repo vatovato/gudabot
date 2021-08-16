@@ -180,14 +180,20 @@ function createUserEmbed(message, type, managerIndex, gameWeek, leagueData, game
 
 	// Object containing player indices for lookup in the gamedata
 	var playerIndices = {};
+	var teamShortNames = {};
 	var rolesLists = ['','','',''];
 
 	var captainIndex = 0;
 	var viceCaptainIndex = 0;
 
+	// Loop through clubs because the api can't just have them in order of id :notlikethisgblob:
+	for ( var i = 0; i < gameData.teams.length; ++i ) {
+		teamShortNames[gameData.teams[i].code] = gameData.teams[i].short_name;
+	}
+
 	// Loop through players picked and add them to the playerIndices object
 	//console.log("Fantasy: Searching for players...");
-	for ( var i = 0; i < manData.picks.length; ++i ) {
+	for ( i = 0; i < manData.picks.length; ++i ) {
 		var position = i + 1;
 		playerIndices[manData.picks[i].element] = position;
 		if ( manData.picks[i].is_captain ) {
@@ -202,8 +208,6 @@ function createUserEmbed(message, type, managerIndex, gameWeek, leagueData, game
 	var playerCount = 0;
 	console.log("Fantasy: Looping through " + gameData.elements.length + " players...");
 	for ( var j = 0; j < gameData.elements.length; ++j ) {
-	
-		console.log("Fantasy: Parsing player " + j.toString());
 		if ( gameData.elements[j].id.toString() in playerIndices ) {
 			playerCount++;
 
@@ -212,7 +216,7 @@ function createUserEmbed(message, type, managerIndex, gameWeek, leagueData, game
 				rolesLists[gameData.elements[j].element_type - 1] += ", ";
 			}
 			// Add <Player Name (TEAM)> to rolesLists at the index of its player type. 
-			rolesLists[gameData.elements[j].element_type - 1] += `${gameData.elements[j].first_name} ${gameData.elements[j].second_name} (${gameData.teams[gameData.elements[j].team_code].short_name})`;
+			rolesLists[gameData.elements[j].element_type - 1] += `${gameData.elements[j].first_name} ${gameData.elements[j].second_name} (${teamShortNames[gameData.elements[j].team_code.toString()]})`;
 			if ( captainIndex == gameData.elements[j].id ) {
 				rolesLists[gameData.elements[j].element_type - 1] += "(C)";
 			}
