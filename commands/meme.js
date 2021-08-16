@@ -132,8 +132,8 @@ exports.run = (client, message, args) => {
         'blnRJ4Q', // 0 - Sephi's testing album
         'QI9iDQL', // 1 - Sephi's reupload of all the old memes
     ];
-
-    fetch("https://api.imgur.com/3/album/"+ albumHashes[1] + "/images", {
+    const albumID = albumHashes[1];
+    fetch("https://api.imgur.com/3/album/"+ albumID + "/images", {
         method: 'GET',
         headers: {
             'Authorization': 'Client-ID ' + process.env.IMGUR_ID,
@@ -144,6 +144,7 @@ exports.run = (client, message, args) => {
         
         var place = Math.floor((Math.random() * data.data.length)); // Random number between 0 and length of album - 1
         var memeUrl = data.data[place].link;
+        console.log("Found " + data.data.length + " memes in album https://imgur.com/a/" + albumID);
         console.log("Meme: " + memeUrl);
         message.channel.send({files: [memeUrl]});
     });
