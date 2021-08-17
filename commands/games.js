@@ -229,6 +229,6 @@ function formatDate(fullDate) {
 
 // Data used for upcoming/recent games tables
 function collectBasicDetails(data) {
-	var basicDetails = [data[i].name, data[i].Platforms, data[i].firstReleaseDate/*, data[i].Genres*/];
+	var basicDetails = [data.name, data.Platforms, data.firstReleaseDate/*, data.Genres*/];
 	return basicDetails;
 }
