@@ -50,7 +50,7 @@ exports.run = (client, message) => {
                 // Found an image, find the tweet id and username by searching one that contain this video/gif's media key
                 for ( var k = 0; k < data.data.length; ++k ) {
                     if (  data.data[k].attachments.media_keys.includes(data.includes.media[j].media_key) ) {
-                        //console.log(data.includes.media[j]);
+                        console.log(data.includes.media[j]);
                         imageEmbeds[data.includes.media[j].url] = [data.data[k].id, data.data[k].name, data.data[k].username];
                         //imageEmbeds.push(data.includes.media[j].url);
                     }
@@ -71,12 +71,12 @@ exports.run = (client, message) => {
 		    message.channel.send({content: newMessage, allowedMentions: {repliedUser: false}, reply: { messageReference: message }});
             message.suppressEmbeds(true); // Remove original embeds
         }
-
+        
+        console.log(imageEmbeds);
         // Add all image embeds to an embed with pages to browse through them, if there is more than 1
         if ( imageEmbeds.length > 1 ) {
             const paginationEmbed = require('./pagination.js');
             var embedPages = [];
-            console.log(imageEmbeds);
             for ( imageUrl in imageEmbeds ) {
                 const embed = new Discord.MessageEmbed()
                                     .setTitle(imageEmbeds[imageUrl][1] + " (@" + imageEmbeds[imageUrl][2] + ")")
