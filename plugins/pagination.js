@@ -45,6 +45,8 @@ const paginationEmbed = async (msg, pages, buttonList = null, timeout = 120000) 
   const curPage = await msg.channel.send({
     embeds: [pages[page].setFooter(`Page ${page + 1} / ${pages.length}`)],
     components: [row],
+    reply: { messageReference: message },
+    allowedMentions: {repliedUser: false},
   });
 
   const filter = (i) =>
