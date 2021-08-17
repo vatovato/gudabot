@@ -88,8 +88,8 @@ async function handleKitsuCommand(message, commandString, args) {
 					const randResponse = await fetch(randomUrl);
 					const randItem = await randResponse.json();
 
-					var embed = createAnimeEmbed(message, commandString, randItem.data[0].attributes, randItem.included);
-					message.channel.send({embeds: [embed]});
+					var randomEmbed = createAnimeEmbed(message, commandString, randItem.data[0].attributes, randItem.included);
+					message.channel.send({embeds: [randomEmbed]});
 
 				} catch(err) {
 					console.log(err);
