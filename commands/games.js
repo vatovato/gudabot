@@ -19,11 +19,11 @@ exports.run = (client, message, args) => {
 			handleGamesCommand(message, commandString, args).then(console.log("API Query succeeded")).catch(e => console.log(e));
 		}
 		else {
-			message.channel.send(`Games: command ${commandString} not recognised.\nUse '!game help' for a list of available commands.`);
+			message.channel.send(`Games: command ${commandString} not recognised.\nUse '!games help' for a list of available commands.`);
 		}
 	} 
 	else {
-		message.channel.send("Games: no argument found.\nUse '!game help' for a list of available commands.");
+		message.channel.send("Games: no argument found.\nUse '!games help' for a list of available commands.");
 	}
 }
 
@@ -173,7 +173,7 @@ function createGameEmbed(message, data) {
 	.addField("Avg Rating", data.averageScore != -1 ? data.averageScore.toString() : "N/A", true)
 	.addField("Genres", genreString.length ? genreString : "N/A", true)
 	.addField("Release Date", dateString, true)
-	.addField("Top Critic Rating", data.topCriticScore != -1 ? topCriticScore.toString() : "N/A", true)
+	.addField("Top Critic Rating", data.topCriticScore != -1 ? data.topCriticScore.toString() : "N/A", true)
 	.addField("Description", data.description && data.description.trim() ? (data.description.length > 500 ? data.description.substring(0, 497) + "..." : data.description) : "N/A");
 
 	if ( data.screenshots.length ) {
