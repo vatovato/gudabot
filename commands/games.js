@@ -191,9 +191,9 @@ function createUpcomingEmbed(list) {
 	.setTitle("Upcoming Releases")
 	.setThumbnail(openLogo)
 	.setURL("https://opencritic.com/browse/all/upcoming/date")
-	.addField("Name", playerTable.length ? playerTable : "N/A", true)
-	.addField("Platforms", weekTable.length ? weekTable : "N/A", true)
-	.addField("ReleaseDate", totalTable.length ? totalTable : "N/A", true)
+	.addField("Name", nameColumn.length ? nameColumn : "N/A", true)
+	.addField("Platforms", platformsColumn.length ? platformsColumn : "N/A", true)
+	.addField("ReleaseDate", dateColumn.length ? dateColumn : "N/A", true)
 	.setTimestamp();
 
 	return embed;
