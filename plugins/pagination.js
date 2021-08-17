@@ -50,10 +50,9 @@ const paginationEmbed = async (msg, pages, authorOnly = false, timeout = 120000,
     allowedMentions: {repliedUser: false},
   });
   
-  const filter = (i) => {
-    return ( i.user.id === msg.author.id ) &&
+  const filter = (i) =>
+    ( !authorOnly || i.user.id === msg.author.id ) && // If we set interaction for authorOnly, check id
     ( i.customId === buttonList[0].customId || i.customId === buttonList[1].customId );
-   };
 
   const collector = await curPage.createMessageComponentCollector({
     filter,
