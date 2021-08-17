@@ -57,12 +57,10 @@ async function handleGamesCommand(message, commandString, args) {
 				// We first search the terms, parse through all the result ids (max 10), then search each id to add game info to an embed page
 				var searchUrl = "https://api.opencritic.com/api/game/search?criteria=" + searchPrompt;
 
-				console.log("Querying " + searchUrl);
 				try {
 					const response = await fetch(searchUrl);
 					const data = await response.json();
 
-					console.log("Found " + data.meta.count.toString() + " results");
 					if ( data && data.length > 0 ) {
 						for ( var i = 0; i < data.length; ++i) {
 							searchUrl = "https://api.opencritic.com/api/game/" + data[i].id;
