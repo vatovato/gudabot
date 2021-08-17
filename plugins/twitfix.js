@@ -66,11 +66,17 @@ exports.run = (client, message) => {
 
         // Add all image embeds to an embed with pages to browse through them, if there is more than 1
         if ( imageEmbeds.length > 1 ) {
+            const paginationEmbed = require('pagination.js');
+            var embedPages = [];
             //var newMessage = "Found " + twitterIDs.length + " tweet" + ( twitterIDs.length > 1 ? "s" : "") + " with video content.\n";
             for ( var m = 0; m < imageEmbeds.length; ++m ) {
-                console.log("Twitfix: Found image " + imageEmbeds[m]);   
+                console.log("Twitfix: Found image " + imageEmbeds[m]);
+                const embed = new client.MessageEmbed()
+                                    .setTitle("Page " + (m+1).toString() + " of " + imageEmbeds.length.toString())
+                                    .setImage(imageEmbeds);
+                embedPages.push(embed);
 		    }
-		    //message.channel.send({content: newMessage, allowedMentions: {repliedUser: false}, reply: { messageReference: message }});  
+		    paginationEmbed(message, embedPages);
         }
     });
 }
