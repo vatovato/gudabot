@@ -77,6 +77,7 @@ exports.run = (client, message) => {
         }
         
         // Add all image embeds to an embed with pages to browse through them, if there is more than 1
+        console.log(Object.keys(imageEmbeds).length);
         if ( Object.keys(imageEmbeds).length > 1 ) {
             const paginationEmbed = require('./pagination.js');
             var embedPages = [];
