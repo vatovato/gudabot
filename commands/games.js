@@ -115,7 +115,7 @@ async function handleGamesCommand(message, commandString, args) {
 					
 					var upcomingTable = [];
 					for ( var i = 0; i < data.length; ++i ) {
-						upcomingTable.push([data.name, data.Platforms, data.firstReleaseDate]);
+						upcomingTable.push([data[i].name, data[i].Platforms, data[i].firstReleaseDate]);
 						var gameEmbed = createGameEmbed(message, data[i]);
 						gamePages.push(gameEmbed);
 					}
@@ -176,7 +176,6 @@ function createUpcomingEmbed(list) {
 	var dateColumn = '';
 
 	// Parse through standings
-	console.log(list);
 	for ( var i = 0; i < list.length; ++i ) {
 		if ( i > 0 ) {
 			nameColumn += "\n";
@@ -210,7 +209,6 @@ function parseArrayNames(list, shortName = false) {
 		}
 	} else {
 		console.log("No entries found");
-		console.log(list);
 	}
 
 	return namesString;
