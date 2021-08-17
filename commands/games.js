@@ -199,8 +199,8 @@ function createUpcomingEmbed(list) {
 	.setThumbnail(openLogo)
 	.setURL("https://opencritic.com/browse/all/upcoming/date")
 	.addField("Name", nameColumn.length ? nameColumn : "N/A", true)
-	.addField("Platforms", platformsColumn.length ? platformsColumn : "N/A", true)
 	.addField("Release Date", dateColumn.length ? dateColumn : "N/A", true)
+	.addField("Platforms", platformsColumn.length ? platformsColumn : "N/A", true)
 	.setTimestamp();
 
 	/*
