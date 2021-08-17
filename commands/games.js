@@ -210,7 +210,7 @@ function createUpcomingEmbed(list) {
 	.setTimestamp();
 
 	for ( i = 0; i < list.length; ++i) {
-		embed.addField('\u3000', list[i][0].length ? "**" + list[i][0] + "**" : "**N/A**")
+		embed.addField('Name', list[i][0].length ? "**" + list[i][0] + "**" : "**N/A**")
 		.addField("ReleaseDate", formatDate(list[i][2]), true)
 		.addField("Platforms", parseArrayNames(list[i][1], true), true)
 	}
