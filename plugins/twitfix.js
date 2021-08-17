@@ -46,7 +46,7 @@ exports.run = (client, message) => {
 				}
 			}
             else if ( data.includes.media[j].type == "photo" ) {
-                console.log(data.includes.media[j]);
+                //console.log(data.includes.media[j]);
                 imageEmbeds.push(data.includes.media[j].url);
 			}
 		}
