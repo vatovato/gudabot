@@ -204,10 +204,11 @@ function parseArrayNames(list, shortName = false) {
 	var namesString = list ? '' : "N/A";
 	if ( list && list.length ) {
 		for (var i = 0; i < list.length; ++i) {
-			namesString += (i > 0 ? ", " : "" ) + (shortName ? list.shortName : list.name);
+			namesString += (i > 0 ? ", " : "" ) + (shortName ? list[i].shortName : list[i].name);
 		}
 	} else {
 		console.log("No entries found");
+		console.log(list);
 	}
 
 	return namesString;
