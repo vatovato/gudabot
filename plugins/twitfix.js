@@ -66,7 +66,7 @@ exports.run = (client, message) => {
 
         // Add all image embeds to an embed with pages to browse through them, if there is more than 1
         if ( imageEmbeds.length > 1 ) {
-            const paginationEmbed = require('pagination.js');
+            const paginationEmbed = require('./pagination.js');
             var embedPages = [];
             //var newMessage = "Found " + twitterIDs.length + " tweet" + ( twitterIDs.length > 1 ? "s" : "") + " with video content.\n";
             for ( var m = 0; m < imageEmbeds.length; ++m ) {
