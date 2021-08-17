@@ -76,6 +76,7 @@ exports.run = (client, message) => {
         if ( imageEmbeds.length > 1 ) {
             const paginationEmbed = require('./pagination.js');
             var embedPages = [];
+            console.log(imageEmbeds);
             for ( imageUrl in imageEmbeds ) {
                 const embed = new Discord.MessageEmbed()
                                     .setTitle(imageEmbeds[imageUrl][1] + " (@" + imageEmbeds[imageUrl][2] + ")")
