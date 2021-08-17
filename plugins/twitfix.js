@@ -40,7 +40,7 @@ exports.run = (client, message) => {
                 // Found a video/gif, find the tweet id by searching one that contain this video/gif's media key
                 for ( var k = 0; k < data.data.length; ++k ) {
                     if (  data.data[k].attachments.media_keys.includes(data.includes.media[j].media_key) ) {
-                        if ( !twitterIDs.includes(data.data[k].id) ) {
+                        if ( !twitterIDs.includes(data.data[k].id) ) { // Avoid duplicates
                             twitterIDs.push(data.data[k].id);                     
 						}
 					}           
@@ -77,7 +77,7 @@ exports.run = (client, message) => {
             var embedPages = [];
             for ( imageUrl in imageEmbeds ) {
                 const embed = new Discord.MessageEmbed()
-                                    .setTitle(imageEmbeds[imageUrl][1] + " (@" + imageEmbeds[imageUrl[2] + ")")
+                                    .setTitle(imageEmbeds[imageUrl][1] + " (@" + imageEmbeds[imageUrl][2] + ")")
 	                                .setURL("https://twitter.com/tweet/" + imageEmbeds[imageUrl][2] + "/" + imageEmbeds[imageUrl][0] )
                                     .setImage(imageUrl);
                 embedPages.push(embed);
