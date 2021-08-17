@@ -187,6 +187,36 @@ function createGameEmbed(message, data) {
 function createUpcomingEmbed(list) {
 
 	// Create embed
+	
+	var nameColumn = '';
+	var platformsColumn = '';
+	var dateColumn = '';
+
+	// Parse through lists
+	for ( var i = 0; i < item.standings.results.length; ++i ) {
+		if ( i > 0 ) {
+			nameColumn += "\n";
+			platformsColumn += "\n";
+			dateColumn += "\n";
+		}
+		nameColumn += list[i][0];
+		// Trim platform string as it can be too long for the narrow embed field column
+		const platformsString = parseArrayNames(list[i][1]);
+		platformsColumn += platformsString.length > 20 ? platformsString.subString(0, 17) + "..." : platformsString;
+		dateColumn += formatDate(list[i][2]);
+	}
+	
+	// Create embed
+	const embed = new Discord.MessageEmbed()
+	.setTitle("Upcoming Releases")
+	.setThumbnail(openLogo)
+	.setURL("https://opencritic.com/browse/all/upcoming/date")
+	.addField("Name", nameColumn.length ? nameColumn : "N/A", true)
+	.addField("Platforms", platformsColumn.length ? platformsColumn : "N/A", true)
+	.addField("Release Date", dateColumn.length ? dateColumn : "N/A", true)
+	.setTimestamp();
+
+	/*
 	const embed = new Discord.MessageEmbed()
 	.setTitle("Upcoming Releases")
 	.setThumbnail(openLogo)
@@ -197,7 +227,7 @@ function createUpcomingEmbed(list) {
 		embed.addField("Name", list[i][0].length ? list[i][0] : "N/A")
 		.addField("ReleaseDate", formatDate(list[i][2]), true)
 		.addField("Platforms", parseArrayNames(list[i][1], true), true)
-	}
+	}*/
 
 	return embed;
 }
