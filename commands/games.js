@@ -202,7 +202,7 @@ function createUpcomingEmbed(list) {
 		nameColumn += list[i][0];
 		// Trim platform string as it can be too long for the narrow embed field column
 		const platformsString = parseArrayNames(list[i][1]);
-		platformsColumn += platformsString.length > 20 ? platformsString.subString(0, 17) + "..." : platformsString;
+		platformsColumn += platformsString.length > 20 ? platformsString.substring(0, 17) + "..." : platformsString;
 		dateColumn += formatDate(list[i][2]);
 	}
 	
