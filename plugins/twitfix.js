@@ -84,7 +84,7 @@ exports.run = (client, message) => {
                 for ( imageUrl in imageEmbeds ) {
                     const embed = new Discord.MessageEmbed()
                                         .setTitle(imageEmbeds[imageUrl][1] + " (@" + imageEmbeds[imageUrl][2] + ")")
-	                                    .setURL("https://twitter.com/tweet/" + imageEmbeds[imageUrl][2] + "/" + imageEmbeds[imageUrl][0] )
+	                                    .setURL("https://twitter.com/" + imageEmbeds[imageUrl][2] + "/" + imageEmbeds[imageUrl][0] )
                                         .setImage(imageUrl);
                     embedPages.push(embed);
 		        }
