@@ -74,7 +74,7 @@ exports.run = (client, message) => {
                 console.log("Twitfix: Found image " + imageEmbeds[m]);
                 const embed = new Discord.MessageEmbed()
                                     .setTitle("Page " + (m+1).toString() + " of " + imageEmbeds.length.toString())
-                                    .setImage(imageEmbeds);
+                                    .setImage(imageEmbeds[m]);
                 embedPages.push(embed);
 		    }
 		    paginationEmbed(message, embedPages);
