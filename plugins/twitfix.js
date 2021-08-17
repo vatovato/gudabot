@@ -74,7 +74,7 @@ exports.run = (client, message) => {
             for ( var m = 0; m < imageEmbeds.length; ++m ) {
                 //console.log("Twitfix: Found image " + imageEmbeds[m]);
                 const embed = new Discord.MessageEmbed()
-                                    .setTitle("Page " + (m+1).toString() + " of " + imageEmbeds.length.toString())
+                                    //.setTitle("Page " + (m+1).toString() + " of " + imageEmbeds.length.toString())
                                     .setImage(imageEmbeds[m]);
                 embedPages.push(embed);
 		    }
