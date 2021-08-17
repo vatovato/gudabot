@@ -21,7 +21,7 @@ exports.run = (client, message) => {
 	}
     //console.log(fixedLinks);
         
-    searchUrl += "&expansions=attachments.media_keys";
+    searchUrl += "&expansions=attachments.media_keys&media.fields=preview_image_url";
 
 	//console.log("Querying twitter api for tweet info (" + searchUrl + ")");
     fetch(searchUrl, {
