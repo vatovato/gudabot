@@ -177,7 +177,7 @@ function createGameEmbed(message, data) {
 	.addField("Description", data.description && data.description.trim() ? (data.description.length > 500 ? data.description.substring(0, 497) + "..." : data.description) : "N/A");
 
 	if ( data.screenshots.length ) {
-		embed.setImage("https:" + data.screenshots[0].fullRes);
+		embed.setImage("https:" + data.screenshots[0].thumbnail);
 	}
 
 	return embed;
