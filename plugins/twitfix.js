@@ -53,6 +53,7 @@ exports.run = (client, message) => {
                         //console.log(data.includes.media[j]);
                         imageEmbeds[data.includes.media[j].url] = [data.data[k].id, data.data[k].name, data.data[k].username];
                         //imageEmbeds.push(data.includes.media[j].url);
+                    }
                 }
 			}
 		}
