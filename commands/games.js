@@ -63,7 +63,7 @@ async function handleGamesCommand(message, commandString, args) {
 
 					if ( data && data.length > 0 ) {
 						for ( var i = 0; i < data.length; ++i) {
-							if ( data[i].dist < 0.8 ) { // Dist goes from 0 (perfect match) to 1 (no match)
+							if ( i == 0 || data[i].dist < 0.8 ) { // Dist goes from 0 (perfect match) to 1 (no match)
 								searchUrl = "https://api.opencritic.com/api/game/" + data[i].id;
 								const gameResponse = await fetch(searchUrl);
 								const gameData = await gameResponse.json();
