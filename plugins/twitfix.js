@@ -34,7 +34,7 @@ exports.run = (client, message) => {
     .then(response => response.json())
     .then(data => {
         var twitterIDs = []; // List of tweets to repost
-        var imageEmbeds = {}; // List of images to embed, if more than 1 (to help mobile discord users)
+        var imageEmbeds = {}; // Map of image URLs as key to Author info, if more than 1 (to help mobile discord users)
         for ( var j = 0; j < data.includes.media.length; ++j ) {
             if ( data.includes.media[j].type == "video" || data.includes.media[j].type == "animated_gif" ) {
                 // Found a video/gif, find the tweet id by searching one that contain this video/gif's media key
@@ -54,7 +54,7 @@ exports.run = (client, message) => {
                         // Search author's info
                         for ( var h = 0; h < data.includes.users.length; ++h ) {
                             if ( data.data[k].author_id === data.includes.users[h].id ) {
-                                imageEmbeds.key = [data.data[k].id, data.includes.users[h].name, data.includes.users[h].username];
+                                imageEmbeds.url = [data.data[k].id, data.includes.users[h].name, data.includes.users[h].username];
 							}
 						}
                     }
@@ -77,7 +77,6 @@ exports.run = (client, message) => {
         }
         
         // Add all image embeds to an embed with pages to browse through them, if there is more than 1
-        console.log(Object.keys(imageEmbeds).length);
         if ( Object.keys(imageEmbeds).length > 1 ) {
             const paginationEmbed = require('./pagination.js');
             var embedPages = [];
