@@ -166,7 +166,7 @@ function createGameEmbed(message, data) {
 	// Send embed to channel
 	const embed = new Discord.MessageEmbed()
 	.setTitle(data.name)
-	.setThumbnail(data.logoScreenshot ? "https://" + data.logoScreenshot.thumbnail : "https://pbs.twimg.com/profile_images/788570574687604737/LnEOrVcP_400x400.jpg")
+	.setThumbnail(data.logoScreenshot ? "https:" + data.logoScreenshot.thumbnail : "https://pbs.twimg.com/profile_images/788570574687604737/LnEOrVcP_400x400.jpg")
 	.setURL(data.url)
 	.addField("Platforms", platformString.length ? platformString : "N/A", true)
 	.addField("Companies", companiesString.length ? companiesString : "N/A", true)
@@ -177,7 +177,7 @@ function createGameEmbed(message, data) {
 	.addField("Description", data.description && data.description.trim() ? (data.description.length > 500 ? data.description.substring(0, 497) + "..." : data.description) : "N/A");
 
 	if ( data.screenshots.length ) {
-		embed.setImage("https://" + data.screenshots[0].fullRes);
+		embed.setImage("https:" + data.screenshots[0].fullRes);
 	}
 
 	return embed;
