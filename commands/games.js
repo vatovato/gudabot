@@ -199,7 +199,6 @@ function createUpcomingEmbed(list) {
 	return embed;
 }
 
-
 function parseArrayNames(list, shortName = false) {
 	// Parse through companies
 	var namesString = '';
@@ -211,7 +210,7 @@ function parseArrayNames(list, shortName = false) {
 		console.log("No entries found");
 	}
 
-	return nameString;
+	return namesString;
 }
 
 function formatDate(fullDate) {
