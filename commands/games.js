@@ -157,9 +157,9 @@ function createUpcomingEmbed(list) {
 		
 		// We need to pad the strings to all have the same length, so that they take the same number of rows.
 		const stringLength = Math.max(nameString.length, platformsString.length, dateString.length);
-		nameColumn += nameString.padEnd(stringLength, '\u2007');
-		platformsColumn += platformsString.padEnd(stringLength, '\u2007');
-		dateColumn += dateString.padEnd(stringLength, '\u2007');
+		nameColumn += nameString.padEnd(stringLength, '\u2002');
+		platformsColumn += platformsString.padEnd(stringLength, '\u2002');
+		dateColumn += dateString.padEnd(stringLength, '\u2002');
 	}
 	
 	// Create embed
