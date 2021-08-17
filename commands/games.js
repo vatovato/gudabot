@@ -166,7 +166,7 @@ function createGameEmbed(message, data) {
 	// Send embed to channel
 	const embed = new Discord.MessageEmbed()
 	.setTitle(data.name)
-	.setThumbnail(data.logoScreenshot ? data.logoScreenshot.thumbnail : https://pbs.twimg.com/profile_images/788570574687604737/LnEOrVcP_400x400.jpg)
+	.setThumbnail(data.logoScreenshot ? data.logoScreenshot.thumbnail : "https://pbs.twimg.com/profile_images/788570574687604737/LnEOrVcP_400x400.jpg")
 	.setURL(data.url)
 	.addField("Platforms", platformString.length ? platformString : "N/A", true)
 	.addField("Companies", companiesString.length ? companiesString : "N/A", true)
