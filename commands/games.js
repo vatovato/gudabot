@@ -53,6 +53,37 @@ async function handleGamesCommand(message, commandString, args) {
 			message.channel.send({embeds: [embed]});
 			break;
 		case 'search':
+			//Concatenates all remaining args to form the search prompt, if there are any
+			const searchPrompt = encodeURIComponent(args.join(" "));
+			if ( searchPrompt.length ) {
+				// We first search the terms, parse through all the result ids (max 10), then search each id to add game info to an embed page
+				var searchUrl = "https://api.opencritic.com/api/game/search?criteria=" + searchPrompt;
+
+				console.log("Querying " + searchUrl);
+				try {
+					const response = await fetch(searchUrl);
+					const data = await response.json();
+
+					console.log("Found " + data.meta.count.toString() + " results");
+					if ( data && data.length > 0 ) {
+						for ( var i = 0; i < data.length; ++i) {
+							searchUrl = "https://api.opencritic.com/api/game/" + data[i].id;
+							const gameResponse = await fetch(searchUrl);
+							const gameData = await gameResponse.json();
+							gamePages.push(createGameEmbed(message, gameData));
+						}
+						paginationEmbed(message, gamePages, true);
+					}
+					else {
+						message.channel.send(`Kitsu: Couldn't find a result with the search term "${searchPrompt}"`);
+					}
+				} catch(err) {
+					console.log(err);
+				}
+			}
+			else {
+				message.channel.send(`Games: No search terms have been given`);
+			}
 			break;
 		case 'upcoming':
 			//Display a list of upcoming games
