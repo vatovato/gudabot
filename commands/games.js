@@ -128,7 +128,8 @@ async function handleGamesCommand(message, commandString, args) {
 // Handle JSON data and embed anime/manga message here
 function createGameEmbed(message, data) {
 	const Discord = require('discord.js');
-
+	const descrLimit = 300;
+	
 	// Parse through genres
 	var genreString = '';
 	if ( data.Genres.length ) {
@@ -168,13 +169,13 @@ function createGameEmbed(message, data) {
 	.setTitle(data.name)
 	.setThumbnail(data.logoScreenshot ? "https:" + data.logoScreenshot.thumbnail : "https://pbs.twimg.com/profile_images/788570574687604737/LnEOrVcP_400x400.jpg")
 	.setURL(data.url)
-	.addField("Platforms", platformString.length ? platformString : "N/A", true)
 	.addField("Companies", companiesString.length ? companiesString : "N/A", true)
-	.addField("Avg Rating", data.averageScore != -1 ? data.averageScore.toString() : "N/A", true)
-	.addField("Genres", genreString.length ? genreString : "N/A", true)
+	.addField("Platforms", platformString.length ? platformString : "N/A", true)
 	.addField("Release Date", dateString, true)
-	.addField("Top Critic Rating", data.topCriticScore != -1 ? data.topCriticScore.toString() : "N/A", true)
-	.addField("Description", data.description && data.description.trim() ? (data.description.length > 500 ? data.description.substring(0, 497) + "..." : data.description) : "N/A");
+	.addField("Genres", genreString.length ? genreString : "N/A", true)
+	.addField("Avg Rating", data.averageScore != -1 ? Math.floor(data.averageScore).toString() : "N/A", true)
+	.addField("Top Critic Rating", data.topCriticScore != -1 ? Math.floor(data.topCriticScore).toString() : "N/A", true)
+	.addField("Description", data.description && data.description.trim() ? (data.description.length > descrLimit ? data.description.substring(0, descrLimit-3) + "..." : data.description) : "N/A");
 
 	if ( data.screenshots.length ) {
 		embed.setImage("https:" + data.screenshots[0].thumbnail);
