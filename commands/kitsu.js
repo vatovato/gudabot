@@ -88,7 +88,7 @@ async function handleKitsuCommand(message, commandString, args) {
 					const randResponse = await fetch(randomUrl);
 					const randItem = await randResponse.json();
 
-					var randomEmbed = createAnimeEmbed(message, commandString, randItem.data[0].attributes, randItem.included);
+					var randomEmbed = createAnimeEmbed(message, commandString, randItem.data[0].attributes, randItem.included, true);
 					message.channel.send({embeds: [randomEmbed]});
 
 				} catch(err) {
@@ -128,7 +128,7 @@ async function handleKitsuCommand(message, commandString, args) {
 }
 
 // Handle JSON data and embed anime/manga message here
-function createAnimeEmbed(message, type, item, genres = null) {
+function createAnimeEmbed(message, type, item, genres = null, filterWarning = false) {
 	const Discord = require('discord.js');
 
 	const contentFilter = {
@@ -143,7 +143,9 @@ function createAnimeEmbed(message, type, item, genres = null) {
 		for (var i = 0; i < genres.length; ++i) {
 			genreString += (i > 0 ? ", " : "" ) + genres[i].attributes.name;
 			if ( genres[i].attributes.name.toLowerCase() in contentFilter ) {
-				message.channel.send(`Kitsu: Hentai content has been disabled, search result cannot be displayed.`);
+				if ( filterWarning ) {
+					message.channel.send(`Kitsu: Hentai content has been disabled, search result cannot be displayed.`);
+				}
 				return;
 			}
 		}
