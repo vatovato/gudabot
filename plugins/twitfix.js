@@ -22,7 +22,7 @@ exports.run = (client, message) => {
 	}
     //console.log(fixedLinks);
         
-    searchUrl += "&expansions=attachments.media_keys&media.fields=url&user.fields";
+    searchUrl += "&expansions=attachments.media_keys&media.fields=url&user.fields=name,username";
 
 	//console.log("Querying twitter api for tweet info (" + searchUrl + ")");
     fetch(searchUrl, {
@@ -50,7 +50,7 @@ exports.run = (client, message) => {
                 // Found an image, find the tweet id and username by searching one that contain this video/gif's media key
                 for ( var k = 0; k < data.data.length; ++k ) {
                     if (  data.data[k].attachments.media_keys.includes(data.includes.media[j].media_key) ) {
-                        console.log(data.includes.media[j]);
+                        console.log(data.data[k]);
                         const key = data.includes.media[j].url;
                         imageEmbeds.key = [data.data[k].id, data.data[k].name, data.data[k].username];
                         //imageEmbeds.push(data.includes.media[j].url);
