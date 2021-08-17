@@ -51,7 +51,7 @@ exports.run = (client, message) => {
                 for ( var k = 0; k < data.data.length; ++k ) {
                     if (  data.data[k].attachments.media_keys.includes(data.includes.media[j].media_key) ) {
                         console.log(data.includes.media[j]);
-                        imageEmbeds[data.includes.media[j].url] = [data.data[k].id, data.data[k].name, data.data[k].username];
+                        imageEmbeds.data.includes.media[j].url = [data.data[k].id, data.data[k].name, data.data[k].username];
                         //imageEmbeds.push(data.includes.media[j].url);
                     }
                 }
