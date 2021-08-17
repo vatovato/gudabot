@@ -11,11 +11,12 @@ const {
  * Creates a pagination embed
  * @param {Message} msg
  * @param {MessageEmbed[]} pages
+ * @param {boolean} senderOnly
  * @param {MessageButton[]} buttonList
  * @param {number} timeout
  * @returns
  */
-const paginationEmbed = async (msg, pages, buttonList = null, timeout = 120000) => {
+const paginationEmbed = async (msg, pages, senderOnly = false, buttonList = null, timeout = 120000) => {
   if (!msg && !msg.channel) throw new Error("Channel is inaccessible.");
   if (!pages) throw new Error("Pages are not given.");
   if (!buttonList) { // Use default buttons
