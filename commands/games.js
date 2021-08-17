@@ -73,7 +73,7 @@ async function handleGamesCommand(message, commandString, args) {
 							upcomingTableOne.push(collectBasicDetails(data[j]));
 						}
 						for ( j = 10; j < Math.min(20,data.length); ++j ) {
-							upcomingTableOne.push(collectBasicDetails(data[j]));
+							upcomingTableTwo.push(collectBasicDetails(data[j]));
 						}
 						upcomingEmbeds.push(createUpcomingEmbed(upcomingTableOne));
 						// If there were less than 10 entries, then the 2nd table would be empty
@@ -144,19 +144,22 @@ function createUpcomingEmbed(list) {
 	var dateColumn = '';
 
 	// Parse through lists
-	for ( var i = 0; i < list.length; ++i ) {
+	for ( var i = 0; i < 20/*list.length*/; ++i ) {
 		if ( i > 0 ) {
 			nameColumn += "\n";
 			platformsColumn += "\n";
 			dateColumn += "\n";
 		}
-		// Trim name/platform strings as they can be too long for the narrow embed field column
+
 		const nameString = list[i][0];
 		const platformsString = parseArrayNames(list[i][1], true);
-
-		nameColumn += nameString.length > 25 ? nameString.substring(0, 22) + "..." : nameString;
-		platformsColumn += platformsString.length > 20 ? platformsString.substring(0, 17) + "..." : platformsString;
-		dateColumn += formatDate(list[i][2]);
+		const dateString = formatDate(list[i][2]);
+		
+		// We need to pad the strings to all have the same length, so that they take the same number of rows.
+		const stringLength = Math.max(nameString.length, platformsString.length, dateString.length);
+		nameColumn += nameString.padString(stringLength);
+		platformsColumn += platformsString.padString(stringLength);
+		dateColumn += dateString.padString(stringLength);
 	}
 	
 	// Create embed
