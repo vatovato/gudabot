@@ -54,7 +54,7 @@ exports.run = (client, message) => {
                         // Search author's info
                         for ( var h = 0; h < data.includes.users.length; ++h ) {
                             if ( data.data[k].author_id === data.includes.users[h].id ) {
-                                imageEmbeds.url = [data.data[k].id, data.includes.users[h].name, data.includes.users[h].username];
+                                imageEmbeds[url] = [data.data[k].id, data.includes.users[h].name, data.includes.users[h].username];
 							}
 						}
                     }
