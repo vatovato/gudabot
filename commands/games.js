@@ -150,16 +150,19 @@ function createUpcomingEmbed(list) {
 			platformsColumn += "\n";
 			dateColumn += "\n";
 		}
-
+		// Trim name/platform strings as they can be too long for the narrow embed field column
 		const nameString = list[i][0];
 		const platformsString = parseArrayNames(list[i][1], true);
-		const dateString = formatDate(list[i][2]);
+
+		nameColumn += nameString.length > 25 ? nameString.substring(0, 22) + "..." : nameString;
+		platformsColumn += platformsString.length > 20 ? platformsString.substring(0, 17) + "..." : platformsString;
+		dateColumn += formatDate(list[i][2]);
 		
-		// We need to pad the strings to all have the same length, so that they take the same number of rows.
+		/*// We need to pad the strings to all have the same length, so that they take the same number of rows.
 		const stringLength = Math.max(nameString.length, platformsString.length, dateString.length);
-		nameColumn += nameString.padEnd(stringLength, '\u2002');
-		platformsColumn += platformsString.padEnd(stringLength, '\u2002');
-		dateColumn += dateString.padEnd(stringLength, '\u2002');
+		nameColumn += nameString.padEnd(stringLength, '\u3000');
+		platformsColumn += platformsString.padEnd(stringLength, '\u3000');
+		dateColumn += dateString.padEnd(stringLength, '\u3000');*/
 	}
 	
 	// Create embed
