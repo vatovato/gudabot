@@ -11,12 +11,12 @@ const {
  * Creates a pagination embed
  * @param {Message} msg
  * @param {MessageEmbed[]} pages
- * @param {boolean} senderOnly
+ * @param {boolean} authorOnly
  * @param {MessageButton[]} buttonList
  * @param {number} timeout
  * @returns
  */
-const paginationEmbed = async (msg, pages, senderOnly = false, buttonList = null, timeout = 120000) => {
+const paginationEmbed = async (msg, pages, authorOnly = false, timeout = 120000, buttonList = null) => {
   if (!msg && !msg.channel) throw new Error("Channel is inaccessible.");
   if (!pages) throw new Error("Pages are not given.");
   if (!buttonList) { // Use default buttons
@@ -50,9 +50,11 @@ const paginationEmbed = async (msg, pages, senderOnly = false, buttonList = null
     allowedMentions: {repliedUser: false},
   });
 
-  const filter = (i) =>
-    i.customId === buttonList[0].customId ||
-    i.customId === buttonList[1].customId;
+  const filter = (i, user) => {
+    ( !authorOnly || user.id === msg.author.id ) &&
+    (i.customId === buttonList[0].customId ||
+    i.customId === buttonList[1].customId)
+   };
 
   const collector = await curPage.createMessageComponentCollector({
     filter,
