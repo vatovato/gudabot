@@ -51,7 +51,6 @@ const paginationEmbed = async (msg, pages, authorOnly = false, timeout = 120000,
   });
 
   console.log(authorOnly);
-  console.log(i.user.id);
   console.log(msg.author.id);
   
   const filter = (i) => {
