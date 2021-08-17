@@ -1,6 +1,6 @@
 // Constants
-const openLogo = "https://pbs.twimg.com/profile_images/788570574687604737/LnEOrVcP_400x400.jpg";
 const Discord = require('discord.js');
+const openLogo = "https://pbs.twimg.com/profile_images/788570574687604737/LnEOrVcP_400x400.jpg";
 
 // Possible arguments
 const gamesCommands = {
@@ -87,20 +87,21 @@ async function handleGamesCommand(message, commandString, args) {
 			//Display a list of upcoming games
 			try {
 				var upcomingEmbeds = [];
+				const pageLimit = 8; // Max number of games per page
 
 				for ( var i = 0; i < 5; ++i ) {
-					var searchUrl = "https://api.opencritic.com/api/game?platforms=all&time=upcoming&order=asc&skip=" + (i*20).toString();
+					var searchUrl = "https://api.opencritic.com/api/game?platforms=all&time=upcoming&order=asc&skip=" + (i*16).toString();
 					const response = await fetch(searchUrl);
 					const data = await response.json();
 
 					if ( data && data.length ) {
-						// Separate pages by 10 entries
+						// Separate pages by pageLimit
 						var upcomingTableOne = [];
 						var upcomingTableTwo = [];
-						for ( var j = 0; j < Math.min(10,data.length); ++j ) {
+						for ( var j = 0; j < Math.min(pageLimit,data.length); ++j ) {
 							upcomingTableOne.push(collectBasicDetails(data[j]));
 						}
-						for ( j = 10; j < Math.min(20,data.length); ++j ) {
+						for ( j = pageLimit; j < Math.min(pageLimit*2,data.length); ++j ) {
 							upcomingTableTwo.push(collectBasicDetails(data[j]));
 						}
 						upcomingEmbeds.push(createUpcomingEmbed(upcomingTableOne));
@@ -109,8 +110,8 @@ async function handleGamesCommand(message, commandString, args) {
 							upcomingEmbeds.push(createUpcomingEmbed(upcomingTableTwo));
 						}
 
-						// Stop looking for more results if the current request had less than 20 entries
-						if ( data.length != 20 ) {
+						// Stop looking for more results if the current request had less than 2*pageLimit entries
+						if ( data.length != pageLimit*2 ) {
 							break;
 						}
 					}
@@ -166,43 +167,6 @@ function createGameEmbed(message, data) {
 function createUpcomingEmbed(list) {
 
 	// Create embed /*
-	/*var nameColumn = '';
-	var platformsColumn = '';
-	var dateColumn = '';
-
-	// Parse through lists
-	for ( var i = 0; i < list.length; ++i ) {
-		if ( i > 0 ) {
-			nameColumn += "\n";
-			platformsColumn += "\n";
-			dateColumn += "\n";
-		}
-		// Trim name/platform strings as they can be too long for the narrow embed field column
-		const nameString = list[i][0];
-		const platformsString = parseArrayNames(list[i][1], true);
-
-		nameColumn += nameString.length > 25 ? nameString.substring(0, 22) + "..." : nameString;
-		platformsColumn += platformsString.length > 20 ? platformsString.substring(0, 17) + "..." : platformsString;
-		dateColumn += formatDate(list[i][2]);
-		
-		// We need to pad the strings to all have the same length, so that they take the same number of rows.
-		const stringLength = Math.max(nameString.length, platformsString.length, dateString.length);
-		nameColumn += nameString.padEnd(stringLength, '\u3000');
-		platformsColumn += platformsString.padEnd(stringLength, '\u3000');
-		dateColumn += dateString.padEnd(stringLength, '\u3000');
-	}
-	
-	// Create embed
-	const embed = new Discord.MessageEmbed()
-	.setTitle("Upcoming Releases")
-	.setThumbnail(openLogo)
-	.setURL("https://opencritic.com/browse/all/upcoming/date")
-	.addField("Name", nameColumn.length ? nameColumn : "N/A", true)
-	.addField("Release Date", dateColumn.length ? dateColumn : "N/A", true)
-	.addField("Platforms", platformsColumn.length ? platformsColumn : "N/A", true)
-	.setTimestamp();*/
-
-	
 	const embed = new Discord.MessageEmbed()
 	.setTitle("Upcoming Releases")
 	.setThumbnail(openLogo)
