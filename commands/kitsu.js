@@ -61,7 +61,7 @@ async function handleKitsuCommand(message, commandString, args) {
 					console.log("Found " + data.meta.count.toString() + " results");
 					if ( data.meta.count > 0 ) {
 						var embedArray = [];
-						for ( var i = 0; i < Math.min(10,data.meta.count) {
+						for ( var i = 0; i < Math.min(10,data.meta.count); ++i) {
 							embedArray.push(createAnimeEmbed(message, commandString, data.data[i].attributes, data.included));
 							paginationEmbed(message, embedPages, false, 120000);
 						}
