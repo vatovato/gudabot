@@ -63,8 +63,8 @@ exports.run = (client, message) => {
 		    message.channel.send({content: newMessage, allowedMentions: {repliedUser: false}, reply: { messageReference: message }});  
         }
 
-        // Add all image embeds to an embed with pages to browse through them
-        if ( imageEmbeds.length ) {
+        // Add all image embeds to an embed with pages to browse through them, if there is more than 1
+        if ( imageEmbeds.length > 1 ) {
             //var newMessage = "Found " + twitterIDs.length + " tweet" + ( twitterIDs.length > 1 ? "s" : "") + " with video content.\n";
             for ( var m = 0; m < imageEmbeds.length; ++m ) {
                 console.log("Twitfix: Found image " + imageEmbeds[m]);   
