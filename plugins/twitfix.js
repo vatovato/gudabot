@@ -33,6 +33,7 @@ exports.run = (client, message) => {
     .then(response => response.json())
     .then(data => {
         var twitterIDs = []; // List of tweets to repost
+        var imageEmbeds = []; // List of images to embed, if more than 1 (to help mobile discord users)
         for ( var j = 0; j < data.includes.media.length; ++j ) {
             if ( data.includes.media[j].type == "video" || data.includes.media[j].type == "animated_gif" ) {
                 // Found a video/gif, find the tweet id by searching one that contain this video/gif's media key
@@ -43,7 +44,10 @@ exports.run = (client, message) => {
 						}
 					}           
 				}
-			}     
+			}
+            else if ( data.includes.media[j].type == "photo" ) {
+                imageEmbeds.push(data.includes.media[j].preview_image_url);
+			}
 		}
 
         // Add all tweets with links to the bot message
@@ -57,6 +61,15 @@ exports.run = (client, message) => {
 			    }
 		    }
 		    message.channel.send({content: newMessage, allowedMentions: {repliedUser: false}, reply: { messageReference: message }});  
+        }
+
+        // Add all image embeds to an embed with pages to browse through them
+        if ( imageEmbeds.length ) {
+            //var newMessage = "Found " + twitterIDs.length + " tweet" + ( twitterIDs.length > 1 ? "s" : "") + " with video content.\n";
+            for ( var m = 0; m < imageEmbeds.length; ++m ) {
+                console.log("Twitfix: Found image " + imageEmbeds[m]);   
+		    }
+		    //message.channel.send({content: newMessage, allowedMentions: {repliedUser: false}, reply: { messageReference: message }});  
         }
     });
 }
