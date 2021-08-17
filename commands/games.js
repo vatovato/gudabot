@@ -201,8 +201,8 @@ function createUpcomingEmbed(list) {
 
 function parseArrayNames(list, shortName = false) {
 	// Parse through companies
-	var namesString = '';
-	if ( list.length ) {
+	var namesString = list ? '' : "N/A";
+	if ( list && list.length ) {
 		for (var i = 0; i < list.length; ++i) {
 			namesString += (i > 0 ? ", " : "" ) + (shortName ? list.shortName : list.name);
 		}
