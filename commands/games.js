@@ -63,10 +63,12 @@ async function handleGamesCommand(message, commandString, args) {
 
 					if ( data && data.length > 0 ) {
 						for ( var i = 0; i < data.length; ++i) {
-							searchUrl = "https://api.opencritic.com/api/game/" + data[i].id;
-							const gameResponse = await fetch(searchUrl);
-							const gameData = await gameResponse.json();
-							gamePages.push(createGameEmbed(message, gameData));
+							if ( data[i].dist < 0.8 ) { // Dist goes from 0 (perfect match) to 1 (no match)
+								searchUrl = "https://api.opencritic.com/api/game/" + data[i].id;
+								const gameResponse = await fetch(searchUrl);
+								const gameData = await gameResponse.json();
+								gamePages.push(createGameEmbed(message, gameData));
+							}
 						}
 						paginationEmbed(message, gamePages, true);
 					}
@@ -92,7 +94,6 @@ async function handleGamesCommand(message, commandString, args) {
 					const data = await response.json();
 
 					if ( data && data.length ) {
-						//console.log("Found " + data.length.toString() + " upcoming games results");
 						// Separate pages by 10 entries
 						var upcomingTableOne = [];
 						var upcomingTableTwo = [];
