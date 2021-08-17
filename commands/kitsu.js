@@ -162,7 +162,7 @@ function createAnimeEmbed(message, type, item, genres = null) {
 	.addField("Genres", genreString.length ? genreString : "N/A", true)
 	.addField("Age Rating", item.ageRating ? item.ageRating + (item.ageRatingGuide ? "- " + item.ageRatingGuide : "") : "N/A", true)
 	.addField("Status", item.status ? item.status[0].toUpperCase() + item.status.substring(1) : "N/A", true)
-	.addField("Synopsis", item.synopsis && item.synopsis.trim() ? (item.synopsis.length > 1000 ? item.synopsis.substring(0, 997) + "..." : item.synopsis) : "N/A")
+	.addField("Synopsis", item.synopsis && item.synopsis.trim() ? (item.synopsis.length > 500 ? item.synopsis.substring(0, 997) + "..." : item.synopsis) : "N/A")
 	//message.channel.send({embeds: [embed]});
 
 	return embed;
