@@ -165,9 +165,8 @@ function createGameEmbed(message, data) {
 // Handle JSON data and embed upcoming/recent games tables here
 function createUpcomingEmbed(list) {
 
-	// Create embed
-	
-	var nameColumn = '';
+	// Create embed /*
+	/*var nameColumn = '';
 	var platformsColumn = '';
 	var dateColumn = '';
 
@@ -186,11 +185,11 @@ function createUpcomingEmbed(list) {
 		platformsColumn += platformsString.length > 20 ? platformsString.substring(0, 17) + "..." : platformsString;
 		dateColumn += formatDate(list[i][2]);
 		
-		/*// We need to pad the strings to all have the same length, so that they take the same number of rows.
+		// We need to pad the strings to all have the same length, so that they take the same number of rows.
 		const stringLength = Math.max(nameString.length, platformsString.length, dateString.length);
 		nameColumn += nameString.padEnd(stringLength, '\u3000');
 		platformsColumn += platformsString.padEnd(stringLength, '\u3000');
-		dateColumn += dateString.padEnd(stringLength, '\u3000');*/
+		dateColumn += dateString.padEnd(stringLength, '\u3000');
 	}
 	
 	// Create embed
@@ -201,9 +200,9 @@ function createUpcomingEmbed(list) {
 	.addField("Name", nameColumn.length ? nameColumn : "N/A", true)
 	.addField("Release Date", dateColumn.length ? dateColumn : "N/A", true)
 	.addField("Platforms", platformsColumn.length ? platformsColumn : "N/A", true)
-	.setTimestamp();
+	.setTimestamp();*/
 
-	/*
+	
 	const embed = new Discord.MessageEmbed()
 	.setTitle("Upcoming Releases")
 	.setThumbnail(openLogo)
@@ -211,10 +210,10 @@ function createUpcomingEmbed(list) {
 	.setTimestamp();
 
 	for ( i = 0; i < list.length; ++i) {
-		embed.addField("Name", list[i][0].length ? list[i][0] : "N/A")
+		embed.addField('\u3000', list[i][0].length ? "**" + list[i][0] + "**" : "**N/A**")
 		.addField("ReleaseDate", formatDate(list[i][2]), true)
 		.addField("Platforms", parseArrayNames(list[i][1], true), true)
-	}*/
+	}
 
 	return embed;
 }
