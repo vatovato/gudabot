@@ -5,13 +5,15 @@ const Discord = require('discord.js');
 // Possible arguments
 const gamesCommands = {
 'help': 'help',
-'search': 'search game_name', 
-'upcoming': 'upcoming'
+//'search': 'search game_name', 
+'upcoming': 'upcoming <optional: detailed>'//,
+//'recent': 'recent'
 }
 const gamesDetails = {
 'help': 'Show a list of available commands',
-'search': 'Search a game.',// If no search terms are given, a random one will be returned', 
-'upcoming': 'Show a list of upcoming games'
+//'search': 'Search a game.',// If no search terms are given, a random one will be returned', 
+'upcoming': 'Show a list of upcoming games',
+//'recent': 'Show a list of recently released games'
 }
 
 // Called by bot.js when games command is given
@@ -103,33 +105,47 @@ async function handleGamesCommand(message, commandString, args) {
 			break;
 		case 'upcoming':
 			//Display a list of upcoming games
-			var searchUrl = "https://api.opencritic.com/api/game/upcoming";
-
-			console.log("Querying " + searchUrl);
 			try {
-				const response = await fetch(searchUrl);
-				const data = await response.json();
+				var upcomingEmbeds = [];
 
-				if ( data && data.length ) {
-					console.log("Found " + data.length.toString() + " upcoming games results");
-					
-					var upcomingTable = [];
-					for ( var i = 0; i < data.length; ++i ) {
-						upcomingTable.push([data[i].name, data[i].Platforms, data[i].firstReleaseDate]);
-						var gameEmbed = createGameEmbed(message, data[i]);
-						gamePages.push(gameEmbed);
+				for ( var i = 0; i < 5; ++i ) {
+					var searchUrl = "https://api.opencritic.com/api/game?platforms=all&sort=date&time=upcoming&order=asc&skip=" + (i*20).toString();
+					const response = await fetch(searchUrl);
+					const data = await response.json();
+
+					if ( data && data.length ) {
+						//console.log("Found " + data.length.toString() + " upcoming games results");
+						// Separate pages by 10 entries
+						var upcomingTableOne = [];
+						var upcomingTableTwo = [];
+						for ( var j = 0; j < Math.min(10,data.length); ++j ) {
+							upcomingTableOne.push(collectBasicDetails(data[j]));
+						}
+						for ( j = 10; j < Math.min(20,data.length); ++j ) {
+							upcomingTableOne.push(collectBasicDetails(data[j]));
+						}
+						upcomingEmbeds.push(createUpcomingEmbed(upcomingTableOne));
+						// If there were less than 10 entries, then the 2nd table would be empty
+						if ( upcomingTableTwo.length ) {
+							upcomingEmbeds.push(createUpcomingEmbed(upcomingTableTwo));
+						}
+
+						// Stop looking for more results if the current request had less than 20 entries
+						if ( data.length != 20 ) {
+							break;
+						}
 					}
+					else if ( !upcomingEmbeds.length ) {
+						message.channel.send(`Games: Couldn't find a list of upcoming games on OpenCritic"`);
+					}
+				}
+				paginationEmbed(message, upcomingEmbeds, true);
 
-					var tmpEmbed = [createUpcomingEmbed(upcomingTable)]
-					paginationEmbed(message, tmpEmbed.concat(gamePages), true);
-				}
-				else {
-					message.channel.send(`Games: Couldn't find a list of upcoming games on OpenCritic"`);
-				}
 			} catch(err) {
 				console.log(err);
 			}
 			break;
+		case 'recent':
 		default:
 			break;
 	}
@@ -137,7 +153,7 @@ async function handleGamesCommand(message, commandString, args) {
 
 // Handle JSON data and embed anime/manga message here
 function createGameEmbed(message, data) {
-	//const Discord = require('discord.js');
+
 	const descrLimit = 250;
 	
 	// Parse through platforms, genres and companies
@@ -167,41 +183,27 @@ function createGameEmbed(message, data) {
 	return embed;
 }
 
-// Handle JSON data and embed upcoming games tables here
+// Handle JSON data and embed upcoming/recent games tables here
 function createUpcomingEmbed(list) {
-	//const Discord = require('discord.js');
 
-	var nameColumn = '';
-	var platformsColumn = '';
-	var dateColumn = '';
-
-	// Parse through standings
-	for ( var i = 0; i < list.length; ++i ) {
-		if ( i > 0 ) {
-			nameColumn += "\n";
-			platformsColumn += "\n";
-			dateColumn += "\n";
-		}
-		nameColumn += list[i][0];
-		platformsColumn += parseArrayNames(list[i][1], true);
-		dateColumn += formatDate(list[i][2]);
-	}
-	
 	// Create embed
 	const embed = new Discord.MessageEmbed()
 	.setTitle("Upcoming Releases")
 	.setThumbnail(openLogo)
 	.setURL("https://opencritic.com/browse/all/upcoming/date")
-	.addField("Name", nameColumn.length ? nameColumn : "N/A", true)
-	.addField("Platforms", platformsColumn.length ? platformsColumn : "N/A", true)
-	.addField("ReleaseDate", dateColumn.length ? dateColumn : "N/A", true)
 	.setTimestamp();
+
+	for ( i = 0; i < list.length) {
+		embed.addField("Name", list[i][0].length ? list[i][0] : "N/A")
+		.addField("ReleaseDate", formatDate(list[i][2]), true)
+		.addField("Platforms", parseArrayNames(list[i][1], true), true)
+	}
 
 	return embed;
 }
 
 function parseArrayNames(list, shortName = false) {
-	// Parse through companies
+
 	var namesString = list ? '' : "N/A";
 	if ( list && list.length ) {
 		for (var i = 0; i < list.length; ++i) {
@@ -222,5 +224,11 @@ function formatDate(fullDate) {
 		dateString = date.getUTCFullYear().toString() + "-" + (date.getUTCMonth()+1).toString() + "-" + date.getUTCDate().toString();
 	}
 	
-	return dateString
+	return dateString;
+}
+
+// Data used for upcoming/recent games tables
+function collectBasicDetails(data) {
+	var basicDetails = [data[i].name, data[i].Platforms, data[i].firstReleaseDate/*, data[i].Genres*/];
+	return basicDetails;
 }
