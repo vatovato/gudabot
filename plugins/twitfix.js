@@ -1,6 +1,7 @@
 // Called by bot.js when message has twitter links
 exports.run = (client, message) => {
     const fetch = require('node-fetch');
+    const Discord = require('discord.js');
     const regex = /(https?:\/\/twitter[^\s]+)/g; // Regex to find all twitter links
 
     const linksArray = message.content.match(regex); // All pattern matches in an array of strings
@@ -71,7 +72,7 @@ exports.run = (client, message) => {
             //var newMessage = "Found " + twitterIDs.length + " tweet" + ( twitterIDs.length > 1 ? "s" : "") + " with video content.\n";
             for ( var m = 0; m < imageEmbeds.length; ++m ) {
                 console.log("Twitfix: Found image " + imageEmbeds[m]);
-                const embed = new client.MessageEmbed()
+                const embed = new Discord.MessageEmbed()
                                     .setTitle("Page " + (m+1).toString() + " of " + imageEmbeds.length.toString())
                                     .setImage(imageEmbeds);
                 embedPages.push(embed);
