@@ -76,6 +76,7 @@ exports.run = (client, message) => {
             message.suppressEmbeds(true); // Remove original embeds
         }
         
+        console.log(imageEmbeds);
         // Add all image embeds to an embed with pages to browse through them, if there is more than 1
         if ( Object.keys(imageEmbeds).length > 1 ) {
             const paginationEmbed = require('./pagination.js');
