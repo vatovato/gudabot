@@ -21,7 +21,7 @@ exports.run = (client, message) => {
 	}
     //console.log(fixedLinks);
         
-    searchUrl += "&expansions=attachments.media_keys&media.fields=preview_image_url";
+    searchUrl += "&expansions=attachments.media_keys&media.fields=duration_ms,height,media_key,preview_image_url,public_metrics,type,url,width,alt_text";
 
 	//console.log("Querying twitter api for tweet info (" + searchUrl + ")");
     fetch(searchUrl, {
@@ -46,7 +46,7 @@ exports.run = (client, message) => {
 				}
 			}
             else if ( data.includes.media[j].type == "photo" ) {
-                console.log(data.includes.media[j])
+                console.log(data.includes.media[j]);
                 imageEmbeds.push(data.includes.media[j].preview_image_url);
 			}
 		}
