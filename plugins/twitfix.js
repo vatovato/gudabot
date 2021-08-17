@@ -22,7 +22,7 @@ exports.run = (client, message) => {
 	}
     //console.log(fixedLinks);
         
-    searchUrl += "&expansions=attachments.media_keys&media.fields=url";
+    searchUrl += "&expansions=attachments.media_keys&media.fields=url&user.fields";
 
 	//console.log("Querying twitter api for tweet info (" + searchUrl + ")");
     fetch(searchUrl, {
@@ -34,7 +34,7 @@ exports.run = (client, message) => {
     .then(response => response.json())
     .then(data => {
         var twitterIDs = []; // List of tweets to repost
-        var imageEmbeds = []; // List of images to embed, if more than 1 (to help mobile discord users)
+        var imageEmbeds = {}; // List of images to embed, if more than 1 (to help mobile discord users)
         for ( var j = 0; j < data.includes.media.length; ++j ) {
             if ( data.includes.media[j].type == "video" || data.includes.media[j].type == "animated_gif" ) {
                 // Found a video/gif, find the tweet id by searching one that contain this video/gif's media key
@@ -47,8 +47,13 @@ exports.run = (client, message) => {
 				}
 			}
             else if ( data.includes.media[j].type == "photo" ) {
-                //console.log(data.includes.media[j]);
-                imageEmbeds.push(data.includes.media[j].url);
+                // Found an image, find the tweet id and username by searching one that contain this video/gif's media key
+                for ( var k = 0; k < data.data.length; ++k ) {
+                    if (  data.data[k].attachments.media_keys.includes(data.includes.media[j].media_key) ) {
+                        //console.log(data.includes.media[j]);
+                        imageEmbeds[data.includes.media[j].url] = [data.data[k].id, data.data[k].name, data.data[k].username];
+                        //imageEmbeds.push(data.includes.media[j].url);
+                }
 			}
 		}
 
@@ -70,12 +75,11 @@ exports.run = (client, message) => {
         if ( imageEmbeds.length > 1 ) {
             const paginationEmbed = require('./pagination.js');
             var embedPages = [];
-            //var newMessage = "Found " + twitterIDs.length + " tweet" + ( twitterIDs.length > 1 ? "s" : "") + " with video content.\n";
-            for ( var m = 0; m < imageEmbeds.length; ++m ) {
-                //console.log("Twitfix: Found image " + imageEmbeds[m]);
+            for ( imageUrl in imageEmbeds ) {
                 const embed = new Discord.MessageEmbed()
-                                    //.setTitle("Page " + (m+1).toString() + " of " + imageEmbeds.length.toString())
-                                    .setImage(imageEmbeds[m]);
+                                    .setTitle(imageEmbeds[imageUrl][1] + " (@" + imageEmbeds[imageUrl[2] + ")")
+	                                .setURL("https://twitter.com/tweet/" + imageEmbeds[imageUrl][2] + "/" + imageEmbeds[imageUrl][0] )
+                                    .setImage(imageUrl);
                 embedPages.push(embed);
 		    }
 		    paginationEmbed(message, embedPages, false, 300000);
