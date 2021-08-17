@@ -63,7 +63,7 @@ async function handleKitsuCommand(message, commandString, args) {
 						var embedArray = [];
 						for ( var i = 0; i < Math.min(10,data.meta.count); ++i) {
 							embedArray.push(createAnimeEmbed(message, commandString, data.data[i].attributes, data.included));
-							paginationEmbed(message, embedPages, false, 120000);
+							paginationEmbed(message, embedArray, false, 120000);
 						}
 					}
 					else {
