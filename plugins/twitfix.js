@@ -22,7 +22,7 @@ exports.run = (client, message) => {
 	}
     //console.log(fixedLinks);
         
-    searchUrl += "&expansions=attachments.media_keys,author_id&media.fields=url&user.fields=description";
+    searchUrl += "&expansions=attachments.media_keys,author_id&media.fields=url&user.fields";
 
 	//console.log("Querying twitter api for tweet info (" + searchUrl + ")");
     fetch(searchUrl, {
@@ -49,10 +49,15 @@ exports.run = (client, message) => {
             else if ( data.includes.media[j].type == "photo" ) {
                 // Found an image, find the tweet id and username by searching one that contain this video/gif's media key
                 console.log(data);
+                const url = data.includes.media[j].url;
+
                 for ( var k = 0; k < data.data.length; ++k ) {
                     if (  data.data[k].attachments.media_keys.includes(data.includes.media[j].media_key) ) {
-                        const key = data.includes.media[j].url;
-                        imageEmbeds.key = [data.data[k].id, data.data[k].name, data.data[k].username];
+                        for ( var h = 0; h < data.includes.users.length; ++h ) {
+                            if ( data.data[k].author_id === data.includes.users[h].id ) {
+                                imageEmbeds.key = [data.data[k].id, data.includes.users[h].name, data.includes.users[h].username];
+							}
+						}
                         //imageEmbeds.push(data.includes.media[j].url);
                     }
                 }
