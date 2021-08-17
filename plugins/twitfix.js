@@ -71,7 +71,7 @@ exports.run = (client, message) => {
             var embedPages = [];
             //var newMessage = "Found " + twitterIDs.length + " tweet" + ( twitterIDs.length > 1 ? "s" : "") + " with video content.\n";
             for ( var m = 0; m < imageEmbeds.length; ++m ) {
-                console.log("Twitfix: Found image " + imageEmbeds[m]);
+                //console.log("Twitfix: Found image " + imageEmbeds[m]);
                 const embed = new Discord.MessageEmbed()
                                     .setTitle("Page " + (m+1).toString() + " of " + imageEmbeds.length.toString())
                                     .setImage(imageEmbeds[m]);
