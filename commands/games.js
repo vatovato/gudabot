@@ -5,15 +5,13 @@ const Discord = require('discord.js');
 // Possible arguments
 const gamesCommands = {
 'help': 'help',
-//'search': 'search game_name', 
-'upcoming': 'upcoming <optional: detailed>'//,
-//'recent': 'recent'
+'search': 'search game_name', 
+'upcoming': 'upcoming <optional: detailed>'
 }
 const gamesDetails = {
 'help': 'Show a list of available commands',
-//'search': 'Search a game.',// If no search terms are given, a random one will be returned', 
-'upcoming': 'Show a list of upcoming games',
-//'recent': 'Show a list of recently released games'
+'search': 'Search a game.',
+'upcoming': 'Show a list of upcoming games'
 }
 
 // Called by bot.js when games command is given
