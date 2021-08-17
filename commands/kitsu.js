@@ -63,8 +63,8 @@ async function handleKitsuCommand(message, commandString, args) {
 						var embedPages = [];
 						for ( var i = 0; i < Math.min(10,data.meta.count); ++i) {
 							embedPages.push(createAnimeEmbed(message, commandString, data.data[i].attributes, data.included));
-							paginationEmbed(message, embedPages, false, 120000);
 						}
+						paginationEmbed(message, embedPages, true, 120000);
 					}
 					else {
 						message.channel.send(`Kitsu: Couldn't find a result with the search term "${searchPrompt}"`);
