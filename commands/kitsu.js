@@ -33,6 +33,7 @@ exports.run = (client, message, args) => {
 async function handleKitsuCommand(message, commandString, args) {
 	const Discord = require('discord.js');
 	const fetch = require('node-fetch');
+	const paginationEmbed = require('./../plugins/pagination.js');
 
 	switch(commandString.toLowerCase()) {
 		case 'help':
@@ -59,7 +60,11 @@ async function handleKitsuCommand(message, commandString, args) {
 
 					console.log("Found " + data.meta.count.toString() + " results");
 					if ( data.meta.count > 0 ) {
-						createAnimeEmbed(message, commandString, data.data[0].attributes, data.included);
+						var embedArray = [];
+						for ( var i = 0; i < Math.min(10,data.meta.count) ) {
+							embedArray.push(createAnimeEmbed(message, commandString, data.data[i].attributes, data.included));
+							paginationEmbed(message, embedPages, false, 120000);
+						}
 					}
 					else {
 						message.channel.send(`Kitsu: Couldn't find a result with the search term "${searchPrompt}"`);
@@ -83,7 +88,8 @@ async function handleKitsuCommand(message, commandString, args) {
 					const randResponse = await fetch(randomUrl);
 					const randItem = await randResponse.json();
 
-					createAnimeEmbed(message, commandString, randItem.data[0].attributes, randItem.included);
+					var embed = createAnimeEmbed(message, commandString, randItem.data[0].attributes, randItem.included);
+					message.channel.send({embeds: [embed]});
 
 				} catch(err) {
 					console.log(err);
@@ -157,7 +163,9 @@ function createAnimeEmbed(message, type, item, genres = null) {
 	.addField("Age Rating", item.ageRating ? item.ageRating + (item.ageRatingGuide ? "- " + item.ageRatingGuide : "") : "N/A", true)
 	.addField("Status", item.status ? item.status[0].toUpperCase() + item.status.substring(1) : "N/A", true)
 	.addField("Synopsis", item.synopsis && item.synopsis.trim() ? (item.synopsis.length > 1000 ? item.synopsis.substring(0, 997) + "..." : item.synopsis) : "N/A")
-	message.channel.send({embeds: [embed]});
+	//message.channel.send({embeds: [embed]});
+
+	return embed;
 }
 
 // Handle JSON data and embed user message here
