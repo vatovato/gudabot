@@ -1,3 +1,7 @@
+// Constants
+const openLogo = "https://pbs.twimg.com/profile_images/788570574687604737/LnEOrVcP_400x400.jpg";
+const Discord = require('discord.js');
+
 // Possible arguments
 const gamesCommands = {
 'help': 'help',
@@ -29,7 +33,7 @@ exports.run = (client, message, args) => {
 
 // Asynchronous function that queries the OpenCritic api
 async function handleGamesCommand(message, commandString, args) {
-	const Discord = require('discord.js');
+	//const Discord = require('discord.js');
 	const fetch = require('node-fetch');
 	const paginationEmbed = require('./../plugins/pagination.js');
 
@@ -39,7 +43,7 @@ async function handleGamesCommand(message, commandString, args) {
 		case 'help':
 			const embed = new Discord.MessageEmbed()
 			.setTitle("Games Commands")
-			.setThumbnail("https://pbs.twimg.com/profile_images/788570574687604737/LnEOrVcP_400x400.jpg")
+			.setThumbnail(openLogo)
 			.setURL("https://opencritic.com");
 			for ( const [key, value] of Object.entries(gamesCommands) ) {
 				embed.addField(value,gamesDetails[key]);
@@ -60,7 +64,9 @@ async function handleGamesCommand(message, commandString, args) {
 					console.log("Found " + data.meta.count.toString() + " results");
 					if ( data.meta.count > 0 ) {
 						var embedPages = [];
+						var upcomingTable = [];
 						for ( var i = 0; i < Math.min(10,data.meta.count); ++i) {
+							upcomingTable.push([data.name, data.Platforms, data.firstReleaseDate]);
 							embedPages.push(createGameEmbed(message, commandString, data.data[i].attributes, data.included));
 						}
 						paginationEmbed(message, embedPages, true, 120000);
@@ -105,13 +111,17 @@ async function handleGamesCommand(message, commandString, args) {
 				const data = await response.json();
 
 				if ( data && data.length ) {
-					console.log("Found " + data.length.toString() + " results");
-
+					console.log("Found " + data.length.toString() + " upcoming games results");
+					
+					var upcomingTable = [];
 					for ( var i = 0; i < data.length; ++i ) {
+						upcomingTable.push([data.name, data.Platforms, data.firstReleaseDate]);
 						var gameEmbed = createGameEmbed(message, data[i]);
 						gamePages.push(gameEmbed);
 					}
-					paginationEmbed(message, gamePages, true);
+
+					var tmpEmbed = [createUpcomingEmbed(upcomingTable)]
+					paginationEmbed(message, tmpEmbed.concat(gamePages), true);
 				}
 				else {
 					message.channel.send(`Games: Couldn't find a list of upcoming games on OpenCritic"`);
@@ -127,54 +137,26 @@ async function handleGamesCommand(message, commandString, args) {
 
 // Handle JSON data and embed anime/manga message here
 function createGameEmbed(message, data) {
-	const Discord = require('discord.js');
-	const descrLimit = 300;
+	//const Discord = require('discord.js');
+	const descrLimit = 250;
 	
-	// Parse through genres
-	var genreString = '';
-	if ( data.Genres.length ) {
-		for (var i = 0; i < data.Genres.length; ++i) {
-			genreString += (i > 0 ? ", " : "" ) + data.Genres[i].name;
-		}
-	} else {
-		console.log("No genres found");
-	}
-	// Parse through platforms
-	var platformString = '';
-	if ( data.Platforms.length ) {
-		for (var i = 0; i < data.Platforms.length; ++i) {
-			platformString += (i > 0 ? ", " : "" ) + data.Platforms[i].shortName;
-		}
-	} else {
-		console.log("No platforms found");
-	}
-	// Parse through companies
-	var companiesString = '';
-	if ( data.Companies.length ) {
-		for (var i = 0; i < data.Companies.length; ++i) {
-			companiesString += (i > 0 ? ", " : "" ) + data.Companies[i].name;
-		}
-	} else {
-		console.log("No platforms found");
-	}
-
-	var date = new Date(data.firstReleaseDate);
-	var dateString = 'N/A';
-	if ( date.toString() != 'Invalid Date' ) {
-		dateString = date.getUTCFullYear().toString() + "-" + (date.getUTCMonth()+1).toString() + "-" + date.getUTCDate().toString();
-	}
+	// Parse through platforms, genres and companies
+	var platformString = parseArrayNames(data.Platforms, true);
+	var genreString = parseArrayNames(data.Genres);
+	var companiesString = parseArrayNames(data.Companies);
+	var dateString = formatDate(data.firstReleaseDate);
 
 	// Send embed to channel
 	const embed = new Discord.MessageEmbed()
 	.setTitle(data.name)
-	.setThumbnail(data.logoScreenshot ? "https:" + data.logoScreenshot.thumbnail : "https://pbs.twimg.com/profile_images/788570574687604737/LnEOrVcP_400x400.jpg")
+	.setThumbnail(data.logoScreenshot ? "https:" + data.logoScreenshot.thumbnail : openLogo)
 	.setURL(data.url)
 	.addField("Companies", companiesString.length ? companiesString : "N/A", true)
 	.addField("Platforms", platformString.length ? platformString : "N/A", true)
 	.addField("Release Date", dateString, true)
 	.addField("Genres", genreString.length ? genreString : "N/A", true)
-	.addField("Avg Rating", data.averageScore != -1 ? Math.floor(data.averageScore).toString() : "N/A", true)
 	.addField("Top Critic Rating", data.topCriticScore != -1 ? Math.floor(data.topCriticScore).toString() : "N/A", true)
+	.addField("Avg Rating", data.averageScore != -1 ? Math.floor(data.averageScore).toString() : "N/A", true)
 	.addField("Description", data.description && data.description.trim() ? (data.description.length > descrLimit ? data.description.substring(0, descrLimit-3) + "..." : data.description) : "N/A");
 
 	if ( data.screenshots.length ) {
@@ -182,4 +164,63 @@ function createGameEmbed(message, data) {
 	}
 
 	return embed;
+}
+
+// Handle JSON data and embed upcoming games tables here
+function createUpcomingEmbed(list) {
+	//const Discord = require('discord.js');
+
+	var nameColumn = '';
+	var platformsColumn = '';
+	var dateColumn = '';
+
+	// Parse through standings
+	for ( var i = 0; i < list.length; ++i ) {
+		if ( i > 0 ) {
+			nameColumn += "\n";
+			platformsColumn += "\n";
+			dateColumn += "\n";
+		}
+		nameColumn += list[i][0];
+		platformsColumn += parseArrayNames(list[i][1], true);
+		dateColumn += formatDate(list[i][2]);
+	}
+	
+	// Create embed
+	const embed = new Discord.MessageEmbed()
+	.setTitle("Upcoming Releases")
+	.setThumbnail(openLogo)
+	.setURL("https://opencritic.com/browse/all/upcoming/date")
+	.addField("Name", playerTable.length ? playerTable : "N/A", true)
+	.addField("Platforms", weekTable.length ? weekTable : "N/A", true)
+	.addField("ReleaseDate", totalTable.length ? totalTable : "N/A", true)
+	.setTimestamp();
+
+	return embed;
+}
+
+
+function parseArrayNames(list, shortName = false) {
+	// Parse through companies
+	var namesString = '';
+	if ( list.length ) {
+		for (var i = 0; i < list.length; ++i) {
+			namesString += (i > 0 ? ", " : "" ) + (shortName ? list.shortName : list.name);
+		}
+	} else {
+		console.log("No entries found");
+	}
+
+	return nameString;
+}
+
+function formatDate(fullDate) {
+
+	var date = new Date(fullDate);
+	var dateString = 'N/A';
+	if ( date.toString() != 'Invalid Date' ) {
+		dateString = date.getUTCFullYear().toString() + "-" + (date.getUTCMonth()+1).toString() + "-" + date.getUTCDate().toString();
+	}
+	
+	return dateString
 }
