@@ -50,6 +50,10 @@ const paginationEmbed = async (msg, pages, authorOnly = false, timeout = 120000,
     allowedMentions: {repliedUser: false},
   });
 
+  console.log(authorOnly);
+  console.log(i.user.id);
+  console.log(msg.author.id);
+  
   const filter = (i) => {
     ( !authorOnly || i.user.id === msg.author.id ) &&
     ( i.customId === buttonList[0].customId || i.customId === buttonList[1].customId )
