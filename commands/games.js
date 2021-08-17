@@ -176,7 +176,7 @@ function createUpcomingEmbed(list) {
 	for ( i = 0; i < list.length; ++i) {
 		embed.addField('\u200b', list[i][0].length ? "**" + list[i][0] + "**" : "**N/A**")
 		.addField("**" + formatDate(list[i][2]) + "**",'\u200b', true)
-		.addField("**" + parseArrayNames(list[i][1] + "**",'\u200b', true), true)
+		.addField("**" + parseArrayNames(list[i][1], true) + "**",'\u200b', true)
 	}
 
 	return embed;
