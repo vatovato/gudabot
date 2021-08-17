@@ -60,7 +60,7 @@ async function handleGamesCommand(message, commandString, args) {
 				var upcomingEmbeds = [];
 
 				for ( var i = 0; i < 5; ++i ) {
-					var searchUrl = "https://api.opencritic.com/api/game?platforms=all&sort=date&time=upcoming&order=asc&skip=" + (i*20).toString();
+					var searchUrl = "https://api.opencritic.com/api/game?platforms=all&time=upcoming&order=asc&skip=" + (i*20).toString();
 					const response = await fetch(searchUrl);
 					const data = await response.json();
 
