@@ -47,18 +47,16 @@ exports.run = (client, message) => {
 				}
 			}
             else if ( data.includes.media[j].type == "photo" ) {
-                // Found an image, find the tweet id and username by searching one that contain this video/gif's media key
-                console.log(data);
+                // Found an image, find the tweet id and username by searching one that contain this image's media key
                 const url = data.includes.media[j].url;
-
                 for ( var k = 0; k < data.data.length; ++k ) {
                     if (  data.data[k].attachments.media_keys.includes(data.includes.media[j].media_key) ) {
+                        // Search author's info
                         for ( var h = 0; h < data.includes.users.length; ++h ) {
                             if ( data.data[k].author_id === data.includes.users[h].id ) {
                                 imageEmbeds.key = [data.data[k].id, data.includes.users[h].name, data.includes.users[h].username];
 							}
 						}
-                        //imageEmbeds.push(data.includes.media[j].url);
                     }
                 }
 			}
@@ -78,9 +76,8 @@ exports.run = (client, message) => {
             message.suppressEmbeds(true); // Remove original embeds
         }
         
-        console.log(imageEmbeds);
         // Add all image embeds to an embed with pages to browse through them, if there is more than 1
-        if ( imageEmbeds.length > 1 ) {
+        if ( Object.keys(imageEmbeds).length > 1 ) {
             const paginationEmbed = require('./pagination.js');
             var embedPages = [];
             for ( imageUrl in imageEmbeds ) {
