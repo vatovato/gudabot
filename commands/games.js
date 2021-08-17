@@ -193,7 +193,7 @@ function createUpcomingEmbed(list) {
 	var dateColumn = '';
 
 	// Parse through lists
-	for ( var i = 0; i < item.standings.results.length; ++i ) {
+	for ( var i = 0; i < list.length; ++i ) {
 		if ( i > 0 ) {
 			nameColumn += "\n";
 			platformsColumn += "\n";
