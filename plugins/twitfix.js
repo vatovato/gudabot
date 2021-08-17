@@ -77,7 +77,7 @@ exports.run = (client, message) => {
                                     .setImage(imageEmbeds[m]);
                 embedPages.push(embed);
 		    }
-		    paginationEmbed(message, embedPages, true, 300000);
+		    paginationEmbed(message, embedPages, false, 300000);
         }
     });
 }
