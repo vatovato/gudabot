@@ -157,7 +157,8 @@ function createGameEmbed(message, data) {
 	.addField("Genres", genreString.length ? genreString : "N/A", true)
 	.addField("Top Critic Rating", data.topCriticScore != -1 ? Math.floor(data.topCriticScore).toString() : "N/A", true)
 	.addField("Avg Rating", data.averageScore != -1 ? Math.floor(data.averageScore).toString() : "N/A", true)
-	.addField("Description", data.description && data.description.trim() ? (data.description.length > descrLimit ? data.description.substring(0, descrLimit-3) + "..." : data.description) : "N/A");
+	.addField("Description", data.description && data.description.trim() ? (data.description.length > descrLimit ? data.description.substring(0, descrLimit-3) + "..." : data.description) : "N/A")
+	.setTimestamp();
 
 	if ( data.screenshots.length ) {
 		embed.setImage("https:" + data.screenshots[0].thumbnail);
@@ -175,6 +176,7 @@ function createUpcomingEmbed(list) {
 	var dateColumn = '';
 
 	// Parse through standings
+	console.log(list);
 	for ( var i = 0; i < list.length; ++i ) {
 		if ( i > 0 ) {
 			nameColumn += "\n";
