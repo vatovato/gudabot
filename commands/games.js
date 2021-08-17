@@ -53,55 +53,6 @@ async function handleGamesCommand(message, commandString, args) {
 			message.channel.send({embeds: [embed]});
 			break;
 		case 'search':
-			//Concatenates all remaining args to form the search prompt, if there are any
-			const searchPrompt = encodeURIComponent(args.join(" "));
-			if ( searchPrompt.length ) {
-				var searchUrl = "https://kitsu.io/api/edge/" + commandString + "?filter[text]=" + searchPrompt + "&include=genres";
-
-				console.log("Querying " + searchUrl);
-				try {
-					const response = await fetch(searchUrl);
-					const data = await response.json();
-
-					console.log("Found " + data.meta.count.toString() + " results");
-					if ( data.meta.count > 0 ) {
-						var embedPages = [];
-						var upcomingTable = [];
-						for ( var i = 0; i < Math.min(10,data.meta.count); ++i) {
-							upcomingTable.push([data.name, data.Platforms, data.firstReleaseDate]);
-							embedPages.push(createGameEmbed(message, commandString, data.data[i].attributes, data.included));
-						}
-						paginationEmbed(message, embedPages, true, 120000);
-					}
-					else {
-						message.channel.send(`Kitsu: Couldn't find a result with the search term "${searchPrompt}"`);
-					}
-				} catch(err) {
-					console.log(err);
-				}
-			}
-			else {
-				message.channel.send(`Kitsu: Searching a random ${commandString}`);
-				console.log("Querying the api for a random result");
-				try {
-					// Query manga/anime for total number of entries
-					const response = await fetch("https://kitsu.io/api/edge/" + commandString);
-					const data = await response.json();
-
-					// Lookup a random entry
-					var randomNumber = Math.floor(Math.random() * data.meta.count);
-					var randomUrl = "https://kitsu.io/api/edge/" + commandString + "?page[limit]=1&page[offset]=" + randomNumber.toString() + "&include=genres";
-					console.log("Querying " + randomUrl);
-					const randResponse = await fetch(randomUrl);
-					const randItem = await randResponse.json();
-
-					var randomEmbed = createGameEmbed(message, commandString, randItem.data[0].attributes, randItem.included);
-					message.channel.send({embeds: [randomEmbed]});
-
-				} catch(err) {
-					console.log(err);
-				}
-			}
 			break;
 		case 'upcoming':
 			//Display a list of upcoming games
@@ -199,9 +150,11 @@ function createUpcomingEmbed(list) {
 			platformsColumn += "\n";
 			dateColumn += "\n";
 		}
-		nameColumn += list[i][0];
-		// Trim platform string as it can be too long for the narrow embed field column
-		const platformsString = parseArrayNames(list[i][1]);
+		// Trim name/platform strings as they can be too long for the narrow embed field column
+		const nameString = list[i][0];
+		const platformsString = parseArrayNames(list[i][1], true);
+
+		nameColumn += nameString.length > 25 ? nameString.substring(0, 22) + "..." : nameString;
 		platformsColumn += platformsString.length > 20 ? platformsString.substring(0, 17) + "..." : platformsString;
 		dateColumn += formatDate(list[i][2]);
 	}
