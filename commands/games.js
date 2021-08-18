@@ -39,7 +39,6 @@ async function handleGamesCommand(message, connection, commandString, args) {
 	
 	try { 
 		bearerToken = await gamesAuthenticate(message, connection);
-		console.log(bearerToken);
 	} catch(err) {
 		console.log("Games: Authentication Failed.")
 		console.log(err);
