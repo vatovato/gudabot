@@ -264,7 +264,7 @@ function collectBasicDetails(data) {
 }
 
 async function gamesAuthenticate(connection) {
-	connection.query(`SELECT * FROM tokens WHERE service = twitch`, async function(err, rows, fields) {
+	connection.query(`SELECT * FROM tokens WHERE service = 'twitch'`, async function(err, rows, fields) {
 		if(err) throw err;
 
 		var bearerToken = '';
@@ -293,7 +293,7 @@ async function onAuthenticationFail(connection) {
 		const data = await response.json();
 
 		if ( data && data.access_token ) {
-            connection.query(`UPDATE tokens SET bearer = '${data.access_token}' WHERE service = twitch`);
+            connection.query(`UPDATE tokens SET bearer = '${data.access_token}' WHERE service = 'twitch'`);
             message.channel.send(`Games: Database authentication update complete. Please try again.`);
 		} else {
 			message.channel.send(`Games: Database authentication failed. Please contact the bot's dev.`);
