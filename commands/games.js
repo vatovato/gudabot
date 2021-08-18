@@ -264,7 +264,7 @@ function collectBasicDetails(data) {
 }
 
 async function gamesAuthenticate() {
-	connection.query(`SELECT * FROM tokens WHERE service = twitch`, function(err, rows, fields) {
+	async connection.query(`SELECT * FROM tokens WHERE service = twitch`, function(err, rows, fields) {
 	  if(err) throw err;
 
 	  var bearerToken = '';
