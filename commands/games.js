@@ -263,13 +263,16 @@ function collectBasicDetails(data) {
 
 function gamesAuthenticate(message, connection) {
 	
+	var bearerToken = '';
 	connection.query(`SELECT * FROM tokens WHERE service = 'twitch'`, function(err, rows, fields) {
 		if(err) throw err;
 		if(rows[0].bearer) {
 			console.log("Set bearer token for this session.")
-			return rows[0].bearer;
+			bearerToken = rows[0].bearer;
 		}
 	});
+
+	return bearerToken;
 }
 
 async function onAuthenticationFail(message, connection) {
