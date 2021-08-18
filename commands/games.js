@@ -49,6 +49,17 @@ async function handleGamesCommand(message, commandString, args) {
 				embed.addField(value,gamesDetails[key]);
 			}
 			message.channel.send({embeds: [embed]});
+
+			try {
+				var authUrl = "https://id.twitch.tv/oauth2/token?client_id=" + process.env.IGDB_ID + "&client_secret=" + process.env.IGDB_SECRET + "&grant_type=client_credentials";
+				const response = await fetch(authUrl, {method: 'post'});
+				const data = await response.json();
+
+				console.log(data);
+			} catch(err) {
+				console.log(err);
+			}
+
 			break;
 		case 'search':
 			//Concatenates all remaining args to form the search prompt, if there are any
