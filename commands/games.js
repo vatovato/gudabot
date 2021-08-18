@@ -277,7 +277,7 @@ async function gamesAuthenticate(message, connection) {
 	if ( !bearerToken.length ) {
 		try {
 			message.channel.send(`Setting bot authentication details for first run...`);
-			var authentication = await onAuthenticationFail(message, connection);
+			bearerToken = await onAuthenticationFail(message, connection);
 		} catch (err) {
 			console.log(err);
 			message.channel.send(`Games: First run has failed. Please contact the bot's dev.`);
@@ -289,13 +289,16 @@ async function gamesAuthenticate(message, connection) {
 
 async function onAuthenticationFail(message, connection) {
 	console.log("Games: Twitch authentication failed! Attempting to create a new token")
+	var bearerToken = '';
+
 	try {
 		var authUrl = "https://id.twitch.tv/oauth2/token?client_id=" + process.env.IGDB_ID + "&client_secret=" + process.env.IGDB_SECRET + "&grant_type=client_credentials";
 		const response = await fetch(authUrl, {method: 'post'});
 		const data = await response.json();
 
 		if ( data && data.access_token ) {
-            connection.query(`UPDATE tokens SET bearer = '${data.access_token}' WHERE service = 'twitch'`);
+			bearerToken = data.access_token;
+            connection.query(`UPDATE tokens SET bearer = '${bearerToken}' WHERE service = 'twitch'`);
             message.channel.send(`Games: Database authentication update complete. Please try again.`);
 		} else {
 			message.channel.send(`Games: Database authentication failed. Please contact the bot's dev.`);
@@ -304,4 +307,6 @@ async function onAuthenticationFail(message, connection) {
 	} catch(err) {
 		console.log(err);
 	}
+
+	return bearerToken;
 }
