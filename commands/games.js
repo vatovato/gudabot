@@ -272,13 +272,12 @@ async function gamesAuthenticate(message, connection) {
 		}
 	});
 	
-	console.log("1111111")
-	console.log(connection);
-	console.log("22222222")
 	if ( !bearerToken.length ) {
 		console.log(connection);
 		console.log("55555555")
 		try {
+			console.log(connection);
+			console.log("22222222")
 			message.channel.send(`Setting bot authentication details for first run...`);
 			var authentication = await onAuthenticationFail(connection);
 		} catch (err) {
