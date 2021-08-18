@@ -44,6 +44,7 @@ async function handleGamesCommand(message, connection, commandString, args) {
 		console.log(err);
 	}
 
+	console.log("Final bearer token is " + bearerToken);
 	if ( bearerToken && bearerToken.length ) {
 		var gamePages = [];
 
@@ -265,9 +266,10 @@ function collectBasicDetails(data) {
 async function gamesAuthenticate(message, connection) {
 	
 	var bearerToken = '';
-	connection.query(`SELECT * FROM tokens WHERE service = 'twitch'`, async function(err, rows, fields) {
+	await connection.query(`SELECT * FROM tokens WHERE service = 'twitch'`, async function(err, rows, fields) {
 		if(err) throw err;
 		if(rows[0].bearer) {
+			console.log("1 -" + bearerToken)
 			bearerToken = rows[0].bearer;
 			console.log("Set bearer token for this session.")
 		} else {
