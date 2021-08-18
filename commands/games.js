@@ -159,7 +159,7 @@ async function handleGamesCommand(message, pool, commandString, args) {
 // Handle JSON data and embed anime/manga message here
 function createGameEmbed(message, data) {
 
-	const descrLimit = 250;
+	const descrLimit = 300;
 	
 	// Parse through platforms, genres and companies
 	var platformString = parseArrayNames(data.platforms, 'abbreviation');
@@ -240,9 +240,9 @@ function parseInvolvedCompanies(list) {
 	return namesString;
 }
 
-function formatDate(unixTime) {
+function formatDate(time, unix = false) {
 
-	var date = new Date(unixTime*1000);
+	var date = new Date(time* unix ? 1000 : 1);
 	var dateString = 'N/A';
 	if ( date.toString() != 'Invalid Date' ) {
 		dateString = date.getUTCFullYear().toString() + "-" + (date.getUTCMonth()+1).toString() + "-" + date.getUTCDate().toString();
