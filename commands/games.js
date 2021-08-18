@@ -43,7 +43,7 @@ async function handleGamesCommand(message, connection, commandString, args) {
 
 		if ( !bearerToken.length ) {
 			message.channel.send(`Setting bot authentication details for first run...`);
-			bearerToken = await onAuthenticationFail(connection);
+			bearerToken = await onAuthenticationFail(message, connection);
 		}
 	} catch(err) {
 		console.log("Games: Authentication Failed.")
