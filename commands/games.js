@@ -273,7 +273,7 @@ async function gamesAuthenticate(message, connection) {
 		}
 	});
 	
-	console.log"1 -" + (bearerToken)
+	console.log("1 -" + bearerToken)
 	if ( !bearerToken.length ) {
 		try {
 			message.channel.send(`Setting bot authentication details for first run...`);
