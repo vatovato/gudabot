@@ -179,7 +179,10 @@ function createUpcomingEmbed(list) {
 	for ( i = 0; i < list.length; ++i) {
 		if ( lastDate != list[i][2] ) {
 			lastDate = list[i][2];
-			listString += "\n**" + formatDate(list[i][2]) + "**";
+			if ( i ) {
+				listString += "\n\n";
+			}
+			listString += "**" + formatDate(list[i][2]) + "**";
 		}
 
 		listString += "\n" + list[i][0] + " (" + parseArrayNames(list[i][1], true) + ")";
