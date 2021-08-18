@@ -6,7 +6,7 @@ const openLogo = "https://pbs.twimg.com/profile_images/788570574687604737/LnEOrV
 const gamesCommands = {
 'help': 'help',
 'search': 'search game_name', 
-'upcoming': 'upcoming <optional: detailed>'
+'upcoming': 'upcoming'// <optional: detailed>'
 }
 const gamesDetails = {
 'help': 'Show a list of available commands',
