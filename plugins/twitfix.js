@@ -88,7 +88,8 @@ exports.run = (client, message) => {
                                         .setImage(imageUrl);
                     embedPages.push(embed);
 		        }
-		        paginationEmbed(message, embedPages, false, 300000);
+                // Remove the post for now
+		        // paginationEmbed(message, embedPages, false, 300000);
             }
         }
         else { 
