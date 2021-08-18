@@ -35,7 +35,7 @@ exports.run = (client, message, pool, args) => {
 // Asynchronous function that queries the OpenCritic api
 async function handleGamesCommand(message, pool, commandString, args) {
 	const paginationEmbed = require('./../plugins/pagination.js');
-	var bearerToken = gamesAuthenticate(message, pool);
+	var bearerToken = await gamesAuthenticate(message, pool);
 
 	if ( !bearerToken || !bearerToken.length ) {
 		message.channel.send(`Setting bot authentication details for first run...`);
