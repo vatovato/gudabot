@@ -20,7 +20,7 @@ exports.run = (client, message, connection, args) => {
 	if ( args.length ) {
 		const commandString = args.shift();
 		if ( commandString in gamesCommands ) {
-			handleGamesCommand(message, commandString, args).then(console.log("API Query succeeded")).catch(e => console.log(e));
+			handleGamesCommand(message, connection, commandString, args).then(console.log("API Query succeeded")).catch(e => console.log(e));
 		}
 		else {
 			message.channel.send(`Games: command ${commandString} not recognised.\nUse '!games help' for a list of available commands.`);
@@ -32,14 +32,14 @@ exports.run = (client, message, connection, args) => {
 }
 
 // Asynchronous function that queries the OpenCritic api
-async function handleGamesCommand(message, commandString, args) {
+async function handleGamesCommand(message, connection, commandString, args) {
 	//const Discord = require('discord.js');
 	const fetch = require('node-fetch');
 	const paginationEmbed = require('./../plugins/pagination.js');
 	var bearerToken = '';
 	
 	try { 
-		bearerToken = await gamesAuthenticate();
+		bearerToken = await gamesAuthenticate(connection);
 	} catch(err) {
 		console.log("Games: Authentication Failed.")
 		console.log(err);
@@ -263,7 +263,7 @@ function collectBasicDetails(data) {
 	return basicDetails;
 }
 
-async function gamesAuthenticate() {
+async function gamesAuthenticate(connection) {
 	connection.query(`SELECT * FROM tokens WHERE service = twitch`, async function(err, rows, fields) {
 		if(err) throw err;
 
@@ -272,7 +272,7 @@ async function gamesAuthenticate() {
 		if(rows.length == 0) {
 		try {
 			message.channel.send(`Setting bot authentication details for first run...`);
-			var authentication = await onAuthenticationFail();
+			var authentication = await onAuthenticationFail(connection);
 		} catch (err) {
 			console.log(err);
 			message.channel.send(`Games: First run has failed. Please contact the bot's dev.`);
@@ -285,7 +285,7 @@ async function gamesAuthenticate() {
 	});
 }
 
-async function onAuthenticationFail() {
+async function onAuthenticationFail(connection) {
 	console.log("Games: Twitch authentication failed! Attempting to create a new token")
 	try {
 		var authUrl = "https://id.twitch.tv/oauth2/token?client_id=" + process.env.IGDB_ID + "&client_secret=" + process.env.IGDB_SECRET + "&grant_type=client_credentials";
