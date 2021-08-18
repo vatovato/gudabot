@@ -258,26 +258,16 @@ function collectBasicDetails(data) {
 
 async function gamesAuthenticate(message, connection) {
 	
-	var bearerToken = '';
-	await connection.query(`SELECT * FROM tokens WHERE service = 'twitch'`, async function(err, rows, fields) {
+	connection.query(`SELECT * FROM tokens WHERE service = 'twitch'`, async function(err, rows, fields) {
 		if(err) throw err;
 		if(rows[0].bearer) {
-			bearerToken = rows[0].bearer;
-			console.log("1 -" + bearerToken)
 			console.log("Set bearer token for this session.")
+			return rows[0].bearer;
 		} else {
-			try {
-				message.channel.send(`Setting bot authentication details for first run...`);
-				bearerToken = await onAuthenticationFail(message, connection);
-			} catch (err) {
-				console.log(err);
-				message.channel.send(`Games: First run has failed. Please contact the bot's dev.`);
-			}
+			message.channel.send(`Setting bot authentication details for first run...`);
+			return onAuthenticationFail(message, connection);
 		}
 	});
-	
-	console.log("2 -" + bearerToken)
-	return bearerToken;
 }
 
 async function onAuthenticationFail(message, connection) {
