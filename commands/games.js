@@ -40,6 +40,7 @@ async function handleGamesCommand(message, connection, commandString, args) {
 	
 	try { 
 		bearerToken = await gamesAuthenticate(connection);
+		console.log(bearerToken);
 	} catch(err) {
 		console.log("Games: Authentication Failed.")
 		console.log(err);
@@ -270,13 +271,13 @@ async function gamesAuthenticate(connection) {
 		var bearerToken = '';
 
 		if(!rows[0].bearer) {
-		try {
-			message.channel.send(`Setting bot authentication details for first run...`);
-			var authentication = await onAuthenticationFail(connection);
-		} catch (err) {
-			console.log(err);
-			message.channel.send(`Games: First run has failed. Please contact the bot's dev.`);
-		}
+			try {
+				message.channel.send(`Setting bot authentication details for first run...`);
+				var authentication = await onAuthenticationFail(connection);
+			} catch (err) {
+				console.log(err);
+				message.channel.send(`Games: First run has failed. Please contact the bot's dev.`);
+			}
 		} else {
 			bearerToken = rows[0].bearer;
 		}
