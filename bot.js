@@ -11,7 +11,7 @@ const express = require('express');
 const app = express();
 var http = require('http');
 
-var mysql = require('mysql');
+var mysql = require('mysql2');
 var connection = mysql.createConnection(process.env.JAWSDB_URL);
 
 
