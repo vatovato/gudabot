@@ -154,7 +154,7 @@ function createGameEmbed(message, data) {
 	var platformString = parseArrayNames(data.platforms, 'abbreviation');
 	var genreString = parseArrayNames(data.genres);
 	var companiesString = parseInvolvedCompanies(data.involved_companies, false, "id");
-	var dateString = formatDate(data.first_release_date);
+	var dateString = formatDate(data.first_release_date, true);
 
 	// Send embed to channel
 	const embed = new Discord.MessageEmbed()
