@@ -237,7 +237,7 @@ function parseInvolvedCompanies(list) {
 	var namesString = list ? '' : "N/A";
 	if ( list && list.length ) {
 		for (var i = 0; i < list.length; ++i) {
-			namesString += (i > 0 ? ", " : "" ) + list[i].company.name);
+			namesString += (i > 0 ? ", " : "" ) + list[i].company.name;
 		}
 	} else {
 		console.log("No entries found");
