@@ -11,8 +11,8 @@ const express = require('express');
 const app = express();
 var http = require('http');
 
-var mysql = require('mysql');
-var connection = mysql.createConnection(process.env.JAWSDB_URL);
+var mysql = require('mysql2');
+var connection = mysql.createPool(process.env.JAWSDB_URL);
 
 
 // Set the port of our application
@@ -73,7 +73,7 @@ client.on("messageCreate", message => {
       commandFile.run(client, message, connection);
       return;
     }
-    if(command === "addfc" || command === "wl" || command =="wlimage" || command == "addwl" || command === "yoloroll") {
+    if(command === "addfc" || command === "wl" || command =="wlimage" || command == "addwl" || command === "yoloroll" || command === "games") {
       let commandFile = require(`./commands/${command}.js`)
       commandFile.run(client, message, connection, args);
       return;
