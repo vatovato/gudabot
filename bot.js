@@ -73,7 +73,7 @@ client.on("messageCreate", message => {
       commandFile.run(client, message, connection);
       return;
     }
-    if(command === "addfc" || command === "wl" || command =="wlimage" || command == "addwl" || command === "yoloroll") {
+    if(command === "addfc" || command === "wl" || command =="wlimage" || command == "addwl" || command === "yoloroll" || command === "games") {
       let commandFile = require(`./commands/${command}.js`)
       commandFile.run(client, message, connection, args);
       return;

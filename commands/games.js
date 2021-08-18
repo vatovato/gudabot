@@ -15,7 +15,7 @@ const gamesDetails = {
 }
 
 // Called by bot.js when games command is given
-exports.run = (client, message, args) => {
+exports.run = (client, message, connection, args) => {
 
 	if ( args.length ) {
 		const commandString = args.shift();
