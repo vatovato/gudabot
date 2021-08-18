@@ -178,7 +178,7 @@ function createUpcomingEmbed(list) {
 	const embed = new Discord.MessageEmbed()
 	.setTitle("Upcoming Releases")
 	.setThumbnail(gamesLogo)
-	.setURL("https://opencritic.com/browse/all/upcoming/date")
+	.setURL("https://www.igdb.com/games/coming_soon")
 	.setTimestamp();
 
 	listString = '';
@@ -202,7 +202,8 @@ function createUpcomingEmbed(list) {
 }
 
 function parseReleaseList(data) {
-	// We push games into a table
+
+	const pageLimit = 15;
 	var releaseListEmbeds = [];
 	var releaseListTable = [];
 
@@ -232,8 +233,8 @@ function parseReleaseList(data) {
 		}
 	}
 
-	for ( var j = 0; j < releaseListTable.length; j += 8 ) {
-		releaseListEmbeds.push(createUpcomingEmbed(releaseListTable.slice(j, j+7)));
+	for ( var j = 0; j < releaseListTable.length; j += pageLimit ) {
+		releaseListEmbeds.push(createUpcomingEmbed(releaseListTable.slice(j, j+pageLimit-1)));
 	}
 
 	return releaseListEmbeds;
