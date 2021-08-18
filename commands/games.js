@@ -1,19 +1,17 @@
 // Constants
-const openLogo = "https://pbs.twimg.com/profile_images/788570574687604737/LnEOrVcP_400x400.jpg";
 const Discord = require('discord.js');
+const openLogo = "https://pbs.twimg.com/profile_images/788570574687604737/LnEOrVcP_400x400.jpg";
 
 // Possible arguments
 const gamesCommands = {
 'help': 'help',
-//'search': 'search game_name', 
-'upcoming': 'upcoming <optional: detailed>'//,
-//'recent': 'recent'
+'search': 'search game_name', 
+'upcoming': 'upcoming'// <optional: detailed>'
 }
 const gamesDetails = {
 'help': 'Show a list of available commands',
-//'search': 'Search a game.',// If no search terms are given, a random one will be returned', 
-'upcoming': 'Show a list of upcoming games',
-//'recent': 'Show a list of recently released games'
+'search': 'Search a game.',
+'upcoming': 'Show a list of upcoming games'
 }
 
 // Called by bot.js when games command is given
@@ -53,26 +51,58 @@ async function handleGamesCommand(message, commandString, args) {
 			message.channel.send({embeds: [embed]});
 			break;
 		case 'search':
+			//Concatenates all remaining args to form the search prompt, if there are any
+			const searchPrompt = encodeURIComponent(args.join(" "));
+			if ( searchPrompt.length ) {
+				// We first search the terms, parse through all the result ids (max 10), then search each id to add game info to an embed page
+				var searchUrl = "https://api.opencritic.com/api/game/search?criteria=" + searchPrompt;
+
+				try {
+					const response = await fetch(searchUrl);
+					const data = await response.json();
+
+					if ( data && data.length > 0 ) {
+						for ( var i = 0; i < data.length; ++i) {
+							if ( i == 0 || data[i].dist < 0.8 ) { // Dist goes from 0 (perfect match) to 1 (no match)
+								searchUrl = "https://api.opencritic.com/api/game/" + data[i].id;
+								const gameResponse = await fetch(searchUrl);
+								const gameData = await gameResponse.json();
+								gamePages.push(createGameEmbed(message, gameData));
+							}
+						}
+						paginationEmbed(message, gamePages, true);
+					}
+					else {
+						message.channel.send(`Kitsu: Couldn't find a result with the search term "${searchPrompt}"`);
+					}
+				} catch(err) {
+					console.log(err);
+				}
+			}
+			else {
+				message.channel.send(`Games: No search terms have been given`);
+			}
 			break;
 		case 'upcoming':
 			//Display a list of upcoming games
 			try {
 				var upcomingEmbeds = [];
+				const pageLimit = 8; // Max number of games per page
 
 				for ( var i = 0; i < 5; ++i ) {
-					var searchUrl = "https://api.opencritic.com/api/game?platforms=all&time=upcoming&order=asc&skip=" + (i*20).toString();
+					var searchUrl = "https://api.opencritic.com/api/game?platforms=all&time=upcoming&order=asc&skip=" + (i*pageLimit*2).toString();
+					console.log("Querying " + searchUrl);
 					const response = await fetch(searchUrl);
 					const data = await response.json();
 
 					if ( data && data.length ) {
-						//console.log("Found " + data.length.toString() + " upcoming games results");
-						// Separate pages by 10 entries
+						// Separate pages by pageLimit
 						var upcomingTableOne = [];
 						var upcomingTableTwo = [];
-						for ( var j = 0; j < Math.min(10,data.length); ++j ) {
+						for ( var j = 0; j < Math.min(pageLimit,data.length); ++j ) {
 							upcomingTableOne.push(collectBasicDetails(data[j]));
 						}
-						for ( j = 10; j < Math.min(20,data.length); ++j ) {
+						for ( j = pageLimit; j < Math.min(pageLimit*2,data.length); ++j ) {
 							upcomingTableTwo.push(collectBasicDetails(data[j]));
 						}
 						upcomingEmbeds.push(createUpcomingEmbed(upcomingTableOne));
@@ -81,8 +111,8 @@ async function handleGamesCommand(message, commandString, args) {
 							upcomingEmbeds.push(createUpcomingEmbed(upcomingTableTwo));
 						}
 
-						// Stop looking for more results if the current request had less than 20 entries
-						if ( data.length != 20 ) {
+						// Stop looking for more results if the current request had less than 2*pageLimit entries
+						if ( data.length < pageLimit*2 ) {
 							break;
 						}
 					}
@@ -137,56 +167,33 @@ function createGameEmbed(message, data) {
 // Handle JSON data and embed upcoming/recent games tables here
 function createUpcomingEmbed(list) {
 
-	// Create embed
-	
-	var nameColumn = '';
-	var platformsColumn = '';
-	var dateColumn = '';
+	// Create embed /*
+	const embed = new Discord.MessageEmbed()
+	.setTitle("Upcoming Releases")
+	.setThumbnail(openLogo)
+	.setURL("https://opencritic.com/browse/all/upcoming/date")
+	.setTimestamp();
 
-	// Parse through lists
-	for ( var i = 0; i < list.length; ++i ) {
-		if ( i > 0 ) {
-			nameColumn += "\n";
-			platformsColumn += "\n";
-			dateColumn += "\n";
+	listString = '';
+	var lastDate = '';
+	for ( i = 0; i < list.length; ++i) {
+		if ( lastDate != list[i][2] ) {
+			lastDate = list[i][2];
+			if ( i > 0 ) {
+				listString += "\n\n";
+			}
+			listString += "**" + formatDate(list[i][2]) + "**";
 		}
-		// Trim name/platform strings as they can be too long for the narrow embed field column
-		const nameString = list[i][0];
-		const platformsString = parseArrayNames(list[i][1], true);
 
-		nameColumn += nameString.length > 25 ? nameString.substring(0, 22) + "..." : nameString;
-		platformsColumn += platformsString.length > 20 ? platformsString.substring(0, 17) + "..." : platformsString;
-		dateColumn += formatDate(list[i][2]);
+		listString += "\n" + list[i][0] + " (" + parseArrayNames(list[i][1], true) + ")";
 		
-		/*// We need to pad the strings to all have the same length, so that they take the same number of rows.
-		const stringLength = Math.max(nameString.length, platformsString.length, dateString.length);
-		nameColumn += nameString.padEnd(stringLength, '\u3000');
-		platformsColumn += platformsString.padEnd(stringLength, '\u3000');
-		dateColumn += dateString.padEnd(stringLength, '\u3000');*/
+		/*
+		embed.addField('\u200b', list[i][0].length ? "**" + list[i][0] + "**" : "**N/A**")
+		.addField('\u200b', formatDate(list[i][2]), true)
+		.addField('\u200b', parseArrayNames(list[i][1], true), true)*/
 	}
 	
-	// Create embed
-	const embed = new Discord.MessageEmbed()
-	.setTitle("Upcoming Releases")
-	.setThumbnail(openLogo)
-	.setURL("https://opencritic.com/browse/all/upcoming/date")
-	.addField("Name", nameColumn.length ? nameColumn : "N/A", true)
-	.addField("Platforms", platformsColumn.length ? platformsColumn : "N/A", true)
-	.addField("Release Date", dateColumn.length ? dateColumn : "N/A", true)
-	.setTimestamp();
-
-	/*
-	const embed = new Discord.MessageEmbed()
-	.setTitle("Upcoming Releases")
-	.setThumbnail(openLogo)
-	.setURL("https://opencritic.com/browse/all/upcoming/date")
-	.setTimestamp();
-
-	for ( i = 0; i < list.length; ++i) {
-		embed.addField("Name", list[i][0].length ? list[i][0] : "N/A")
-		.addField("ReleaseDate", formatDate(list[i][2]), true)
-		.addField("Platforms", parseArrayNames(list[i][1], true), true)
-	}*/
+	embed.addField('\u200b', listString );
 
 	return embed;
 }
