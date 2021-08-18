@@ -60,7 +60,7 @@ async function handleGamesCommand(message, pool, commandString, args) {
 				break;
 			case 'search':
 				//Concatenates all remaining args to form the search prompt and make an API request to IGDB
-				const searchPrompt = encodeURIComponent(args.join(" "));
+				const searchPrompt = args.join(" ");
 
 				if ( searchPrompt.length ) {
 					// We first search the terms, parse through all the result ids (max 10), then search each id to add game info to an embed page
