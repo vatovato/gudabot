@@ -35,14 +35,14 @@ exports.run = (client, message, pool, args) => {
 // Asynchronous function that queries the OpenCritic api
 async function handleGamesCommand(message, pool, commandString, args) {
 	const paginationEmbed = require('./../plugins/pagination.js');
-	var bearerToken = await gamesAuthenticate(message, pool);
 
+	// Authentication
+	var bearerToken = await gamesAuthenticate(message, pool);
 	if ( !bearerToken || !bearerToken.length ) {
 		message.channel.send(`Setting bot authentication details for first run...`);
 		bearerToken = await onAuthenticationFail(message, pool);
 	}
 
-	console.log("Final bearer token is " + bearerToken);
 	if ( bearerToken && bearerToken.length ) {
 		var gamePages = [];
 
@@ -76,13 +76,14 @@ async function handleGamesCommand(message, pool, commandString, args) {
 											screenshots.url,
 											summary;
 											where version_parent = null;`;
-					var searchHeaders = new Headers();
+					var searchHeaders = new fetch.Headers();
 					searchHeaders.append("Client-ID", process.env.IGDB_ID);
 					searchHeaders.append("Authorization", "Bearer " + bearerToken);
 					var requestOptions = {
 						method: 'POST',
 						headers: searchHeaders,
-						body: searchBody
+						body: searchBody,
+						redirect: 'follow'
 					};
 
 					try {
@@ -267,8 +268,6 @@ async function gamesAuthenticate(message, pool) {
 	const [rows,fields] = await pool.promise().query(`SELECT * FROM tokens WHERE service = 'twitch'`);
 
 	if(rows && rows[0].bearer) {
-		console.log("Set bearer token for this session.")
-		console.log("1: bearer is " + rows[0].bearer)
 		return rows[0].bearer;
 	}
 }
