@@ -204,7 +204,7 @@ function createUpcomingEmbed(list) {
 			listString += "**" + formatDate(list[i][2]) + "**";
 		}
 
-		listString += "\n" + list[i][0] + " (" + parseArrayNames(list[i][1], true) + ")";
+		listString += "\n" + list[i][0] + " (" + parseArrayNames(list[i][1], "shortName") + ")";
 	}
 	
 	embed.addField('\u200b', listString );
