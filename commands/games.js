@@ -233,6 +233,8 @@ function parseReleaseList(data) {
 	for ( var j = 0; j < releaseListTable.length; j += 8 ) {
 		releaseListEmbeds.push(createUpcomingEmbed(releaseListTable.slice(j, j+7)));
 	}
+
+	return releaseListEmbeds;
 }
 
 function parseArrayNames(list, nameKey = 'name') {
