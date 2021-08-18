@@ -273,7 +273,7 @@ async function gamesAuthenticate(message, connection) {
 		}
 	});
 	
-	console.log(bearerToken)
+	console.log"1 -" + (bearerToken)
 	if ( !bearerToken.length ) {
 		try {
 			message.channel.send(`Setting bot authentication details for first run...`);
@@ -283,7 +283,8 @@ async function gamesAuthenticate(message, connection) {
 			message.channel.send(`Games: First run has failed. Please contact the bot's dev.`);
 		}
 	}
-
+	
+	console.log("2 -" + bearerToken)
 	return bearerToken;
 }
 
