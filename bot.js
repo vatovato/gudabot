@@ -12,7 +12,7 @@ const app = express();
 var http = require('http');
 
 var mysql = require('mysql2');
-var connection = mysql.createConnection(process.env.JAWSDB_URL);
+var connection = mysql.createPool(process.env.JAWSDB_URL);
 
 
 // Set the port of our application
