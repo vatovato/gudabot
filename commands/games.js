@@ -263,7 +263,6 @@ function collectBasicDetails(data) {
 }
 
 async function gamesAuthenticate(message, connection) {
-	console.log(connection);
 	connection.query(`SELECT * FROM tokens WHERE service = 'twitch'`, async function(err, rows, fields) {
 		if(err) throw err;
 
@@ -272,6 +271,7 @@ async function gamesAuthenticate(message, connection) {
 		if(!rows[0].bearer) {
 			try {
 				message.channel.send(`Setting bot authentication details for first run...`);
+				console.log(connection);
 				var authentication = await onAuthenticationFail(connection);
 			} catch (err) {
 				console.log(err);
