@@ -1,5 +1,6 @@
 // Constants
 const Discord = require('discord.js');
+const fetch = require('node-fetch');
 const gamesLogo = "https://pbs.twimg.com/profile_images/1186326995254288385/_LV6aKaA_400x400.jpg";
 
 // Possible arguments
@@ -33,8 +34,6 @@ exports.run = (client, message, connection, args) => {
 
 // Asynchronous function that queries the OpenCritic api
 async function handleGamesCommand(message, connection, commandString, args) {
-	//const Discord = require('discord.js');
-	const fetch = require('node-fetch');
 	const paginationEmbed = require('./../plugins/pagination.js');
 	var bearerToken = '';
 	
