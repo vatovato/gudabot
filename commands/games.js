@@ -264,12 +264,12 @@ function collectBasicDetails(data) {
 }
 
 async function gamesAuthenticate() {
-	async connection.query(`SELECT * FROM tokens WHERE service = twitch`, function(err, rows, fields) {
-	  if(err) throw err;
+	connection.query(`SELECT * FROM tokens WHERE service = twitch`, async function(err, rows, fields) {
+		if(err) throw err;
 
-	  var bearerToken = '';
+		var bearerToken = '';
 
-	  if(rows.length == 0) {
+		if(rows.length == 0) {
 		try {
 			message.channel.send(`Setting bot authentication details for first run...`);
 			var authentication = await onAuthenticationFail();
@@ -277,11 +277,11 @@ async function gamesAuthenticate() {
 			console.log(err);
 			message.channel.send(`Games: First run has failed. Please contact the bot's dev.`);
 		}
-	  } else {
+		} else {
 		bearerToken = rows[0].bearer;
-	  }
+		}
 
-	  return bearerToken;
+		return bearerToken;
 	});
 }
 
