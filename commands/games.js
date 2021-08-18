@@ -184,15 +184,15 @@ function createUpcomingEmbed(list) {
 	listString = '';
 	var lastDate = '';
 	for ( i = 0; i < list.length; ++i) {
-		if ( lastDate != list[i][2] ) {
-			lastDate = list[i][2];
+		if ( lastDate != list[i]['date'] ) {
+			lastDate = list[i]['date'];
 			if ( i > 0 ) {
 				listString += "\n\n";
 			}
-			listString += "**" + formatDate(list[i][2]) + "**";
+			listString += "**" + formatDate(list[i]['date']) + "**";
 		}
 
-		listString += "\n" + list[i][0] + " (" + parseArrayNames(list[i][1], "shortName") + ")";
+		listString += "\n" + list[i]['name'] + " (" + list[i]['platforms'] + ")";
 	}
 	
 	embed.addField('\u200b', listString );
@@ -201,9 +201,37 @@ function createUpcomingEmbed(list) {
 }
 
 function parseReleaseList(data) {
+	// We push games into a table
 	var releaseListEmbeds = [];
-	for ( var i = 0; i < data.length; i++ ) {
-		
+	var releaseListTable = [];
+
+	var currentGameID;
+	var currentGameDetails = {};
+
+	for ( var i = 0; i < data.length; ++i ) {
+		if (data[i].game ) {
+			if ( data[i].game.id != currentGameID ) {
+				if ( currentGameID ) {
+					// No more versions of the previous game. Push it into the table and reset currentGameDetails
+					releaseListTable.push(currentGameDetails);
+					currentGameDetails = {};
+				}
+				currentGameDetails.name = data[i].game.name;
+				currentGameDetails.platforms = data[i].platform.abbreviation;
+				currentGameDetails.date = currentGameDetails.date;
+
+				if ( i === data.length ) {
+					releaseListTable.push(currentGameDetails);
+				}
+			} else {
+				// Same as previous game. Just add platform
+				currentGameDetails.platforms += ", " + data[i].platform.abbreviation;
+			}
+		}
+	}
+
+	for ( var j = 0; j < releaseListTable.length; j += 8 ) {
+		releaseListEmbeds.push(createUpcomingEmbed(releaseListTable.slice(j, j+7)));
 	}
 }
 
