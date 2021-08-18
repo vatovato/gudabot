@@ -35,14 +35,7 @@ exports.run = (client, message, connection, args) => {
 // Asynchronous function that queries the OpenCritic api
 async function handleGamesCommand(message, connection, commandString, args) {
 	const paginationEmbed = require('./../plugins/pagination.js');
-	var bearerToken = '';
-	
-	try { 
-		bearerToken = await gamesAuthenticate(message, connection);
-	} catch(err) {
-		console.log("Games: Authentication Failed.")
-		console.log(err);
-	}
+	var bearerToken = await gamesAuthenticate(message, connection);
 
 	console.log("Final bearer token is " + bearerToken);
 	if ( bearerToken && bearerToken.length ) {
@@ -269,8 +262,8 @@ async function gamesAuthenticate(message, connection) {
 	await connection.query(`SELECT * FROM tokens WHERE service = 'twitch'`, async function(err, rows, fields) {
 		if(err) throw err;
 		if(rows[0].bearer) {
-			console.log("1 -" + bearerToken)
 			bearerToken = rows[0].bearer;
+			console.log("1 -" + bearerToken)
 			console.log("Set bearer token for this session.")
 		} else {
 			try {
