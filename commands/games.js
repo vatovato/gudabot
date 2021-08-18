@@ -173,11 +173,23 @@ function createUpcomingEmbed(list) {
 	.setURL("https://opencritic.com/browse/all/upcoming/date")
 	.setTimestamp();
 
+	listString = '';
+	var lastDate = '';
 	for ( i = 0; i < list.length; ++i) {
+		if ( lastDate != list[i][2] ) {
+			lastDate = list[i][2];
+			listString += "\n**" + formatDate(list[i][2]) + "**";
+		}
+
+		listString += "\n" + list[i][0] + " (" + parseArrayNames(list[i][1]) + ")";
+		
+		/*
 		embed.addField('\u200b', list[i][0].length ? "**" + list[i][0] + "**" : "**N/A**")
 		.addField('\u200b', formatDate(list[i][2]), true)
-		.addField('\u200b', parseArrayNames(list[i][1], true), true)
+		.addField('\u200b', parseArrayNames(list[i][1], true), true)*/
 	}
+	
+	embed.addField('\u200b', listString );
 
 	return embed;
 }
