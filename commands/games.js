@@ -180,10 +180,6 @@ function createGameEmbed(message, data) {
 	.addField("Description", data.summary && data.summary.trim() ? (data.summary.length > descrLimit ? data.summary.substring(0, descrLimit-3) + "..." : data.summary) : "N/A")
 	.setTimestamp();
 
-	if ( data.screenshots.length ) {
-		embed.setImage("https:" + data.screenshots[0].url);
-	}
-
 	return embed;
 }
 
@@ -244,9 +240,9 @@ function parseInvolvedCompanies(list) {
 	return namesString;
 }
 
-function formatDate(fullDate) {
+function formatDate(unixTime) {
 
-	var date = new Date(fullDate);
+	var date = new Date(unixTime*1000);
 	var dateString = 'N/A';
 	if ( date.toString() != 'Invalid Date' ) {
 		dateString = date.getUTCFullYear().toString() + "-" + (date.getUTCMonth()+1).toString() + "-" + date.getUTCDate().toString();
