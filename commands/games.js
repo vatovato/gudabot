@@ -32,19 +32,19 @@ exports.run = (client, message, connection, args) => {
 	}
 }
 
-// Asynchronous function that queries the OpenCritic api
+// Asynchronous function that queries the IGDB api
 async function handleGamesCommand(message, connection, commandString, args) {
 	const paginationEmbed = require('./../plugins/pagination.js');
 	var bearerToken = '';
 	
+	// Authentication using Twitch Bearer token
 	try { 
 		bearerToken = await gamesAuthenticate(message, connection);
 
-	if ( !bearerToken.length ) {
-		message.channel.send(`Setting bot authentication details for first run...`);
-		bearerToken = await onAuthenticationFail(connection);
-	}
-
+		if ( !bearerToken.length ) {
+			message.channel.send(`Setting bot authentication details for first run...`);
+			bearerToken = await onAuthenticationFail(connection);
+		}
 	} catch(err) {
 		console.log("Games: Authentication Failed.")
 		console.log(err);
@@ -52,7 +52,6 @@ async function handleGamesCommand(message, connection, commandString, args) {
 
 	if ( bearerToken && bearerToken.length ) {
 		var gamePages = [];
-
 		switch(commandString.toLowerCase()) {
 			case 'help':
 				const embed = new Discord.MessageEmbed()
