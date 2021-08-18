@@ -89,7 +89,7 @@ async function handleGamesCommand(message, pool, commandString, args) {
 						const response = await fetch("https://api.igdb.com/v4/games/", requestOptions);
 						const data = await response.json();
 
-						if ( data && data.length > 0 ) {
+						if ( data && data.length ) {
 							for ( var i = 0; i < data.length; ++i) {
 								gamePages.push(createGameEmbed(message, data[i]));
 							}
@@ -109,41 +109,30 @@ async function handleGamesCommand(message, pool, commandString, args) {
 			case 'upcoming':
 				//Display a list of upcoming games
 				try {
-					var upcomingEmbeds = [];
-					const pageLimit = 8; // Max number of games per page
+					var searchBody = `fields date,
+										game.name,
+										platform.abbreviation; 
+										where date > 1629309691 & 
+										game.version_parent = null; 
+										sort date asc; limit 100;`;
+					var searchHeaders = new fetch.Headers();
+					searchHeaders.append("Client-ID", process.env.IGDB_ID);
+					searchHeaders.append("Authorization", "Bearer " + bearerToken);
+					var requestOptions = {
+						method: 'POST',
+						headers: searchHeaders,
+						body: searchBody
+					};
 
-					for ( var i = 0; i < 5; ++i ) {
-						var searchUrl = "https://api.opencritic.com/api/game?platforms=all&time=upcoming&order=asc&skip=" + (i*pageLimit*2).toString();
-						console.log("Querying " + searchUrl);
-						const response = await fetch(searchUrl);
-						const data = await response.json();
+					const response = await fetch("https://api.igdb.com/v4/release_dates/", requestOptions);
+					const data = await response.json();
 
-						if ( data && data.length ) {
-							// Separate pages by pageLimit
-							var upcomingTableOne = [];
-							var upcomingTableTwo = [];
-							for ( var j = 0; j < Math.min(pageLimit,data.length); ++j ) {
-								upcomingTableOne.push(collectBasicDetails(data[j]));
-							}
-							for ( j = pageLimit; j < Math.min(pageLimit*2,data.length); ++j ) {
-								upcomingTableTwo.push(collectBasicDetails(data[j]));
-							}
-							upcomingEmbeds.push(createUpcomingEmbed(upcomingTableOne));
-							// If there were less than 10 entries, then the 2nd table would be empty
-							if ( upcomingTableTwo.length ) {
-								upcomingEmbeds.push(createUpcomingEmbed(upcomingTableTwo));
-							}
-
-							// Stop looking for more results if the current request had less than 2*pageLimit entries
-							if ( data.length < pageLimit*2 ) {
-								break;
-							}
-						}
-						else if ( !upcomingEmbeds.length ) {
-							message.channel.send(`Games: Couldn't find a list of upcoming games on OpenCritic"`);
-						}
+					if ( data && data.length ) {
+						paginationEmbed(message, parseReleaseList(data), true);
 					}
-					paginationEmbed(message, upcomingEmbeds, true);
+					else {
+						message.channel.send(`Games: Couldn't find a list of upcoming games on IGDB"`);
+					}
 
 				} catch(err) {
 					console.log(err);
@@ -185,7 +174,6 @@ function createGameEmbed(message, data) {
 
 // Handle JSON data and embed upcoming/recent games tables here
 function createUpcomingEmbed(list) {
-
 	// Create embed /*
 	const embed = new Discord.MessageEmbed()
 	.setTitle("Upcoming Releases")
@@ -210,6 +198,13 @@ function createUpcomingEmbed(list) {
 	embed.addField('\u200b', listString );
 
 	return embed;
+}
+
+function parseReleaseList(data) {
+	var releaseListEmbeds = [];
+	for ( var i = 0; i < data.length; i++ ) {
+		
+	}
 }
 
 function parseArrayNames(list, nameKey = 'name') {
