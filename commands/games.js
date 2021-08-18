@@ -32,19 +32,13 @@ exports.run = (client, message, connection, args) => {
 	}
 }
 
-// Asynchronous function that queries the IGDB api
+// Asynchronous function that queries the OpenCritic api
 async function handleGamesCommand(message, connection, commandString, args) {
 	const paginationEmbed = require('./../plugins/pagination.js');
 	var bearerToken = '';
 	
-	// Authentication using Twitch Bearer token
 	try { 
 		bearerToken = await gamesAuthenticate(message, connection);
-
-		if ( !bearerToken.length ) {
-			message.channel.send(`Setting bot authentication details for first run...`);
-			bearerToken = await onAuthenticationFail(message, connection);
-		}
 	} catch(err) {
 		console.log("Games: Authentication Failed.")
 		console.log(err);
@@ -52,6 +46,7 @@ async function handleGamesCommand(message, connection, commandString, args) {
 
 	if ( bearerToken && bearerToken.length ) {
 		var gamePages = [];
+
 		switch(commandString.toLowerCase()) {
 			case 'help':
 				const embed = new Discord.MessageEmbed()
@@ -159,8 +154,6 @@ async function handleGamesCommand(message, connection, commandString, args) {
 			default:
 				break;
 		}
-	} else {
-		message.channel.send(`Games: Failed to authenticate. Please contact the bot's dev.`);
 	}
 }
 
@@ -278,22 +271,28 @@ async function gamesAuthenticate(message, connection) {
 			bearerToken = rows[0].bearer;
 		}
 	});
+	
+	if ( !bearerToken.length ) {
+		try {
+			message.channel.send(`Setting bot authentication details for first run...`);
+			var authentication = await onAuthenticationFail(message, connection);
+		} catch (err) {
+			console.log(err);
+			message.channel.send(`Games: First run has failed. Please contact the bot's dev.`);
+		}
+	}
 
 	return bearerToken;
 }
 
 async function onAuthenticationFail(message, connection) {
-	console.log(connection);
 	console.log("Games: Twitch authentication failed! Attempting to create a new token")
 	try {
-		console.log(connection);
-		console.log("3333333")
 		var authUrl = "https://id.twitch.tv/oauth2/token?client_id=" + process.env.IGDB_ID + "&client_secret=" + process.env.IGDB_SECRET + "&grant_type=client_credentials";
 		const response = await fetch(authUrl, {method: 'post'});
 		const data = await response.json();
 
 		if ( data && data.access_token ) {
-			console.log("4444444")
             connection.query(`UPDATE tokens SET bearer = '${data.access_token}' WHERE service = 'twitch'`);
             message.channel.send(`Games: Database authentication update complete. Please try again.`);
 		} else {
