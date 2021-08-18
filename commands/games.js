@@ -263,26 +263,26 @@ function collectBasicDetails(data) {
 }
 
 async function gamesAuthenticate(message, connection) {
-	connection.query(`SELECT * FROM tokens WHERE service = 'twitch'`, async function(err, rows, fields) {
+	
+	var bearerToken = '';
+	connection.query(`SELECT * FROM tokens WHERE service = 'twitch'`, function(err, rows, fields) {
 		if(err) throw err;
-
-		var bearerToken = '';
-
-		if(!rows[0].bearer) {
-			try {
-				message.channel.send(`Setting bot authentication details for first run...`);
-				console.log(connection);
-				var authentication = await onAuthenticationFail(connection);
-			} catch (err) {
-				console.log(err);
-				message.channel.send(`Games: First run has failed. Please contact the bot's dev.`);
-			}
-		} else {
+		if(rows[0].bearer) {
 			bearerToken = rows[0].bearer;
 		}
-
-		return bearerToken;
 	});
+
+	if ( !bearerToken.length ) {
+		try {
+			message.channel.send(`Setting bot authentication details for first run...`);
+			var authentication = await onAuthenticationFail(connection);
+		} catch (err) {
+			console.log(err);
+			message.channel.send(`Games: First run has failed. Please contact the bot's dev.`);
+		}
+	}
+
+	return bearerToken;
 }
 
 async function onAuthenticationFail(message, connection) {
