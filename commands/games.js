@@ -112,7 +112,7 @@ async function handleGamesCommand(message, commandString, args) {
 						}
 
 						// Stop looking for more results if the current request had less than 2*pageLimit entries
-						if ( data.length != pageLimit*2 ) {
+						if ( data.length < pageLimit*2 ) {
 							break;
 						}
 					}
