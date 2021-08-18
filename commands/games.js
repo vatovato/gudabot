@@ -90,7 +90,8 @@ async function handleGamesCommand(message, commandString, args) {
 				const pageLimit = 8; // Max number of games per page
 
 				for ( var i = 0; i < 5; ++i ) {
-					var searchUrl = "https://api.opencritic.com/api/game?platforms=all&time=upcoming&order=asc&skip=" + (i*16).toString();
+					var searchUrl = "https://api.opencritic.com/api/game?platforms=all&time=upcoming&order=asc&skip=" + (i*pageLimit*2).toString();
+					console.log("Querying " + searchUrl);
 					const response = await fetch(searchUrl);
 					const data = await response.json();
 
@@ -181,7 +182,7 @@ function createUpcomingEmbed(list) {
 			listString += "\n**" + formatDate(list[i][2]) + "**";
 		}
 
-		listString += "\n" + list[i][0] + " (" + parseArrayNames(list[i][1]) + ")";
+		listString += "\n" + list[i][0] + " (" + parseArrayNames(list[i][1], true) + ")";
 		
 		/*
 		embed.addField('\u200b', list[i][0].length ? "**" + list[i][0] + "**" : "**N/A**")
