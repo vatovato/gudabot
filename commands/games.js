@@ -39,6 +39,12 @@ async function handleGamesCommand(message, connection, commandString, args) {
 	
 	try { 
 		bearerToken = await gamesAuthenticate(message, connection);
+
+	if ( !bearerToken.length ) {
+		message.channel.send(`Setting bot authentication details for first run...`);
+		bearerToken = await onAuthenticationFail(connection);
+	}
+
 	} catch(err) {
 		console.log("Games: Authentication Failed.")
 		console.log(err);
@@ -154,6 +160,8 @@ async function handleGamesCommand(message, connection, commandString, args) {
 			default:
 				break;
 		}
+	} else {
+		message.channel.send(`Games: Failed to authenticate. Please contact the bot's dev.`);
 	}
 }
 
@@ -271,20 +279,6 @@ async function gamesAuthenticate(message, connection) {
 			bearerToken = rows[0].bearer;
 		}
 	});
-	
-	if ( !bearerToken.length ) {
-		console.log(connection);
-		console.log("55555555")
-		try {
-			console.log(connection);
-			console.log("22222222")
-			message.channel.send(`Setting bot authentication details for first run...`);
-			var authentication = await onAuthenticationFail(connection);
-		} catch (err) {
-			console.log(err);
-			message.channel.send(`Games: First run has failed. Please contact the bot's dev.`);
-		}
-	}
 
 	return bearerToken;
 }
