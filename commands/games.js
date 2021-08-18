@@ -189,7 +189,7 @@ function createUpcomingEmbed(list) {
 			if ( i > 0 ) {
 				listString += "\n\n";
 			}
-			listString += "**" + formatDate(list[i]['date']) + "**";
+			listString += "**" + formatDate(list[i]['date'], true) + "**";
 		}
 
 		listString += "\n" + list[i]['name'] + " (" + list[i]['platforms'] + ")";
@@ -209,7 +209,6 @@ function parseReleaseList(data) {
 	var currentGameDetails = {};
 
 	for ( var i = 0; i < data.length; ++i ) {
-		console.log("Found " + data.length + " entries")
 		if (data[i].game ) {
 			if ( data[i].game.id != currentGameID ) {
 				if ( currentGameID ) {
@@ -235,7 +234,6 @@ function parseReleaseList(data) {
 	for ( var j = 0; j < releaseListTable.length; j += 8 ) {
 		releaseListEmbeds.push(createUpcomingEmbed(releaseListTable.slice(j, j+7)));
 	}
-	console.log( releaseListEmbeds );
 
 	return releaseListEmbeds;
 }
@@ -270,19 +268,13 @@ function parseInvolvedCompanies(list) {
 
 function formatDate(time, unix = false) {
 
-	var date = new Date(time * (unix ? 1 : 1));
+	var date = new Date(time * (unix ? 1000 : 1));
 	var dateString = 'N/A';
 	if ( date.toString() != 'Invalid Date' ) {
 		dateString = date.getUTCFullYear().toString() + "-" + (date.getUTCMonth()+1).toString() + "-" + date.getUTCDate().toString();
 	}
 	
 	return dateString;
-}
-
-// Data used for upcoming/recent games tables
-function collectBasicDetails(data) {
-	var basicDetails = [data.name, data.Platforms, data.firstReleaseDate/*, data.Genres*/];
-	return basicDetails;
 }
 
 async function gamesAuthenticate(message, pool) {
