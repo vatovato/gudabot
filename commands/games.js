@@ -147,7 +147,7 @@ function createGameEmbed(message, data) {
 	const embed = new Discord.MessageEmbed()
 	.setTitle(data.name)
 	.setThumbnail(data.logoScreenshot ? "https:" + (data.logoScreenshot.thumbnail ? data.logoScreenshot.thumbnail : data.logoScreenshot.fullRes ) : openLogo)
-	.setURL(data.url)
+	.setURL(data.url ? data.url : "https://opencritic.com/game/" + data.id.toString() + "/" data.name.replace(' ', '-'))
 	.addField("Companies", companiesString.length ? companiesString : "N/A", true)
 	.addField("Platforms", platformString.length ? platformString : "N/A", true)
 	.addField("Release Date", dateString, true)
