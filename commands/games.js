@@ -269,8 +269,7 @@ async function gamesAuthenticate(connection) {
 
 		var bearerToken = '';
 
-		console.log(rows.length);
-		if(rows.length == 0) {
+		if(!rows[0].bearer) {
 		try {
 			message.channel.send(`Setting bot authentication details for first run...`);
 			var authentication = await onAuthenticationFail(connection);
