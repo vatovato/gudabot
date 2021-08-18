@@ -268,8 +268,10 @@ async function gamesAuthenticate(message, connection) {
 	connection.query(`SELECT * FROM tokens WHERE service = 'twitch'`, function(err, rows, fields) {
 		if(err) throw err;
 		console.log(rows[0]);
+		console.log(rows[0].bearer);
 		if(rows[0].bearer) {
 			bearerToken = rows[0].bearer;
+			console.log(bearerToken);
 			console.log("Set bearer token for this session.")
 		}
 	});
