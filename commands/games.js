@@ -82,8 +82,7 @@ async function handleGamesCommand(message, pool, commandString, args) {
 					var requestOptions = {
 						method: 'POST',
 						headers: searchHeaders,
-						body: searchBody,
-						redirect: 'follow'
+						body: searchBody
 					};
 
 					try {
@@ -171,7 +170,7 @@ function createGameEmbed(message, data) {
 	// Send embed to channel
 	const embed = new Discord.MessageEmbed()
 	.setTitle(data.name)
-	.setThumbnail(data.cover ? "https:" + data.cover : gamesLogo)
+	.setThumbnail(data.cover ? "https:" + data.cover.url : gamesLogo)
 	.setURL(data.url ? data.url : "https://www.igdb.com/")
 	.addField("Companies", companiesString.length ? companiesString : "N/A", true)
 	.addField("Platforms", platformString.length ? platformString : "N/A", true)
