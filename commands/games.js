@@ -189,7 +189,6 @@ function createUpcomingEmbed(list) {
 			if ( i > 0 ) {
 				listString += "\n\n";
 			}
-			console.log(list[i]['date']);
 			listString += "**" + formatDate(list[i]['date'], true) + "**";
 		}
 
