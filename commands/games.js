@@ -114,7 +114,7 @@ async function handleGamesCommand(message, pool, commandString, args) {
 										platform.abbreviation; 
 										where date > 1629309691 & 
 										game.version_parent = null; 
-										sort date asc; limit 100;`;
+										sort date asc; limit 200;`;
 					var searchHeaders = new fetch.Headers();
 					searchHeaders.append("Client-ID", process.env.IGDB_ID);
 					searchHeaders.append("Authorization", "Bearer " + bearerToken);
