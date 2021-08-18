@@ -45,7 +45,7 @@ async function handleGamesCommand(message, connection, commandString, args) {
 		console.log(err);
 	}
 
-	if ( bearerToken.length ) {
+	if ( bearerToken && bearerToken.length ) {
 		var gamePages = [];
 
 		switch(commandString.toLowerCase()) {
@@ -269,6 +269,7 @@ async function gamesAuthenticate(connection) {
 
 		var bearerToken = '';
 
+		console.log(rows.length);
 		if(rows.length == 0) {
 		try {
 			message.channel.send(`Setting bot authentication details for first run...`);
@@ -278,7 +279,7 @@ async function gamesAuthenticate(connection) {
 			message.channel.send(`Games: First run has failed. Please contact the bot's dev.`);
 		}
 		} else {
-		bearerToken = rows[0].bearer;
+			bearerToken = rows[0].bearer;
 		}
 
 		return bearerToken;
