@@ -269,9 +269,11 @@ function gamesAuthenticate(message, connection) {
 		if(rows[0].bearer) {
 			console.log("Set bearer token for this session.")
 			bearerToken = rows[0].bearer;
+			console.log("1: bearer is " + bearerToken)
 		}
 	});
-
+	
+	console.log("2: bearer is " + bearerToken)
 	return bearerToken;
 }
 
