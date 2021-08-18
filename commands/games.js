@@ -76,7 +76,7 @@ async function handleGamesCommand(message, connection, commandString, args) {
 											screenshots.url,
 											summary;
 											where version_parent = null;`;
-					var searchHeaders = new Headers();
+					var searchHeaders = new fetch.Headers();
 					searchHeaders.append("Client-ID", process.env.IGDB_ID);
 					searchHeaders.append("Authorization", "Bearer " + bearerToken);
 					var requestOptions = {
