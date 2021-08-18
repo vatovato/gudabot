@@ -263,6 +263,7 @@ function collectBasicDetails(data) {
 }
 
 async function gamesAuthenticate(message, connection) {
+	console.log(connection);
 	connection.query(`SELECT * FROM tokens WHERE service = 'twitch'`, async function(err, rows, fields) {
 		if(err) throw err;
 
@@ -286,6 +287,7 @@ async function gamesAuthenticate(message, connection) {
 
 async function onAuthenticationFail(message, connection) {
 	console.log("Games: Twitch authentication failed! Attempting to create a new token")
+	console.log(connection);
 	try {
 		var authUrl = "https://id.twitch.tv/oauth2/token?client_id=" + process.env.IGDB_ID + "&client_secret=" + process.env.IGDB_SECRET + "&grant_type=client_credentials";
 		const response = await fetch(authUrl, {method: 'post'});
