@@ -21,7 +21,7 @@ exports.run = (client, message, connection, args) => {
 	if ( args.length ) {
 		const commandString = args.shift();
 		if ( commandString in gamesCommands ) {
-			handleGamesCommand(message, connection, commandString, args).then(console.log("API Query succeeded")).catch(e => console.log(e));
+			handleGamesCommand(message, connection, commandString, args).then().catch(e => console.log(e));
 		}
 		else {
 			message.channel.send(`Games: command ${commandString} not recognised.\nUse '!games help' for a list of available commands.`);
@@ -272,6 +272,7 @@ async function gamesAuthenticate(message, connection) {
 		}
 	});
 
+	console.log(connection);
 	if ( !bearerToken.length ) {
 		try {
 			message.channel.send(`Setting bot authentication details for first run...`);
