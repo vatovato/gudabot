@@ -209,6 +209,7 @@ function parseReleaseList(data) {
 	var currentGameDetails = {};
 
 	for ( var i = 0; i < data.length; ++i ) {
+		console.log("Found " + data.length + " entries")
 		if (data[i].game ) {
 			if ( data[i].game.id != currentGameID ) {
 				if ( currentGameID ) {
@@ -216,6 +217,7 @@ function parseReleaseList(data) {
 					releaseListTable.push(currentGameDetails);
 					currentGameDetails = {};
 				}
+				currentGameID = data[i].game.id;
 				currentGameDetails.name = data[i].game.name;
 				currentGameDetails.platforms = data[i].platform.abbreviation;
 				currentGameDetails.date = currentGameDetails.date;
@@ -233,6 +235,7 @@ function parseReleaseList(data) {
 	for ( var j = 0; j < releaseListTable.length; j += 8 ) {
 		releaseListEmbeds.push(createUpcomingEmbed(releaseListTable.slice(j, j+7)));
 	}
+	console.log( releaseListEmbeds );
 
 	return releaseListEmbeds;
 }
