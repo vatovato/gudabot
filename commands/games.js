@@ -16,12 +16,12 @@ const gamesDetails = {
 }
 
 // Called by bot.js when games command is given
-exports.run = (client, message, connection, args) => {
+exports.run = (client, message, pool, args) => {
 
 	if ( args.length ) {
 		const commandString = args.shift();
 		if ( commandString in gamesCommands ) {
-			handleGamesCommand(message, connection, commandString, args).then().catch(e => console.log(e));
+			handleGamesCommand(message, pool, commandString, args).then().catch(e => console.log(e));
 		}
 		else {
 			message.channel.send(`Games: command ${commandString} not recognised.\nUse '!games help' for a list of available commands.`);
@@ -33,13 +33,13 @@ exports.run = (client, message, connection, args) => {
 }
 
 // Asynchronous function that queries the OpenCritic api
-async function handleGamesCommand(message, connection, commandString, args) {
+async function handleGamesCommand(message, pool, commandString, args) {
 	const paginationEmbed = require('./../plugins/pagination.js');
-	var bearerToken = gamesAuthenticate(message, connection);
+	var bearerToken = gamesAuthenticate(message, pool);
 
 	if ( !bearerToken || !bearerToken.length ) {
 		message.channel.send(`Setting bot authentication details for first run...`);
-		bearerToken = await onAuthenticationFail(message, connection);
+		bearerToken = await onAuthenticationFail(message, pool);
 	}
 
 	console.log("Final bearer token is " + bearerToken);
@@ -76,7 +76,7 @@ async function handleGamesCommand(message, connection, commandString, args) {
 											screenshots.url,
 											summary;
 											where version_parent = null;`;
-					var searchHeaders = new fetch.Headers();
+					var searchHeaders = new Headers();
 					searchHeaders.append("Client-ID", process.env.IGDB_ID);
 					searchHeaders.append("Authorization", "Bearer " + bearerToken);
 					var requestOptions = {
@@ -261,23 +261,19 @@ function collectBasicDetails(data) {
 	return basicDetails;
 }
 
-function gamesAuthenticate(message, connection) {
+async function gamesAuthenticate(message, pool) {
 	
 	var bearerToken = '';
-	connection.query(`SELECT * FROM tokens WHERE service = 'twitch'`, function(err, rows, fields) {
-		if(err) throw err;
-		if(rows[0].bearer) {
-			console.log("Set bearer token for this session.")
-			bearerToken = rows[0].bearer;
-			console.log("1: bearer is " + bearerToken)
-		}
-	});
-	
-	console.log("2: bearer is " + bearerToken)
-	return bearerToken;
+	const [rows,fields] = await pool.promise().query(`SELECT * FROM tokens WHERE service = 'twitch'`);
+
+	if(rows && rows[0].bearer) {
+		console.log("Set bearer token for this session.")
+		console.log("1: bearer is " + rows[0].bearer)
+		return rows[0].bearer;
+	}
 }
 
-async function onAuthenticationFail(message, connection) {
+async function onAuthenticationFail(message, pool) {
 	console.log("Games: Twitch authentication failed! Attempting to create a new token")
 	var bearerToken = '';
 
@@ -288,7 +284,7 @@ async function onAuthenticationFail(message, connection) {
 
 		if ( data && data.access_token ) {
 			bearerToken = data.access_token;
-            connection.query(`UPDATE tokens SET bearer = '${bearerToken}' WHERE service = 'twitch'`);
+            pool.query(`UPDATE tokens SET bearer = '${bearerToken}' WHERE service = 'twitch'`);
             message.channel.send(`Games: Database authentication update complete. Please try again.`);
 		} else {
 			message.channel.send(`Games: Database authentication failed. Please contact the bot's dev.`);
