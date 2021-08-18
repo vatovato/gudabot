@@ -223,7 +223,7 @@ function parseArrayNames(list, nameKey = 'name') {
 	var namesString = list ? '' : "N/A";
 	if ( list && list.length ) {
 		for (var i = 0; i < list.length; ++i) {
-			namesString += (i > 0 ? ", " : "" ) + list[i][nameKey]);
+			namesString += (i > 0 ? ", " : "" ) + list[i][nameKey];
 		}
 	} else {
 		console.log("No entries found");
