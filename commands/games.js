@@ -220,7 +220,7 @@ function parseReleaseList(data) {
 				currentGameID = data[i].game.id;
 				currentGameDetails.name = data[i].game.name;
 				currentGameDetails.platforms = data[i].platform.abbreviation;
-				currentGameDetails.date = currentGameDetails.date;
+				currentGameDetails.date = data[i].date;
 
 				if ( i === data.length ) {
 					releaseListTable.push(currentGameDetails);
