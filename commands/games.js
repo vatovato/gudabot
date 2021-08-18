@@ -242,7 +242,7 @@ function parseInvolvedCompanies(list) {
 
 function formatDate(time, unix = false) {
 
-	var date = new Date(time* unix ? 1000 : 1);
+	var date = new Date(time * (unix ? 1000 : 1));
 	var dateString = 'N/A';
 	if ( date.toString() != 'Invalid Date' ) {
 		dateString = date.getUTCFullYear().toString() + "-" + (date.getUTCMonth()+1).toString() + "-" + date.getUTCDate().toString();
