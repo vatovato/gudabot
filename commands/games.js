@@ -158,7 +158,7 @@ function createGameEmbed(message, data) {
 	.setTimestamp();
 
 	if ( data.screenshots.length ) {
-		embed.setImage("https:" + data.screenshots[0].thumbnail ? data.screenshots[0].thumbnail : data.screenshots[0].fullRes);
+		embed.setImage("https:" + (data.screenshots[0].thumbnail ? data.screenshots[0].thumbnail : data.screenshots[0].fullRes));
 	}
 
 	return embed;
@@ -186,11 +186,6 @@ function createUpcomingEmbed(list) {
 		}
 
 		listString += "\n" + list[i][0] + " (" + parseArrayNames(list[i][1], true) + ")";
-		
-		/*
-		embed.addField('\u200b', list[i][0].length ? "**" + list[i][0] + "**" : "**N/A**")
-		.addField('\u200b', formatDate(list[i][2]), true)
-		.addField('\u200b', parseArrayNames(list[i][1], true), true)*/
 	}
 	
 	embed.addField('\u200b', listString );
