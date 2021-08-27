@@ -28,7 +28,7 @@ exports.run = (client, message, pool) => {
             });
         } else {
             message.delete()
-            .then()
+            .then(msg => console.log(`Deleted message from ${msg.author.username} due to meme spam`))
             .catch(console.error);
 		}
     });
