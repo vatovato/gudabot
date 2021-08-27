@@ -57,10 +57,9 @@ function canUseCommand(client, message, pool) {
                         warningMessage = `Last warning: Using this command in the next ${cooldown} seconds will get you archived.`;
                         break;
                     case 2:
+                    default:
                         message.member.roles.add(archivedRole).catch(console.error);
                         warningMessage = `User has been archived for spamming`;
-                        break;
-                    default:
                         break;
 				}
                 
