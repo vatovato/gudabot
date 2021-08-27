@@ -41,7 +41,7 @@ async function canUseCommand(client, message, pool) {
 
     if( rows && rows.length == 0) {
         console.log("User did not use command before. Log timestamp");
-        pool.query(`INSERT INTO meme SET userID = '${message.author.id}', username = '${message.author.username}', timestamp = '${timestamp}', warnings = '0'`);
+        pool.query(`INSERT INTO meme SET userID = '${message.author.id}', username = '${message.author.username}', timestamp = ${timestamp}, warnings = 0`);
     } else if ( rows ) {
         var previousWarnings = rows[0].warnings;
         var previousTimestamp = rows[0].timestamp;
@@ -50,7 +50,7 @@ async function canUseCommand(client, message, pool) {
             
         console.log(`'${message.author.username} used meme ${cooldown} seconds ago`);
         if ( cooldown >= 60 ) {
-            pool.query(`UPDATE meme SET timestamp = '${timestamp}', warnings = '0' WHERE userID = '${message.author.id}'`);
+            pool.query(`UPDATE meme SET timestamp = ${timestamp}, warnings = 0 WHERE userID = '${message.author.id}'`);
 		} else {
             var warningMessage = '';
             switch(previousWarnings) {
@@ -70,7 +70,7 @@ async function canUseCommand(client, message, pool) {
             canUse = false;
 		    message.channel.send({content: warningMessage, allowedMentions: {repliedUser: true}, reply: { messageReference: message }});
             previousWarnings++;
-            pool.query(`UPDATE meme SET warnings = '${previousWarnings}' WHERE userID = '${message.author.id}'`);
+            pool.query(`UPDATE meme SET warnings = ${previousWarnings} WHERE userID = '${message.author.id}'`);
 		}
     }
     
