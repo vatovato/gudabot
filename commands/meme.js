@@ -69,9 +69,9 @@ async function canUseCommand(client, message, pool) {
                 
             canUse = false;
 		    message.channel.send({content: warningMessage});
-            message.delete();
             previousWarnings++;
             pool.query(`UPDATE meme SET warnings = ${previousWarnings} WHERE userID = '${message.author.id}'`);
+            message.delete();
 		}
     }
     
