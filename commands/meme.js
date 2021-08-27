@@ -67,7 +67,7 @@ async function canUseCommand(client, message, pool) {
                 case 2:
                 default:
                     message.member.roles.add(archivedRole).catch(console.error);
-                    warningMessage = `User <@${message.author.id}> has been archived for spamming.`;
+                    warningMessage = `<@${message.author.id}> has been banished to the shadow realm for meme crimes.`;
                     break;
 			}
                 
