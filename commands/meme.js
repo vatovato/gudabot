@@ -34,7 +34,7 @@ exports.run = (client, message, pool) => {
 async function canUseCommand(client, message, pool) {
     
     var canUse = true;
-    var timestamp = Date.now();
+    var timestamp = Math.floor(Date.now()/1000);
 	const archivedRole='384924912982425601';
 
     const [rows,fields] = await pool.promise().query(`SELECT * FROM meme WHERE userID = '${message.author.id}'`);
@@ -46,7 +46,7 @@ async function canUseCommand(client, message, pool) {
         var previousWarnings = rows[0].warnings;
         var previousTimestamp = rows[0].timestamp;
         var userWishlist = rows[0].wishlist;
-        var cooldown = Math.floor((timestamp - previousTimestamp)/1000);
+        var cooldown = timestamp - previousTimestamp;
             
         console.log(`'${message.author.username} used meme ${cooldown} seconds ago`);
         if ( cooldown >= 60 ) {
