@@ -69,7 +69,6 @@ function canUseCommand(client, message, pool) {
                 pool.query(`UPDATE meme SET warnings = '${previousWarnings}' WHERE userID = '${message.author.id}'`);
 			}
         }
+        return canUse;
     });
-
-    return canUse;
 }
