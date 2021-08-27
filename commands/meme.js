@@ -26,7 +26,11 @@ exports.run = (client, message, pool) => {
                 console.log("Meme: " + memeUrl);
                 message.channel.send({files: [memeUrl]});
             });
-        }
+        } else {
+            message.delete()
+            .then(msg => console.log(`Deleted message from ${msg.author.username}`))
+            .catch(console.error);
+		}
     });
 }
 
@@ -71,7 +75,6 @@ async function canUseCommand(client, message, pool) {
 		    message.channel.send({content: warningMessage});
             previousWarnings++;
             pool.query(`UPDATE meme SET warnings = ${previousWarnings} WHERE userID = '${message.author.id}'`);
-            message.delete();
 		}
     }
     
