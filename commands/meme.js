@@ -55,20 +55,21 @@ async function canUseCommand(client, message, pool) {
             var warningMessage = '';
             switch(previousWarnings) {
                 case 0:
-                    warningMessage = `Command has already been used in the past minute. Please wait ${60 - cooldown} seconds before using again.`;
+                    warningMessage = `<@${message.author.id}> Command has already been used in the past minute. Please wait ${60 - cooldown} seconds before using again.`;
                     break;
                 case 1:
-                    warningMessage = `Last warning: Using this command in the next ${60 - cooldown} seconds will get you archived.`;
+                    warningMessage = `Last warning <@${message.author.id}>: Using this command in the next ${60 - cooldown} seconds will get you archived.`;
                     break;
                 case 2:
                 default:
                     message.member.roles.add(archivedRole).catch(console.error);
-                    warningMessage = `User <@${message.author.id}> has been archived for spamming`;
+                    warningMessage = `User <@${message.author.id}> has been archived for spamming.`;
                     break;
 			}
                 
             canUse = false;
-		    message.channel.send({content: warningMessage, allowedMentions: {repliedUser: true}, reply: { messageReference: message }});
+		    message.channel.send({content: warningMessage});
+            message.delete();
             previousWarnings++;
             pool.query(`UPDATE meme SET warnings = ${previousWarnings} WHERE userID = '${message.author.id}'`);
 		}
