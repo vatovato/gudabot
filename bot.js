@@ -68,7 +68,7 @@ client.on("messageCreate", message => {
     const command = args.shift().toLowerCase();
 
 
-    if(command === "roll10" || command === "myrolls" || command === "resetrolls" || command === "globalrolls" || command === "myfc") {
+    if(command === "roll10" || command === "myrolls" || command === "resetrolls" || command === "globalrolls" || command === "myfc" || command === "meme") {
       let commandFile = require(`./commands/${command}.js`);
       commandFile.run(client, message, connection);
       return;
