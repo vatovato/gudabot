@@ -1,7 +1,7 @@
 exports.run = (client, message, pool) => {
 
     // Spam protection
-    if ( canUseCommand(client, message, pool) {
+    if ( canUseCommand(client, message, pool) ) {
         const fetch = require('node-fetch');
         const albumHashes = [
             'blnRJ4Q', // 0 - Sephi's testing album
