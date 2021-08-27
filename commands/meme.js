@@ -44,7 +44,8 @@ function canUseCommand(client, message, pool) {
             var previousTimestamp = rows[0].memeTime;
             var userWishlist = rows[0].wishlist;
             var cooldown = Math.floor((timestamp - previousTimestamp)/1000);
-
+            
+            console.log(`'${message.author.username} used meme ${cooldown} seconds ago`);
             if ( cooldown >= 60 ) {
                 pool.query(`UPDATE meme SET timestamp = '${timestamp}', warnings = '0' WHERE userID = '${message.author.id}'`);
 			} else {
