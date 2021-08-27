@@ -60,7 +60,7 @@ function canUseCommand(client, message, pool) {
                     case 2:
                     default:
                         message.member.roles.add(archivedRole).catch(console.error);
-                        warningMessage = `User has been archived for spamming`;
+                        warningMessage = `User <@${message.author.id}> has been archived for spamming`;
                         break;
 				}
                 
