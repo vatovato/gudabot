@@ -52,11 +52,16 @@ function canUseCommand(client, message, pool) {
                 switch(previousWarnings) {
                     case 0:
                         warningMessage = `Command has already been used in the past minute. Please wait ${cooldown} seconds before using again.`;
+                        break;
                     case 1:
                         warningMessage = `Last warning: Using this command in the next ${cooldown} seconds will get you archived.`;
+                        break;
                     case 2:
                         message.member.roles.add(archivedRole).catch(console.error);
                         warningMessage = `User has been archived for spamming`;
+                        break;
+                    default:
+                        break;
 				}
                 
                 canUse = false;
