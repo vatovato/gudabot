@@ -28,7 +28,7 @@ exports.run = (client, message, pool) => {
             });
         } else {
             message.delete()
-            .then(msg => console.log(`Deleted message from ${msg.author.username}`))
+            .then()
             .catch(console.error);
 		}
     });
