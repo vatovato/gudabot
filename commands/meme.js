@@ -41,7 +41,7 @@ function canUseCommand(client, message, pool) {
             pool.query(`INSERT INTO meme SET userID = '${message.author.id}', username = '${message.author.username}', timestamp = '${timestamp}', warnings = '0'`);
         } else {
             var previousWarnings = rows[0].warnings;
-            var previousTimestamp = rows[0].memeTime;
+            var previousTimestamp = rows[0].timestamp;
             var userWishlist = rows[0].wishlist;
             var cooldown = Math.floor((timestamp - previousTimestamp)/1000);
             
