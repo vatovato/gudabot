@@ -56,11 +56,11 @@ client.on("messageCreate", message => {
     if (message.author.bot) return;
     if (!message.guild.me.permissionsIn(message.channel).has("SEND_MESSAGES") ) return; // Prevent crashes with commands that send messages in channels where bot doesn't have permissions
     // Substitute twitter links that contain videos with fxtwitter
-    if (message.content.includes("https://twitter.com/")) {
+    /*if (message.content.includes("https://twitter.com/")) {
         let twitFix = require(`./plugins/twitfix.js`);
         twitFix.run(client, message);
         return;
-	}
+	}*/
     if (message.content.indexOf(process.env.PREFIX) !== 0) return;
 
     // This is the best way to define args. Trust me.
