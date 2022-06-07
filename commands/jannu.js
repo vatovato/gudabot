@@ -6,3 +6,4 @@ if(args == "alter") {
 }
 message.channel.send("https://cdn.discordapp.com/attachments/404408579144286209/425310265844695040/jannu.gif").catch(console.error);
 }
+//Update: deleted jannu fast
